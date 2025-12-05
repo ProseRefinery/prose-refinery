@@ -1,0 +1,539 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   FONTS - Playfair Display (serif) + Inter (sans)
+   Note: We will implement next/font in layout.tsx, but keeping this import 
+   for immediate parity with reference if needed, or we can rely on next/font variables.
+   For now, let's use the CSS variables defined below which will map to next/font.
+   ============================================================================ */
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Custom Colors from Reference */
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #0d9668;
+  --color-slate-500: #64748b;
+  --color-slate-700: #334155;
+
+  /* Animations */
+  --animate-beam-spin: beam-spin 4s linear infinite;
+  --animate-aurora-shift: aurora-shift 20s ease-in-out infinite;
+  --animate-clip-reveal: clip-reveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  --animate-skeleton-shimmer: skeleton-shimmer 1.5s ease-in-out infinite;
+  --animate-confetti-fall: confetti-fall 3s ease-out forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+  --animate-gradient-shift: gradient-shift 3s ease infinite;
+  --animate-page-enter: page-enter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  --animate-page-exit: page-exit 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+
+  @keyframes beam-spin {
+    0% {
+      --beam-angle: 0deg;
+    }
+
+    100% {
+      --beam-angle: 360deg;
+    }
+  }
+
+  @keyframes aurora-shift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+      filter: hue-rotate(0deg);
+    }
+
+    25% {
+      background-position: 50% 0%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+      filter: hue-rotate(15deg);
+    }
+
+    75% {
+      background-position: 50% 100%;
+    }
+  }
+
+  @keyframes clip-reveal {
+    from {
+      clip-path: inset(100% 0 0 0);
+      transform: translateY(20px);
+    }
+
+    to {
+      clip-path: inset(0 0 0 0);
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes skeleton-shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes confetti-fall {
+    0% {
+      transform: translateY(-100%) rotate(0deg);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes glow-pulse {
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+    }
+
+    50% {
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+    }
+  }
+
+  @keyframes gradient-shift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes page-exit {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes aurora {
+
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.6;
+    }
+
+    25% {
+      transform: translate(2%, -2%) scale(1.02);
+      opacity: 0.7;
+    }
+
+    50% {
+      transform: translate(-1%, 1%) scale(0.98);
+      opacity: 0.5;
+    }
+
+    75% {
+      transform: translate(-2%, 2%) scale(1.01);
+      opacity: 0.65;
+    }
+  }
+}
+
+/* ============================================================================
+   CSS VARIABLES
+   ============================================================================ */
+:root {
+  --background: #05080f;
+  --foreground: #e2e8f0;
+  --emerald-500: #10b981;
+  --emerald-600: #0d9668;
+  --slate-500: #64748b;
+  --slate-700: #334155;
+}
+
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================================
+   CUSTOM SCROLLBAR
+   ============================================================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0f18;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--emerald-500);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 #0a0f18;
+}
+
+/* ============================================================================
+   CUSTOM CURSOR SUPPORT
+   ============================================================================ */
+.interactive,
+.interactive * {
+  cursor: none !important;
+}
+
+/* ============================================================================
+   SELECTION COLORS
+   ============================================================================ */
+::selection {
+  background-color: rgba(16, 185, 129, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: rgba(16, 185, 129, 0.3);
+  color: #ffffff;
+}
+
+/* ============================================================================
+   FOCUS STYLES
+   ============================================================================ */
+:focus-visible {
+  outline: 2px solid var(--emerald-500);
+  outline-offset: 2px;
+}
+
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================================================
+   UTILITY CLASSES & COMPONENT STYLES
+   ============================================================================ */
+
+/* Beam Border Property */
+@property --beam-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.beam-border {
+  position: relative;
+  isolation: isolate;
+}
+
+.beam-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--beam-angle),
+      transparent 0%,
+      transparent 30%,
+      #10b981 45%,
+      #34d399 50%,
+      #10b981 55%,
+      transparent 70%,
+      transparent 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: beam-spin 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.beam-border:hover::before {
+  opacity: 1;
+}
+
+.beam-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  pointer-events: none;
+  transition: border-color 0.3s ease;
+}
+
+.beam-border:hover::after {
+  border-color: transparent;
+}
+
+/* Clip Reveal */
+.clip-reveal {
+  animation: clip-reveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-play-state: paused;
+}
+
+.clip-reveal.visible {
+  animation-play-state: running;
+}
+
+/* Aurora Background */
+.aurora-bg {
+  background: radial-gradient(ellipse 150% 80% at 50% 0%,
+      rgba(16, 185, 129, 0.15) 0%,
+      rgba(6, 95, 70, 0.08) 30%,
+      transparent 60%),
+    radial-gradient(ellipse 100% 60% at 80% 20%,
+      rgba(139, 92, 246, 0.08) 0%,
+      transparent 50%),
+    radial-gradient(ellipse 80% 50% at 20% 80%,
+      rgba(16, 185, 129, 0.05) 0%,
+      transparent 50%);
+  background-size: 200% 200%;
+  animation: aurora-shift 20s ease-in-out infinite;
+}
+
+/* Page Transition */
+.page-transition-enter {
+  animation: page-enter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.page-transition-exit {
+  animation: page-exit 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Nav Indicator */
+.nav-indicator {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Floating Label */
+.floating-label-input {
+  position: relative;
+}
+
+.floating-label-input label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: transparent;
+  padding: 0 4px;
+}
+
+.floating-label-input input:focus~label,
+.floating-label-input input:not(:placeholder-shown)~label,
+.floating-label-input textarea:focus~label,
+.floating-label-input textarea:not(:placeholder-shown)~label {
+  top: 0;
+  font-size: 11px;
+  color: #10b981;
+  background: #0f172a;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Button Loading */
+@keyframes button-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: button-spinner 0.6s linear infinite;
+  color: white;
+}
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg,
+      rgba(30, 41, 59, 0.5) 25%,
+      rgba(51, 65, 85, 0.5) 50%,
+      rgba(30, 41, 59, 0.5) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+/* Confetti */
+.confetti-piece {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  animation: confetti-fall 3s ease-out forwards;
+  z-index: 9999;
+}
+
+/* Grid Glow */
+.grid-glow {
+  background-image:
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(16, 185, 129, 0.08) 0%,
+      transparent 50%),
+    linear-gradient(rgba(30, 41, 59, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 41, 59, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Magnetic Item */
+.magnetic-item {
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Scroll Section Indicator */
+.scroll-section-indicator {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Glow Pulse */
+.glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Animated Gradient Text */
+.animated-gradient-text {
+  background: linear-gradient(90deg,
+      #10b981,
+      #34d399,
+      #6ee7b7,
+      #34d399,
+      #10b981);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Parallax Layers */
+.parallax-slow {
+  transform: translateY(calc(var(--scroll-y, 0) * 0.1));
+}
+
+.parallax-medium {
+  transform: translateY(calc(var(--scroll-y, 0) * 0.3));
+}
+
+.parallax-fast {
+  transform: translateY(calc(var(--scroll-y, 0) * 0.5));
+}
+
+/* Utility Classes */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--emerald-500), var(--slate-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Smooth transitions */
+button,
+a,
+input,
+textarea,
+select {
+  transition: all 0.2s ease;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
