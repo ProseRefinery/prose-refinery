@@ -159,7 +159,12 @@ export function Nav() {
                                 <div className="flex items-center justify-between px-4 mb-3">
                                     <StatusIndicator />
                                 </div>
-                                <MagneticButton href="/diagnostic" variant="primary" className="w-full">
+                                <MagneticButton
+                                    href="/diagnostic"
+                                    variant="primary"
+                                    className="w-full"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
                                     Begin Diagnostic
                                 </MagneticButton>
                             </div>

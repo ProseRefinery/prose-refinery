@@ -76,6 +76,7 @@ export function MagneticButton({
                 style={style}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
+                onClick={onClick}
             >
                 {children}
             </Link>
