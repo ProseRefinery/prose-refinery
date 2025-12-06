@@ -72,7 +72,7 @@ export function Footer() {
                     </div>
 
                     {/* Navigation - Expertise - 2 Cols */}
-                    <div className="lg:col-span-2 lg:pl-4">
+                    <div className="lg:col-span-2">
                         <h4 className="text-white text-base font-bold mb-6 font-[family-name:var(--font-playfair)]">Expertise</h4>
                         <ul className="space-y-3">
                             <li><Link href="/services#diagnostics" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all" />Diagnostics</Link></li>
