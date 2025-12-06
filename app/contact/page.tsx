@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { Metadata } from 'next';
-import { ArrowRight, Send, Mail, MessageSquare } from 'lucide-react';
+import { ArrowRight, Send, Mail } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/BrandIcons';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
@@ -233,7 +234,7 @@ export default function ContactPage() {
                                     href={`https://wa.me/${COMPANY.whatsapp?.replace('+', '')}`}
                                     className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors"
                                 >
-                                    <MessageSquare size={18} />
+                                    <WhatsAppIcon size={18} />
                                     WhatsApp
                                 </a>
                             </div>
