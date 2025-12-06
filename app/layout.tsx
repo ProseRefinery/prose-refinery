@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     creator: "@proserefinery",
   },
   icons: {
-    icon: '/logo.png',
-    shortcut: '/logo.png',
-    apple: '/logo.png',
+    icon: '/favicon.svg',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.svg',
   },
   robots: {
     index: true,
