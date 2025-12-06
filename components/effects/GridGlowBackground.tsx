@@ -3,10 +3,11 @@
 import { useState, ReactNode, MouseEvent } from 'react';
 
 interface GridGlowBackgroundProps {
-    children: ReactNode;
+    children?: ReactNode;
+    className?: string;
 }
 
-export function GridGlowBackground({ children }: GridGlowBackgroundProps) {
+export function GridGlowBackground({ children, className = '' }: GridGlowBackgroundProps) {
     const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
     const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -18,7 +19,7 @@ export function GridGlowBackground({ children }: GridGlowBackgroundProps) {
     };
 
     return (
-        <div className="relative w-full" onMouseMove={handleMouseMove}>
+        <div className={`relative w-full ${className}`} onMouseMove={handleMouseMove}>
             <div
                 className="absolute inset-0 pointer-events-none transition-all duration-300"
                 style={{
