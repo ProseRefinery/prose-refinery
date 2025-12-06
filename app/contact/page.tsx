@@ -229,6 +229,13 @@ export default function ContactPage() {
                                     <Mail size={18} />
                                     {COMPANY.email}
                                 </a>
+                                <a
+                                    href={`https://wa.me/${COMPANY.whatsapp?.replace('+', '')}`}
+                                    className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors"
+                                >
+                                    <MessageSquare size={18} />
+                                    WhatsApp
+                                </a>
                             </div>
                         </div>
                     </Reveal>

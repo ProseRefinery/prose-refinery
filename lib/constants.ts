@@ -6,7 +6,7 @@ export const COMPANY = {
     legalName: 'Prose Refinery Ltd',
     companyNumber: '16476326',
     email: 'hello@proserefinery.com',
-    whatsapp: '+447123456789'
+    whatsapp: '+447735750274'
 } as const;
 
 // Stripe Payment Links - Replace with your actual Stripe payment link URLs

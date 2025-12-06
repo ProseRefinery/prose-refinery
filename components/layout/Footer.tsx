@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, MessageSquare, ArrowRight, CheckCircle2, Instagram, Twitter } from 'lucide-react';
+import { Mail, ArrowRight, CheckCircle2, Instagram, Twitter } from 'lucide-react';
 import { COMPANY, NAV_ITEMS } from '@/lib/constants';
 import { useState, FormEvent } from 'react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
@@ -18,6 +18,26 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
             {children}
         </Link>
     </div>
+);
+
+// Custom Brand Icons
+const WhatsAppIcon = ({ className, size }: { className?: string; size?: number }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size || 24}
+        height={size || 24}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+    >
+        <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+        <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0 1 0v1a.5.5 0 0 0 1 0v-1a.5.5 0 0 0 1 0v1a.5.5 0 0 0 1 0V9a.5.5 0 0 0 1 0v1z" fill="transparent" stroke="none" />
+        <path d="M17.49 12.38c-.69-.346-4.002-2-4.002-2s-.346-.173-.5.173c-.154.346-.616.769-.616.769s-.153.153-.346.077c-.192-.077-.827-.308-1.577-.962-.577-.5-1.077-1.116-1.5-1.846-.115-.192.019-.289.019-.289s.25-.288.384-.461c.135-.173.173-.288.25-.48.077-.192.039-.366-.019-.5-.058-.135-.5-1.231-.692-1.693-.192-.461-.385-.404-.538-.404h-.462c-.154 0-.403.058-.615.289-.212.23-1.077.749-1.077 1.846s.808 2.153.923 2.307c.115.154 1.596 2.442 3.865 3.423 1.5.653 1.808.519 2.442.461.635-.058 2.039-.827 2.327-1.634.288-.808.288-1.5.211-1.635-.077-.134-.288-.211-.577-.346z" fill="currentColor" stroke="none" />
+    </svg>
 );
 
 export function Footer() {
@@ -67,7 +87,7 @@ export function Footer() {
                         <div className="flex items-center gap-3 pt-2">
                             {[
                                 { icon: Mail, href: `mailto:${COMPANY.email}`, label: 'Email' },
-                                { icon: MessageSquare, href: `https://wa.me/${COMPANY.whatsapp?.replace('+', '')}`, label: 'WhatsApp' },
+                                { icon: WhatsAppIcon, href: `https://wa.me/${COMPANY.whatsapp?.replace('+', '')}`, label: 'WhatsApp' },
                                 { icon: Twitter, href: '#', label: 'Twitter' },
                                 { icon: Instagram, href: '#', label: 'Instagram' }
                             ].map((social) => (
