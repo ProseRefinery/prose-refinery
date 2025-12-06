@@ -72,23 +72,56 @@ export function Footer() {
                     </div>
 
                     {/* Navigation - Expertise - 2 Cols */}
+                    {/* Navigation - Expertise - 2 Cols */}
                     <div className="lg:col-span-2">
-                        <h4 className="text-white text-base font-bold mb-6 font-[family-name:var(--font-playfair)]">Expertise</h4>
+                        <h4 className="text-white text-lg font-bold mb-6 font-[family-name:var(--font-playfair)]">Expertise</h4>
                         <ul className="space-y-3">
-                            <li><Link href="/services#diagnostics" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all" />Diagnostics</Link></li>
-                            <li><Link href="/services#audits" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all" />Developmental Audits</Link></li>
-                            <li><Link href="/services#mentorship" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all" />Mentorship</Link></li>
-                            <li><Link href="/resources" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all" />Craft Resources</Link></li>
+                            <li className="relative">
+                                <Link
+                                    href="/services#diagnostics"
+                                    className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center pl-0 hover:pl-4 transition-all duration-300"
+                                >
+                                    <span className="absolute left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity top-[0.6em] -translate-y-1/2" />
+                                    Diagnostics
+                                </Link>
+                            </li>
+                            <li className="relative">
+                                <Link
+                                    href="/services#audits"
+                                    className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center pl-0 hover:pl-4 transition-all duration-300"
+                                >
+                                    <span className="absolute left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity top-[0.6em] -translate-y-1/2" />
+                                    Developmental Audits
+                                </Link>
+                            </li>
+                            <li className="relative">
+                                <Link
+                                    href="/services#mentorship"
+                                    className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center pl-0 hover:pl-4 transition-all duration-300"
+                                >
+                                    <span className="absolute left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity top-[0.6em] -translate-y-1/2" />
+                                    Mentorship
+                                </Link>
+                            </li>
+                            <li className="relative">
+                                <Link
+                                    href="/resources"
+                                    className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center pl-0 hover:pl-4 transition-all duration-300"
+                                >
+                                    <span className="absolute left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity top-[0.6em] -translate-y-1/2" />
+                                    Craft Resources
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
                     {/* Navigation - Company - 2 Cols */}
                     <div className="lg:col-span-2">
-                        <h4 className="text-white text-base font-bold mb-6 font-[family-name:var(--font-playfair)]">Company</h4>
+                        <h4 className="text-white text-lg font-bold mb-6 font-[family-name:var(--font-playfair)]">Company</h4>
                         <ul className="space-y-3">
-                            <li><Link href="/method" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm">The Method</Link></li>
-                            <li><Link href="/about" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm">About Us</Link></li>
-                            <li><Link href="/contact" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm">Contact</Link></li>
+                            <li><Link href="/method" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm block">The Method</Link></li>
+                            <li><Link href="/about" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm block">About Us</Link></li>
+                            <li><Link href="/contact" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm block">Contact</Link></li>
                             <li className="pt-3 mt-3 border-t border-slate-800/50">
                                 <Link href="/login" className="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-wider flex items-center gap-2">
                                     Client Portal <ArrowRight size={10} />
