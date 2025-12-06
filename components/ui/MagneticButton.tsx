@@ -25,13 +25,14 @@ export function MagneticButton({
     type = 'button',
     variant = 'primary',
     href,
-    disabled = false
-}: MagneticButtonProps) {
+    disabled = false,
+    loading = false
+}: MagneticButtonProps & { loading?: boolean }) {
     const [transform, setTransform] = useState({ x: 0, y: 0 });
     const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
 
     const handleMouseMove = (e: MouseEvent) => {
-        if (!ref.current || disabled) return;
+        if (!ref.current || disabled || loading) return;
 
         const rect = ref.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
@@ -67,7 +68,8 @@ export function MagneticButton({
         transform: `translate(${transform.x}px, ${transform.y}px)`,
     };
 
-    if (href && !disabled) {
+    // If loading, disable link functionality
+    if (href && !disabled && !loading) {
         return (
             <Link
                 href={href}
@@ -88,13 +90,22 @@ export function MagneticButton({
             ref={ref as React.RefObject<HTMLButtonElement>}
             type={type}
             onClick={onClick}
-            disabled={disabled}
+            disabled={disabled || loading}
             className={baseStyles}
             style={style}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
-            {children}
+            {loading ? (
+                <>
+                    <span className="opacity-0 flex items-center gap-2">{children}</span>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    </div>
+                </>
+            ) : (
+                children
+            )}
         </button>
     );
 }

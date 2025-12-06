@@ -12,7 +12,6 @@ import { SuccessConfetti } from '@/components/effects/SuccessConfetti';
 import { FloatingInput } from '@/components/ui/FloatingInput';
 import { FloatingTextarea } from '@/components/ui/FloatingTextarea';
 import { FloatingSelect } from '@/components/ui/FloatingSelect';
-import { LoadingButton } from '@/components/ui/LoadingButton';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { TIERS, COMPANY } from '@/lib/constants';
@@ -206,15 +205,15 @@ export default function ContactPage() {
                         </Reveal>
 
                         <Reveal delay={300}>
-                            <LoadingButton
+                            <MagneticButton
                                 type="submit"
                                 loading={loading}
                                 variant="primary"
                                 className="w-full"
                             >
                                 Send Message
-                                <ArrowRight size={18} />
-                            </LoadingButton>
+                                <ArrowRight size={14} />
+                            </MagneticButton>
                         </Reveal>
                     </form>
 
