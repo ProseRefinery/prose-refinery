@@ -8,6 +8,18 @@ import { useState, FormEvent } from 'react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 
+const FooterLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => (
+    <div className="relative">
+        <Link
+            href={href}
+            className={`text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center pl-0 hover:pl-4 transition-all duration-300 ${className || ''}`}
+        >
+            <span className="absolute left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity top-[0.6em] -translate-y-1/2" />
+            {children}
+        </Link>
+    </div>
+);
+
 export function Footer() {
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
@@ -29,10 +41,10 @@ export function Footer() {
             <GridGlowBackground className="absolute inset-0 pointer-events-none" />
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                <div className="grid grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
 
                     {/* Brand & Mission - 4 Cols */}
-                    <div className="lg:col-span-4 space-y-6">
+                    <div className="col-span-2 lg:col-span-4 space-y-6">
                         <Link href="/" className="inline-flex items-center gap-3 group">
                             <div className="relative w-8 h-8 overflow-hidden rounded-lg">
                                 <Image
@@ -72,46 +84,13 @@ export function Footer() {
                     </div>
 
                     {/* Navigation - Expertise - 2 Cols */}
-                    {/* Navigation - Expertise - 2 Cols */}
                     <div className="lg:col-span-2">
                         <h4 className="text-white text-lg font-bold mb-6 font-[family-name:var(--font-playfair)]">Expertise</h4>
                         <ul className="space-y-3">
-                            <li className="relative">
-                                <Link
-                                    href="/services#diagnostics"
-                                    className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center pl-0 hover:pl-4 transition-all duration-300"
-                                >
-                                    <span className="absolute left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity top-[0.6em] -translate-y-1/2" />
-                                    Diagnostics
-                                </Link>
-                            </li>
-                            <li className="relative">
-                                <Link
-                                    href="/services#audits"
-                                    className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center pl-0 hover:pl-4 transition-all duration-300"
-                                >
-                                    <span className="absolute left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity top-[0.6em] -translate-y-1/2" />
-                                    Developmental Audits
-                                </Link>
-                            </li>
-                            <li className="relative">
-                                <Link
-                                    href="/services#mentorship"
-                                    className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center pl-0 hover:pl-4 transition-all duration-300"
-                                >
-                                    <span className="absolute left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity top-[0.6em] -translate-y-1/2" />
-                                    Mentorship
-                                </Link>
-                            </li>
-                            <li className="relative">
-                                <Link
-                                    href="/resources"
-                                    className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center pl-0 hover:pl-4 transition-all duration-300"
-                                >
-                                    <span className="absolute left-0 w-1.5 h-1.5 rounded-full bg-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity top-[0.6em] -translate-y-1/2" />
-                                    Craft Resources
-                                </Link>
-                            </li>
+                            <li><FooterLink href="/services#diagnostics">Diagnostics</FooterLink></li>
+                            <li><FooterLink href="/services#audits">Developmental Audits</FooterLink></li>
+                            <li><FooterLink href="/services#mentorship">Mentorship</FooterLink></li>
+                            <li><FooterLink href="/resources">Craft Resources</FooterLink></li>
                         </ul>
                     </div>
 
@@ -119,19 +98,23 @@ export function Footer() {
                     <div className="lg:col-span-2">
                         <h4 className="text-white text-lg font-bold mb-6 font-[family-name:var(--font-playfair)]">Company</h4>
                         <ul className="space-y-3">
-                            <li><Link href="/method" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm block">The Method</Link></li>
-                            <li><Link href="/about" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm block">About Us</Link></li>
-                            <li><Link href="/contact" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm block">Contact</Link></li>
+                            <li><FooterLink href="/method">The Method</FooterLink></li>
+                            <li><FooterLink href="/about">About Us</FooterLink></li>
+                            <li><FooterLink href="/contact">Contact</FooterLink></li>
                             <li className="pt-3 mt-3 border-t border-slate-800/50">
-                                <Link href="/login" className="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-wider flex items-center gap-2">
-                                    Client Portal <ArrowRight size={10} />
+                                <Link
+                                    href="/login"
+                                    className="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-wider flex items-center gap-2 group"
+                                >
+                                    Client Portal
+                                    <ArrowRight size={10} className="group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </li>
                         </ul>
                     </div>
 
                     {/* Newsletter - 4 Cols */}
-                    <div className="lg:col-span-4">
+                    <div className="col-span-2 lg:col-span-4">
                         <div className="relative p-6 rounded-2xl bg-slate-900/40 border border-slate-800 backdrop-blur-sm overflow-hidden group hover:border-emerald-500/30 transition-colors duration-500">
                             {/* Beam Effect */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
