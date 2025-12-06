@@ -71,31 +71,34 @@ export function Footer() {
                         </div>
                     </div>
 
-                    {/* Navigation - 3 Cols */}
-                    <div className="lg:col-span-3 lg:pl-8">
-                        <h4 className="text-white text-base font-bold mb-6 font-[family-name:var(--font-playfair)]">Explore</h4>
+                    {/* Navigation - Expertise - 2 Cols */}
+                    <div className="lg:col-span-2 lg:pl-4">
+                        <h4 className="text-white text-base font-bold mb-6 font-[family-name:var(--font-playfair)]">Expertise</h4>
                         <ul className="space-y-3">
-                            {NAV_ITEMS.map((item) => (
-                                <li key={item.id}>
-                                    <Link
-                                        href={item.href}
-                                        className="text-slate-400 hover:text-emerald-400 transition-colors text-sm flex items-center gap-2 group"
-                                    >
-                                        <span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all duration-300" />
-                                        <span className="group-hover:translate-x-1 transition-transform duration-300">{item.label}</span>
-                                    </Link>
-                                </li>
-                            ))}
-                            <li className="pt-3 border-t border-slate-800/50 mt-3">
-                                <Link href="/login" className="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-wider">
-                                    Client Portal
+                            <li><Link href="/services#diagnostics" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all" />Diagnostics</Link></li>
+                            <li><Link href="/services#audits" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all" />Developmental Audits</Link></li>
+                            <li><Link href="/services#mentorship" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all" />Mentorship</Link></li>
+                            <li><Link href="/resources" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm group flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500 transition-all" />Craft Resources</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Navigation - Company - 2 Cols */}
+                    <div className="lg:col-span-2">
+                        <h4 className="text-white text-base font-bold mb-6 font-[family-name:var(--font-playfair)]">Company</h4>
+                        <ul className="space-y-3">
+                            <li><Link href="/method" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm">The Method</Link></li>
+                            <li><Link href="/about" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm">About Us</Link></li>
+                            <li><Link href="/contact" className="text-slate-400 hover:text-emerald-400 transition-colors text-sm">Contact</Link></li>
+                            <li className="pt-3 mt-3 border-t border-slate-800/50">
+                                <Link href="/login" className="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-wider flex items-center gap-2">
+                                    Client Portal <ArrowRight size={10} />
                                 </Link>
                             </li>
                         </ul>
                     </div>
 
-                    {/* Newsletter - 5 Cols */}
-                    <div className="lg:col-span-5">
+                    {/* Newsletter - 4 Cols */}
+                    <div className="lg:col-span-4">
                         <div className="relative p-6 rounded-2xl bg-slate-900/40 border border-slate-800 backdrop-blur-sm overflow-hidden group hover:border-emerald-500/30 transition-colors duration-500">
                             {/* Beam Effect */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
