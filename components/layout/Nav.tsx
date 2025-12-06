@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS, COMPANY } from '@/lib/constants';
 import { MagneticButton } from '@/components/ui/MagneticButton';
@@ -25,11 +25,28 @@ function StatusIndicator() {
 }
 
 // Urgency/Availability badge
+// Urgency/Availability badge
 function AvailabilityBadge() {
-    return (
+    const [dateStr, setDateStr] = useState<string>('');
+
+    useEffect(() => {
+        const now = new Date();
+        setDateStr(now.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }));
+    }, []);
+
+    // Prevent hydration mismatch by not rendering date on server
+    if (!dateStr) return (
         <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/30">
             <span className="text-[10px] uppercase tracking-widest text-emerald-400">
-                Now Booking: Feb 2025
+                Now Booking
+            </span>
+        </div>
+    );
+
+    return (
+        <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 animate-in fade-in duration-500">
+            <span className="text-[10px] uppercase tracking-widest text-emerald-400">
+                Now Booking: {dateStr}
             </span>
         </div>
     );
