@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { NAV_ITEMS } from '@/lib/constants';
+import { NAV_ITEMS, COMPANY } from '@/lib/constants';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { cn } from '@/lib/utils';
 
@@ -49,16 +49,17 @@ export function Nav() {
             <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between backdrop-blur-md bg-slate-900/80 border border-slate-800/50 rounded-md mt-2 px-4">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3">
-                        <Image
-                            src="/logo.png"
-                            alt="Prose Refinery"
-                            width={28}
-                            height={28}
-                            className="w-7 h-7"
-                        />
-                        <span className="text-sm font-semibold text-white tracking-wide hidden sm:block">
-                            PROSE REFINERY
+                    <Link href="/" className="inline-flex items-center gap-3 group px-2">
+                        <div className="relative w-8 h-8 overflow-hidden rounded-md">
+                            <Image
+                                src="/logo.png"
+                                alt="Prose Refinery"
+                                fill
+                                className="object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                        </div>
+                        <span className="text-sm font-bold text-white font-[family-name:var(--font-playfair)] tracking-wide group-hover:text-emerald-400 transition-colors">
+                            {COMPANY.name}
                         </span>
                     </Link>
 
