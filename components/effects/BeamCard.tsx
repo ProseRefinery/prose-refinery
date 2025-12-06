@@ -73,7 +73,7 @@ export function BeamCard({ children, className = '', glowColor = 'emerald' }: Be
             />
 
             {/* Content */}
-            <div className="relative rounded-md" style={{ zIndex: 2 }}>
+            <div className="relative rounded-md h-full" style={{ zIndex: 2 }}>
                 {children}
             </div>
         </div>

@@ -1,7 +1,7 @@
 import { LucideIcon } from "lucide-react";
 import { ChangeEvent, ReactNode } from "react";
 
-export type PageId = 'home' | 'method' | 'services' | 'about' | 'diagnostic' | 'contact';
+export type PageId = 'home' | 'method' | 'services' | 'resources' | 'about' | 'diagnostic' | 'contact';
 
 export interface Tier {
     id: number;

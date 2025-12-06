@@ -23,8 +23,8 @@ export function Footer() {
                             </span>
                         </Link>
                         <p className="text-slate-400 text-sm max-w-md mb-4">
-                            Precision editorial services for speculative fiction authors.
-                            We help you transform your manuscript into a publication-ready work.
+                            Prose Refinery provides expert developmental editing for fantasy and sci-fi authors.
+                            We fix the structural cracks that make agents pass.
                         </p>
                         <div className="flex items-center gap-4">
                             <a

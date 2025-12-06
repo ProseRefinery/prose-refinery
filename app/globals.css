@@ -1,4 +1,114 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ============================================================================
+   ARTICLE TYPOGRAPHY - Premium Editorial Styling
+   ============================================================================ */
+.article-content {
+  color: var(--slate-300);
+  font-family: var(--font-inter);
+  line-height: 1.8;
+  font-size: 1.125rem;
+  /* 18px */
+}
+
+/* Headings */
+.article-content h2 {
+  font-family: var(--font-playfair);
+  color: white;
+  font-size: 2rem;
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+.article-content h3 {
+  font-family: var(--font-playfair);
+  color: var(--emerald-500);
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Paragraphs */
+.article-content p {
+  margin-bottom: 1.75rem;
+  color: #cbd5e1;
+  /* slate-300 */
+}
+
+/* Lists */
+.article-content ul {
+  list-style-type: none;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+}
+
+.article-content ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-content ul li::before {
+  content: "♦";
+  color: var(--emerald-500);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.8em;
+  line-height: 1.8;
+}
+
+/* Blockquotes */
+.article-content blockquote {
+  border-left: 4px solid var(--emerald-500);
+  background: rgba(16, 185, 129, 0.05);
+  padding: 1.5rem 2rem;
+  margin: 2.5rem 0;
+  font-style: italic;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.article-content blockquote p {
+  margin: 0;
+  color: #e2e8f0;
+}
+
+/* Emphasis */
+.article-content strong {
+  color: white;
+  font-weight: 600;
+}
+
+.article-content em {
+  color: var(--emerald-400);
+}
+
+/* Links */
+.article-content a {
+  color: var(--emerald-400);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.article-content a:hover {
+  color: var(--emerald-500);
+  border-bottom-color: var(--emerald-500);
+}
+
+/* Separators */
+.article-content hr {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--emerald-500), transparent);
+  margin: 4rem 0;
+  opacity: 0.5;
+}
 
 /* ============================================================================
    FONTS - Playfair Display (serif) + Inter (sans)

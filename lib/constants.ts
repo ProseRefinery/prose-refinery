@@ -79,6 +79,7 @@ export const NAV_ITEMS: NavItem[] = [
     { id: 'home', label: 'Home', href: '/' },
     { id: 'method', label: 'Method', href: '/method' },
     { id: 'services', label: 'Services', href: '/services' },
+    { id: 'resources', label: 'Resources', href: '/resources' },
     { id: 'about', label: 'About', href: '/about' },
     { id: 'diagnostic', label: 'Diagnostic', href: '/diagnostic' },
     { id: 'contact', label: 'Contact', href: '/contact' }

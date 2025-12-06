@@ -33,15 +33,35 @@ const TRUST_CARDS = [
 ];
 
 export default function HomePage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'Prose Refinery',
+    url: 'https://prose-refinery.com',
+    description: 'Expert developmental editing for fantasy and sci-fi novels.',
+    priceRange: '£95-£5000',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'UK'
+    },
+    sameAs: [
+      'https://twitter.com/proserefinery'
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section - Benefit-focused copy */}
       <section className="relative flex justify-center pt-20 pb-24">
         <GridGlowBackground>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-3xl mx-auto">
               <Reveal>
-                <HeroBadge icon="award">Structural Editing for Speculative Fiction</HeroBadge>
+                <HeroBadge icon="award">Prose Refinery | Structural Editing for Speculative Fiction</HeroBadge>
               </Reveal>
 
               <ClipReveal delay={100}>

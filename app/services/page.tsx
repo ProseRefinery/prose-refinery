@@ -1,6 +1,5 @@
 'use client';
 
-import { Metadata } from 'next';
 import { useState } from 'react';
 import { Check, ArrowRight, Shield, ChevronDown, ChevronUp, Calendar, CreditCard, Clock } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
@@ -199,6 +198,78 @@ export default function ServicesPage() {
                                 </Reveal>
                             );
                         })}
+                    </div>
+                </div>
+            </section>
+
+            {/* Tier 1 Options Breakdown */}
+            <section id="tier-1-options" className="py-24 border-t border-slate-800/50">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12">
+                        <ClipReveal>
+                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                                Select Your Diagnostic
+                            </h2>
+                        </ClipReveal>
+                        <Reveal delay={100}>
+                            <p className="text-slate-400 max-w-2xl mx-auto">
+                                Tier 1 services focus on a single critical aspect of your opening pages.
+                                Choose the analysis that fits your current concern.
+                            </p>
+                        </Reveal>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {/* Option 1: Hook */}
+                        <Reveal delay={0}>
+                            <TiltCard className="h-full">
+                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
+                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                        Opening Hook
+                                    </h3>
+                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                        Does your first chapter compel the reader to turn the page? We analyze your inciting incident and narrative traction.
+                                    </p>
+                                    <MagneticButton href={STRIPE_LINKS.tier1_hook} variant="secondary" className="w-full">
+                                        Select (95 GBP)
+                                    </MagneticButton>
+                                </div>
+                            </TiltCard>
+                        </Reveal>
+
+                        {/* Option 2: Voice */}
+                        <Reveal delay={100}>
+                            <TiltCard className="h-full">
+                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
+                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                        Voice & Tone
+                                    </h3>
+                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                        Is your narrative voice consistent and engaging? We check for tonal shifts and stylistic strength.
+                                    </p>
+                                    <MagneticButton href={STRIPE_LINKS.tier1_voice} variant="secondary" className="w-full">
+                                        Select (95 GBP)
+                                    </MagneticButton>
+                                </div>
+                            </TiltCard>
+                        </Reveal>
+
+                        {/* Option 3: Pacing */}
+                        <Reveal delay={200}>
+                            <TiltCard className="h-full">
+                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
+                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                        Pacing Snapshot
+                                    </h3>
+                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                        Are you starting too slow or moving too fast? We map the beats of your opening to ensure structural rhythm.
+                                    </p>
+                                    <MagneticButton href={STRIPE_LINKS.tier1_pacing} variant="secondary" className="w-full">
+                                        Select (95 GBP)
+                                    </MagneticButton>
+                                </div>
+                            </TiltCard>
+                        </Reveal>
                     </div>
                 </div>
             </section>
