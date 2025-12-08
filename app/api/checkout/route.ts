@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2025-01-27.acacia', // Use latest stable API version or match what is installed
+    apiVersion: '2025-11-17.clover' as any,
 });
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
     try {
         if (!process.env.STRIPE_SECRET_KEY) {
             console.error('CRITICAL: STRIPE_SECRET_KEY is missing in environment variables.');
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
         }
 
         const body = await req.json();
-        const { priceId, successUrl = '/success', cancelUrl = '/cancel' } = body;
+        const { priceId } = body;
 
         console.log(`[Checkout] Attempting checkout for Price ID: ${priceId}`);
 
@@ -23,15 +23,16 @@ export async function POST(req: Request) {
         }
 
         const session = await stripe.checkout.sessions.create({
+            mode: 'payment',
+            payment_method_types: ['card'],
             line_items: [
                 {
                     price: priceId,
                     quantity: 1,
                 },
             ],
-            mode: 'payment',
-            success_url: `${req.headers.get('origin')}${successUrl}`,
-            cancel_url: `${req.headers.get('origin')}${cancelUrl}`,
+            success_url: `${req.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${req.nextUrl.origin}/services`,
         });
 
         return NextResponse.json({ url: session.url });
