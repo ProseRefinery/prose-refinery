@@ -100,7 +100,7 @@ export default function HomePage() {
               <Reveal delay={600}>
                 <p className="text-xs text-emerald-500/70 mt-3">
                   <Calendar size={12} className="inline mr-2" />
-                  Currently accepting projects for Q1 2025
+                  Currently accepting projects
                 </p>
               </Reveal>
             </div>

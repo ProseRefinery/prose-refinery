@@ -9,13 +9,22 @@ export const COMPANY = {
     whatsapp: '+447735750274'
 } as const;
 
-// Stripe Payment Links - Replace with your actual Stripe payment link URLs
-export const STRIPE_LINKS = {
-    tier1_hook: 'https://buy.stripe.com/YOUR_TIER_1_HOOK_LINK',
-    tier1_voice: 'https://buy.stripe.com/YOUR_TIER_1_VOICE_LINK',
-    tier1_pacing: 'https://buy.stripe.com/YOUR_TIER_1_PACING_LINK',
-    tier2: 'https://buy.stripe.com/YOUR_TIER_2_LINK',
-    // Tiers 3-4 use contact form
+// Stripe Price IDs - Replace with your actual Stripe Price IDs (price_...)
+export const STRIPE_PRICES = {
+    // Editorial
+    tier1_hook: 'price_1SbRI0BXNkcYRXZ1T52dy0QC',
+    tier1_voice: 'price_1SbRHwBXNkcYRXZ1CzADAfOW',
+    tier1_pacing: 'price_1SbRHrBXNkcYRXZ1s5QPeTRa',
+    tier1_bundle: 'price_1SbRHmBXNkcYRXZ1jgljYxkb',
+    single_pillar_audit: 'price_1SbRHhBXNkcYRXZ16X9naTUo',
+    tier3_taster: 'price_1SbRHdBXNkcYRXZ1vKfc0RqS',
+    launch_arsenal: 'price_1SbRHbBXNkcYRXZ1Jfj04GZ1',
+
+    // Multimedia
+    teaser_soundtrack: 'price_1SbRHZBXNkcYRXZ1Qi2k8OYp',
+    full_soundtrack: 'price_1SbRHVBXNkcYRXZ1rL4u6ad6',
+    book_trailer: 'price_1SbRHBBXNkcYRXZ1CqsOmlqk',
+    marketing_power_pack: 'price_1SbRH7BXNkcYRXZ1kDJV0Nz2',
 } as const;
 
 export const TIERS: Tier[] = [
@@ -23,7 +32,7 @@ export const TIERS: Tier[] = [
         id: 1,
         name: 'Entry Diagnostics',
         price: '£95 – £175',
-        turnaround: '5–7 days',
+        turnaround: '48 hours',
         description: "Pinpoint what's not working",
         includes: ['Opening Hook Assessment', 'Voice & Tone Diagnostic', 'Pacing Snapshot']
     },
@@ -34,15 +43,17 @@ export const TIERS: Tier[] = [
         turnaround: '10–15 days',
         description: 'Repair what you already see',
         includes: ['Single-Pillar Deep Dive', 'Act-Level Structure Audit', 'Character Arc Analysis'],
-        recommended: true
+        recommended: true,
+        pricingContext: 'Pricing based on scope — single pillar (£250) vs. multi-pillar analysis (£750)'
     },
     {
         id: 3,
         name: 'Full Manuscript Refinement',
         price: '£1,500 – £4,500',
-        turnaround: '4–8 weeks',
+        turnaround: '3–4 weeks',
         description: 'Reconstruct the full manuscript',
-        includes: ['Complete 7-Pillar Assessment', 'Chapter-by-Chapter Analysis', 'Editorial Letter', 'Blade 4.0 Interventions']
+        includes: ['Complete 7-Pillar Assessment', 'Chapter-by-Chapter Analysis', 'Editorial Letter', 'Blade 4.0 Interventions'],
+        pricingContext: 'Pricing based on word count — under 80K (£1,500), 80–120K (£3,000), 120K+ (£4,500)'
     },
     {
         id: 4,
@@ -50,7 +61,8 @@ export const TIERS: Tier[] = [
         price: '£5,000 – £12,000',
         turnaround: '3–6 months',
         description: 'Partner through multiple drafts',
-        includes: ['Everything in Tier 3', 'Multiple Draft Passes', 'Ongoing Consultation', 'Direct Access']
+        includes: ['Everything in Tier 3', 'Multiple Draft Passes', 'Ongoing Consultation', 'Direct Access'],
+        pricingContext: 'Custom quote based on project scope, timeline, and number of draft passes'
     }
 ];
 

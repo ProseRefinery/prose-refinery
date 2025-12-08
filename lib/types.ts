@@ -11,6 +11,7 @@ export interface Tier {
     description: string;
     includes: string[];
     recommended?: boolean;
+    pricingContext?: string;
 }
 
 export interface Pillar {
