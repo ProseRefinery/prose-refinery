@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         const body = await req.json();
         const { priceId } = body;
 
-        console.log(`[Checkout] Attempting checkout for Price ID: ${priceId}`);
+        console.log(`[Checkout v2.2] Attempting checkout for Price ID: ${priceId}`);
 
         if (!priceId) {
             console.error('[Checkout] Error: Price ID is missing in request body.');
