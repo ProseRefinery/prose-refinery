@@ -63,7 +63,7 @@ export function TiltCard({ children, className = '', maxTilt = 8 }: TiltCardProp
                     zIndex: 0
                 }}
             />
-            <div className="relative" style={{ zIndex: 1 }}>
+            <div className="relative h-full" style={{ zIndex: 1 }}>
                 {children}
             </div>
         </div>
