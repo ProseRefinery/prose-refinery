@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { ArrowRight, ArrowLeft, Check, Target, Mail, Sparkles, Gift } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
 import { TiltCard } from '@/components/effects/TiltCard';
 import { BeamCard } from '@/components/effects/BeamCard';
-import { SuccessConfetti } from '@/components/effects/SuccessConfetti';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { Skeleton } from '@/components/ui/Skeleton';
@@ -15,7 +15,7 @@ import { FloatingInput } from '@/components/ui/FloatingInput';
 import { QUESTIONS, TIERS, track } from '@/lib/constants';
 import { DiagnosticAnswers } from '@/lib/types';
 
-type DiagnosticState = 'intro' | 'quiz' | 'email-gate' | 'calculating' | 'result';
+type DiagnosticState = 'intro' | 'quiz' | 'email-gate' | 'calculating';
 
 function calculateResult(answers: DiagnosticAnswers): number {
     const values = Object.values(answers).filter(v => v !== undefined) as number[];
@@ -34,14 +34,13 @@ function calculateResult(answers: DiagnosticAnswers): number {
 }
 
 export default function DiagnosticPage() {
+    const router = useRouter();
     const [state, setState] = useState<DiagnosticState>('intro');
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<DiagnosticAnswers>({});
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState(false);
     const [newsletter, setNewsletter] = useState(true);
-    const [recommendedTier, setRecommendedTier] = useState<number>(2);
-    const [showConfetti, setShowConfetti] = useState(false);
 
     const handleStart = () => {
         setState('quiz');
@@ -86,16 +85,13 @@ export default function DiagnosticPage() {
         // Simulate processing and calculate result
         setTimeout(() => {
             const tier = calculateResult(answers);
-            setRecommendedTier(tier);
-            setState('result');
-            setShowConfetti(true);
             track('diagnostic_result_shown', { tier });
+            router.push(`/diagnostic/results?tier=${tier}`);
         }, 2000);
     };
 
     const question = QUESTIONS[currentQuestion];
     const currentAnswer = answers[question?.id as keyof DiagnosticAnswers];
-    const tier = TIERS.find(t => t.id === recommendedTier);
     const progress = ((currentQuestion + 1) / QUESTIONS.length) * 100;
 
     // Intro State
@@ -245,114 +241,6 @@ export default function DiagnosticPage() {
                     </Reveal>
                 </div>
             </section>
-        );
-    }
-
-    // Result State
-    if (state === 'result' && tier) {
-        // Determine CTAs based on tier
-        const getCTAs = () => {
-            switch (tier.id) {
-                case 1:
-                    return {
-                        primary: { text: 'Buy Now — £95', href: '/services#tier-1' },
-                        secondary: { text: 'See All Tier 1 Options', href: '/services' }
-                    };
-                case 2:
-                case 3:
-                    return {
-                        primary: { text: 'Book Free Consultation', href: '/consultation' },
-                        secondary: { text: 'View Full Service Details', href: '/services' }
-                    };
-                case 4:
-                    return {
-                        primary: { text: 'Apply for Partnership', href: '/apply' },
-                        secondary: { text: 'Learn More About Tier 4', href: '/services#tier-4' }
-                    };
-                default:
-                    return {
-                        primary: { text: 'Get Started', href: '/contact' },
-                        secondary: { text: 'View All Options', href: '/services' }
-                    };
-            }
-        };
-
-        const ctas = getCTAs();
-
-        return (
-            <>
-                <SuccessConfetti trigger={showConfetti} />
-                <section className="py-24 border-t border-slate-800/50">
-                    <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-12">
-                            <Reveal>
-                                <HeroBadge icon="target">Your Result</HeroBadge>
-                            </Reveal>
-                            <ClipReveal delay={100}>
-                                <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                    We Recommend: {tier.name}
-                                </h1>
-                            </ClipReveal>
-                            <Reveal delay={150}>
-                                <p className="text-slate-400">
-                                    Based on your responses, this tier is the best fit for your manuscript's needs.
-                                </p>
-                            </Reveal>
-                        </div>
-
-                        <Reveal delay={200}>
-                            <BeamCard glowColor={tier.id >= 3 ? 'purple' : 'emerald'}>
-                                <div className="p-8 bg-slate-800/30 rounded-md">
-                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                                        <div>
-                                            <h2 className="text-2xl font-bold text-white font-[family-name:var(--font-playfair)]">
-                                                {tier.name}
-                                            </h2>
-                                            <p className="text-slate-400">{tier.description}</p>
-                                        </div>
-                                        <div className="text-left sm:text-right">
-                                            <div className="text-2xl font-bold text-emerald-400">{tier.price}</div>
-                                            <div className="text-sm text-slate-500">{tier.turnaround}</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="border-t border-slate-700/50 pt-6 mb-6">
-                                        <h3 className="text-lg font-semibold text-white mb-4">What's Included:</h3>
-                                        <ul className="space-y-3">
-                                            {tier.includes.map((item, i) => (
-                                                <li key={i} className="flex items-start gap-3">
-                                                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                                                    <span className="text-slate-300">{item}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    <div className="flex flex-col sm:flex-row gap-4">
-                                        <MagneticButton href={ctas.primary.href} variant="primary" className="flex-1">
-                                            {ctas.primary.text}
-                                            <ArrowRight size={18} />
-                                        </MagneticButton>
-                                        <MagneticButton href={ctas.secondary.href} variant="secondary" className="flex-1">
-                                            {ctas.secondary.text}
-                                        </MagneticButton>
-                                    </div>
-                                </div>
-                            </BeamCard>
-                        </Reveal>
-
-                        {/* Email confirmation */}
-                        <Reveal delay={400}>
-                            <div className="mt-8 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-md text-center">
-                                <Mail className="w-5 h-5 text-emerald-400 inline mr-2" />
-                                <span className="text-sm text-emerald-400">
-                                    Results and free guide sent to {email}
-                                </span>
-                            </div>
-                        </Reveal>
-                    </div>
-                </section>
-            </>
         );
     }
 
