@@ -5,6 +5,15 @@ export async function POST(req: NextRequest) {
     try {
         const { action, email, templateId } = await req.json();
 
+        // Debug Env
+        const key = process.env.LOOPS_API_KEY;
+        const envStatus = {
+            exists: !!key,
+            type: typeof key,
+            length: key?.length,
+            prefix: key ? key.substring(0, 5) + '...' : 'N/A'
+        };
+
         let result;
 
         if (action === 'test-contact') {
@@ -39,6 +48,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             success: true,
             action,
+            envStatus,
             result,
             timestamp: new Date().toISOString()
         });

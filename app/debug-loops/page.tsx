@@ -33,7 +33,7 @@ export default function DebugLoopsPage() {
             const data = await res.json();
 
             if (data.success) {
-                addLog('✅ Success', data.result);
+                addLog('✅ Success', { env: data.envStatus, result: data.result });
             } else {
                 addLog('❌ Failed', data.error);
             }
