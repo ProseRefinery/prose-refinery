@@ -43,7 +43,12 @@ export async function upsertContact(data: ContactData) {
                 manuscriptTitle: data.manuscriptTitle || '',
                 genre: data.genre || '',
                 quizCompleted: data.quizCompleted || false,
-                ...data,
+                // Spread only properties that aren't already matched above
+                ...Object.fromEntries(
+                    Object.entries(data).filter(([key]) =>
+                        !['email', 'firstName', 'source', 'recommendedTier', 'manuscriptTitle', 'genre', 'quizCompleted'].includes(key)
+                    )
+                )
             }),
         });
 
