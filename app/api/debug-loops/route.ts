@@ -6,12 +6,14 @@ export async function POST(req: NextRequest) {
         const { action, email, templateId } = await req.json();
 
         // Debug Env
-        const key = process.env.LOOPS_API_KEY;
+        // Debug Env
+        const key = process.env.LOOPS_API_KEY || process.env.NEXT_PUBLIC_LOOPS_API_KEY;
         const envStatus = {
             exists: !!key,
             type: typeof key,
             length: key?.length,
-            prefix: key ? key.substring(0, 5) + '...' : 'N/A'
+            prefix: key ? key.substring(0, 5) + '...' : 'N/A',
+            isNextPublic: !!process.env.NEXT_PUBLIC_LOOPS_API_KEY
         };
 
         let result;

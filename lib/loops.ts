@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server';
 
-const LOOPS_API_KEY = process.env.LOOPS_API_KEY;
 const LOOPS_API_URL = 'https://app.loops.so/api/v1';
 
-if (!LOOPS_API_KEY) {
-    console.warn('Missing LOOPS_API_KEY environment variable');
-}
+// Helper to get key at runtime
+const getLoopsKey = () => {
+    const key = process.env.LOOPS_API_KEY || process.env.NEXT_PUBLIC_LOOPS_API_KEY;
+    if (!key) console.warn('Missing LOOPS_API_KEY environment variable');
+    return key;
+};
 
 interface ContactData {
     email: string;
@@ -26,13 +28,14 @@ interface TransactionalData {
 
 // Add or update a contact
 export async function upsertContact(data: ContactData) {
-    if (!LOOPS_API_KEY) return { error: 'Missing API Key' };
+    const apiKey = getLoopsKey();
+    if (!apiKey) return { error: 'Missing API Key' };
 
     try {
         const response = await fetch(`${LOOPS_API_URL}/contacts/create`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${LOOPS_API_KEY}`,
+                'Authorization': `Bearer ${apiKey}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -68,13 +71,14 @@ export async function upsertContact(data: ContactData) {
 
 // Send transactional email
 export async function sendTransactional(data: TransactionalData) {
-    if (!LOOPS_API_KEY) return { error: 'Missing API Key' };
+    const apiKey = getLoopsKey();
+    if (!apiKey) return { error: 'Missing API Key' };
 
     try {
         const response = await fetch(`${LOOPS_API_URL}/transactional`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${LOOPS_API_KEY}`,
+                'Authorization': `Bearer ${apiKey}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -99,13 +103,14 @@ export async function sendTransactional(data: TransactionalData) {
 
 // Trigger an event (for automations)
 export async function triggerEvent(email: string, eventName: string) {
-    if (!LOOPS_API_KEY) return { error: 'Missing API Key' };
+    const apiKey = getLoopsKey();
+    if (!apiKey) return { error: 'Missing API Key' };
 
     try {
         const response = await fetch(`${LOOPS_API_URL}/events/send`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${LOOPS_API_KEY}`,
+                'Authorization': `Bearer ${apiKey}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
