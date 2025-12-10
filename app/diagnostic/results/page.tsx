@@ -38,12 +38,12 @@ function DiagnosticResultsContent() {
             case 2:
             case 3:
                 return {
-                    primary: { text: 'Book Free Consultation', href: 'https://calendly.com/prose-refinery/consultation' },
+                    primary: { text: 'Book Free Consultation', href: '/consultation' },
                     secondary: { text: 'View Full Service Details', href: '/services' }
                 };
             case 4:
                 return {
-                    primary: { text: 'Apply for Partnership', href: '/contact' },
+                    primary: { text: 'Apply for Partnership', href: '/apply' },
                     secondary: { text: 'Learn More About Tier 4', href: '/services#tier-4' }
                 };
             default:

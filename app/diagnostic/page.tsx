@@ -82,12 +82,29 @@ export default function DiagnosticPage() {
         // Track email capture
         track('diagnostic_email_captured', { email, newsletter });
 
-        // Simulate processing and calculate result
-        setTimeout(() => {
+        try {
             const tier = calculateResult(answers);
+
+            // Send to backend (saves to audience + sends result email)
+            await fetch('/api/diagnostic', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email,
+                    tier,
+                    answers,
+                    newsletter
+                })
+            });
+
             track('diagnostic_result_shown', { tier });
             router.push(`/diagnostic/results?tier=${tier}`);
-        }, 2000);
+        } catch (error) {
+            console.error('Failed to submit diagnostic:', error);
+            // Fallback to showing results anyway so user isn't stuck
+            const tier = calculateResult(answers);
+            router.push(`/diagnostic/results?tier=${tier}`);
+        }
     };
 
     const question = QUESTIONS[currentQuestion];
