@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
 
     // 4. Notify yourself
     await sendTransactional({
-      transactionalId: 'cmizjozwy1agq2x0iz2qa6sca', // admin_notification
+      transactionalId: 'cmj3728wl04m60jxzgzulsct9', // admin_notification
       email: 'hello@proserefinery.com', // Admin email
       dataVariables: {
         type: 'Tier 4 Application',

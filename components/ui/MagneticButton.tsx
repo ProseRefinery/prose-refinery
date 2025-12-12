@@ -53,9 +53,10 @@ export function MagneticButton({
         'px-5 py-2.5 rounded-md font-medium text-xs tracking-widest uppercase',
         'transition-all duration-200 ease-out',
         'disabled:opacity-50 disabled:cursor-not-allowed',
+        'active:scale-[0.98]', // Tactile feedback
         {
             // Primary - emerald gradient with glow
-            'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:from-emerald-500 hover:to-emerald-400 active:scale-95': variant === 'primary',
+            'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:from-emerald-500 hover:to-emerald-400': variant === 'primary',
             // Secondary - ghost with border
             'border border-slate-700/50 bg-transparent text-slate-400 hover:border-emerald-500/50 hover:text-emerald-400 hover:bg-emerald-500/5': variant === 'secondary',
             // Ghost - minimal

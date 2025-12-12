@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { STRIPE_PRICES } from '@/lib/constants';
 
 const stripe = process.env.STRIPE_SECRET_KEY
     ? new Stripe(process.env.STRIPE_SECRET_KEY, {
@@ -24,6 +25,11 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: 'Price ID is required' }, { status: 400 });
         }
 
+        // Reverse lookup to identify the product/tier
+        const productKey = Object.keys(STRIPE_PRICES).find(
+            (key) => STRIPE_PRICES[key as keyof typeof STRIPE_PRICES] === priceId
+        );
+
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             payment_method_types: ['card'],
@@ -33,6 +39,11 @@ export async function POST(req: NextRequest) {
                     quantity: 1,
                 },
             ],
+            metadata: {
+                product_key: productKey || 'unknown',
+                // Add explicit logic for Tier 3 Preview identification
+                is_preview: productKey === 'tier3_preview' ? 'true' : 'false'
+            },
             success_url: `${req.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${req.nextUrl.origin}/services`,
         });

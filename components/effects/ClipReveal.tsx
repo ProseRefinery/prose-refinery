@@ -33,7 +33,7 @@ export function ClipReveal({ children, delay = 0, className = '' }: ClipRevealPr
     }, [delay]);
 
     return (
-        <div ref={ref} className={cn('overflow-hidden', className)}>
+        <div ref={ref} className={cn(visible ? '' : 'overflow-hidden', className)}>
             <div
                 className="transition-all duration-700"
                 style={{

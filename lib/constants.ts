@@ -17,7 +17,14 @@ export const STRIPE_PRICES = {
     tier1_pacing: 'price_1SbRHrBXNkcYRXZ1s5QPeTRa',
     tier1_bundle: 'price_1SbRHmBXNkcYRXZ1jgljYxkb',
     single_pillar_audit: 'price_1SbRHhBXNkcYRXZ16X9naTUo',
-    tier3_taster: 'price_1SbRHdBXNkcYRXZ1vKfc0RqS',
+
+    // Tier 3 Structure (New)
+    // Tier 3 Structure (New)
+    tier3_preview: 'price_1SdaDFBXNkcYRXZ1D9OI5fhy', // Was Taster - Needs new ID £250
+    tier3_core: 'price_1SdaGXBXNkcYRXZ10UVMAVGP', // £1500
+    tier3_standard: 'price_1SdaHpBXNkcYRXZ1hVPj6mGe', // £2800
+    tier3_premium: 'price_1SdaJuBXNkcYRXZ1gAnvOLNY', // £4500+
+
     launch_arsenal: 'price_1SbRHbBXNkcYRXZ1Jfj04GZ1',
 
     // Multimedia
@@ -39,21 +46,21 @@ export const TIERS: Tier[] = [
     {
         id: 2,
         name: 'Focused Audits',
-        price: '£250 – £750',
-        turnaround: '10–15 days',
+        price: '£350',
+        turnaround: '7 days',
         description: 'Repair what you already see',
         includes: ['Single-Pillar Deep Dive', 'Act-Level Structure Audit', 'Character Arc Analysis'],
         recommended: true,
-        pricingContext: 'Pricing based on scope — single pillar (£250) vs. multi-pillar analysis (£750)'
+        pricingContext: 'Single pillar analysis (up to 30k words)'
     },
     {
         id: 3,
         name: 'Full Manuscript Refinement',
-        price: '£1,500 – £4,500',
+        price: '£1,500 – £4,500+',
         turnaround: '3–4 weeks',
         description: 'Reconstruct the full manuscript',
-        includes: ['Complete 7-Pillar Assessment', 'Chapter-by-Chapter Analysis', 'Editorial Letter', 'Blade 4.0 Interventions'],
-        pricingContext: 'Pricing based on word count — under 80K (£1,500), 80–120K (£3,000), 120K+ (£4,500)'
+        includes: ['Complete 7-Pillar Assessment', 'Iterative Revision Cycles', 'Strategy Consultations', 'Line-Level Annotation'],
+        pricingContext: 'Structured Tiers: Core (£1.5k), Standard (£2.8k), Premium (£4.5k+)'
     },
     {
         id: 4,

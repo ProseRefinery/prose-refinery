@@ -49,7 +49,7 @@ export function ParallaxRunes() {
     }, []);
 
     return (
-        <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+        <div className="hidden md:block fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
             {RUNES.map((rune, i) => (
                 <span
                     key={i}

@@ -38,7 +38,8 @@ export function FloatingInput({
                     'w-full px-4 py-3.5 pt-5',
                     'bg-slate-900/80',
                     'border rounded-md',
-                    'text-white text-sm',
+                    'text-base md:text-sm', // 16px on mobile to prevent zoom
+                    'text-white',
                     'shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)]',
                     'transition-all duration-200 ease-out',
                     'focus:outline-none',

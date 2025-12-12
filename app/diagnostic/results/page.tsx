@@ -13,7 +13,15 @@ import { TIERS } from '@/lib/constants';
 
 function DiagnosticResultsContent() {
     const searchParams = useSearchParams();
-    const tierId = parseInt(searchParams.get('tier') || '0', 10);
+
+    // Parse Hybrid Params
+    const startTierId = parseInt(searchParams.get('startTier') || '0', 10);
+    // Legacy support or fallback
+    const tierId = startTierId || parseInt(searchParams.get('tier') || '0', 10);
+
+    const needTierId = parseInt(searchParams.get('needTier') || '0', 10);
+    const isConstrained = searchParams.get('isConstrained') === '1';
+
     const [showConfetti, setShowConfetti] = useState(false);
 
     // Find tier or default to 2 if invalid/missing
@@ -69,6 +77,26 @@ function DiagnosticResultsContent() {
                     <Reveal>
                         <HeroBadge icon="target">Your Diagnostic Result</HeroBadge>
                     </Reveal>
+
+                    {/* Smart Start Alert (Constrained State) */}
+                    {isConstrained && (
+                        <ClipReveal delay={50}>
+                            <div className="mt-6 mb-8 p-6 rounded-lg border border-yellow-500/20 bg-yellow-500/5 max-w-2xl mx-auto text-left relative overflow-hidden">
+                                <div className="absolute top-0 left-0 w-1 h-full bg-yellow-500"></div>
+                                <h3 className="text-yellow-400 font-semibold mb-2 flex items-center gap-2">
+                                    <span className="text-xl">⚠️</span> Smart Start Recommendation
+                                </h3>
+                                <p className="text-slate-300 text-sm leading-relaxed">
+                                    Your manuscript signals a need for <span className="text-white font-semibold">Tier {needTierId}</span> (based on your stage and goals),
+                                    but based on your current investment preference, <span className="text-white font-semibold">Tier {tierId}</span> is the smartest starting point.
+                                </p>
+                                <p className="text-slate-400 text-xs mt-3 italic">
+                                    Strategy: Start here safely to get immediate clarity, then upgrade when you're ready—your results will still apply.
+                                </p>
+                            </div>
+                        </ClipReveal>
+                    )}
+
                     <ClipReveal delay={100}>
                         <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
                             We Recommend: {tier.name}
@@ -76,7 +104,10 @@ function DiagnosticResultsContent() {
                     </ClipReveal>
                     <Reveal delay={150}>
                         <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                            Based on your manuscript's stage and your goals, this tier provides the most effective editorial intervention.
+                            {isConstrained
+                                ? "This is your safe, high-impact entry point."
+                                : "Based on your manuscript's stage and your goals, this tier provides the most effective editorial intervention."
+                            }
                         </p>
                     </Reveal>
                 </div>

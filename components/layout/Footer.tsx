@@ -31,11 +31,25 @@ export function Footer() {
         if (!email) return;
 
         setStatus('loading');
-        // Simulator
-        setTimeout(() => {
-            setStatus('success');
-            setEmail('');
-        }, 1500);
+
+        try {
+            const response = await fetch('/api/newsletter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setEmail('');
+            } else {
+                console.error('Newsletter signup failed');
+                setStatus('idle'); // Allow retry
+            }
+        } catch (error) {
+            console.error('Newsletter signup error', error);
+            setStatus('idle');
+        }
     };
 
     return (

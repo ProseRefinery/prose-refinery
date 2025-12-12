@@ -65,7 +65,7 @@ export default function HomePage() {
               </Reveal>
 
               <ClipReveal delay={100}>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 font-[family-name:var(--font-playfair)]">
+                <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 font-[family-name:var(--font-playfair)]">
                   Get Your Fantasy Novel{' '}
                   <span className="animated-gradient-text">Agent-Ready</span>
                 </h1>
@@ -79,14 +79,18 @@ export default function HomePage() {
               </ClipReveal>
 
               <Reveal delay={400}>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <MagneticButton href="/diagnostic" variant="primary">
+                <div className="flex flex-col items-center">
+                  <MagneticButton href="/diagnostic" variant="primary" className="px-8 py-4 text-lg">
                     Begin Free Diagnostic
-                    <ArrowRight size={18} />
+                    <ArrowRight size={20} />
                   </MagneticButton>
-                  <MagneticButton href="/method" variant="secondary">
-                    See How It Works
-                  </MagneticButton>
+
+                  <a
+                    href="/method"
+                    className="mt-6 text-sm text-slate-400 hover:text-white transition-colors duration-300 border-b border-transparent hover:border-emerald-400/50 pb-0.5"
+                  >
+                    Read about our methodology
+                  </a>
                 </div>
               </Reveal>
 

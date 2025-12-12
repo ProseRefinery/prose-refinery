@@ -11,6 +11,55 @@ import { MagneticButton } from '@/components/ui/MagneticButton';
 import { CheckoutButton } from '@/components/ui/checkout-button';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { TIERS, STRIPE_PRICES } from '@/lib/constants';
+import { COMPARISON_DATA } from '@/lib/comparison-data';
+
+// Mobile Comparison Component
+function MobileComparison() {
+    const [activeTier, setActiveTier] = useState<1 | 2 | 3 | 4>(2);
+
+    return (
+        <div className="block lg:hidden">
+            {/* Sticky Tabs */}
+            <div className="sticky top-20 z-10 bg-[#05080f]/95 backdrop-blur-sm border-b border-slate-700/50 pt-4 pb-2 -mx-4 sm:-mx-6 px-4 sm:px-6 mb-6">
+                <div className="flex justify-between gap-1">
+                    {[1, 2, 3, 4].map((tierId) => (
+                        <button
+                            key={tierId}
+                            onClick={() => setActiveTier(tierId as any)}
+                            className={`flex-1 py-3 text-sm font-medium rounded-md transition-all ${activeTier === tierId
+                                ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/20'
+                                : 'text-slate-400 hover:text-white bg-slate-800/50'
+                                }`}
+                        >
+                            Tier {tierId}
+                        </button>
+                    ))}
+                </div>
+                <div className="text-center mt-3 text-xs text-emerald-400 font-medium uppercase tracking-wide">
+                    {activeTier === 1 && "Entry Diagnostics"}
+                    {activeTier === 2 && "Focused Audits"}
+                    {activeTier === 3 && "Full Manuscript"}
+                    {activeTier === 4 && "Editorial Partnership"}
+                </div>
+            </div>
+
+            {/* Content Maps */}
+            <div className="space-y-4">
+                {COMPARISON_DATA.map((row, i) => (
+                    <div key={i} className="p-4 bg-slate-800/30 rounded-md border border-slate-700/30 flex justify-between items-center">
+                        <span className="text-slate-400 text-sm font-medium">{row.feature}</span>
+                        <div key={activeTier} className="text-right text-white animate-in fade-in duration-200">
+                            {activeTier === 1 && row.tier1}
+                            {activeTier === 2 && row.tier2}
+                            {activeTier === 3 && row.tier3}
+                            {activeTier === 4 && row.tier4}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+}
 
 // FAQ Data
 const FAQ_ITEMS = [
@@ -500,8 +549,8 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* Comparison Table - Desktop Only */}
-            < section className="py-24 border-t border-slate-800/50 hidden lg:block" >
+            {/* Comparison Table */}
+            <section className="py-24 border-t border-slate-800/50">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <ClipReveal>
@@ -515,11 +564,14 @@ export default function ServicesPage() {
                             </p>
                         </Reveal>
                     </div>
-                    {/* Table content remains focused on editorial tiers as requested */}
+
                     <Reveal delay={200}>
-                        <div className="overflow-x-auto">
+                        {/* Mobile View (Tabs) */}
+                        <MobileComparison />
+
+                        {/* Desktop View (Table) */}
+                        <div className="hidden lg:block overflow-x-auto">
                             <table className="w-full border-collapse">
-                                {/* ... table headers and body ... */}
                                 <thead>
                                     <tr>
                                         <th className="text-left p-4 text-slate-400 font-normal text-sm border-b border-slate-700/50">Feature</th>
@@ -540,60 +592,19 @@ export default function ServicesPage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {/* Row content */}
-                                    <tr>
-                                        <td className="p-4 text-slate-300 border-b border-slate-800/50">Price</td>
-                                        <td className="p-4 text-center text-emerald-400 border-b border-slate-800/50">£95–£175</td>
-                                        <td className="p-4 text-center text-emerald-400 border-b border-slate-800/50 bg-emerald-500/5">£250–£750</td>
-                                        <td className="p-4 text-center text-emerald-400 border-b border-slate-800/50">£1,500–£4,500</td>
-                                        <td className="p-4 text-center text-purple-400 border-b border-slate-800/50 bg-purple-500/5">£5,000–£12,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="p-4 text-slate-300 border-b border-slate-800/50">Coverage</td>
-                                        <td className="p-4 text-center text-slate-400 border-b border-slate-800/50">1,000–5,000 words</td>
-                                        <td className="p-4 text-center text-slate-400 border-b border-slate-800/50 bg-emerald-500/5">Up to 30,000 words</td>
-                                        <td className="p-4 text-center text-slate-400 border-b border-slate-800/50">Full manuscript</td>
-                                        <td className="p-4 text-center text-slate-400 border-b border-slate-800/50 bg-purple-500/5">Full + extras</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="p-4 text-slate-300 border-b border-slate-800/50">Turnaround</td>
-                                        <td className="p-4 text-center text-slate-400 border-b border-slate-800/50">48 hours</td>
-                                        <td className="p-4 text-center text-slate-400 border-b border-slate-800/50 bg-emerald-500/5">7 days</td>
-                                        <td className="p-4 text-center text-slate-400 border-b border-slate-800/50">3–4 weeks</td>
-                                        <td className="p-4 text-center text-slate-400 border-b border-slate-800/50 bg-purple-500/5">8–12 weeks</td>
-                                        {/* ... other rows ... */}
-                                    </tr>
-                                    <tr>
-                                        <td className="p-4 text-slate-300 border-b border-slate-800/50">Structural Analysis</td>
-                                        <td className="p-4 text-center border-b border-slate-800/50"><span className="text-slate-500">○ Basic</span></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50 bg-emerald-500/5"><span className="text-yellow-400">◐ Partial</span></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50 bg-purple-500/5"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td className="p-4 text-slate-300 border-b border-slate-800/50">Editorial Letter</td>
-                                        <td className="p-4 text-center border-b border-slate-800/50"><span className="text-slate-600">—</span></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50 bg-emerald-500/5"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50 bg-purple-500/5"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td className="p-4 text-slate-300 border-b border-slate-800/50">Chapter-by-Chapter Notes</td>
-                                        <td className="p-4 text-center border-b border-slate-800/50"><span className="text-slate-600">—</span></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50 bg-emerald-500/5"><span className="text-slate-600">—</span></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50 bg-purple-500/5"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td className="p-4 text-slate-300 border-b border-slate-800/50">Multiple Draft Passes</td>
-                                        <td className="p-4 text-center border-b border-slate-800/50"><span className="text-slate-600">—</span></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50 bg-emerald-500/5"><span className="text-slate-600">—</span></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50"><span className="text-slate-600">—</span></td>
-                                        <td className="p-4 text-center border-b border-slate-800/50 bg-purple-500/5"><Check className="w-5 h-5 text-emerald-400 mx-auto" /></td>
-                                    </tr>
+                                    {COMPARISON_DATA.map((row, i) => (
+                                        <tr key={i}>
+                                            <td className="p-4 text-slate-300 border-b border-slate-800/50">{row.feature}</td>
+                                            <td className="p-4 text-center border-b border-slate-800/50">{row.tier1}</td>
+                                            <td className="p-4 text-center border-b border-slate-800/50 bg-emerald-500/5">{row.tier2}</td>
+                                            <td className="p-4 text-center border-b border-slate-800/50">{row.tier3}</td>
+                                            <td className="p-4 text-center border-b border-slate-800/50 bg-purple-500/5">{row.tier4}</td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
+
                         {/* Legend */}
                         <div className="mt-6 text-center text-xs text-slate-500">
                             <Check className="w-4 h-4 text-emerald-400 inline" /> Full &nbsp;
@@ -603,7 +614,7 @@ export default function ServicesPage() {
                         </div>
                     </Reveal>
                 </div>
-            </section >
+            </section>
 
             {/* Guarantee Section */}
             < section className="py-24 border-t border-slate-800/50" >

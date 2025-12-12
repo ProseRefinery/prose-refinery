@@ -3,25 +3,36 @@ import { upsertContact, sendTransactional, triggerEvent } from '@/lib/loops';
 
 export async function POST(req: NextRequest) {
     try {
-        const { email, tier, answers, newsletter } = await req.json();
+        const { email, result, answers, newsletter } = await req.json();
 
-        // Parse tier string if it comes as "Tier 2" etc, or object
-        const tierNumber = tier?.id || 2; // Default to 2
-        const tierName = tier?.name || `Tier ${tierNumber}`;
-        const reasoning = tier?.description ? [tier.description] : [];
+        // 1. Parse Result
+        // Fallback if result is missing (shouldn't happen with new client)
+        // result structure: { startTier, needTier, budgetTier, isConstrained, needScore }
+        const tierNumber = result?.startTier || 2;
+        const tierName = `Tier ${tierNumber}`;
 
-        // 1. Add contact to Loops
+        // 2. Add contact to Loops with Enhanced Segmentation
+        // Storing both Strings (Display/Compat) and Numbers (Filtering)
         await upsertContact({
             email,
             source: 'diagnostic',
-            recommendedTier: `Tier ${tierNumber}`,
+            recommendedTier: tierName,
             quizCompleted: true,
-            // Map other quiz answers if needed
-            newsletter: newsletter || false
+            newsletter: newsletter || false,
+
+            // New Hybrid Logic Fields
+            diagnostic_start_tier_num: result?.startTier || 2,
+            diagnostic_need_tier_num: result?.needTier || 2,
+            diagnostic_budget_tier_num: result?.budgetTier || 2,
+
+            diagnostic_need_tier: `Tier ${result?.needTier || 2}`,
+            diagnostic_budget_tier: `Tier ${result?.budgetTier || 2}`,
+
+            diagnostic_is_constrained: result?.isConstrained ? 'true' : 'false',
+            diagnostic_need_score: result?.needScore || '0.00'
         });
 
-        // 2. Determine CTA based on tier
-        // Using string keys to match guide, or numbers
+        // 3. Determine CTA
         const ctaMap: Record<number, { text: string; url: string }> = {
             1: { text: 'Buy Now', url: 'https://proserefinery.com/services#tier1' },
             2: { text: 'Book Free Consultation', url: 'https://proserefinery.com/consultation' },
@@ -31,24 +42,25 @@ export async function POST(req: NextRequest) {
 
         const cta = ctaMap[tierNumber] || ctaMap[2];
 
-        // 3. Send diagnostic results email
+        // 4. Send diagnostic results email
         await sendTransactional({
             transactionalId: 'cmizisawj06lk2c0i7i6yq6pu', // diagnostic_results
             email,
             dataVariables: {
                 tierName,
-                reasoning: reasoning.join('\n'),
+                // simplified reasoning for now, can be enhanced with dynamic copy later
+                reasoning: `Based on your manuscript profile and goals, we recommend starting with ${tierName}.`,
                 ctaText: cta.text,
                 ctaUrl: cta.url,
             },
         });
 
-        // 4. Trigger nurture automation
+        // 5. Trigger nurture automation with rich data
         await triggerEvent(email, 'diagnostic_completed');
 
-        // 5. Notify admin (You) - Optional but good for monitoring
+        // 6. Notify admin
         await sendTransactional({
-            transactionalId: 'cmizjozwy1agq2x0iz2qa6sca', // admin_notification
+            transactionalId: 'cmj3728wl04m60jxzgzulsct9',
             email: 'hello@proserefinery.com',
             dataVariables: {
                 type: 'Diagnostic Completed',
@@ -57,9 +69,9 @@ export async function POST(req: NextRequest) {
                 tier: tierName,
                 title: 'N/A',
                 genre: 'N/A',
-                wordcount: 'N/A',
-                pitch: 'Diagnostic Result',
-                concern: `Calculated Tier: ${tierNumber}`
+                wordcount: answers?.wordcount ? `${answers.wordcount}` : 'N/A',
+                pitch: `Need: T${result?.needTier} | Budget: T${result?.budgetTier} | Score: ${result?.needScore}`,
+                concern: result?.isConstrained ? 'CONSTRAINED USER' : 'Aligned User'
             }
         });
 

@@ -263,7 +263,7 @@ export default function DiagnosticPage() {
 
     // Quiz State
     return (
-        <section className="py-24 border-t border-slate-800/50">
+        <section className="pt-20 pb-32 md:py-24 border-t border-slate-800/50">
             <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                 {/* Progress Bar */}
                 <div className="mb-12">
@@ -301,7 +301,7 @@ export default function DiagnosticPage() {
                                     onClick={() => handleAnswer(question.id, option.value)}
                                     className="w-full p-6 text-left bg-slate-800/30 rounded-md border border-slate-700/50 hover:border-emerald-500/50 transition-colors"
                                 >
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-start gap-4">
                                         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${currentAnswer === option.value
                                             ? 'border-emerald-500 bg-emerald-500'
                                             : 'border-slate-600'
@@ -318,8 +318,9 @@ export default function DiagnosticPage() {
                     ))}
                 </div>
 
-                {/* Navigation */}
-                <div className="flex justify-between">
+
+                {/* Navigation (Sticky on Mobile) */}
+                <div className="fixed bottom-0 left-0 right-0 p-4 bg-[#05080f]/95 backdrop-blur-md border-t border-slate-800 z-40 md:static md:bg-transparent md:border-0 md:p-0 flex justify-between">
                     <MagneticButton
                         onClick={handleBack}
                         variant="ghost"
@@ -338,6 +339,6 @@ export default function DiagnosticPage() {
                     </MagneticButton>
                 </div>
             </div>
-        </section>
+        </section >
     );
 }

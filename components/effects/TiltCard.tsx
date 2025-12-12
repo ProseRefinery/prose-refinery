@@ -45,7 +45,7 @@ export function TiltCard({ children, className = '', maxTilt = 8 }: TiltCardProp
         <div
             ref={ref}
             className={cn(
-                'relative transition-transform duration-200 ease-out group',
+                'relative transition-transform duration-200 ease-out group active:scale-[0.98]',
                 className
             )}
             style={{
