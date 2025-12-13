@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import Stripe from 'stripe';
-import { upsertContact, triggerEvent } from '@/lib/loops';
+import { upsertContact, triggerEvent, sendTransactional } from '@/lib/loops';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: '2024-12-18.acacia' as any, // Use latest or matching package version
