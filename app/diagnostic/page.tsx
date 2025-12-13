@@ -138,30 +138,35 @@ export default function DiagnosticPage() {
     if (state === 'intro') {
         return (
             <div className="min-h-screen bg-[#05080f]">
-                <GridGlowBackground className="min-h-screen">
-                    <div className="mx-auto max-w-4xl px-4 text-center pt-32 pb-20">
-                        <ClipReveal>
-                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                                Find Out What’s Structurally Breaking Your Novel
-                            </h1>
-                        </ClipReveal>
-                        <Reveal delay={100}>
-                            <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
-                                Answer 8 targeted questions. Receive a structural priority map and tier recommendation.
-                            </p>
-                        </Reveal>
-                        <Reveal delay={200}>
-                            <div className="flex flex-col items-center gap-4">
-                                <MagneticButton onClick={handleStart} variant="primary" className="px-8 py-4 text-lg">
-                                    Start Diagnostic
-                                    <ArrowRight size={20} />
-                                </MagneticButton>
-                                <p className="text-xs text-slate-500 uppercase tracking-wider font-medium">
-                                    ~3 minutes • 8 questions • Immediate results
-                                </p>
+                <div className="min-h-screen bg-[#05080f]">
+                    {/* 1. Hero Block */}
+                    <section className="relative pt-32 pb-20 border-b border-slate-800/50">
+                        <GridGlowBackground>
+                            <div className="mx-auto max-w-4xl px-4 text-center">
+                                <ClipReveal>
+                                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+                                        Find Out What’s Structurally Breaking Your Novel
+                                    </h1>
+                                </ClipReveal>
+                                <Reveal delay={100}>
+                                    <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+                                        Answer 8 targeted questions. Receive a structural priority map and tier recommendation.
+                                    </p>
+                                </Reveal>
+                                <Reveal delay={200}>
+                                    <div className="flex flex-col items-center gap-4">
+                                        <MagneticButton onClick={handleStart} variant="primary" className="px-8 py-4 text-lg">
+                                            Start Diagnostic
+                                            <ArrowRight size={20} />
+                                        </MagneticButton>
+                                        <p className="text-xs text-slate-500 uppercase tracking-wider font-medium">
+                                            ~3 minutes • 8 questions • Immediate results
+                                        </p>
+                                    </div>
+                                </Reveal>
                             </div>
-                        </Reveal>
-                    </div>
+                        </GridGlowBackground>
+                    </section>
 
                     {/* 2. Output Preview */}
                     <section className="py-24 border-y border-slate-800/50 bg-slate-900/20">
@@ -302,192 +307,210 @@ export default function DiagnosticPage() {
                                     </a>
                                 </div>
                             </Reveal>
+                            {/* 5. Final CTA */}
+                            <section className="py-24">
+                                <div className="mx-auto max-w-4xl px-4 text-center">
+                                    <ClipReveal>
+                                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+                                            Know What’s Broken Before You Rewrite
+                                        </h2>
+                                    </ClipReveal>
+                                    <Reveal>
+                                        <p className="text-slate-400 mb-8">8 questions. 3 minutes. A clear structural priority.</p>
+                                        <div className="flex flex-wrap justify-center gap-4">
+                                            <MagneticButton onClick={handleStart} variant="primary">
+                                                Start the Free Diagnostic
+                                            </MagneticButton>
+                                            <a href="/services" className="px-6 py-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                                View Services →
+                                            </a>
+                                        </div>
+                                    </Reveal>
+                                </div>
+                            </section>
                         </div>
-                    </section>
-                </GridGlowBackground>
-            </div>
-        );
+                        );
     }
 
-    // Quiz State
-    if (state === 'quiz') {
+                        // Quiz State
+                        if (state === 'quiz') {
         return (
-            <section className="min-h-screen pt-32 pb-20 px-4">
-                <div className="mx-auto max-w-2xl">
-                    {/* Progress */}
-                    <div className="mb-12">
-                        <div className="flex justify-between text-xs font-mono text-slate-500 mb-2 uppercase tracking-wider">
-                            <span>Question {currentQuestion + 1} / {QUESTIONS.length}</span>
-                        </div>
-                        <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-emerald-500 transition-all duration-300"
-                                style={{ width: `${progress}%` }}
-                            />
-                        </div>
-                    </div>
-
-                    <ClipReveal key={question.id}>
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 font-[family-name:var(--font-playfair)]">
-                            {question.question}
-                        </h2>
-                    </ClipReveal>
-
-                    <div className="space-y-3 mb-12">
-                        {question.options.map((option, i) => (
-                            <Reveal key={option.value} delay={i * 50}>
-                                <button
-                                    type="button"
-                                    onClick={() => handleAnswer(question.id, option.value)}
-                                    className={`w-full p-5 text-left rounded-md border transition-all duration-200 group ${currentAnswer === option.value
-                                        ? 'bg-emerald-950/20 border-emerald-500/50 text-white'
-                                        : 'bg-slate-900/40 border-slate-800 text-slate-300 hover:border-slate-600 hover:bg-slate-800'
-                                        }`}
-                                >
-                                    <div className="flex items-center justify-between">
-                                        <span>{option.label}</span>
-                                        {currentAnswer === option.value && <Check size={16} className="text-emerald-400" />}
+                        <section className="min-h-screen pt-32 pb-20 px-4">
+                            <div className="mx-auto max-w-2xl">
+                                {/* Progress */}
+                                <div className="mb-12">
+                                    <div className="flex justify-between text-xs font-mono text-slate-500 mb-2 uppercase tracking-wider">
+                                        <span>Question {currentQuestion + 1} / {QUESTIONS.length}</span>
                                     </div>
-                                </button>
-                            </Reveal>
-                        ))}
-                    </div>
-
-                    <div className="flex justify-between items-center">
-                        <button
-                            onClick={handleBack}
-                            disabled={currentQuestion === 0}
-                            className={`flex items-center gap-2 text-sm text-slate-500 hover:text-slate-300 transition-colors ${currentQuestion === 0 ? 'opacity-0 cursor-default' : ''}`}
-                        >
-                            <ArrowLeft size={16} /> Back
-                        </button>
-                        <MagneticButton
-                            onClick={handleNext}
-                            variant="primary"
-                            disabled={currentAnswer === undefined}
-                        >
-                            {currentQuestion === QUESTIONS.length - 1 ? 'Get Results' : 'Next'}
-                            <ArrowRight size={18} />
-                        </MagneticButton>
-                    </div>
-                </div>
-            </section>
-        );
-    }
-
-    // Email Gate
-    if (state === 'email-gate') {
-        return (
-            <section className="min-h-screen pt-32 pb-20 px-4 flex items-center justify-center">
-                <div className="w-full max-w-md">
-                    <ClipReveal>
-                        <h2 className="text-2xl font-bold text-white text-center mb-8 font-[family-name:var(--font-playfair)]">
-                            Where should we send your results?
-                        </h2>
-                    </ClipReveal>
-
-                    <Reveal>
-                        <form onSubmit={handleEmailSubmit} className="space-y-6">
-                            <FloatingInput
-                                name="email"
-                                label="Email"
-                                type="email"
-                                value={email}
-                                onChange={(e) => {
-                                    setEmail(e.target.value);
-                                    if (emailError) setEmailError(false);
-                                }}
-                                error={emailError}
-                                required
-                            />
-
-                            <MagneticButton type="submit" variant="primary" className="w-full">
-                                Get My Results
-                            </MagneticButton>
-                        </form>
-                    </Reveal>
-                </div>
-            </section>
-        );
-    }
-
-    // Calculating
-    if (state === 'calculating') {
-        return (
-            <section className="min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                    <Activity className="w-8 h-8 text-emerald-400 mx-auto animate-pulse mb-4" />
-                    <p className="text-slate-500 text-sm font-mono">GENERATING STRUCTURAL MAP...</p>
-                </div>
-            </section>
-        );
-    }
-
-    // Results (Inline)
-    if (state === 'results' && result) {
-        const tierDetails = TIERS.find(t => t.id === result.tier);
-
-        return (
-            <div className="min-h-screen bg-[#05080f] pt-32 pb-20 px-4">
-                <div className="mx-auto max-w-3xl">
-                    <ClipReveal>
-                        <h1 className="text-3xl md:text-4xl font-bold text-white text-center mb-2 font-[family-name:var(--font-playfair)]">
-                            Your Structural Diagnostic Results
-                        </h1>
-                        <p className="text-slate-500 text-center mb-12 text-sm">A copy has been sent to your email.</p>
-                    </ClipReveal>
-
-                    <Reveal>
-                        <BeamCard glowColor="emerald" className="mb-12">
-                            <div className="p-8 bg-slate-900/50 rounded-lg border border-slate-700/50">
-                                <div className="grid md:grid-cols-2 gap-8">
-                                    <div className="space-y-6">
-                                        <div>
-                                            <span className="text-xs text-slate-500 font-sans tracking-wide uppercase block mb-1">Structural Risk Level</span>
-                                            <div className={`text-xl font-bold ${result.risk === 'High' ? 'text-rose-400' : result.risk === 'Moderate' ? 'text-amber-400' : 'text-emerald-400'}`}>
-                                                {result.risk.toUpperCase()}
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span className="text-xs text-slate-500 font-sans tracking-wide uppercase block mb-1">Primary Failure Zone</span>
-                                            <div className="text-xl font-bold text-white">{result.zone}</div>
-                                        </div>
-                                        <div>
-                                            <span className="text-xs text-slate-500 font-sans tracking-wide uppercase block mb-1">Recommended Tier</span>
-                                            <div className="text-xl font-bold text-emerald-400">{tierDetails?.name}</div>
-                                        </div>
-                                        <div>
-                                            <span className="text-xs text-slate-500 font-sans tracking-wide uppercase block mb-1">Revision Priority</span>
-                                            <div className="text-lg text-slate-300">{result.priority}</div>
-                                        </div>
-                                    </div>
-                                    <div className="border-t md:border-t-0 md:border-l border-slate-800 pt-6 md:pt-0 md:pl-8 flex flex-col justify-center">
-                                        <p className="text-sm text-slate-400 mb-6 italic">
-                                            &quot;Based on your responses, your manuscript requires focus on {result.zone.toLowerCase()}. The {tierDetails?.name} is designed to address this specifically.&quot;
-                                        </p>
-                                        <MagneticButton href={`/services#${result.tier === 1 ? 'diagnostic' : result.tier === 2 ? 'audit' : 'full'}`} variant="primary" className="w-full justify-center">
-                                            Proceed to {tierDetails?.name}
-                                        </MagneticButton>
+                                    <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
+                                        <div
+                                            className="h-full bg-emerald-500 transition-all duration-300"
+                                            style={{ width: `${progress}%` }}
+                                        />
                                     </div>
                                 </div>
-                            </div>
-                        </BeamCard>
-                    </Reveal>
 
-                    <Reveal delay={100}>
-                        <div className="text-center space-y-4">
-                            <a href="/services" className="text-slate-400 hover:text-white transition-colors text-sm border-b border-transparent hover:border-slate-500 pb-0.5">
-                                View All Service Tiers →
-                            </a>
-                            <p className="text-xs text-slate-600 mt-8">
-                                Questions about your results? <a href="/contact" className="underline hover:text-slate-400">Book a brief call.</a>
-                            </p>
-                        </div>
-                    </Reveal>
-                </div>
-            </div>
-        );
+                                <ClipReveal key={question.id}>
+                                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 font-[family-name:var(--font-playfair)]">
+                                        {question.question}
+                                    </h2>
+                                </ClipReveal>
+
+                                <div className="space-y-3 mb-12">
+                                    {question.options.map((option, i) => (
+                                        <Reveal key={option.value} delay={i * 50}>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleAnswer(question.id, option.value)}
+                                                className={`w-full p-5 text-left rounded-md border transition-all duration-200 group ${currentAnswer === option.value
+                                                    ? 'bg-emerald-950/20 border-emerald-500/50 text-white'
+                                                    : 'bg-slate-900/40 border-slate-800 text-slate-300 hover:border-slate-600 hover:bg-slate-800'
+                                                    }`}
+                                            >
+                                                <div className="flex items-center justify-between">
+                                                    <span>{option.label}</span>
+                                                    {currentAnswer === option.value && <Check size={16} className="text-emerald-400" />}
+                                                </div>
+                                            </button>
+                                        </Reveal>
+                                    ))}
+                                </div>
+
+                                <div className="flex justify-between items-center">
+                                    <button
+                                        onClick={handleBack}
+                                        disabled={currentQuestion === 0}
+                                        className={`flex items-center gap-2 text-sm text-slate-500 hover:text-slate-300 transition-colors ${currentQuestion === 0 ? 'opacity-0 cursor-default' : ''}`}
+                                    >
+                                        <ArrowLeft size={16} /> Back
+                                    </button>
+                                    <MagneticButton
+                                        onClick={handleNext}
+                                        variant="primary"
+                                        disabled={currentAnswer === undefined}
+                                    >
+                                        {currentQuestion === QUESTIONS.length - 1 ? 'Get Results' : 'Next'}
+                                        <ArrowRight size={18} />
+                                    </MagneticButton>
+                                </div>
+                            </div>
+                        </section>
+                        );
     }
 
-    return null;
+                        // Email Gate
+                        if (state === 'email-gate') {
+        return (
+                        <section className="min-h-screen pt-32 pb-20 px-4 flex items-center justify-center">
+                            <div className="w-full max-w-md">
+                                <ClipReveal>
+                                    <h2 className="text-2xl font-bold text-white text-center mb-8 font-[family-name:var(--font-playfair)]">
+                                        Where should we send your results?
+                                    </h2>
+                                </ClipReveal>
+
+                                <Reveal>
+                                    <form onSubmit={handleEmailSubmit} className="space-y-6">
+                                        <FloatingInput
+                                            name="email"
+                                            label="Email"
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => {
+                                                setEmail(e.target.value);
+                                                if (emailError) setEmailError(false);
+                                            }}
+                                            error={emailError}
+                                            required
+                                        />
+
+                                        <MagneticButton type="submit" variant="primary" className="w-full">
+                                            Get My Results
+                                        </MagneticButton>
+                                    </form>
+                                </Reveal>
+                            </div>
+                        </section>
+                        );
+    }
+
+                        // Calculating
+                        if (state === 'calculating') {
+        return (
+                        <section className="min-h-screen flex items-center justify-center">
+                            <div className="text-center">
+                                <Activity className="w-8 h-8 text-emerald-400 mx-auto animate-pulse mb-4" />
+                                <p className="text-slate-500 text-sm font-mono">GENERATING STRUCTURAL MAP...</p>
+                            </div>
+                        </section>
+                        );
+    }
+
+                        // Results (Inline)
+                        if (state === 'results' && result) {
+        const tierDetails = TIERS.find(t => t.id === result.tier);
+
+                        return (
+                        <div className="min-h-screen bg-[#05080f] pt-32 pb-20 px-4">
+                            <div className="mx-auto max-w-3xl">
+                                <ClipReveal>
+                                    <h1 className="text-3xl md:text-4xl font-bold text-white text-center mb-2 font-[family-name:var(--font-playfair)]">
+                                        Your Structural Diagnostic Results
+                                    </h1>
+                                    <p className="text-slate-500 text-center mb-12 text-sm">A copy has been sent to your email.</p>
+                                </ClipReveal>
+
+                                <Reveal>
+                                    <BeamCard glowColor="emerald" className="mb-12">
+                                        <div className="p-8 bg-slate-900/50 rounded-lg border border-slate-700/50">
+                                            <div className="grid md:grid-cols-2 gap-8">
+                                                <div className="space-y-6">
+                                                    <div>
+                                                        <span className="text-xs text-slate-500 font-sans tracking-wide uppercase block mb-1">Structural Risk Level</span>
+                                                        <div className={`text-xl font-bold ${result.risk === 'High' ? 'text-rose-400' : result.risk === 'Moderate' ? 'text-amber-400' : 'text-emerald-400'}`}>
+                                                            {result.risk.toUpperCase()}
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-xs text-slate-500 font-sans tracking-wide uppercase block mb-1">Primary Failure Zone</span>
+                                                        <div className="text-xl font-bold text-white">{result.zone}</div>
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-xs text-slate-500 font-sans tracking-wide uppercase block mb-1">Recommended Tier</span>
+                                                        <div className="text-xl font-bold text-emerald-400">{tierDetails?.name}</div>
+                                                    </div>
+                                                    <div>
+                                                        <span className="text-xs text-slate-500 font-sans tracking-wide uppercase block mb-1">Revision Priority</span>
+                                                        <div className="text-lg text-slate-300">{result.priority}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="border-t md:border-t-0 md:border-l border-slate-800 pt-6 md:pt-0 md:pl-8 flex flex-col justify-center">
+                                                    <p className="text-sm text-slate-400 mb-6 italic">
+                                                        &quot;Based on your responses, your manuscript requires focus on {result.zone.toLowerCase()}. The {tierDetails?.name} is designed to address this specifically.&quot;
+                                                    </p>
+                                                    <MagneticButton href={`/services#${result.tier === 1 ? 'diagnostic' : result.tier === 2 ? 'audit' : 'full'}`} variant="primary" className="w-full justify-center">
+                                                        Proceed to {tierDetails?.name}
+                                                    </MagneticButton>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </BeamCard>
+                                </Reveal>
+
+                                <Reveal delay={100}>
+                                    <div className="text-center space-y-4">
+                                        <a href="/services" className="text-slate-400 hover:text-white transition-colors text-sm border-b border-transparent hover:border-slate-500 pb-0.5">
+                                            View All Service Tiers →
+                                        </a>
+                                        <p className="text-xs text-slate-600 mt-8">
+                                            Questions about your results? <a href="/contact" className="underline hover:text-slate-400">Book a brief call.</a>
+                                        </p>
+                                    </div>
+                                </Reveal>
+                            </div>
+                        </div>
+                        );
+    }
+
+                        return null;
 }

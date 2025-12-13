@@ -50,13 +50,6 @@ export const metadata: Metadata = {
     description: "Expert developmental editing for fantasy & sci-fi. We fix the structural cracks that make agents pass.",
     creator: "@proserefinery",
   },
-  icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/logo.png', type: 'image/png' },
-    ],
-    apple: '/logo.png',
-  },
   robots: {
     index: true,
     follow: true,
