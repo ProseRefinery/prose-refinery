@@ -68,7 +68,7 @@ export default function HomePage() {
               <ClipReveal delay={100}>
                 {/* User requested "first line on the hero to span the page no line break" */}
                 {/* We increase max-width significantly and use fluid text sizing */}
-                <Heading as="h1" variant="hero" className="mb-8 whitespace-nowrap text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight">
+                <Heading as="h1" variant="hero" className="mb-8 py-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight">
                   Structural Editing for Speculative Fiction That <span className="animated-gradient-text">Agents Take Seriously</span>
                 </Heading>
               </ClipReveal>
