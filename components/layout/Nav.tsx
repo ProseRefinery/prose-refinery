@@ -77,7 +77,6 @@ export function Nav() {
                                 <Link
                                     key={item.id}
                                     href={item.href}
-                                    href={item.href}
                                     onClick={() => trigger('light')} // Add light haptic
                                     className={cn(
                                         'relative px-4 py-2 text-[11px] font-medium tracking-widest uppercase transition-colors',
