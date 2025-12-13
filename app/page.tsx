@@ -411,14 +411,15 @@ export default function HomePage() {
             </p>
           </Reveal>
           <Reveal delay={200}>
-            <MagneticButton href="/diagnostic" variant="primary">
-              Start Your Diagnostic
-              <ArrowRight size={18} />
-            </MagneticButton>
+            <div className="flex justify-center">
+              <MagneticButton href="/diagnostic" variant="primary">
+                Start Your Diagnostic
+                <ArrowRight size={18} />
+              </MagneticButton>
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
-    </div >
-      </section >
+      </section>
     </>
   );
 }
