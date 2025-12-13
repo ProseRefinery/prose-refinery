@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS, COMPANY } from '@/lib/constants';
+import { useHaptic } from '@/hooks/useHaptic'; // Import hook
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { cn } from '@/lib/utils';
 
@@ -45,6 +46,7 @@ function Divider() {
 export function Nav() {
     const pathname = usePathname();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { trigger } = useHaptic(); // Initialize hook
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50">
@@ -75,6 +77,8 @@ export function Nav() {
                                 <Link
                                     key={item.id}
                                     href={item.href}
+                                    href={item.href}
+                                    onClick={() => trigger('light')} // Add light haptic
                                     className={cn(
                                         'relative px-4 py-2 text-[11px] font-medium tracking-widest uppercase transition-colors',
                                         isActive
@@ -128,7 +132,10 @@ export function Nav() {
                                     <Link
                                         key={item.id}
                                         href={item.href}
-                                        onClick={() => setMobileMenuOpen(false)}
+                                        onClick={() => {
+                                            trigger('light');
+                                            setMobileMenuOpen(false);
+                                        }}
                                         className={cn(
                                             'px-4 py-3 text-[11px] font-medium tracking-widest uppercase rounded-md transition-colors',
                                             isActive

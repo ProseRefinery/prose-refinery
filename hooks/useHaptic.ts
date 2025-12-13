@@ -8,11 +8,30 @@ import { useCallback } from 'react';
  * iOS does not support the Web Vibration API, but we simulate the "feel" 
  * via visual micro-interactions (scaling) in the components themselves.
  */
+/**
+ * useHaptic - Provides a rich interface for device vibration
+ * Supports multiple feedback patterns to mimic native OS feel.
+ */
 export function useHaptic() {
-    const trigger = useCallback(() => {
-        if (typeof window !== 'undefined' && navigator.vibrate) {
-            // Short, sharp vibration for UI feedback (10ms)
-            navigator.vibrate(10);
+    const trigger = useCallback((type: 'light' | 'medium' | 'heavy' | 'success' | 'error' = 'medium') => {
+        if (typeof window === 'undefined' || !navigator.vibrate) return;
+
+        switch (type) {
+            case 'light':
+                navigator.vibrate(5); // Subtle tick (Nav links, selections)
+                break;
+            case 'medium':
+                navigator.vibrate(10); // Standard tap (Buttons)
+                break;
+            case 'heavy':
+                navigator.vibrate(15); // Weighted impact (Primary CTAs)
+                break;
+            case 'success':
+                navigator.vibrate([10, 30, 10]); // Double tick
+                break;
+            case 'error':
+                navigator.vibrate([15, 50, 15, 50, 15]); // Shudder
+                break;
         }
     }, []);
 

@@ -62,7 +62,7 @@ export function MagneticButton({
     };
 
     const handlePress = () => {
-        trigger();
+        trigger(variant === 'primary' ? 'heavy' : 'medium');
         if (onClick) onClick();
     };
 
