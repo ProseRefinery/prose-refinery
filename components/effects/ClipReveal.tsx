@@ -22,10 +22,8 @@ export function ClipReveal({ children, delay = 0, className = '' }: ClipRevealPr
                 whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{
-                    type: "spring",
-                    stiffness: 50,
-                    damping: 15,
-                    mass: 0.8,
+                    duration: 0.8,
+                    ease: [0.25, 0.46, 0.45, 0.94],
                     delay: delay / 1000
                 }}
             >
@@ -60,11 +58,11 @@ export function StaggerText({ text, delay = 0, className = '', split = 'char' }:
     const child = {
         hidden: {
             y: "120%",
-            transition: { type: "spring", damping: 12, stiffness: 100 } as const
+            transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
         },
         visible: {
             y: 0,
-            transition: { type: "spring", damping: 12, stiffness: 100 } as const
+            transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
         }
     };
 

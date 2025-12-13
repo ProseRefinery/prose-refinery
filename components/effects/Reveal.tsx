@@ -21,11 +21,9 @@ export function Reveal({ children, delay = 0, className = '' }: RevealProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{
-                type: "spring",
-                stiffness: 50, // Looser spring for gentle reveal
-                damping: 20,
-                mass: 1,
-                delay: delay / 1000 // Convert ms to seconds
+                duration: 0.8, // Slower, more cinematic
+                ease: [0.25, 0.46, 0.45, 0.94], // Cubic-bezier for "editorial" feel
+                delay: delay / 1000
             }}
             className={cn('relative', className)}
         >
