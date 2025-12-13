@@ -58,31 +58,31 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Hero Section - Benefit-focused copy */}
-      <Section className="relative flex justify-center pt-20 pb-24" noBorder>
+      <Section className="relative flex justify-center pt-24 pb-24" noBorder>
         <GridGlowBackground>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <div className="max-w-3xl mx-auto">
+          <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8 text-center">
+            <div className="max-w-6xl mx-auto">
               <Reveal>
                 <HeroBadge icon="award">Prose Refinery | Precision Editorial for Speculative Fiction</HeroBadge>
               </Reveal>
 
               <ClipReveal delay={100}>
-                <Heading as="h1" variant="hero" className="mb-6">
-                  Structural Diagnosis & Editorial Standards for{' '}
-                  <span className="animated-gradient-text">Speculative Fiction</span>
+                {/* User requested "first line on the hero to span the page no line break" */}
+                {/* We increase max-width significantly and use fluid text sizing */}
+                <Heading as="h1" variant="hero" className="mb-8 whitespace-nowrap text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight">
+                  Structural Editing for Speculative Fiction That <span className="animated-gradient-text">Agents Take Seriously</span>
                 </Heading>
               </ClipReveal>
 
               <ClipReveal delay={200}>
-                <h2 className="text-xl sm:text-2xl md:text-3xl text-slate-300 mb-8 font-[family-name:var(--font-playfair)]">
-                  We find the structural cracks that weaken your story.
-                  <span className="block text-slate-400 mt-2">Then we provide the architectural blueprint to fix them.</span>
+                <h2 className="text-xl sm:text-2xl text-slate-300 mb-10 font-[family-name:var(--font-playfair)] max-w-4xl mx-auto leading-relaxed">
+                  Diagnose what&apos;s breaking your story&apos;s architecture—plot logic, character pressure, pacing, and world-system coherence—before revisions waste months.
                 </h2>
               </ClipReveal>
 
               <Reveal delay={400}>
                 <div className="flex flex-col items-center">
-                  <MagneticButton href="/diagnostic" variant="primary" className="px-8 py-4 text-lg">
+                  <MagneticButton href="/diagnostic" variant="primary" className="px-8 py-4 text-lg shadow-emerald-500/20 shadow-lg hover:shadow-emerald-500/40">
                     Begin Free Diagnostic
                     <ArrowRight size={20} />
                   </MagneticButton>
@@ -97,14 +97,14 @@ export default function HomePage() {
               </Reveal>
 
               <Reveal delay={500}>
-                <p className="text-sm text-slate-500 mt-6">
-                  <Feather size={14} className="inline mr-2" />
-                  8 questions. 2 minutes. Personalized recommendation.
+                <p className="text-sm text-slate-500 mt-8 font-medium tracking-wide">
+                  <Feather size={14} className="inline mr-2 text-emerald-500/70" />
+                  8 questions • ~3 minutes • Immediate structural recommendation
                 </p>
               </Reveal>
 
               <Reveal delay={600}>
-                <p className="text-xs text-emerald-500/70 mt-3">
+                <p className="text-xs text-emerald-500/50 mt-3 font-medium uppercase tracking-widest">
                   <Calendar size={12} className="inline mr-2" />
                   Currently accepting projects
                 </p>
@@ -209,7 +209,7 @@ export default function HomePage() {
                     <div className="absolute -top-4 -right-4 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-slate-900 font-bold text-lg shadow-lg z-20">02</div>
                     <PenTool className="w-10 h-10 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <Heading as="h3" variant="card" className="mb-2">Reconstruct</Heading>
+                  <Heading as="h3" variant="card" className="mb-2">Prescribe</Heading>
                   <p className="text-slate-400 text-sm px-4">
                     We provide a specific architectural blueprint to fix the load-bearing walls of your story.
                   </p>
@@ -294,6 +294,9 @@ export default function HomePage() {
                 We don&apos;t just talk about structural editing. Here&apos;s a transformation
                 from our Tier 4 partnership flagship, <em>Children of Aiyé</em>.
               </p>
+              <p className="text-xs text-slate-500 mt-4 italic">
+                Structural revision example. Line-level prose unchanged.
+              </p>
             </Reveal>
           </div>
 
@@ -363,9 +366,9 @@ export default function HomePage() {
             <Reveal delay={0} className="h-full">
               <TiltCard className="h-full">
                 <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
-                  <div className="text-emerald-400 font-bold mb-2">Step 1</div>
-                  <Heading as="h3" variant="card" className="mb-2">Diagnostics</Heading>
-                  <p className="text-slate-400 text-sm mb-4 flex-grow">Quick checks on Hook, Voice, or Pacing.</p>
+                  <div className="text-emerald-400 font-bold mb-2">Tier 1</div>
+                  <Heading as="h3" variant="card" className="mb-2">Diagnostic</Heading>
+                  <p className="text-slate-400 text-sm mb-4 flex-grow">Assess your opening hook, voice, or pacing.</p>
                   <div className="text-white font-bold text-lg">£95 – £175</div>
                 </div>
               </TiltCard>
@@ -373,20 +376,20 @@ export default function HomePage() {
             <Reveal delay={100} className="h-full">
               <BeamCard glowColor="emerald" className="h-full">
                 <div className="bg-slate-800/40 p-6 rounded-lg h-full flex flex-col">
-                  <div className="text-emerald-400 font-bold mb-2">Step 2</div>
-                  <Heading as="h3" variant="card" className="mb-2">Focused Audits</Heading>
-                  <p className="text-slate-400 text-sm mb-4 flex-grow">Deep dive into one structural pillar.</p>
-                  <div className="text-white font-bold text-lg">£350</div>
+                  <div className="text-emerald-400 font-bold mb-2">Tier 2</div>
+                  <Heading as="h3" variant="card" className="mb-2">Structural Audit</Heading>
+                  <p className="text-slate-400 text-sm mb-4 flex-grow">Deep dive into a single pillar of your choice.</p>
+                  <div className="text-white font-bold text-lg">£250 – £450</div>
                 </div>
               </BeamCard>
             </Reveal>
             <Reveal delay={200} className="h-full">
               <TiltCard className="h-full">
                 <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
-                  <div className="text-emerald-400 font-bold mb-2">Step 3</div>
-                  <Heading as="h3" variant="card" className="mb-2">Full Manuscript</Heading>
-                  <p className="text-slate-400 text-sm mb-4 flex-grow">Complete 4-pillar overhaul.</p>
-                  <div className="text-white font-bold text-lg">£1,500+</div>
+                  <div className="text-emerald-400 font-bold mb-2">Tier 3</div>
+                  <Heading as="h3" variant="card" className="mb-2">Full Edit</Heading>
+                  <p className="text-slate-400 text-sm mb-4 flex-grow">Complete 4-pillar manuscript overhaul.</p>
+                  <div className="text-white font-bold text-lg">£750 – £1,200</div>
                 </div>
               </TiltCard>
             </Reveal>

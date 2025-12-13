@@ -46,7 +46,7 @@ export const TIERS: Tier[] = [
     {
         id: 2,
         name: 'Single-Pillar Structural Audit',
-        price: '£350',
+        price: '£250 – £450',
         turnaround: '7 days',
         description: 'Repair what you already see',
         includes: ['Single-Pillar Deep Dive', 'Act-Level Structure Audit', 'Character Arc Analysis'],
@@ -56,16 +56,16 @@ export const TIERS: Tier[] = [
     {
         id: 3,
         name: 'Full Structural Edit',
-        price: '£1,500 – £4,500+',
+        price: '£750 – £1,200',
         turnaround: '3–4 weeks',
         description: 'Reconstruct the full manuscript',
         includes: ['Complete 4-Pillar Assessment', 'Iterative Revision Cycles', 'Strategy Consultations', 'Line-Level Annotation'],
-        pricingContext: 'Structured Tiers: Core (£1.5k), Standard (£2.8k), Premium (£4.5k+)'
+        pricingContext: 'Deep structural intervention.'
     },
     {
         id: 4,
         name: 'Editorial Partnership',
-        price: '£5,000 – £12,000',
+        price: 'By application',
         turnaround: '3–6 months',
         description: 'Partner through multiple drafts',
         includes: ['Everything in Tier 3', 'Multiple Draft Passes', 'Ongoing Consultation', 'Direct Access'],

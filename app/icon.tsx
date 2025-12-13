@@ -23,15 +23,16 @@ export default function Icon() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     background: 'white',
-                    borderRadius: 0, // Square as requested/implied "white background" usually means filling the tile
+                    borderRadius: '20%', // Standard favicon rounding
+                    overflow: 'hidden',
                 }}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 481.41 666.57"
                     style={{
-                        width: '24px',
-                        height: '24px',
+                        height: '24px', // Constrain height
+                        width: 'auto',   // Allow width to scale naturally (preserves ~0.72 aspect ratio)
                     }}
                 >
                     {/* Paths from favicon.svg converted with inline styles */}

@@ -76,8 +76,7 @@ export function Footer() {
                         </Link>
 
                         <p className="text-slate-400 leading-relaxed text-sm max-w-sm font-light">
-                            Constructing the architecture of the next generation of fantasy bestsellers.
-                            We don&apos;t just edit smooth sentences; we build unbreakable stories.
+                            Structural editorial practice for speculative fiction.
                         </p>
 
                         <div className="flex items-center gap-3 pt-2">
