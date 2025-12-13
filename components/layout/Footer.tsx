@@ -114,8 +114,7 @@ export function Footer() {
                     <div className="lg:col-span-2">
                         <h4 className="text-white text-lg font-bold mb-6 font-[family-name:var(--font-playfair)]">Company</h4>
                         <ul className="space-y-3">
-                            <li><FooterLink href="/method">The Method</FooterLink></li>
-                            <li><FooterLink href="/about">About Us</FooterLink></li>
+                            <li><FooterLink href="/about">How It Works</FooterLink></li>
                             <li><FooterLink href="/contact">Contact</FooterLink></li>
                             <li className="pt-3 mt-3 border-t border-slate-800/50">
                                 <Link
@@ -178,6 +177,7 @@ export function Footer() {
                 <div className="mt-12 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
                     <div className="text-slate-600 text-xs font-light">
                         © {new Date().getFullYear()} {COMPANY.legalName}. All rights reserved.
+                        <span className="block mt-1 text-slate-700">All manuscripts treated as confidential. Never shared or reused.</span>
                     </div>
                     <div className="flex gap-6 text-xs text-slate-600 font-light">
                         <Link href="/privacy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
