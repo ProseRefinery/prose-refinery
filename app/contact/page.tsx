@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 import { ArrowRight, Send, Mail } from 'lucide-react';
 import { WhatsAppIcon } from '@/components/ui/BrandIcons';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
@@ -82,7 +82,7 @@ export default function ContactPage() {
                         </ClipReveal>
                         <Reveal delay={200}>
                             <p className="text-slate-400 mb-8">
-                                Thank you for reaching out. We'll review your inquiry and get back to you within 48 hours.
+                                Thank you for reaching out. We&apos;ll review your inquiry and get back to you within 48 hours.
                             </p>
                         </Reveal>
                         <Reveal delay={300}>
@@ -107,12 +107,12 @@ export default function ContactPage() {
                         </Reveal>
                         <ClipReveal delay={100}>
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                                Let's Discuss Your Manuscript
+                                Let&apos;s Discuss Your Manuscript
                             </h1>
                         </ClipReveal>
                         <Reveal delay={200}>
                             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                                Tell us about your project and we'll recommend the best path forward.
+                                Tell us about your project and we&apos;ll recommend the best path forward.
                             </p>
                         </Reveal>
                     </div>

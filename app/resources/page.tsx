@@ -1,11 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Clock, Calendar } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
-import { TiltCard } from '@/components/effects/TiltCard';
 import { BeamCard } from '@/components/effects/BeamCard';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { ARTICLES } from '@/lib/articles';
@@ -18,7 +17,7 @@ export default function ResourcesPage() {
                 <GridGlowBackground>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                         <Reveal>
-                            <HeroBadge icon="book">The Editor's Desk</HeroBadge>
+                            <HeroBadge icon="book">The Editor&apos;s Desk</HeroBadge>
                         </Reveal>
                         <ClipReveal delay={100}>
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">

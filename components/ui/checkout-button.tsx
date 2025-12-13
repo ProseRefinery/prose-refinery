@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { ArrowRight, Loader2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 
 interface CheckoutButtonProps {
     priceId: string;
@@ -14,7 +14,7 @@ interface CheckoutButtonProps {
 
 export function CheckoutButton({ priceId, children, className, variant = 'primary' }: CheckoutButtonProps) {
     const [loading, setLoading] = useState(false);
-    const router = useRouter();
+    // const router = useRouter();
 
     const handleCheckout = async () => {
         setLoading(true);

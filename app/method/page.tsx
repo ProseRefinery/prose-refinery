@@ -150,7 +150,7 @@ export default function MethodPage() {
                             <Reveal delay={300}>
                                 <p className="text-lg text-slate-400">
                                     Our systematic approach ensures every aspect of your speculative fiction
-                                    manuscript is analyzed against proven structural principles. Here's exactly
+                                    manuscript is analyzed against proven structural principles. Here&apos;s exactly
                                     what we look for—and what we catch.
                                 </p>
                             </Reveal>
@@ -264,7 +264,7 @@ export default function MethodPage() {
                     </ClipReveal>
                     <Reveal delay={100}>
                         <p className="text-lg text-slate-400 mb-8 max-w-xl mx-auto">
-                            Every manuscript has hidden structural issues. Let's find yours before agents do.
+                            Every manuscript has hidden structural issues. Let&apos;s find yours before agents do.
                         </p>
                     </Reveal>
                     <Reveal delay={200}>

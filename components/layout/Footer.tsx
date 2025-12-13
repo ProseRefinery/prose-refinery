@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Mail, ArrowRight, CheckCircle2, Instagram, Twitter } from 'lucide-react';
-import { COMPANY, NAV_ITEMS } from '@/lib/constants';
+import { COMPANY } from '@/lib/constants';
 import { useState, FormEvent } from 'react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { MagneticButton } from '@/components/ui/MagneticButton';
@@ -77,7 +77,7 @@ export function Footer() {
 
                         <p className="text-slate-400 leading-relaxed text-sm max-w-sm font-light">
                             Constructing the architecture of the next generation of fantasy bestsellers.
-                            We don't just edit smooth sentences; we build unbreakable stories.
+                            We don&apos;t just edit smooth sentences; we build unbreakable stories.
                         </p>
 
                         <div className="flex items-center gap-3 pt-2">
@@ -144,7 +144,7 @@ export function Footer() {
                             {status === 'success' ? (
                                 <div className="relative flex items-center gap-3 text-emerald-400 bg-emerald-950/30 p-4 rounded-xl border border-emerald-500/20 animate-in fade-in zoom-in duration-300">
                                     <CheckCircle2 size={20} />
-                                    <span className="font-medium text-sm">You're on the list.</span>
+                                    <span className="font-medium text-sm">You&apos;re on the list.</span>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="relative flex gap-2">

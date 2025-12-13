@@ -91,7 +91,7 @@ function DiagnosticResultsContent() {
                                     but based on your current investment preference, <span className="text-white font-semibold">Tier {tierId}</span> is the smartest starting point.
                                 </p>
                                 <p className="text-slate-400 text-xs mt-3 italic">
-                                    Strategy: Start here safely to get immediate clarity, then upgrade when you're ready—your results will still apply.
+                                    Strategy: Start here safely to get immediate clarity, then upgrade when you&apos;re ready—your results will still apply.
                                 </p>
                             </div>
                         </ClipReveal>
@@ -131,7 +131,7 @@ function DiagnosticResultsContent() {
                             <div className="border-t border-slate-700/50 pt-8 mb-8">
                                 <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
                                     <Check className="w-5 h-5 text-emerald-500" />
-                                    What's Included
+                                    What&apos;s Included
                                 </h3>
                                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {tier.includes.map((item, i) => (

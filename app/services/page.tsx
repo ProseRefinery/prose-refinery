@@ -10,7 +10,7 @@ import { BeamCard } from '@/components/effects/BeamCard';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { CheckoutButton } from '@/components/ui/checkout-button';
 import { HeroBadge } from '@/components/ui/HeroBadge';
-import { TIERS, STRIPE_PRICES } from '@/lib/constants';
+import { STRIPE_PRICES } from '@/lib/constants';
 import { COMPARISON_DATA } from '@/lib/comparison-data';
 
 // Mobile Comparison Component
@@ -25,7 +25,7 @@ function MobileComparison() {
                     {[1, 2, 3, 4].map((tierId) => (
                         <button
                             key={tierId}
-                            onClick={() => setActiveTier(tierId as any)}
+                            onClick={() => setActiveTier(tierId as 1 | 2 | 3 | 4)}
                             className={`flex-1 py-3 text-sm font-medium rounded-md transition-all ${activeTier === tierId
                                 ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/20'
                                 : 'text-slate-400 hover:text-white bg-slate-800/50'
@@ -123,20 +123,7 @@ export default function ServicesPage() {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
     // Get tier-specific CTA
-    const getTierCTA = (tier: typeof TIERS[0]) => {
-        switch (tier.id) {
-            case 1:
-                return { text: 'Buy Now', href: '/services#tier-1-options', variant: 'secondary' as const };
-            case 2:
-                return { text: 'Book Consultation', href: '/consultation', variant: 'primary' as const };
-            case 3:
-                return { text: 'Book Consultation', href: '/consultation', variant: 'primary' as const };
-            case 4:
-                return { text: 'Apply', href: '/apply', variant: 'primary' as const };
-            default:
-                return { text: 'Get Started', href: '/contact', variant: 'secondary' as const };
-        }
-    };
+    // Unused helper removed
 
     return (
         <>
@@ -339,7 +326,7 @@ export default function ServicesPage() {
                                         Tier 3 Taster
                                     </h3>
                                     <p className="text-slate-400 mb-6 flex-grow">
-                                        Sample edit of your first 50 pages to see if we're a good fit. The cost is credited toward the full service.
+                                        Sample edit of your first 50 pages to see if we&apos;re a good fit. The cost is credited toward the full service.
                                     </p>
                                     <div className="text-2xl font-bold text-white mb-6">£195</div>
                                     <CheckoutButton priceId={STRIPE_PRICES.tier3_preview} variant="secondary" className="w-full">
@@ -455,7 +442,7 @@ export default function ServicesPage() {
                                         Teaser Soundtrack
                                     </h3>
                                     <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        One custom track to set the mood for your book's teaser campaign.
+                                        One custom track to set the mood for your book&apos;s teaser campaign.
                                     </p>
                                     <CheckoutButton priceId={STRIPE_PRICES.teaser_soundtrack} variant="secondary" className="w-full">
                                         Buy Now (£200)
@@ -627,11 +614,11 @@ export default function ServicesPage() {
                                     Our Promise
                                 </h2>
                                 <p className="text-slate-400 leading-relaxed max-w-xl mx-auto">
-                                    If our feedback doesn't give you clear, actionable next steps for your manuscript,
-                                    we'll refund your fee. No questions.
+                                    If our feedback doesn&apos;t give you clear, actionable next steps for your manuscript,
+                                    we&apos;ll refund your fee. No questions.
                                 </p>
                                 <p className="text-slate-500 text-sm mt-4">
-                                    We'd rather lose money than leave you confused.
+                                    We&apos;d rather lose money than leave you confused.
                                 </p>
                             </div>
                         </BeamCard>
@@ -680,7 +667,7 @@ export default function ServicesPage() {
                     <Reveal delay={100}>
                         <p className="text-lg text-slate-400 mb-8 max-w-xl mx-auto">
                             Take our quick diagnostic quiz to get a personalized recommendation
-                            based on your manuscript's needs.
+                            based on your manuscript&apos;s needs.
                         </p>
                     </Reveal>
                     <Reveal delay={200}>

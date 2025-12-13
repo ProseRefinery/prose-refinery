@@ -1,4 +1,4 @@
-import { ArrowRight, Feather, Layers, Zap, BookOpen, Heart, BarChart3, Shield, Search, Calendar } from 'lucide-react';
+import { ArrowRight, Feather, Layers, BookOpen, Shield, Search, Calendar } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
@@ -123,7 +123,7 @@ export default function HomePage() {
             </ClipReveal>
             <Reveal delay={100}>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                We don't just talk about methodology. We built it, tested it, and proved it works.
+                We don&apos;t just talk about methodology. We built it, tested it, and proved it works.
               </p>
             </Reveal>
           </div>
@@ -238,7 +238,7 @@ export default function HomePage() {
             </ClipReveal>
             <Reveal delay={100}>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                We don't just talk about structural editing. Here's a real transformation
+                We don&apos;t just talk about structural editing. Here&apos;s a real transformation
                 from our flagship project, <em>Children of Aiyé</em>.
               </p>
             </Reveal>
@@ -252,9 +252,9 @@ export default function HomePage() {
                     Before
                   </span>
                   <p className="text-slate-400 italic text-sm leading-relaxed">
-                    "Kọlá felt the weight of centuries as she walked. The shrine had always
-                    been sacred, though few remembered why. Her grandmother's voice echoed
-                    in her mind, warning of things best left undisturbed."
+                    &quot;Kọlá felt the weight of centuries as she walked. The shrine had always
+                    been sacred, though few remembered why. Her grandmother&apos;s voice echoed
+                    in her mind, warning of things best left undisturbed.&quot;
                   </p>
                   <p className="text-red-400/60 text-xs mt-4">
                     → Passive, abstract, no stakes
@@ -270,9 +270,9 @@ export default function HomePage() {
                     After
                   </span>
                   <p className="text-slate-300 italic text-sm leading-relaxed">
-                    "Blood on the shrine meant someone would die within a fortnight. Kọlá
+                    &quot;Blood on the shrine meant someone would die within a fortnight. Kọlá
                     pressed her thumb against the iron blade until crimson beaded at the tip.
-                    Three drops. Grandmother said three was binding."
+                    Three drops. Grandmother said three was binding.&quot;
                   </p>
                   <p className="text-emerald-400/60 text-xs mt-4">
                     → Active voice, specific stakes, immediate tension
@@ -301,7 +301,7 @@ export default function HomePage() {
           <Reveal delay={100}>
             <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
               Take our 2-minute diagnostic to discover which editorial tier
-              will transform your manuscript from "maybe" to "yes."
+              will transform your manuscript from &quot;maybe&quot; to &quot;yes.&quot;
             </p>
           </Reveal>
           <Reveal delay={200}>

@@ -1,4 +1,4 @@
-import { Layers, Zap, Target, BookOpen } from 'lucide-react';
+// Icons removed (unused)
 
 export interface Article {
   slug: string;

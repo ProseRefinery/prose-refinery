@@ -18,7 +18,7 @@ export default function ConsultationPage() {
 
                     <ClipReveal delay={100}>
                         <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                            Let's Discuss Your Manuscript
+                            Let&apos;s Discuss Your Manuscript
                         </h1>
                     </ClipReveal>
 
@@ -64,7 +64,7 @@ export default function ConsultationPage() {
                 <Reveal delay={400}>
                     <div className="text-center mt-8">
                         <p className="text-slate-500 text-sm">
-                            Can't find a time? Email us directly at <a href="mailto:hello@proserefinery.com" className="text-emerald-400 hover:text-emerald-300">hello@proserefinery.com</a>
+                            Can&apos;t find a time? Email us directly at <a href="mailto:hello@proserefinery.com" className="text-emerald-400 hover:text-emerald-300">hello@proserefinery.com</a>
                         </p>
                     </div>
                 </Reveal>

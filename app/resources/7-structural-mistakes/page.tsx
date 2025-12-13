@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, AlertTriangle, CheckCircle, XCircle, BookOpen } from 'lucide-react';
+import { ArrowRight, AlertTriangle, CheckCircle, XCircle } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { Reveal } from '@/components/effects/Reveal';
 import { ClipReveal } from '@/components/effects/ClipReveal';
@@ -69,7 +69,7 @@ export default function SevenMistakesPage() {
                         </ClipReveal>
                         <Reveal delay={200}>
                             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-                                Agents don't reject manuscripts because of typos. They reject them because
+                                Agents don&apos;t reject manuscripts because of typos. They reject them because
                                 the story architecture collapses under scrutiny.
                             </p>
                         </Reveal>

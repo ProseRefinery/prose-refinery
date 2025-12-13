@@ -64,7 +64,7 @@ export default function ExitIntentPopup() {
                         </div>
                         <h3 className="text-xl font-bold text-white mb-2 font-serif">Check Your Inbox!</h3>
                         <p className="text-slate-400">
-                            Your guide <strong>"7 Structural Mistakes That Kill Fantasy Manuscripts"</strong> is on its way.
+                            Your guide <strong>&quot;7 Structural Mistakes That Kill Fantasy Manuscripts&quot;</strong> is on its way.
                         </p>
                         <button
                             onClick={() => setShow(false)}
@@ -77,7 +77,7 @@ export default function ExitIntentPopup() {
                     <>
                         <div className="mb-6">
                             <span className="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
-                                Wait — Don't Leave Empty-Handed
+                                Wait — Don&apos;t Leave Empty-Handed
                             </span>
                             <h3 className="text-2xl font-bold text-white mb-3 font-serif">
                                 Is Your Manuscript Making These 7 Fatal Mistakes?

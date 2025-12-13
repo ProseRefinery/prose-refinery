@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowRight, ArrowLeft, Check, Target, Mail, Sparkles, Gift } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Check, Target, Sparkles, Gift } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
@@ -12,7 +12,7 @@ import { MagneticButton } from '@/components/ui/MagneticButton';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { FloatingInput } from '@/components/ui/FloatingInput';
-import { QUESTIONS, TIERS, track } from '@/lib/constants';
+import { QUESTIONS, track } from '@/lib/constants';
 import { DiagnosticAnswers } from '@/lib/types';
 
 type DiagnosticState = 'intro' | 'quiz' | 'email-gate' | 'calculating';
@@ -128,7 +128,7 @@ export default function DiagnosticPage() {
                         <Reveal delay={200}>
                             <p className="text-lg text-slate-400 mb-8 max-w-xl mx-auto">
                                 Answer 8 quick questions about your manuscript and goals.
-                                We'll recommend the ideal service tier for your needs.
+                                We&apos;ll recommend the ideal service tier for your needs.
                             </p>
                         </Reveal>
                         <Reveal delay={300}>
@@ -181,7 +181,7 @@ export default function DiagnosticPage() {
                             <p className="text-slate-400 mb-8">
                                 Enter your email to receive your diagnostic results, plus a free guide:
                                 <span className="block text-emerald-400 mt-2 font-medium">
-                                    "7 Structural Mistakes That Kill Fantasy Manuscripts"
+                                    &quot;7 Structural Mistakes That Kill Fantasy Manuscripts&quot;
                                 </span>
                             </p>
                         </Reveal>
@@ -223,7 +223,7 @@ export default function DiagnosticPage() {
                                 </MagneticButton>
 
                                 <p className="text-xs text-slate-500">
-                                    We'll never spam you. Unsubscribe anytime.
+                                    We&apos;ll never spam you. Unsubscribe anytime.
                                 </p>
                             </form>
                         </Reveal>

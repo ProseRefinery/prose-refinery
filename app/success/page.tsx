@@ -1,4 +1,4 @@
-import Link from 'next/link';
+// import Link removed (unused)
 import { CheckCircle } from 'lucide-react';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { Reveal } from '@/components/effects/Reveal';
@@ -15,7 +15,7 @@ export default function SuccessPage() {
                         Payment Successful!
                     </h1>
                     <p className="text-slate-400 mb-8">
-                        Thank you for your purchase. We've received your order and will be in touch shortly with next steps.
+                        Thank you for your purchase. We&apos;ve received your order and will be in touch shortly with next steps.
                     </p>
                     <MagneticButton href="/" variant="primary" className="w-full justify-center">
                         Return Home

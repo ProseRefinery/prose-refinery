@@ -33,14 +33,14 @@ export default function AboutPage() {
                             <Reveal delay={200}>
                                 <p className="text-xl text-slate-300 mb-6">
                                     Most editorial feedback focuses on prose. Clean sentences. Tighter paragraphs.
-                                    Better word choices. <strong className="text-white">That's the final 10%.</strong>
+                                    Better word choices. <strong className="text-white">That&apos;s the final 10%.</strong>
                                 </p>
                             </Reveal>
                             <Reveal delay={300}>
                                 <p className="text-lg text-slate-400 mb-8">
                                     We focus on the 90% that determines whether your book works: structure, pacing,
                                     world logic, character motivation, and the invisible architecture readers feel
-                                    but can't articulate.
+                                    but can&apos;t articulate.
                                 </p>
                             </Reveal>
                             <Reveal delay={400}>
@@ -72,7 +72,7 @@ export default function AboutPage() {
                             </ClipReveal>
                             <Reveal delay={200}>
                                 <p className="text-slate-300 mb-4">
-                                    I've been obsessed with fantasy since I was twelve, devouring everything from
+                                    I&apos;ve been obsessed with fantasy since I was twelve, devouring everything from
                                     Tolkien to Octavia Butler to N.K. Jemisin. Twenty years later, that obsession
                                     became a methodology.
                                 </p>
@@ -87,8 +87,8 @@ export default function AboutPage() {
                             </Reveal>
                             <Reveal delay={400}>
                                 <p className="text-slate-400 mb-6">
-                                    Now I use that same framework to help other authors see what they're too close
-                                    to see: the structural cracks that beta readers sense but can't name.
+                                    Now I use that same framework to help other authors see what they&apos;re too close
+                                    to see: the structural cracks that beta readers sense but can&apos;t name.
                                 </p>
                             </Reveal>
                             <Reveal delay={500}>
@@ -189,8 +189,8 @@ export default function AboutPage() {
                         </ClipReveal>
                         <Reveal delay={100}>
                             <p className="text-slate-400 max-w-2xl mx-auto">
-                                We don't just preach methodology. We use it. Every technique we recommend,
-                                every structural principle we teach—we've applied it to our own work first.
+                                We don&apos;t just preach methodology. We use it. Every technique we recommend,
+                                EVERY structural principle we teach—we&apos;ve applied it to our own work first.
                             </p>
                         </Reveal>
                     </div>
@@ -231,15 +231,15 @@ export default function AboutPage() {
                                         <div className="p-4 bg-slate-900/50 rounded-md border-l-2 border-red-500/50">
                                             <span className="text-xs text-red-400 uppercase tracking-wider">Before</span>
                                             <p className="text-slate-400 text-sm mt-2 italic">
-                                                "Kọlá felt the weight of centuries as she walked. The shrine had always
-                                                been sacred, though few remembered why."
+                                                &quot;Kọlá felt the weight of centuries as she walked. The shrine had always
+                                                been sacred, though few remembered why.&quot;
                                             </p>
                                         </div>
                                         <div className="p-4 bg-slate-900/50 rounded-md border-l-2 border-emerald-500/50">
                                             <span className="text-xs text-emerald-400 uppercase tracking-wider">After</span>
                                             <p className="text-slate-300 text-sm mt-2 italic">
-                                                "Blood on the shrine meant someone would die within a fortnight. Kọlá
-                                                pressed her thumb against the iron blade until crimson beaded at the tip."
+                                                &quot;Blood on the shrine meant someone would die within a fortnight. Kọlá
+                                                pressed her thumb against the iron blade until crimson beaded at the tip.&quot;
                                             </p>
                                         </div>
                                     </div>
@@ -255,13 +255,13 @@ export default function AboutPage() {
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                     <ClipReveal>
                         <h2 className="text-3xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                            Let's Transform Your Manuscript
+                            Let&apos;s Transform Your Manuscript
                         </h2>
                     </ClipReveal>
                     <Reveal delay={100}>
                         <p className="text-lg text-slate-400 mb-8 max-w-xl mx-auto">
-                            Start with our 2-minute diagnostic. We'll recommend the perfect editorial
-                            tier for your manuscript's needs.
+                            Start with our 2-minute diagnostic. We&apos;ll recommend the perfect editorial
+                            tier for your manuscript&apos;s needs.
                         </p>
                     </Reveal>
                     <Reveal delay={200}>

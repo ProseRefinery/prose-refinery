@@ -8,7 +8,7 @@ export default function DebugLoopsPage() {
     const [logs, setLogs] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
 
-    const addLog = (msg: string, data?: any) => {
+    const addLog = (msg: string, data?: unknown) => {
         const timestamp = new Date().toLocaleTimeString();
         const content = data ? `${msg}\n${JSON.stringify(data, null, 2)}` : msg;
         setLogs(prev => [`[${timestamp}] ${content}`, ...prev]);
@@ -37,8 +37,8 @@ export default function DebugLoopsPage() {
             } else {
                 addLog('❌ Failed', data.error);
             }
-        } catch (err: any) {
-            addLog('❌ Network Error', err.message);
+        } catch (err: unknown) {
+            addLog('❌ Network Error', err instanceof Error ? err.message : 'Unknown error');
         } finally {
             setLoading(false);
         }

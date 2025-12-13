@@ -73,7 +73,7 @@ export default function ApplyPage() {
                         <Reveal delay={200}>
                             <p className="text-xl text-slate-300 mb-8 leading-relaxed">
                                 Thank you for applying to the Editorial Partnership program.
-                                We review every application thoroughly to ensure we're the right fit for your work.
+                                We review every application thoroughly to ensure we&apos;re the right fit for your work.
                             </p>
                             <p className="text-slate-400">
                                 Expect to hear from us within 5 business days. In the meantime, check your email for confirmation.

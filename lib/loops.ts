@@ -1,5 +1,3 @@
-import { NextResponse } from 'next/server';
-
 const LOOPS_API_URL = 'https://app.loops.so/api/v1';
 
 // Helper to get key at runtime
@@ -17,13 +15,13 @@ interface ContactData {
     manuscriptTitle?: string;
     genre?: string;
     quizCompleted?: boolean;
-    [key: string]: any;
+    [key: string]: unknown;
 }
 
 interface TransactionalData {
     transactionalId: string;
     email: string;
-    dataVariables?: Record<string, any>;
+    dataVariables?: Record<string, unknown>;
 }
 
 // Add or update a contact
@@ -102,20 +100,32 @@ export async function sendTransactional(data: TransactionalData) {
 }
 
 // Trigger an event (for automations)
-export async function triggerEvent(email: string, eventName: string) {
+export async function triggerEvent(
+    email: string,
+    eventName: string,
+    properties?: Record<string, unknown>,
+    idempotencyKey?: string
+) {
     const apiKey = getLoopsKey();
     if (!apiKey) return { error: 'Missing API Key' };
+
+    const headers: Record<string, string> = {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+    };
+
+    if (idempotencyKey) {
+        headers['Idempotency-Key'] = idempotencyKey;
+    }
 
     try {
         const response = await fetch(`${LOOPS_API_URL}/events/send`, {
             method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-                'Content-Type': 'application/json',
-            },
+            headers,
             body: JSON.stringify({
                 email,
                 eventName,
+                eventProperties: properties || {},
             }),
         });
 
