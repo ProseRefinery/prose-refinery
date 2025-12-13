@@ -190,7 +190,7 @@ export default function ServicesPage() {
                     {/* Mobile: Horizontal Scroll Snap, Desktop: Grid */}
                     <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:pb-0 md:mx-0 md:px-0 md:overflow-visible scrollbar-hide">
                         {/* Option 1: Hook */}
-                        <Reveal delay={0} className="min-w-[85vw] md:min-w-0 snap-center">
+                        <Reveal delay={0} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
                             <Card variant="tilt" className="h-full">
                                 <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
                                     Opening Hook
@@ -316,7 +316,7 @@ export default function ServicesPage() {
 
                     <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 md:gap-8 max-w-5xl mx-auto md:pb-0 md:px-0 md:overflow-visible scrollbar-hide">
                         {/* Option 1: Taster */}
-                        <Reveal delay={0} className="min-w-[85vw] md:min-w-0 snap-center">
+                        <Reveal delay={0} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
                             <Card variant="tilt" className="h-full" contentClassName="p-8">
                                 <div className="mb-4">
                                     <Badge variant="blue">Try Before You Commit</Badge>
@@ -335,7 +335,7 @@ export default function ServicesPage() {
                         </Reveal>
 
                         {/* Option 2: Full Service */}
-                        <Reveal delay={100} className="min-w-[85vw] md:min-w-0 snap-center">
+                        <Reveal delay={100} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
                             <Card variant="tilt" className="h-full" contentClassName="p-8">
                                 <div className="mb-4">
                                     <Badge variant="emerald">Comprehensive</Badge>
