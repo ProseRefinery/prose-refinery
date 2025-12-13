@@ -1,3 +1,5 @@
+'use client';
+
 import { InlineWidget } from 'react-calendly';
 import { Info } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
