@@ -164,7 +164,7 @@ export default function DiagnosticPage() {
                     </div>
 
                     {/* 2. Output Preview */}
-                    <div className="py-24 border-y border-slate-800/50 bg-slate-900/20">
+                    <section className="py-24 border-y border-slate-800/50 bg-slate-900/20">
                         <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1">
                                 <Reveal delay={100}>
