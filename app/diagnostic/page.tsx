@@ -138,176 +138,173 @@ export default function DiagnosticPage() {
     if (state === 'intro') {
         return (
             <div className="min-h-screen bg-[#05080f]">
-                {/* 1. Hero Block */}
-                <section className="relative pt-32 pb-20 border-b border-slate-800/50">
-                    <GridGlowBackground>
-                        <div className="mx-auto max-w-4xl px-4 text-center">
-                            <ClipReveal>
-                                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                                    Find Out What’s Structurally Breaking Your Novel
-                                </h1>
-                            </ClipReveal>
-                            <Reveal delay={100}>
-                                <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
-                                    Answer 8 targeted questions. Receive a structural priority map and tier recommendation.
-                                </p>
-                            </Reveal>
-                            <Reveal delay={200}>
-                                <div className="flex flex-col items-center gap-4">
-                                    <MagneticButton onClick={handleStart} variant="primary" className="px-8 py-4 text-lg">
-                                        Start Diagnostic
-                                        <ArrowRight size={20} />
-                                    </MagneticButton>
-                                    <p className="text-xs text-slate-500 uppercase tracking-wider font-medium">
-                                        ~3 minutes • 8 questions • Immediate results
-                                    </p>
-                                </div>
-                            </Reveal>
-                        </div>
-                    </GridGlowBackground>
-                </section>
-
-                {/* 2. Output Preview */}
-                <section className="py-24 border-b border-slate-800/50 bg-slate-900/20">
-                    <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-12 items-center">
-                        <div className="order-2 md:order-1">
-                            <Reveal delay={100}>
-                                <BeamCard glowColor="emerald">
-                                    <div className="p-8 bg-slate-900/90 rounded-lg border border-emerald-500/20 font-mono text-sm leading-relaxed">
-                                        <div className="flex justify-between border-b border-slate-800 pb-4 mb-4">
-                                            <span className="text-slate-500">DIAGNOSTIC OUTPUT</span>
-                                            <span className="text-emerald-500">READY</span>
-                                        </div>
-                                        <div className="space-y-3">
-                                            <div>
-                                                <span className="text-slate-500 block text-xs mb-1">STRUCTURAL RISK LEVEL</span>
-                                                <span className="text-amber-400 font-bold">MODERATE</span>
-                                            </div>
-                                            <div>
-                                                <span className="text-slate-500 block text-xs mb-1">PRIMARY FAILURE ZONE</span>
-                                                <span className="text-white">Act II Pacing & Pressure</span>
-                                            </div>
-                                            <div>
-                                                <span className="text-slate-500 block text-xs mb-1">RECOMMENDED TIER</span>
-                                                <span className="text-emerald-400">Single-Pillar Structural Audit</span>
-                                            </div>
-                                            <div>
-                                                <span className="text-slate-500 block text-xs mb-1">PRIORITY</span>
-                                                <span className="text-slate-300">Stakes escalation before scene transitions</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </BeamCard>
-                            </Reveal>
-                        </div>
-                        <div className="order-1 md:order-2">
-                            <ClipReveal>
-                                <div className="text-emerald-500 font-medium mb-2 uppercase tracking-wide text-sm">What You’ll Receive</div>
-                                <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                    A blueprint for revision.
-                                </h2>
-                            </ClipReveal>
-                            <Reveal delay={100}>
-                                <p className="text-slate-400 mb-6 text-lg">
-                                    Your diagnostic identifies where your manuscript’s structure is under stress—and what to prioritise first.
-                                </p>
-                                <ul className="space-y-3 text-slate-300">
-                                    {[
-                                        'Structural Risk Level',
-                                        'Primary Failure Zone',
-                                        'Recommended Service Tier',
-                                        'Revision Priority'
-                                    ].map(item => (
-                                        <li key={item} className="flex items-center gap-3">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </Reveal>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 3. Boundary Setting */}
-                <section className="py-24 border-b border-slate-800/50">
-                    <div className="mx-auto max-w-4xl px-4">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl font-bold text-white font-[family-name:var(--font-playfair)]">
-                                What This Diagnostic Is (and Isn’t)
-                            </h2>
-                        </div>
-                        <div className="grid md:grid-cols-2 gap-8 md:gap-16">
-                            <Reveal delay={100}>
-                                <div className="space-y-4">
-                                    <h3 className="text-lg font-bold text-emerald-400 border-b border-emerald-500/20 pb-2">This IS</h3>
-                                    <ul className="space-y-3 text-slate-300">
-                                        <li className="flex gap-2"><CheckCircle2 size={18} className="text-emerald-500 shrink-0" /> Structural analysis</li>
-                                        <li className="flex gap-2"><CheckCircle2 size={18} className="text-emerald-500 shrink-0" /> Architecture-level diagnosis</li>
-                                        <li className="flex gap-2"><CheckCircle2 size={18} className="text-emerald-500 shrink-0" /> Genre-aware (speculative fiction)</li>
-                                        <li className="flex gap-2"><CheckCircle2 size={18} className="text-emerald-500 shrink-0" /> Actionable prioritisation</li>
-                                    </ul>
-                                </div>
-                            </Reveal>
-                            <Reveal delay={200}>
-                                <div className="space-y-4">
-                                    <h3 className="text-lg font-bold text-rose-400 border-b border-rose-500/20 pb-2">This is NOT</h3>
-                                    <ul className="space-y-3 text-slate-400">
-                                        <li className="flex gap-2"><XCircle size={18} className="text-rose-500/70 shrink-0" /> Grammar or prose feedback</li>
-                                        <li className="flex gap-2"><XCircle size={18} className="text-rose-500/70 shrink-0" /> Line editing</li>
-                                        <li className="flex gap-2"><XCircle size={18} className="text-rose-500/70 shrink-0" /> AI auto-feedback</li>
-                                        <li className="flex gap-2"><XCircle size={18} className="text-rose-500/70 shrink-0" /> Generic writing advice</li>
-                                    </ul>
-                                </div>
-                            </Reveal>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 4. How It Works */}
-                <section className="py-24 border-b border-slate-800/50 bg-slate-900/20">
-                    <div className="mx-auto max-w-7xl px-4 text-center">
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {[
-                                { step: '01', title: 'Answer 8 Questions', text: 'Draft stage, revision history, structural pain points.' },
-                                { step: '02', title: 'Receive Your Structural Map', text: 'Risk level, failure zone, and tier recommendation.' },
-                                { step: '03', title: 'Decide Next Steps', text: 'Revise independently or proceed with professional support.' }
-                            ].map((s, i) => (
-                                <Reveal key={i} delay={i * 100}>
-                                    <div className="relative p-6 pt-12 border border-slate-800 rounded-lg bg-slate-900/50">
-                                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-900 border border-slate-700 text-emerald-500 font-mono text-sm px-3 py-1 rounded-full">
-                                            {s.step}
-                                        </div>
-                                        <h3 className="text-white font-bold mb-2">{s.title}</h3>
-                                        <p className="text-slate-400 text-sm">{s.text}</p>
-                                    </div>
-                                </Reveal>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* 5. Final CTA */}
-                <section className="py-24">
-                    <div className="mx-auto max-w-4xl px-4 text-center">
+                <GridGlowBackground className="min-h-screen">
+                    <div className="mx-auto max-w-4xl px-4 text-center pt-32 pb-20">
                         <ClipReveal>
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                                Know What’s Broken Before You Rewrite
-                            </h2>
+                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+                                Find Out What’s Structurally Breaking Your Novel
+                            </h1>
                         </ClipReveal>
-                        <Reveal>
-                            <p className="text-slate-400 mb-8">8 questions. 3 minutes. A clear structural priority.</p>
-                            <div className="flex flex-wrap justify-center gap-4">
-                                <MagneticButton onClick={handleStart} variant="primary">
-                                    Start the Free Diagnostic
+                        <Reveal delay={100}>
+                            <p className="text-xl text-slate-400 mb-8 max-w-2xl mx-auto">
+                                Answer 8 targeted questions. Receive a structural priority map and tier recommendation.
+                            </p>
+                        </Reveal>
+                        <Reveal delay={200}>
+                            <div className="flex flex-col items-center gap-4">
+                                <MagneticButton onClick={handleStart} variant="primary" className="px-8 py-4 text-lg">
+                                    Start Diagnostic
+                                    <ArrowRight size={20} />
                                 </MagneticButton>
-                                <a href="/services" className="px-6 py-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
-                                    View Services →
-                                </a>
+                                <p className="text-xs text-slate-500 uppercase tracking-wider font-medium">
+                                    ~3 minutes • 8 questions • Immediate results
+                                </p>
                             </div>
                         </Reveal>
                     </div>
-                </section>
+
+                    {/* 2. Output Preview */}
+                    <div className="py-24 border-y border-slate-800/50 bg-slate-900/20">
+                        <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-12 items-center">
+                            <div className="order-2 md:order-1">
+                                <Reveal delay={100}>
+                                    <BeamCard glowColor="emerald">
+                                        <div className="p-8 bg-slate-900/90 rounded-lg border border-emerald-500/20 font-mono text-sm leading-relaxed">
+                                            <div className="flex justify-between border-b border-slate-800 pb-4 mb-4">
+                                                <span className="text-slate-500">DIAGNOSTIC OUTPUT</span>
+                                                <span className="text-emerald-500">READY</span>
+                                            </div>
+                                            <div className="space-y-3">
+                                                <div>
+                                                    <span className="text-slate-500 block text-xs mb-1">STRUCTURAL RISK LEVEL</span>
+                                                    <span className="text-amber-400 font-bold">MODERATE</span>
+                                                </div>
+                                                <div>
+                                                    <span className="text-slate-500 block text-xs mb-1">PRIMARY FAILURE ZONE</span>
+                                                    <span className="text-white">Act II Pacing & Pressure</span>
+                                                </div>
+                                                <div>
+                                                    <span className="text-slate-500 block text-xs mb-1">RECOMMENDED TIER</span>
+                                                    <span className="text-emerald-400">Single-Pillar Structural Audit</span>
+                                                </div>
+                                                <div>
+                                                    <span className="text-slate-500 block text-xs mb-1">PRIORITY</span>
+                                                    <span className="text-slate-300">Stakes escalation before scene transitions</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </BeamCard>
+                                </Reveal>
+                            </div>
+                            <div className="order-1 md:order-2">
+                                <ClipReveal>
+                                    <div className="text-emerald-500 font-medium mb-2 uppercase tracking-wide text-sm">What You’ll Receive</div>
+                                    <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                                        A blueprint for revision.
+                                    </h2>
+                                </ClipReveal>
+                                <Reveal delay={100}>
+                                    <p className="text-slate-400 mb-6 text-lg">
+                                        Your diagnostic identifies where your manuscript’s structure is under stress—and what to prioritise first.
+                                    </p>
+                                    <ul className="space-y-3 text-slate-300">
+                                        {[
+                                            'Structural Risk Level',
+                                            'Primary Failure Zone',
+                                            'Recommended Service Tier',
+                                            'Revision Priority'
+                                        ].map(item => (
+                                            <li key={item} className="flex items-center gap-3">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </Reveal>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* 3. Boundary Setting */}
+                    <section className="py-24 border-b border-slate-800/50">
+                        <div className="mx-auto max-w-4xl px-4">
+                            <div className="text-center mb-16">
+                                <h2 className="text-3xl font-bold text-white font-[family-name:var(--font-playfair)]">
+                                    What This Diagnostic Is (and Isn’t)
+                                </h2>
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+                                <Reveal delay={100}>
+                                    <div className="space-y-4">
+                                        <h3 className="text-lg font-bold text-emerald-400 border-b border-emerald-500/20 pb-2">This IS</h3>
+                                        <ul className="space-y-3 text-slate-300">
+                                            <li className="flex gap-2"><CheckCircle2 size={18} className="text-emerald-500 shrink-0" /> Structural analysis</li>
+                                            <li className="flex gap-2"><CheckCircle2 size={18} className="text-emerald-500 shrink-0" /> Architecture-level diagnosis</li>
+                                            <li className="flex gap-2"><CheckCircle2 size={18} className="text-emerald-500 shrink-0" /> Genre-aware (speculative fiction)</li>
+                                            <li className="flex gap-2"><CheckCircle2 size={18} className="text-emerald-500 shrink-0" /> Actionable prioritisation</li>
+                                        </ul>
+                                    </div>
+                                </Reveal>
+                                <Reveal delay={200}>
+                                    <div className="space-y-4">
+                                        <h3 className="text-lg font-bold text-rose-400 border-b border-rose-500/20 pb-2">This is NOT</h3>
+                                        <ul className="space-y-3 text-slate-400">
+                                            <li className="flex gap-2"><XCircle size={18} className="text-rose-500/70 shrink-0" /> Grammar or prose feedback</li>
+                                            <li className="flex gap-2"><XCircle size={18} className="text-rose-500/70 shrink-0" /> Line editing</li>
+                                            <li className="flex gap-2"><XCircle size={18} className="text-rose-500/70 shrink-0" /> AI auto-feedback</li>
+                                            <li className="flex gap-2"><XCircle size={18} className="text-rose-500/70 shrink-0" /> Generic writing advice</li>
+                                        </ul>
+                                    </div>
+                                </Reveal>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* 4. How It Works */}
+                    <section className="py-24 border-b border-slate-800/50 bg-slate-900/20">
+                        <div className="mx-auto max-w-7xl px-4 text-center">
+                            <div className="grid md:grid-cols-3 gap-8">
+                                {[
+                                    { step: '01', title: 'Answer 8 Questions', text: 'Draft stage, revision history, structural pain points.' },
+                                    { step: '02', title: 'Receive Your Structural Map', text: 'Risk level, failure zone, and tier recommendation.' },
+                                    { step: '03', title: 'Decide Next Steps', text: 'Revise independently or proceed with professional support.' }
+                                ].map((s, i) => (
+                                    <Reveal key={i} delay={i * 100} className="h-full">
+                                        <div className="relative p-6 pt-12 border border-slate-800 rounded-lg bg-slate-900/50 h-full flex flex-col">
+                                            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-900 border border-slate-700 text-emerald-500 font-mono text-sm px-3 py-1 rounded-full">
+                                                {s.step}
+                                            </div>
+                                            <h3 className="text-white font-bold mb-2">{s.title}</h3>
+                                            <p className="text-slate-400 text-sm flex-grow">{s.text}</p>
+                                        </div>
+                                    </Reveal>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* 5. Final CTA */}
+                    <section className="py-24">
+                        <div className="mx-auto max-w-4xl px-4 text-center">
+                            <ClipReveal>
+                                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+                                    Know What’s Broken Before You Rewrite
+                                </h2>
+                            </ClipReveal>
+                            <Reveal>
+                                <p className="text-slate-400 mb-8">8 questions. 3 minutes. A clear structural priority.</p>
+                                <div className="flex flex-wrap justify-center gap-4">
+                                    <MagneticButton onClick={handleStart} variant="primary">
+                                        Start the Free Diagnostic
+                                    </MagneticButton>
+                                    <a href="/services" className="px-6 py-3 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                                        View Services →
+                                    </a>
+                                </div>
+                            </Reveal>
+                        </div>
+                    </section>
+                </GridGlowBackground>
             </div>
         );
     }
