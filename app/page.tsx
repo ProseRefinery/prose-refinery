@@ -358,29 +358,29 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Reveal delay={0}>
-              <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors">
+            <Reveal delay={0} className="h-full">
+              <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
                 <div className="text-emerald-400 font-bold mb-2">Step 1</div>
                 <h3 className="text-xl text-white font-semibold mb-2">Diagnostics</h3>
-                <p className="text-slate-400 text-sm mb-4">Quick checks on Hook, Voice, or Pacing.</p>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">Quick checks on Hook, Voice, or Pacing.</p>
                 <div className="text-white font-bold text-lg">£95 – £175</div>
               </div>
             </Reveal>
-            <Reveal delay={100}>
+            <Reveal delay={100} className="h-full">
               <BeamCard glowColor="emerald" className="h-full">
-                <div className="bg-slate-800/40 p-6 rounded-lg h-full">
+                <div className="bg-slate-800/40 p-6 rounded-lg h-full flex flex-col">
                   <div className="text-emerald-400 font-bold mb-2">Step 2</div>
                   <h3 className="text-xl text-white font-semibold mb-2">Focused Audits</h3>
-                  <p className="text-slate-400 text-sm mb-4">Deep dive into one structural pillar.</p>
+                  <p className="text-slate-400 text-sm mb-4 flex-grow">Deep dive into one structural pillar.</p>
                   <div className="text-white font-bold text-lg">£350</div>
                 </div>
               </BeamCard>
             </Reveal>
-            <Reveal delay={200}>
-              <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors">
+            <Reveal delay={200} className="h-full">
+              <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
                 <div className="text-emerald-400 font-bold mb-2">Step 3</div>
                 <h3 className="text-xl text-white font-semibold mb-2">Full Manuscript</h3>
-                <p className="text-slate-400 text-sm mb-4">Complete 7-pillar overhaul.</p>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">Complete 7-pillar overhaul.</p>
                 <div className="text-white font-bold text-lg">£1,500+</div>
               </div>
             </Reveal>

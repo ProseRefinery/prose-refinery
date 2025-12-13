@@ -146,7 +146,7 @@ export default function ContactPage() {
                             </div>
                         </Reveal>
 
-                        <Reveal delay={100}>
+                        <Reveal delay={100} className="relative z-20">
                             <FloatingSelect
                                 name="tier"
                                 label="Interested In"
