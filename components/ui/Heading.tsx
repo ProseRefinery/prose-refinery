@@ -9,10 +9,10 @@ interface HeadingProps {
 
 export function Heading({ children, as: Component = 'h2', variant = 'section', className }: HeadingProps) {
     const variants = {
-        hero: "text-4xl md:text-5xl lg:text-6xl font-bold text-white font-[family-name:var(--font-playfair)] leading-tight",
-        section: "text-3xl md:text-4xl font-bold text-white font-[family-name:var(--font-playfair)]",
-        card: "text-2xl font-bold text-white font-[family-name:var(--font-playfair)]",
-        subsection: "text-xl font-bold text-white font-[family-name:var(--font-playfair)]"
+        hero: "text-4xl md:text-5xl lg:text-6xl font-bold text-white font-[family-name:var(--font-playfair)] leading-tight break-words hyphens-auto",
+        section: "text-3xl md:text-4xl font-bold text-white font-[family-name:var(--font-playfair)] break-words hyphens-auto",
+        card: "text-2xl font-bold text-white font-[family-name:var(--font-playfair)] break-words",
+        subsection: "text-xl font-bold text-white font-[family-name:var(--font-playfair)] break-words"
     };
 
     return (

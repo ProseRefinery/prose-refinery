@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 
 interface ClipRevealProps {
     children: ReactNode;
@@ -14,38 +15,22 @@ interface ClipRevealProps {
  * Uses clip-path masking for the "unrolling blueprint" effect
  */
 export function ClipReveal({ children, delay = 0, className = '' }: ClipRevealProps) {
-    const [visible, setVisible] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => setVisible(true), delay);
-                    observer.disconnect();
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
-    }, [delay]);
-
     return (
-        <div ref={ref} className={cn(visible ? '' : 'overflow-hidden', className)}>
-            <div
-                className="transition-all duration-700"
-                style={{
-                    // Blueprint unroll effect - slides up from hidden
-                    clipPath: visible ? 'inset(0 0 0 0)' : 'inset(100% 0 0 0)',
-                    transform: visible ? 'translateY(0)' : 'translateY(30px)',
-                    opacity: visible ? 1 : 0,
-                    transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' // Expo.out for engineered feel
+        <div className={cn('overflow-hidden', className)}>
+            <motion.div
+                initial={{ y: "100%" }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                    type: "spring",
+                    stiffness: 50,
+                    damping: 15,
+                    mass: 0.8,
+                    delay: delay / 1000
                 }}
             >
                 {children}
-            </div>
+            </motion.div>
         </div>
     );
 }
@@ -54,47 +39,55 @@ interface StaggerTextProps {
     text: string;
     delay?: number;
     className?: string;
+    split?: 'char' | 'word';
 }
 
 /**
- * StaggerText - Character-by-character reveal with clip masking
+ * StaggerText - Reveal animation
+ * Supports 'char' (default) or 'word' splitting
  */
-export function StaggerText({ text, delay = 0, className = '' }: StaggerTextProps) {
-    const [visible, setVisible] = useState(false);
-    const ref = useRef<HTMLSpanElement>(null);
+export function StaggerText({ text, delay = 0, className = '', split = 'char' }: StaggerTextProps) {
+    const items = split === 'char' ? text.split('') : text.split(' ');
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => setVisible(true), delay);
-                    observer.disconnect();
-                }
-            },
-            { threshold: 0.1 }
-        );
+    const container = {
+        hidden: { opacity: 0 },
+        visible: (i = 1) => ({
+            opacity: 1,
+            transition: { staggerChildren: 0.03, delayChildren: delay / 1000 }
+        })
+    };
 
-        if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
-    }, [delay]);
+    const child = {
+        hidden: {
+            y: "120%",
+            transition: { type: "spring", damping: 12, stiffness: 100 } as const
+        },
+        visible: {
+            y: 0,
+            transition: { type: "spring", damping: 12, stiffness: 100 } as const
+        }
+    };
 
     return (
-        <span ref={ref} className={cn('inline-flex overflow-hidden', className)}>
-            {text.split('').map((char, i) => (
-                <span
-                    key={i}
-                    className="inline-block transition-all duration-500"
-                    style={{
-                        clipPath: visible ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)',
-                        transform: visible ? 'translateY(0)' : 'translateY(100%)',
-                        opacity: visible ? 1 : 0,
-                        transitionDelay: `${i * 30}ms`,
-                        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)'
-                    }}
-                >
-                    {char === ' ' ? '\u00A0' : char}
+        <motion.span
+            className={cn('inline-flex flex-wrap overflow-hidden', className)}
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+        >
+            {items.map((item, index) => (
+                <span className="overflow-hidden inline-flex" key={index}>
+                    <motion.span variants={child} className="inline-block">
+                        {item}
+                    </motion.span>
+                    {/* Add space after word if splitting by word, unless it's the last word */}
+                    {split === 'word' && index < items.length - 1 && '\u00A0'}
+                    {/* For char splitting, spaces are naturally handled by the split array provided strict whitespace isn't stripped, 
+                        but split('') preserves spaces as items. We just need to ensure they render. */}
+                    {split === 'char' && item === ' ' && '\u00A0'}
                 </span>
             ))}
-        </span>
+        </motion.span>
     );
 }

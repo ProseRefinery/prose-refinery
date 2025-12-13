@@ -64,7 +64,7 @@ export function BeamCard({ children, className = '', glowColor = 'emerald' }: Be
                     }}
                 />
                 {/* Inner mask to create border effect */}
-                <div className="absolute inset-[1px] rounded-md bg-slate-900/98" />
+                <div className={`absolute inset-[1px] rounded-md bg-slate-950 ${className.includes('bg-') ? '' : 'bg-slate-950'}`} style={{ zIndex: 0 }} />
             </div>
 
             {/* Static border (visible when not hovered) */}

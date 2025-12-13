@@ -2,7 +2,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
-import { TiltCard } from '@/components/effects/TiltCard';
+import { Card } from '@/components/ui/Card';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { Heading } from '@/components/ui/Heading';
@@ -67,7 +67,7 @@ export default function AboutPage() {
                             const Icon = pillar.icon;
                             return (
                                 <Reveal key={pillar.id} delay={i * 100}>
-                                    <TiltCard className="p-8 bg-slate-800/30 rounded-md border border-slate-700/50 h-full">
+                                    <Card variant="tilt" className="h-full" contentClassName="p-8">
                                         <div className="flex items-start gap-4">
                                             <div className="p-3 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
                                                 <Icon className="w-6 h-6 text-emerald-400" />
@@ -77,7 +77,7 @@ export default function AboutPage() {
                                                 <p className="text-sm text-slate-400 leading-relaxed">{pillar.short}</p>
                                             </div>
                                         </div>
-                                    </TiltCard>
+                                    </Card>
                                 </Reveal>
                             );
                         })}

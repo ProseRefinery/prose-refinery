@@ -120,7 +120,7 @@ export function Nav() {
 
                 {/* Mobile Menu */}
                 {mobileMenuOpen && (
-                    <div className="md:hidden mt-2 py-4 px-4 bg-slate-900/95 backdrop-blur-md border border-slate-800/50 rounded-md">
+                    <div className="md:hidden mt-2 py-4 px-4 bg-slate-900/95 backdrop-blur-md border border-slate-800/50 rounded-md max-h-[80vh] overflow-y-auto scrollbar-hide">
                         <div className="flex flex-col gap-1">
                             {NAV_ITEMS.map((item) => {
                                 const isActive = pathname === item.href;

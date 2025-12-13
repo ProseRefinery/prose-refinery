@@ -13,11 +13,13 @@ import ExitIntentPopup from "@/components/layout/ExitIntentPopup";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -61,6 +63,15 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+};
+
+// Viewport configuration for Mobile Optimization
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5, // Allow zooming for accessibility
+  viewportFit: 'cover', // Enable usage of safe area (notch)
+  themeColor: '#020617', // Matches brand background (Slate-950)
 };
 
 export default function RootLayout({

@@ -5,8 +5,9 @@ import { Check, ArrowRight, Shield, ChevronDown, ChevronUp, Calendar, CreditCard
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
-import { TiltCard } from '@/components/effects/TiltCard';
-import { BeamCard } from '@/components/effects/BeamCard';
+
+import { Card } from '@/components/ui/Card';
+
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { CheckoutButton } from '@/components/ui/checkout-button';
 import { HeroBadge } from '@/components/ui/HeroBadge';
@@ -99,10 +100,10 @@ const FAQ_ITEMS = [
 // FAQ Accordion Component
 function FAQItem({ item, isOpen, onClick }: { item: typeof FAQ_ITEMS[0], isOpen: boolean, onClick: () => void }) {
     return (
-        <TiltCard className="mb-4">
+        <Card variant="tilt" className="mb-4" contentClassName="p-0">
             <button
                 onClick={onClick}
-                className="w-full p-6 bg-slate-800/30 border border-slate-700/50 rounded-md text-left hover:border-emerald-500/30 transition-colors"
+                className="w-full p-6 text-left h-full"
             >
                 <div className="flex items-center justify-between gap-4">
                     <h3 className="text-lg font-semibold text-white pr-4">{item.question}</h3>
@@ -118,7 +119,7 @@ function FAQItem({ item, isOpen, onClick }: { item: typeof FAQ_ITEMS[0], isOpen:
                     </p>
                 )}
             </button>
-        </TiltCard>
+        </Card>
     );
 }
 
@@ -185,76 +186,69 @@ export default function ServicesPage() {
                         </Reveal>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {/* Mobile: Horizontal Scroll Snap, Desktop: Grid */}
+                    <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
                         {/* Option 1: Hook */}
-                        <Reveal delay={0}>
-                            <TiltCard className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Opening Hook
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        Does your first chapter compel the reader to turn the page? We analyze your inciting incident and narrative traction.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier1_hook} variant="secondary" className="w-full">
-                                        Buy Now (£95)
-                                    </CheckoutButton>
-                                </div>
-                            </TiltCard>
+                        <Reveal delay={0} className="min-w-[85vw] md:min-w-0 snap-center">
+                            <Card variant="tilt" className="h-full">
+                                <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                    Opening Hook
+                                </h3>
+                                <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                    Does your first chapter compel the reader to turn the page? We analyze your inciting incident and narrative traction.
+                                </p>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier1_hook} variant="secondary" className="w-full">
+                                    Buy Now (£95)
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
 
                         {/* Option 2: Voice */}
-                        <Reveal delay={100}>
-                            <TiltCard className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Voice & Tone
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        Is your narrative voice consistent and engaging? We check for tonal shifts and stylistic strength.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier1_voice} variant="secondary" className="w-full">
-                                        Buy Now (£95)
-                                    </CheckoutButton>
-                                </div>
-                            </TiltCard>
+                        <Reveal delay={100} className="min-w-[85vw] md:min-w-0 snap-center">
+                            <Card variant="tilt" className="h-full">
+                                <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                    Voice & Tone
+                                </h3>
+                                <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                    Is your narrative voice consistent and engaging? We check for tonal shifts and stylistic strength.
+                                </p>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier1_voice} variant="secondary" className="w-full">
+                                    Buy Now (£95)
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
 
                         {/* Option 3: Pacing */}
-                        <Reveal delay={200}>
-                            <TiltCard className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Pacing Snapshot
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        Are you starting too slow or moving too fast? We map the beats of your opening to ensure structural rhythm.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier1_pacing} variant="secondary" className="w-full">
-                                        Buy Now (£95)
-                                    </CheckoutButton>
-                                </div>
-                            </TiltCard>
+                        <Reveal delay={200} className="min-w-[85vw] md:min-w-0 snap-center">
+                            <Card variant="tilt" className="h-full">
+                                <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                    Pacing Snapshot
+                                </h3>
+                                <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                    Are you starting too slow or moving too fast? We map the beats of your opening to ensure structural rhythm.
+                                </p>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier1_pacing} variant="secondary" className="w-full">
+                                    Buy Now (£95)
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
 
                         {/* Option 4: Bundle */}
-                        <Reveal delay={300}>
-                            <BeamCard glowColor="emerald" className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-emerald-500/30 h-full flex flex-col">
-                                    <div className="mb-4">
-                                        <Badge variant="emerald">Best Value</Badge>
-                                    </div>
-                                    <Heading as="h3" variant="subsection" className="mb-2">
-                                        Complete Bundle
-                                    </Heading>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        All three assessments in one report: Hook, Voice & Tone, and Pacing. Save £110.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier1_bundle} variant="primary" className="w-full">
-                                        Buy Now (£175)
-                                    </CheckoutButton>
+                        <Reveal delay={300} className="min-w-[85vw] md:min-w-0 snap-center">
+                            <Card variant="beam" glowColor="emerald" className="h-full" contentClassName="border border-emerald-500/30">
+                                <div className="mb-4">
+                                    <Badge variant="emerald">Best Value</Badge>
                                 </div>
-                            </BeamCard>
+                                <Heading as="h3" variant="subsection" className="mb-2">
+                                    Complete Bundle
+                                </Heading>
+                                <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                    All three assessments in one report: Hook, Voice & Tone, and Pacing. Save £110.
+                                </p>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier1_bundle} variant="primary" className="w-full">
+                                    Buy Now (£175)
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
                     </div>
                 </div>
@@ -269,40 +263,38 @@ export default function ServicesPage() {
                         </Heading>
                     </ClipReveal>
                     <Reveal>
-                        <BeamCard glowColor="emerald" className="max-w-2xl mx-auto">
-                            <div className="p-8 bg-slate-800/30 rounded-md border border-emerald-500/30 text-left">
-                                <Heading as="h3" variant="card" className="mb-2">
-                                    Single-Pillar Audit
-                                </Heading>
-                                <p className="text-slate-400 mb-6">
-                                    A deep dive into one specific aspect of your story. Choose any of the 4 Pillars (e.g., Plot Architecture, Pacing & Pressure).
-                                </p>
-                                <ul className="space-y-3 mb-8">
-                                    <li className="flex items-start gap-3">
-                                        <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                                        <span className="text-slate-300 text-sm">Up to 30,000 words: <strong>£250</strong></span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                                        <span className="text-slate-300 text-sm">30k–60k words: <strong>£350</strong></span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                                        <span className="text-slate-300 text-sm">60k–100k words: <strong>£450</strong></span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                                        <span className="text-slate-300 text-sm">Actionable report in 7-10 business days</span>
-                                    </li>
-                                </ul>
-                                <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mt-8 pt-6 border-t border-slate-700/50">
-                                    <div className="text-3xl font-bold text-emerald-400">£250 – £450</div>
-                                    <CheckoutButton priceId={STRIPE_PRICES.single_pillar_audit} variant="primary" className="w-full sm:w-auto">
-                                        Select Pillar
-                                    </CheckoutButton>
-                                </div>
+                        <Card variant="beam" glowColor="emerald" className="max-w-2xl mx-auto" contentClassName="p-8 border border-emerald-500/30 text-left">
+                            <Heading as="h3" variant="card" className="mb-2">
+                                Single-Pillar Audit
+                            </Heading>
+                            <p className="text-slate-400 mb-6">
+                                A deep dive into one specific aspect of your story. Choose any of the 4 Pillars (e.g., Plot Architecture, Pacing & Pressure).
+                            </p>
+                            <ul className="space-y-3 mb-8">
+                                <li className="flex items-start gap-3">
+                                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-slate-300 text-sm">Up to 30,000 words: <strong>£250</strong></span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-slate-300 text-sm">30k–60k words: <strong>£350</strong></span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-slate-300 text-sm">60k–100k words: <strong>£450</strong></span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-slate-300 text-sm">Actionable report in 7-10 business days</span>
+                                </li>
+                            </ul>
+                            <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mt-8 pt-6 border-t border-slate-700/50">
+                                <div className="text-3xl font-bold text-emerald-400">£250 – £450</div>
+                                <CheckoutButton priceId={STRIPE_PRICES.single_pillar_audit} variant="primary" className="w-full sm:w-auto">
+                                    Select Pillar
+                                </CheckoutButton>
                             </div>
-                        </BeamCard>
+                        </Card>
                         <div className="mt-6 text-slate-400 text-sm">
                             Need a multi-pillar analysis? <a href="/consultation" className="text-emerald-400 hover:text-emerald-300 underline underline-offset-4">Book a consultation</a> for a custom quote.
                         </div>
@@ -321,48 +313,44 @@ export default function ServicesPage() {
                         </ClipReveal>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 md:gap-8 max-w-5xl mx-auto md:pb-0 md:px-0 scrollbar-hide">
                         {/* Option 1: Taster */}
-                        <Reveal delay={0}>
-                            <TiltCard className="h-full">
-                                <div className="p-8 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <div className="mb-4">
-                                        <Badge variant="blue">Try Before You Commit</Badge>
-                                    </div>
-                                    <Heading as="h3" variant="card" className="mb-2">
-                                        Tier 3 Taster
-                                    </Heading>
-                                    <p className="text-slate-400 mb-6 flex-grow">
-                                        Sample edit of your first 50 pages to see if we&apos;re a good fit. The cost is credited toward the full service.
-                                    </p>
-                                    <div className="text-2xl font-bold text-white mb-6">£195</div>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier3_preview} variant="secondary" className="w-full">
-                                        Buy Sample Edit
-                                    </CheckoutButton>
+                        <Reveal delay={0} className="min-w-[85vw] md:min-w-0 snap-center">
+                            <Card variant="tilt" className="h-full" contentClassName="p-8">
+                                <div className="mb-4">
+                                    <Badge variant="blue">Try Before You Commit</Badge>
                                 </div>
-                            </TiltCard>
+                                <Heading as="h3" variant="card" className="mb-2">
+                                    Tier 3 Taster
+                                </Heading>
+                                <p className="text-slate-400 mb-6 flex-grow">
+                                    Sample edit of your first 50 pages to see if we&apos;re a good fit. The cost is credited toward the full service.
+                                </p>
+                                <div className="text-2xl font-bold text-white mb-6">£195</div>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier3_preview} variant="secondary" className="w-full">
+                                    Buy Sample Edit
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
 
                         {/* Option 2: Full Service */}
-                        <Reveal delay={100}>
-                            <TiltCard className="h-full">
-                                <div className="p-8 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <div className="mb-4">
-                                        <Badge variant="emerald">Comprehensive</Badge>
-                                    </div>
-                                    <Heading as="h3" variant="card" className="mb-2">
-                                        Full Manuscript Assessment
-                                    </Heading>
-                                    <p className="text-slate-400 mb-6 flex-grow">
-                                        Complete 4-Pillar analysis, chapter-by-chapter notes, and a comprehensive editorial letter.
-                                    </p>
-                                    <div className="text-2xl font-bold text-white mb-6">£1,500 – £4,500</div>
-                                    <MagneticButton href="/consultation" variant="primary" className="w-full">
-                                        Book Consultation
-                                        <ArrowRight size={16} />
-                                    </MagneticButton>
+                        <Reveal delay={100} className="min-w-[85vw] md:min-w-0 snap-center">
+                            <Card variant="tilt" className="h-full" contentClassName="p-8">
+                                <div className="mb-4">
+                                    <Badge variant="emerald">Comprehensive</Badge>
                                 </div>
-                            </TiltCard>
+                                <Heading as="h3" variant="card" className="mb-2">
+                                    Full Manuscript Assessment
+                                </Heading>
+                                <p className="text-slate-400 mb-6 flex-grow">
+                                    Complete 4-Pillar analysis, chapter-by-chapter notes, and a comprehensive editorial letter.
+                                </p>
+                                <div className="text-2xl font-bold text-white mb-6">£1,500 – £4,500</div>
+                                <MagneticButton href="/consultation" variant="primary" className="w-full">
+                                    Book Consultation
+                                    <ArrowRight size={16} />
+                                </MagneticButton>
+                            </Card>
                         </Reveal>
                     </div>
                 </div>
@@ -377,19 +365,17 @@ export default function ServicesPage() {
                         </Heading>
                     </ClipReveal>
                     <Reveal>
-                        <BeamCard glowColor="purple">
-                            <div className="p-10 bg-slate-800/30 rounded-md border border-purple-500/30">
-                                <p className="text-xl text-slate-300 mb-6 max-w-2xl mx-auto">
-                                    A 3-6 month partnership guiding you through multiple drafts. Includes everything in Tier 3, plus ongoing consultation and direct access.
-                                </p>
-                                <div className="text-3xl font-bold text-purple-400 mb-8">£5,000 – £12,000</div>
-                                <MagneticButton href="/apply" variant="primary">
-                                    Apply for Partnership
-                                    <ArrowRight size={16} />
-                                </MagneticButton>
-                                <p className="text-xs text-purple-400/60 mt-4">Limited to 3 authors per quarter</p>
-                            </div>
-                        </BeamCard>
+                        <Card variant="beam" glowColor="purple" contentClassName="p-10 border border-purple-500/30">
+                            <p className="text-xl text-slate-300 mb-6 max-w-2xl mx-auto">
+                                A 3-6 month partnership guiding you through multiple drafts. Includes everything in Tier 3, plus ongoing consultation and direct access.
+                            </p>
+                            <div className="text-3xl font-bold text-purple-400 mb-8">£5,000 – £12,000</div>
+                            <MagneticButton href="/apply" variant="primary">
+                                Apply for Partnership
+                                <ArrowRight size={16} />
+                            </MagneticButton>
+                            <p className="text-xs text-purple-400/60 mt-4">Limited to 3 authors per quarter</p>
+                        </Card>
                     </Reveal>
                 </div>
             </Section>
@@ -465,21 +451,19 @@ export default function ServicesPage() {
             <Section>
                 <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                     <Reveal>
-                        <BeamCard glowColor="emerald">
-                            <div className="p-8 bg-slate-800/30 rounded-md text-center">
-                                <Shield className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
-                                <Heading as="h2" variant="card" className="mb-4">
-                                    Our Promise
-                                </Heading>
-                                <p className="text-slate-400 leading-relaxed max-w-xl mx-auto">
-                                    All diagnostic and editorial reports are reviewed against internal clarity and actionability standards.
-                                </p>
-                                <p className="text-slate-400 leading-relaxed max-w-xl mx-auto mt-4">
-                                    If your report does not clearly identify actionable next steps, request clarification within 7 days. We will revise the report at no charge.
-                                    If the revised report still does not meet this standard, you will receive a full refund.
-                                </p>
-                            </div>
-                        </BeamCard>
+                        <Card variant="beam" glowColor="emerald" contentClassName="p-8 text-center">
+                            <Shield className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
+                            <Heading as="h2" variant="card" className="mb-4">
+                                Our Promise
+                            </Heading>
+                            <p className="text-slate-400 leading-relaxed max-w-xl mx-auto">
+                                All diagnostic and editorial reports are reviewed against internal clarity and actionability standards.
+                            </p>
+                            <p className="text-slate-400 leading-relaxed max-w-xl mx-auto mt-4">
+                                If your report does not clearly identify actionable next steps, request clarification within 7 days. We will revise the report at no charge.
+                                If the revised report still does not meet this standard, you will receive a full refund.
+                            </p>
+                        </Card>
                     </Reveal>
                 </div>
             </Section>

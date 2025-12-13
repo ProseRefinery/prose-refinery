@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef, ReactNode } from 'react';
+import { ReactNode, useRef } from 'react'; // Added useRef for useInView if needed, though viewport prop handles it
 import { cn } from '@/lib/utils';
+import { motion, useInView } from 'framer-motion';
 
 interface RevealProps {
     children: ReactNode;
@@ -9,35 +10,26 @@ interface RevealProps {
     className?: string;
 }
 
+/**
+ * Reveal - Scroll reveal animation using Framer Motion
+ * Uses spring physics for a weighted, premium feel
+ */
 export function Reveal({ children, delay = 0, className = '' }: RevealProps) {
-    const [visible, setVisible] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => setVisible(true), delay);
-                    observer.disconnect();
-                }
-            },
-            { threshold: 0.1 }
-        );
-
-        if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
-    }, [delay]);
-
     return (
-        <div
-            ref={ref}
-            className={cn(
-                'transition-all duration-700 ease-out',
-                visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
-                className
-            )}
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{
+                type: "spring",
+                stiffness: 50, // Looser spring for gentle reveal
+                damping: 20,
+                mass: 1,
+                delay: delay / 1000 // Convert ms to seconds
+            }}
+            className={cn('relative', className)}
         >
             {children}
-        </div>
+        </motion.div>
     );
 }

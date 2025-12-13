@@ -2,8 +2,7 @@ import { ArrowRight, Feather, Layers, BookOpen, Shield, Search, Calendar, AlertT
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
-import { TiltCard } from '@/components/effects/TiltCard';
-import { BeamCard } from '@/components/effects/BeamCard';
+import { Card } from '@/components/ui/Card';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { Heading } from '@/components/ui/Heading';
@@ -132,38 +131,32 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Reveal delay={0}>
-              <TiltCard className="h-full">
-                <div className="p-8 bg-slate-900/50 rounded-md border border-red-500/10 h-full">
-                  <AlertTriangle className="w-10 h-10 text-red-400 mb-6" />
-                  <Heading as="h3" variant="card" className="mb-3">The Midpoint Sag</Heading>
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    You have a killer opening and an epic ending, but Act II is a wandering mess of subplots that kill narrative momentum.
-                  </p>
-                </div>
-              </TiltCard>
+            <Reveal delay={0} className="h-full">
+              <Card variant="tilt" bgClass="bg-slate-900/50" contentClassName="border-red-500/10">
+                <AlertTriangle className="w-10 h-10 text-red-400 mb-6" />
+                <Heading as="h3" variant="card" className="mb-3">The Midpoint Sag</Heading>
+                <p className="text-slate-400 text-sm leading-relaxed">
+                  You have a killer opening and an epic ending, but Act II is a wandering mess of subplots that kill narrative momentum.
+                </p>
+              </Card>
             </Reveal>
-            <Reveal delay={100}>
-              <TiltCard className="h-full">
-                <div className="p-8 bg-slate-900/50 rounded-md border border-red-500/10 h-full">
-                  <Activity className="w-10 h-10 text-red-400 mb-6" />
-                  <Heading as="h3" variant="card" className="mb-3">The Passive Protagonist</Heading>
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    Things happen <em>to</em> your character rather than <em>because</em> of them. Agents stop reading when the hero stops driving the plot.
-                  </p>
-                </div>
-              </TiltCard>
+            <Reveal delay={100} className="h-full">
+              <Card variant="tilt" bgClass="bg-slate-900/50" contentClassName="border-red-500/10">
+                <Activity className="w-10 h-10 text-red-400 mb-6" />
+                <Heading as="h3" variant="card" className="mb-3">The Passive Protagonist</Heading>
+                <p className="text-slate-400 text-sm leading-relaxed">
+                  Things happen <em>to</em> your character rather than <em>because</em> of them. Agents stop reading when the hero stops driving the plot.
+                </p>
+              </Card>
             </Reveal>
-            <Reveal delay={200}>
-              <TiltCard className="h-full">
-                <div className="p-8 bg-slate-900/50 rounded-md border border-red-500/10 h-full">
-                  <Layers className="w-10 h-10 text-red-400 mb-6" />
-                  <Heading as="h3" variant="card" className="mb-3">Worldbuilder&apos;s Disease</Heading>
-                  <p className="text-slate-400 text-sm leading-relaxed">
-                    Your magic system is intricate, but it suffocates the story. Info-dumps masquerade as exposition.
-                  </p>
-                </div>
-              </TiltCard>
+            <Reveal delay={200} className="h-full">
+              <Card variant="tilt" bgClass="bg-slate-900/50" contentClassName="border-red-500/10">
+                <Layers className="w-10 h-10 text-red-400 mb-6" />
+                <Heading as="h3" variant="card" className="mb-3">Worldbuilder&apos;s Disease</Heading>
+                <p className="text-slate-400 text-sm leading-relaxed">
+                  Your magic system is intricate, but it suffocates the story. Info-dumps masquerade as exposition.
+                </p>
+              </Card>
             </Reveal>
           </div>
         </div>
@@ -258,12 +251,12 @@ export default function HomePage() {
             {PILLARS.map((pillar, i) => {
               const Icon = pillar.icon;
               return (
-                <Reveal key={pillar.id} delay={i * 100}>
-                  <TiltCard className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full">
+                <Reveal key={pillar.id} delay={i * 100} className="h-full">
+                  <Card variant="tilt" className="h-full">
                     <Icon className="w-10 h-10 text-emerald-400 mb-4" />
                     <Heading as="h3" variant="subsection" className="mb-2 text-lg">{pillar.name}</Heading>
                     <p className="text-sm text-slate-400">{pillar.short}</p>
-                  </TiltCard>
+                  </Card>
                 </Reveal>
               );
             })}
@@ -301,40 +294,36 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Reveal>
-              <TiltCard className="h-full">
-                <div className="p-6 bg-slate-800/30 rounded-md border border-red-500/30 h-full">
-                  <span className="inline-block px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-medium mb-4">
-                    Before
-                  </span>
-                  <p className="text-slate-400 italic text-sm leading-relaxed">
-                    &quot;Kọlá felt the weight of centuries as she walked. The shrine had always
-                    been sacred, though few remembered why. Her grandmother&apos;s voice echoed
-                    in her mind, warning of things best left undisturbed.&quot;
-                  </p>
-                  <p className="text-red-400/60 text-xs mt-4">
-                    → Passive, abstract, no stakes
-                  </p>
-                </div>
-              </TiltCard>
+            <Reveal className="h-full">
+              <Card variant="tilt" bgClass="bg-slate-800/30" contentClassName="border-red-500/30">
+                <span className="inline-block px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-medium mb-4">
+                  Before
+                </span>
+                <p className="text-slate-400 italic text-sm leading-relaxed">
+                  &quot;Kọlá felt the weight of centuries as she walked. The shrine had always
+                  been sacred, though few remembered why. Her grandmother&apos;s voice echoed
+                  in her mind, warning of things best left undisturbed.&quot;
+                </p>
+                <p className="text-red-400/60 text-xs mt-4">
+                  → Passive, abstract, no stakes
+                </p>
+              </Card>
             </Reveal>
 
-            <Reveal delay={200}>
-              <BeamCard glowColor="emerald" className="h-full">
-                <div className="p-6 bg-slate-800/30 rounded-md h-full">
-                  <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium mb-4">
-                    After
-                  </span>
-                  <p className="text-slate-300 italic text-sm leading-relaxed">
-                    &quot;Blood on the shrine meant someone would die within a fortnight. Kọlá
-                    pressed her thumb against the iron blade until crimson beaded at the tip.
-                    Three drops. Grandmother said three was binding.&quot;
-                  </p>
-                  <p className="text-emerald-400/60 text-xs mt-4">
-                    → Active voice, specific stakes, immediate tension
-                  </p>
-                </div>
-              </BeamCard>
+            <Reveal delay={200} className="h-full">
+              <Card variant="beam" glowColor="emerald" bgClass="bg-slate-800/30">
+                <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium mb-4">
+                  After
+                </span>
+                <p className="text-slate-300 italic text-sm leading-relaxed">
+                  &quot;Blood on the shrine meant someone would die within a fortnight. Kọlá
+                  pressed her thumb against the iron blade until crimson beaded at the tip.
+                  Three drops. Grandmother said three was binding.&quot;
+                </p>
+                <p className="text-emerald-400/60 text-xs mt-4">
+                  → Active voice, specific stakes, immediate tension
+                </p>
+              </Card>
             </Reveal>
           </div>
 
@@ -364,34 +353,28 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Reveal delay={0} className="h-full">
-              <TiltCard className="h-full">
-                <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
-                  <div className="text-emerald-400 font-bold mb-2">Tier 1</div>
-                  <Heading as="h3" variant="card" className="mb-2">Diagnostic</Heading>
-                  <p className="text-slate-400 text-sm mb-4 flex-grow">Assess your opening hook, voice, or pacing.</p>
-                  <div className="text-white font-bold text-lg">£95 – £175</div>
-                </div>
-              </TiltCard>
+              <Card variant="tilt" bgClass="bg-slate-800/20" className="h-full">
+                <div className="text-emerald-400 font-bold mb-2">Tier 1</div>
+                <Heading as="h3" variant="card" className="mb-2">Diagnostic</Heading>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">Assess your opening hook, voice, or pacing.</p>
+                <div className="text-white font-bold text-lg">£95 – £175</div>
+              </Card>
             </Reveal>
             <Reveal delay={100} className="h-full">
-              <BeamCard glowColor="emerald" className="h-full">
-                <div className="bg-slate-800/40 p-6 rounded-lg h-full flex flex-col">
-                  <div className="text-emerald-400 font-bold mb-2">Tier 2</div>
-                  <Heading as="h3" variant="card" className="mb-2">Structural Audit</Heading>
-                  <p className="text-slate-400 text-sm mb-4 flex-grow">Deep dive into a single pillar of your choice.</p>
-                  <div className="text-white font-bold text-lg">£250 – £450</div>
-                </div>
-              </BeamCard>
+              <Card variant="beam" glowColor="emerald" bgClass="bg-slate-800/40" className="h-full">
+                <div className="text-emerald-400 font-bold mb-2">Tier 2</div>
+                <Heading as="h3" variant="card" className="mb-2">Structural Audit</Heading>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">Deep dive into a single pillar of your choice.</p>
+                <div className="text-white font-bold text-lg">£250 – £450</div>
+              </Card>
             </Reveal>
             <Reveal delay={200} className="h-full">
-              <TiltCard className="h-full">
-                <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
-                  <div className="text-emerald-400 font-bold mb-2">Tier 3</div>
-                  <Heading as="h3" variant="card" className="mb-2">Full Edit</Heading>
-                  <p className="text-slate-400 text-sm mb-4 flex-grow">Complete 4-pillar manuscript overhaul.</p>
-                  <div className="text-white font-bold text-lg">£750 – £1,200</div>
-                </div>
-              </TiltCard>
+              <Card variant="tilt" bgClass="bg-slate-800/20" className="h-full">
+                <div className="text-emerald-400 font-bold mb-2">Tier 3</div>
+                <Heading as="h3" variant="card" className="mb-2">Full Edit</Heading>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">Complete 4-pillar manuscript overhaul.</p>
+                <div className="text-white font-bold text-lg">£750 – £1,200</div>
+              </Card>
             </Reveal>
           </div>
           <Reveal delay={300}>
