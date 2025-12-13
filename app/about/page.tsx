@@ -55,63 +55,56 @@ export default function AboutPage() {
                 </GridGlowBackground>
             </section>
 
-            {/* The Editor - Personal Story */}
+            {/* methodology - System Focus */}
             <section className="py-24 border-t border-slate-800/50">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className="order-2 lg:order-1">
+                        <div>
                             <Reveal>
                                 <span className="text-sm text-emerald-400 uppercase tracking-widest mb-4 block">
-                                    The Founder
+                                    The Philosophy
                                 </span>
                             </Reveal>
                             <ClipReveal delay={100}>
                                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                                    Why Speculative Fiction?
+                                    Objectivity Over Opinion
                                 </h2>
                             </ClipReveal>
                             <Reveal delay={200}>
                                 <p className="text-slate-300 mb-4">
-                                    I&apos;ve been obsessed with fantasy since I was twelve, devouring everything from
-                                    Tolkien to Octavia Butler to N.K. Jemisin. Twenty years later, that obsession
-                                    became a methodology.
+                                    Traditional editing is often subjective—a single reader's reaction to your work.
+                                    We reject that approach. We believe story structure is engineering, not magic.
                                 </p>
                             </Reveal>
                             <Reveal delay={300}>
-                                <p className="text-slate-400 mb-4">
-                                    The Narrative Integrity Engine™ started as a personal tool—a way to diagnose
-                                    why certain books captivated me while others fell apart. I mapped the patterns.
-                                    I built the framework. Then I tested it on my own 110,000-word
-                                    Afro-mythpunk saga.
-                                </p>
-                            </Reveal>
-                            <Reveal delay={400}>
                                 <p className="text-slate-400 mb-6">
-                                    Now I use that same framework to help other authors see what they&apos;re too close
-                                    to see: the structural cracks that beta readers sense but can&apos;t name.
-                                </p>
-                            </Reveal>
-                            <Reveal delay={500}>
-                                <p className="text-slate-300 font-medium">
-                                    — Ola, Founder & Lead Editor
+                                    The Narrative Integrity Engine™ provides a standardized, rigorous framework
+                                    for evaluating manuscript health. We don't just tell you something "feels off."
+                                    We point to the specific structural load-bearing wall that is failing,
+                                    and we give you the blueprints to reinforce it.
                                 </p>
                             </Reveal>
                         </div>
 
-                        <div className="order-1 lg:order-2">
+                        <div>
                             <Reveal delay={200}>
                                 <BeamCard glowColor="emerald">
-                                    <div className="p-8 bg-slate-800/30 rounded-md text-center">
-                                        {/* Placeholder for founder photo - replace with actual image */}
-                                        <div className="w-48 h-48 mx-auto mb-6 rounded-md bg-gradient-to-br from-emerald-500/20 to-purple-500/20 flex items-center justify-center">
-                                            <Feather className="w-16 h-16 text-emerald-400/50" />
-                                        </div>
-                                        <h3 className="text-xl font-semibold text-white mb-2">Ola Tunde</h3>
-                                        <p className="text-emerald-400 text-sm mb-4">Founder & Lead Editor</p>
-                                        <div className="text-xs text-slate-500 space-y-1">
-                                            <p>20+ years studying narrative structure</p>
-                                            <p>Speculative fiction specialist</p>
-                                        </div>
+                                    <div className="p-8 bg-slate-800/30 rounded-md text-left">
+                                        <h3 className="text-xl font-semibold text-white mb-4">The Standard</h3>
+                                        <ul className="space-y-4 text-slate-400 text-sm">
+                                            <li className="flex items-start gap-3">
+                                                <Award className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                                                <span><strong>Replicable Results:</strong> We use the same 7-point diagnostic for every manuscript.</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <Award className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                                                <span><strong>Genre-Specific:</strong> Built strictly for modern speculative fiction markets.</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <Award className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                                                <span><strong>Action Oriented:</strong> No vague feedback. Every point includes a "fix" directive.</span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </BeamCard>
                             </Reveal>
