@@ -28,12 +28,10 @@ function StatusIndicator() {
 // Urgency/Availability badge
 // Urgency/Availability badge
 function AvailabilityBadge() {
-    const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-
     return (
         <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 animate-in fade-in duration-500">
             <span className="text-[10px] uppercase tracking-widest text-emerald-400" suppressHydrationWarning>
-                Now Booking: {dateStr}
+                Limited Availability
             </span>
         </div>
     );

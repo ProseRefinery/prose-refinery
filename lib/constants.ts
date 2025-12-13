@@ -100,12 +100,29 @@ export const NAV_ITEMS: NavItem[] = [
     { id: 'contact', label: 'Contact', href: '/contact' }
 ];
 
-// Analytics helper - wire to Plausible/GA/Posthog later
+// Analytics helper
+type AnalyticsEvent = {
+    event: string;
+    data?: Record<string, unknown>;
+};
+
 export const track = (event: string, data?: Record<string, unknown>) => {
+    // Log in development
     if (process.env.NODE_ENV === 'development') {
         console.log('[Analytics]', event, data || '');
     }
-    // TODO: Replace with real analytics
-    // plausible(event, { props: data });
-    // gtag('event', event, data);
+
+    // Execute in production (or if snippets are active)
+    if (typeof window !== 'undefined') {
+        // Meta Pixel
+        const win = window as any;
+        if (win.fbq) {
+            win.fbq('track', event, data);
+        }
+
+        // Google Analytics 4
+        if (win.gtag) {
+            win.gtag('event', event, data);
+        }
+    }
 };

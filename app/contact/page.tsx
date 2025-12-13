@@ -14,6 +14,8 @@ import { FloatingTextarea } from '@/components/ui/FloatingTextarea';
 import { FloatingSelect } from '@/components/ui/FloatingSelect';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { HeroBadge } from '@/components/ui/HeroBadge';
+import { Heading } from '@/components/ui/Heading';
+import { Section } from '@/components/ui/Section';
 import { TIERS, COMPANY } from '@/lib/constants';
 
 const tierOptions = TIERS.map(t => ({ value: t.id.toString(), label: `${t.name} (${t.price})` }));
@@ -68,7 +70,8 @@ export default function ContactPage() {
         return (
             <>
                 <SuccessConfetti trigger={true} />
-                <section className="min-h-[80vh] flex items-center justify-center">
+                <SuccessConfetti trigger={true} />
+                <Section className="min-h-[80vh] flex items-center justify-center">
                     <div className="mx-auto max-w-xl px-4 text-center">
                         <Reveal>
                             <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -76,9 +79,9 @@ export default function ContactPage() {
                             </div>
                         </Reveal>
                         <ClipReveal delay={100}>
-                            <h1 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                            <Heading as="h1" variant="hero" className="text-3xl mb-4">
                                 Message Sent!
-                            </h1>
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={200}>
                             <p className="text-slate-400 mb-8">
@@ -91,7 +94,7 @@ export default function ContactPage() {
                             </MagneticButton>
                         </Reveal>
                     </div>
-                </section>
+                </Section>
             </>
         );
     }
@@ -99,16 +102,16 @@ export default function ContactPage() {
     return (
         <>
             {/* Hero */}
-            <section className="relative flex justify-center pt-20 pb-24">
+            <Section className="relative flex justify-center pt-20 pb-24" noBorder>
                 <GridGlowBackground>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                         <Reveal>
                             <HeroBadge>Get In Touch</HeroBadge>
                         </Reveal>
                         <ClipReveal delay={100}>
-                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+                            <Heading as="h1" variant="hero" className="mb-6">
                                 Let&apos;s Discuss Your Manuscript
-                            </h1>
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={200}>
                             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
@@ -117,10 +120,10 @@ export default function ContactPage() {
                         </Reveal>
                     </div>
                 </GridGlowBackground>
-            </section>
+            </Section>
 
             {/* Form */}
-            <section className="py-24 border-t border-slate-800/50">
+            <Section>
                 <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {/* Basic Info */}
@@ -165,7 +168,7 @@ export default function ContactPage() {
                         <Reveal delay={200}>
                             <BeamCard>
                                 <div className="p-6 bg-slate-800/30 rounded-lg space-y-6">
-                                    <h3 className="text-lg font-semibold text-white">Manuscript Details</h3>
+                                    <Heading as="h3" variant="card">Manuscript Details</Heading>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <FloatingInput
@@ -243,7 +246,7 @@ export default function ContactPage() {
                         </div>
                     </Reveal>
                 </div>
-            </section>
+            </Section>
         </>
     );
 }

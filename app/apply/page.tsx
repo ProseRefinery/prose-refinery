@@ -95,7 +95,7 @@ export default function ApplyPage() {
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <Reveal>
-                        <HeroBadge icon="shield">Limited Availability: Q1 2025</HeroBadge>
+                        <HeroBadge icon="shield">Limited Availability</HeroBadge>
                     </Reveal>
                     <ClipReveal delay={100}>
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
@@ -104,7 +104,7 @@ export default function ApplyPage() {
                     </ClipReveal>
                     <Reveal delay={200}>
                         <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                            Tier 4 is our most intensive, hands-on collaboration. We only accept 2 manuscripts per quarter to ensure you get our undivided creative attention.
+                            Tier 4 is our most intensive, hands-on collaboration. We only accept 3 manuscripts per quarter to ensure you get our undivided creative attention.
                         </p>
                     </Reveal>
                 </div>

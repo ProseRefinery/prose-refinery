@@ -11,7 +11,7 @@ export default function TermsPage() {
                             Terms of Service
                         </h1>
                         <p className="text-slate-400 mb-12 border-b border-slate-800 pb-8">
-                            Last updated: December 2025
+                            Last updated: December 2024
                         </p>
 
                         <div className="prose prose-invert prose-emerald max-w-none space-y-12">
@@ -48,7 +48,9 @@ export default function TermsPage() {
                                     <li><span className="text-emerald-400">Within 24 hours (before work begins):</span> Full refund</li>
                                     <li><span className="text-emerald-400">After work begins:</span> No refund</li>
                                 </ul>
-                                <p className="text-slate-300 mt-4 italic">See Guarantee for actionability standards.</p>
+                                <p className="text-slate-300 mt-4 italic">
+                                    All diagnostic and editorial reports are reviewed against internal clarity and actionability standards. If your report does not clearly identify actionable next steps, request clarification within 7 days. We will revise the report at no charge. If the revised report still does not meet this standard, you will receive a full refund.
+                                </p>
                             </section>
 
                             <section>

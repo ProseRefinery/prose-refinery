@@ -116,15 +116,6 @@ export function Footer() {
                         <ul className="space-y-3">
                             <li><FooterLink href="/about">How It Works</FooterLink></li>
                             <li><FooterLink href="/contact">Contact</FooterLink></li>
-                            <li className="pt-3 mt-3 border-t border-slate-800/50">
-                                <Link
-                                    href="/login"
-                                    className="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-wider flex items-center gap-2 group"
-                                >
-                                    Client Portal
-                                    <ArrowRight size={10} className="group-hover:translate-x-1 transition-transform" />
-                                </Link>
-                            </li>
                         </ul>
                     </div>
 
@@ -182,7 +173,7 @@ export function Footer() {
                     <div className="flex gap-6 text-xs text-slate-600 font-light">
                         <Link href="/privacy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
                         <Link href="/terms" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>
-                        <Link href="/sitemap" className="hover:text-emerald-400 transition-colors">Sitemap</Link>
+                        <Link href="/sitemap.xml" className="hover:text-emerald-400 transition-colors">Sitemap</Link>
                     </div>
                 </div>
             </div>

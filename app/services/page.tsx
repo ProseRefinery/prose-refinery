@@ -10,6 +10,9 @@ import { BeamCard } from '@/components/effects/BeamCard';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { CheckoutButton } from '@/components/ui/checkout-button';
 import { HeroBadge } from '@/components/ui/HeroBadge';
+import { Badge } from '@/components/ui/Badge';
+import { Heading } from '@/components/ui/Heading';
+import { Section } from '@/components/ui/Section';
 import { STRIPE_PRICES } from '@/lib/constants';
 import { COMPARISON_DATA } from '@/lib/comparison-data';
 
@@ -128,16 +131,16 @@ export default function ServicesPage() {
     return (
         <>
             {/* Hero */}
-            <section className="relative flex justify-center pt-20 pb-24">
+            <Section className="relative flex justify-center pt-20 pb-24" noBorder>
                 <GridGlowBackground>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                         <Reveal>
                             <HeroBadge icon="layers">Services & Pricing</HeroBadge>
                         </Reveal>
                         <ClipReveal delay={100}>
-                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+                            <Heading as="h1" variant="hero" className="mb-6">
                                 Choose Your Path to Publication
-                            </h1>
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={200}>
                             <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
@@ -163,16 +166,16 @@ export default function ServicesPage() {
                         </Reveal>
                     </div>
                 </GridGlowBackground>
-            </section>
+            </Section>
 
             {/* Tier 1: Entry Diagnostics */}
-            <section id="tier-1-options" className="py-24 border-t border-slate-800/50">
+            <Section id="tier-1-options">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                            <Heading variant="section" className="mb-4">
                                 Tier 1: Story Integrity Diagnostic™
-                            </h2>
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={100}>
                             <p className="text-slate-400 max-w-2xl mx-auto">
@@ -239,13 +242,11 @@ export default function ServicesPage() {
                             <BeamCard glowColor="emerald" className="h-full">
                                 <div className="p-6 bg-slate-800/30 rounded-md border border-emerald-500/30 h-full flex flex-col">
                                     <div className="mb-4">
-                                        <span className="inline-block px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">
-                                            Best Value
-                                        </span>
+                                        <Badge variant="emerald">Best Value</Badge>
                                     </div>
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                    <Heading as="h3" variant="subsection" className="mb-2">
                                         Complete Bundle
-                                    </h3>
+                                    </Heading>
                                     <p className="text-slate-400 text-sm mb-6 flex-grow">
                                         All three assessments in one report: Hook, Voice & Tone, and Pacing. Save £110.
                                     </p>
@@ -257,39 +258,47 @@ export default function ServicesPage() {
                         </Reveal>
                     </div>
                 </div>
-            </section>
+            </Section>
 
             {/* Tier 2: Focused Work */}
-            <section className="py-24 border-t border-slate-800/50 bg-slate-900/20">
+            <Section background="subtle">
                 <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
                     <ClipReveal>
-                        <h2 className="text-3xl font-bold text-white mb-8 font-[family-name:var(--font-playfair)]">
+                        <Heading variant="section" className="mb-8">
                             Tier 2: Single-Pillar Structural Audit
-                        </h2>
+                        </Heading>
                     </ClipReveal>
                     <Reveal>
                         <BeamCard glowColor="emerald" className="max-w-2xl mx-auto">
                             <div className="p-8 bg-slate-800/30 rounded-md border border-emerald-500/30 text-left">
-                                <h3 className="text-2xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                <Heading as="h3" variant="card" className="mb-2">
                                     Single-Pillar Audit
-                                </h3>
+                                </Heading>
                                 <p className="text-slate-400 mb-6">
-                                    A deep dive into one specific aspect of your story. Choose any of the 7 Pillars (e.g., Plot Logic, Character Continuity).
+                                    A deep dive into one specific aspect of your story. Choose any of the 4 Pillars (e.g., Plot Architecture, Pacing & Pressure).
                                 </p>
                                 <ul className="space-y-3 mb-8">
                                     <li className="flex items-start gap-3">
                                         <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                                        <span className="text-slate-300 text-sm">Up to 30,000 words analyzed</span>
+                                        <span className="text-slate-300 text-sm">Up to 30,000 words: <strong>£250</strong></span>
                                     </li>
                                     <li className="flex items-start gap-3">
                                         <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                                        <span className="text-slate-300 text-sm">Actionable report delivered in 7 days</span>
+                                        <span className="text-slate-300 text-sm">30k–60k words: <strong>£350</strong></span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                        <span className="text-slate-300 text-sm">60k–100k words: <strong>£450</strong></span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                        <span className="text-slate-300 text-sm">Actionable report in 7-10 business days</span>
                                     </li>
                                 </ul>
                                 <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mt-8 pt-6 border-t border-slate-700/50">
-                                    <div className="text-3xl font-bold text-emerald-400">£350</div>
+                                    <div className="text-3xl font-bold text-emerald-400">£250 – £450</div>
                                     <CheckoutButton priceId={STRIPE_PRICES.single_pillar_audit} variant="primary" className="w-full sm:w-auto">
-                                        Buy Now
+                                        Select Pillar
                                     </CheckoutButton>
                                 </div>
                             </div>
@@ -299,16 +308,16 @@ export default function ServicesPage() {
                         </div>
                     </Reveal>
                 </div>
-            </section>
+            </Section>
 
             {/* Tier 3: Full Manuscript */}
-            <section className="py-24 border-t border-slate-800/50">
+            <Section>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                            <Heading variant="section" className="mb-4">
                                 Tier 3: Full Structural Edit
-                            </h2>
+                            </Heading>
                         </ClipReveal>
                     </div>
 
@@ -318,13 +327,11 @@ export default function ServicesPage() {
                             <TiltCard className="h-full">
                                 <div className="p-8 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
                                     <div className="mb-4">
-                                        <span className="inline-block px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 text-xs font-medium">
-                                            Try Before You Commit
-                                        </span>
+                                        <Badge variant="blue">Try Before You Commit</Badge>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                    <Heading as="h3" variant="card" className="mb-2">
                                         Tier 3 Taster
-                                    </h3>
+                                    </Heading>
                                     <p className="text-slate-400 mb-6 flex-grow">
                                         Sample edit of your first 50 pages to see if we&apos;re a good fit. The cost is credited toward the full service.
                                     </p>
@@ -341,15 +348,13 @@ export default function ServicesPage() {
                             <TiltCard className="h-full">
                                 <div className="p-8 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
                                     <div className="mb-4">
-                                        <span className="inline-block px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">
-                                            Comprehensive
-                                        </span>
+                                        <Badge variant="emerald">Comprehensive</Badge>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                    <Heading as="h3" variant="card" className="mb-2">
                                         Full Manuscript Assessment
-                                    </h3>
+                                    </Heading>
                                     <p className="text-slate-400 mb-6 flex-grow">
-                                        Complete 7-Pillar analysis, chapter-by-chapter notes, and a comprehensive editorial letter.
+                                        Complete 4-Pillar analysis, chapter-by-chapter notes, and a comprehensive editorial letter.
                                     </p>
                                     <div className="text-2xl font-bold text-white mb-6">£1,500 – £4,500</div>
                                     <MagneticButton href="/consultation" variant="primary" className="w-full">
@@ -361,19 +366,15 @@ export default function ServicesPage() {
                         </Reveal>
                     </div>
                 </div>
-            </section>
-
-
-
-
+            </Section>
 
             {/* Tier 4: Partnership */}
-            <section className="py-24 border-t border-slate-800/50">
+            <Section>
                 <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
                     <ClipReveal>
-                        <h2 className="text-3xl font-bold text-white mb-8 font-[family-name:var(--font-playfair)]">
+                        <Heading variant="section" className="mb-8">
                             Tier 4: Editorial Partnership
-                        </h2>
+                        </Heading>
                     </ClipReveal>
                     <Reveal>
                         <BeamCard glowColor="purple">
@@ -386,21 +387,21 @@ export default function ServicesPage() {
                                     Apply for Partnership
                                     <ArrowRight size={16} />
                                 </MagneticButton>
-                                <p className="text-xs text-purple-400/60 mt-4">Limited to 3 clients per quarter</p>
+                                <p className="text-xs text-purple-400/60 mt-4">Limited to 3 authors per quarter</p>
                             </div>
                         </BeamCard>
                     </Reveal>
                 </div>
-            </section>
+            </Section>
 
             {/* Comparison Table */}
-            <section className="py-24 border-t border-slate-800/50">
+            <Section>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                            <Heading variant="section" className="mb-4">
                                 Compare Editorial Tiers
-                            </h2>
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={100}>
                             <p className="text-slate-400">
@@ -420,7 +421,7 @@ export default function ServicesPage() {
                                     <tr>
                                         <th className="text-left p-4 text-slate-400 font-normal text-sm border-b border-slate-700/50">Feature</th>
                                         <th className="text-center p-4 text-white font-semibold border-b border-slate-700/50">
-                                            Tier 1<br /><span className="text-emerald-400 text-sm font-normal">Entry Diagnostics</span>
+                                            Tier 1<br /><span className="text-emerald-400 text-sm font-normal">Story Integrity</span>
                                         </th>
                                         <th className="text-center p-4 text-white font-semibold border-b border-slate-700/50 bg-emerald-500/5">
                                             <span className="text-emerald-400 text-xs block mb-1">★ MOST POPULAR</span>
@@ -458,39 +459,39 @@ export default function ServicesPage() {
                         </div>
                     </Reveal>
                 </div>
-            </section>
+            </Section>
 
             {/* Guarantee Section */}
-            < section className="py-24 border-t border-slate-800/50" >
+            <Section>
                 <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                     <Reveal>
                         <BeamCard glowColor="emerald">
                             <div className="p-8 bg-slate-800/30 rounded-md text-center">
                                 <Shield className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
-                                <h2 className="text-2xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                                <Heading as="h2" variant="card" className="mb-4">
                                     Our Promise
-                                </h2>
+                                </Heading>
                                 <p className="text-slate-400 leading-relaxed max-w-xl mx-auto">
-                                    If our feedback doesn&apos;t give you clear, actionable next steps for your manuscript,
-                                    we&apos;ll refund your fee. No questions.
+                                    All diagnostic and editorial reports are reviewed against internal clarity and actionability standards.
                                 </p>
-                                <p className="text-slate-500 text-sm mt-4">
-                                    We&apos;d rather lose money than leave you confused.
+                                <p className="text-slate-400 leading-relaxed max-w-xl mx-auto mt-4">
+                                    If your report does not clearly identify actionable next steps, request clarification within 7 days. We will revise the report at no charge.
+                                    If the revised report still does not meet this standard, you will receive a full refund.
                                 </p>
                             </div>
                         </BeamCard>
                     </Reveal>
                 </div>
-            </section >
+            </Section>
 
             {/* FAQ Section */}
-            < section className="py-24 border-t border-slate-800/50" >
+            <Section>
                 <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                            <Heading variant="section" className="mb-4">
                                 Frequently Asked Questions
-                            </h2>
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={100}>
                             <p className="text-slate-400">
@@ -511,15 +512,15 @@ export default function ServicesPage() {
                         ))}
                     </div>
                 </div>
-            </section >
+            </Section>
 
             {/* CTA */}
-            < section className="py-24 border-t border-slate-800/50" >
+            <Section>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                     <ClipReveal>
-                        <h2 className="text-3xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+                        <Heading variant="section" className="mb-6">
                             Not Sure Which Tier Is Right?
-                        </h2>
+                        </Heading>
                     </ClipReveal>
                     <Reveal delay={100}>
                         <p className="text-lg text-slate-400 mb-8 max-w-xl mx-auto">
@@ -530,7 +531,7 @@ export default function ServicesPage() {
                     <Reveal delay={200}>
                         <div className="flex flex-wrap justify-center gap-4">
                             <MagneticButton href="/diagnostic" variant="primary">
-                                Start Free Diagnostic
+                                Start Free Diagnostic Quiz
                                 <ArrowRight size={18} />
                             </MagneticButton>
                             <MagneticButton href="/consultation" variant="secondary">
@@ -540,7 +541,7 @@ export default function ServicesPage() {
                         </div>
                     </Reveal>
                 </div>
-            </section >
+            </Section>
         </>
     );
 }

@@ -6,29 +6,31 @@ import { TiltCard } from '@/components/effects/TiltCard';
 import { BeamCard } from '@/components/effects/BeamCard';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { HeroBadge } from '@/components/ui/HeroBadge';
+import { Heading } from '@/components/ui/Heading';
+import { Section } from '@/components/ui/Section';
 import { PILLARS } from '@/lib/constants';
 
 // Trust/Proof cards data
 const TRUST_CARDS = [
   {
     icon: Layers,
-    title: '7 Diagnostic Pillars',
-    text: 'A systematic framework developed over 20 years of narrative study'
+    title: '4 Core Pillars',
+    text: 'A systematic framework focusing on structural narrative integrity'
   },
   {
     icon: BookOpen,
     title: 'Battle-Tested',
-    text: 'Every technique applied to our own 110,000-word manuscript first'
+    text: 'Applied rigorously to every manuscript we edit'
   },
   {
     icon: Search,
-    title: '200+ Novels Analyzed',
-    text: 'Framework built by dissecting what makes published speculative fiction work'
+    title: 'Genre Specialists',
+    text: 'Built specifically for the unique demands of speculative fiction'
   },
   {
     icon: Shield,
-    title: 'Satisfaction Guarantee',
-    text: 'Clear, actionable feedback or your money back. No questions.'
+    title: 'Actionability Standard',
+    text: 'Clear, actionable feedback or we revise it for free.'
   }
 ];
 
@@ -56,7 +58,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Hero Section - Benefit-focused copy */}
-      <section className="relative flex justify-center pt-20 pb-24">
+      <Section className="relative flex justify-center pt-20 pb-24" noBorder>
         <GridGlowBackground>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-3xl mx-auto">
@@ -65,10 +67,10 @@ export default function HomePage() {
               </Reveal>
 
               <ClipReveal delay={100}>
-                <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6 font-[family-name:var(--font-playfair)]">
+                <Heading as="h1" variant="hero" className="mb-6">
                   Get Your Fantasy Novel{' '}
                   <span className="animated-gradient-text">Agent-Ready</span>
-                </h1>
+                </Heading>
               </ClipReveal>
 
               <ClipReveal delay={200}>
@@ -110,17 +112,17 @@ export default function HomePage() {
             </div>
           </div>
         </GridGlowBackground>
-      </section>
+      </Section>
 
 
       {/* Why Most Manuscripts Stall (The Problem) */}
-      <section className="py-24 border-t border-slate-800/50 bg-red-900/5">
+      <Section className="bg-red-900/5">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <ClipReveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+              <Heading variant="section" className="mb-4">
                 Why Most Manuscripts Stall
-              </h2>
+              </Heading>
             </ClipReveal>
             <Reveal delay={100}>
               <p className="text-slate-400 max-w-2xl mx-auto">
@@ -134,7 +136,7 @@ export default function HomePage() {
               <TiltCard className="h-full">
                 <div className="p-8 bg-slate-900/50 rounded-md border border-red-500/10 h-full">
                   <AlertTriangle className="w-10 h-10 text-red-400 mb-6" />
-                  <h3 className="text-xl font-bold text-white mb-3">The Midpoint Sag</h3>
+                  <Heading as="h3" variant="card" className="mb-3">The Midpoint Sag</Heading>
                   <p className="text-slate-400 text-sm leading-relaxed">
                     You have a killer opening and an epic ending, but Act II is a wandering mess of subplots that kill narrative momentum.
                   </p>
@@ -145,7 +147,7 @@ export default function HomePage() {
               <TiltCard className="h-full">
                 <div className="p-8 bg-slate-900/50 rounded-md border border-red-500/10 h-full">
                   <Activity className="w-10 h-10 text-red-400 mb-6" />
-                  <h3 className="text-xl font-bold text-white mb-3">The Passive Protagonist</h3>
+                  <Heading as="h3" variant="card" className="mb-3">The Passive Protagonist</Heading>
                   <p className="text-slate-400 text-sm leading-relaxed">
                     Things happen <em>to</em> your character rather than <em>because</em> of them. Agents stop reading when the hero stops driving the plot.
                   </p>
@@ -156,7 +158,7 @@ export default function HomePage() {
               <TiltCard className="h-full">
                 <div className="p-8 bg-slate-900/50 rounded-md border border-red-500/10 h-full">
                   <Layers className="w-10 h-10 text-red-400 mb-6" />
-                  <h3 className="text-xl font-bold text-white mb-3">Worldbuilder&apos;s Disease</h3>
+                  <Heading as="h3" variant="card" className="mb-3">Worldbuilder&apos;s Disease</Heading>
                   <p className="text-slate-400 text-sm leading-relaxed">
                     Your magic system is intricate, but it suffocates the story. Info-dumps masquerade as exposition.
                   </p>
@@ -165,16 +167,16 @@ export default function HomePage() {
             </Reveal>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* How It Works (The Process) */}
-      <section className="py-24 border-t border-slate-800/50">
+      <Section>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <ClipReveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+              <Heading variant="section" className="mb-4">
                 The Refinery Process
-              </h2>
+              </Heading>
             </ClipReveal>
             <Reveal delay={100}>
               <p className="text-slate-400 max-w-2xl mx-auto">
@@ -194,9 +196,9 @@ export default function HomePage() {
                     <div className="absolute -top-4 -right-4 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-slate-900 font-bold text-lg shadow-lg z-20">01</div>
                     <Search className="w-10 h-10 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Diagnose</h3>
+                  <Heading as="h3" variant="card" className="mb-2">Diagnose</Heading>
                   <p className="text-slate-400 text-sm px-4">
-                    We use our 7-point framework to identify exactly where your structure is failing.
+                    We use our 4-point framework to identify exactly where your structure is failing.
                   </p>
                 </div>
               </Reveal>
@@ -207,7 +209,7 @@ export default function HomePage() {
                     <div className="absolute -top-4 -right-4 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-slate-900 font-bold text-lg shadow-lg z-20">02</div>
                     <PenTool className="w-10 h-10 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Reconstruct</h3>
+                  <Heading as="h3" variant="card" className="mb-2">Reconstruct</Heading>
                   <p className="text-slate-400 text-sm px-4">
                     We provide a specific architectural blueprint to fix the load-bearing walls of your story.
                   </p>
@@ -220,7 +222,7 @@ export default function HomePage() {
                     <div className="absolute -top-4 -right-4 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-slate-900 font-bold text-lg shadow-lg z-20">03</div>
                     <Feather className="w-10 h-10 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">Refine</h3>
+                  <Heading as="h3" variant="card" className="mb-2">Refine</Heading>
                   <p className="text-slate-400 text-sm px-4">
                     Only then do we polish the prose. Clarity follows structure, not the other way around.
                   </p>
@@ -229,20 +231,20 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
 
 
 
 
       {/* Pillars Preview */}
-      <section className="py-24 border-t border-slate-800/50">
+      <Section>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <ClipReveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+              <Heading variant="section" className="mb-4">
                 The 4 Core Pillars of Narrative Integrity
-              </h2>
+              </Heading>
             </ClipReveal>
             <Reveal delay={100}>
               <p className="text-slate-400 max-w-2xl mx-auto">
@@ -259,7 +261,7 @@ export default function HomePage() {
                 <Reveal key={pillar.id} delay={i * 100}>
                   <TiltCard className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full">
                     <Icon className="w-10 h-10 text-emerald-400 mb-4" />
-                    <h3 className="text-lg font-semibold text-white mb-2">{pillar.name}</h3>
+                    <Heading as="h3" variant="subsection" className="mb-2 text-lg">{pillar.name}</Heading>
                     <p className="text-sm text-slate-400">{pillar.short}</p>
                   </TiltCard>
                 </Reveal>
@@ -269,23 +271,23 @@ export default function HomePage() {
 
           <Reveal delay={500}>
             <div className="text-center mt-12">
-              <MagneticButton href="/method" variant="secondary">
-                Explore All 7 Pillars
+              <MagneticButton href="/about" variant="secondary">
+                Explore The Framework
                 <ArrowRight size={16} />
               </MagneticButton>
             </div>
           </Reveal>
         </div>
-      </section>
+      </Section>
 
       {/* Before/After Showcase */}
-      <section className="py-24 border-t border-slate-800/50">
+      <Section>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <ClipReveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+              <Heading variant="section" className="mb-4">
                 See The Method In Action
-              </h2>
+              </Heading>
             </ClipReveal>
             <Reveal delay={100}>
               <p className="text-slate-400 max-w-2xl mx-auto">
@@ -339,16 +341,16 @@ export default function HomePage() {
             </p>
           </Reveal>
         </div>
-      </section>
+      </Section>
 
       {/* Services Soft Sell */}
-      <section className="py-24 border-t border-slate-800/50 bg-slate-900/20">
+      <Section background="subtle">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <ClipReveal>
-              <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+              <Heading variant="section" className="mb-4">
                 Choose Your Level of Support
-              </h2>
+              </Heading>
             </ClipReveal>
             <Reveal delay={100}>
               <p className="text-slate-400">
@@ -359,30 +361,34 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Reveal delay={0} className="h-full">
-              <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
-                <div className="text-emerald-400 font-bold mb-2">Step 1</div>
-                <h3 className="text-xl text-white font-semibold mb-2">Diagnostics</h3>
-                <p className="text-slate-400 text-sm mb-4 flex-grow">Quick checks on Hook, Voice, or Pacing.</p>
-                <div className="text-white font-bold text-lg">£95 – £175</div>
-              </div>
+              <TiltCard className="h-full">
+                <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
+                  <div className="text-emerald-400 font-bold mb-2">Step 1</div>
+                  <Heading as="h3" variant="card" className="mb-2">Diagnostics</Heading>
+                  <p className="text-slate-400 text-sm mb-4 flex-grow">Quick checks on Hook, Voice, or Pacing.</p>
+                  <div className="text-white font-bold text-lg">£95 – £175</div>
+                </div>
+              </TiltCard>
             </Reveal>
             <Reveal delay={100} className="h-full">
               <BeamCard glowColor="emerald" className="h-full">
                 <div className="bg-slate-800/40 p-6 rounded-lg h-full flex flex-col">
                   <div className="text-emerald-400 font-bold mb-2">Step 2</div>
-                  <h3 className="text-xl text-white font-semibold mb-2">Focused Audits</h3>
+                  <Heading as="h3" variant="card" className="mb-2">Focused Audits</Heading>
                   <p className="text-slate-400 text-sm mb-4 flex-grow">Deep dive into one structural pillar.</p>
                   <div className="text-white font-bold text-lg">£350</div>
                 </div>
               </BeamCard>
             </Reveal>
             <Reveal delay={200} className="h-full">
-              <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
-                <div className="text-emerald-400 font-bold mb-2">Step 3</div>
-                <h3 className="text-xl text-white font-semibold mb-2">Full Manuscript</h3>
-                <p className="text-slate-400 text-sm mb-4 flex-grow">Complete 7-pillar overhaul.</p>
-                <div className="text-white font-bold text-lg">£1,500+</div>
-              </div>
+              <TiltCard className="h-full">
+                <div className="bg-slate-800/20 border border-slate-700/50 p-6 rounded-lg hover:border-emerald-500/30 transition-colors h-full flex flex-col">
+                  <div className="text-emerald-400 font-bold mb-2">Step 3</div>
+                  <Heading as="h3" variant="card" className="mb-2">Full Manuscript</Heading>
+                  <p className="text-slate-400 text-sm mb-4 flex-grow">Complete 4-pillar overhaul.</p>
+                  <div className="text-white font-bold text-lg">£1,500+</div>
+                </div>
+              </TiltCard>
             </Reveal>
           </div>
           <Reveal delay={300}>
@@ -394,15 +400,15 @@ export default function HomePage() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </Section>
 
       {/* CTA Section */}
-      <section className="py-24 border-t border-slate-800/50">
+      <Section>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <ClipReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+            <Heading variant="section" className="mb-6">
               Stop Getting Form Rejections
-            </h2>
+            </Heading>
           </ClipReveal>
           <Reveal delay={100}>
             <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
@@ -419,7 +425,7 @@ export default function HomePage() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

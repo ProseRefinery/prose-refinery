@@ -1,255 +1,124 @@
-import { Metadata } from 'next';
-import { ArrowRight, Calendar, BookOpen, Feather, GraduationCap, Award, Building } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
 import { TiltCard } from '@/components/effects/TiltCard';
-import { BeamCard } from '@/components/effects/BeamCard';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { HeroBadge } from '@/components/ui/HeroBadge';
-import { COMPANY } from '@/lib/constants';
+import { Heading } from '@/components/ui/Heading';
+import { Section } from '@/components/ui/Section';
+import { COMPANY, PILLARS } from '@/lib/constants';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'About Us | Prose Refinery',
-    description: 'Learn about Prose Refinery: our mission, methodology, and the founder behind the Narrative Integrity Engine.',
+    title: 'How It Works | Prose Refinery',
+    description: 'Our methodology focuses on structural narrative integrity: plot architecture, character integrity, world-system logic, and pacing pressure.',
 };
 
 export default function AboutPage() {
     return (
         <>
             {/* Hero - Mission Statement */}
-            <section className="relative flex justify-center pt-20 pb-24">
+            <Section className="relative flex justify-center pt-20 pb-24" noBorder>
                 <GridGlowBackground>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                         <div className="max-w-3xl mx-auto">
                             <Reveal>
-                                <HeroBadge icon="award">About Prose Refinery</HeroBadge>
+                                <HeroBadge icon="award">Methodology</HeroBadge>
                             </Reveal>
                             <ClipReveal delay={100}>
-                                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                                    We Fix What Other Editors Miss
-                                </h1>
+                                <Heading as="h1" variant="hero" className="mb-6">
+                                    How Prose Refinery Works
+                                </Heading>
                             </ClipReveal>
                             <Reveal delay={200}>
-                                <p className="text-xl text-slate-300 mb-6">
-                                    Most editorial feedback focuses on prose. Clean sentences. Tighter paragraphs.
-                                    Better word choices. <strong className="text-white">That&apos;s the final 10%.</strong>
-                                </p>
-                            </Reveal>
-                            <Reveal delay={300}>
-                                <p className="text-lg text-slate-400 mb-8">
-                                    We focus on the 90% that determines whether your book works: structure, pacing,
-                                    world logic, character motivation, and the invisible architecture readers feel
-                                    but can&apos;t articulate.
-                                </p>
-                            </Reveal>
-                            <Reveal delay={400}>
-                                <p className="text-lg text-slate-400">
-                                    Speculative fiction demands more. Magic systems must be internally consistent.
-                                    Worlds must feel lived-in. Foreshadowing must land. We built our entire
-                                    methodology around these genre-specific demands.
-                                </p>
+                                <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
+                                    <p>
+                                        Prose Refinery is a specialist editorial practice focused on <strong className="text-white">structural narrative integrity</strong> in speculative fiction.
+                                    </p>
+                                    <p className="text-slate-400">
+                                        We do not offer stylistic polish, motivational feedback, or generic writing advice. We diagnose and correct failures in plot architecture, character escalation, pacing pressure, and world-system logic—before revision cycles waste months.
+                                    </p>
+                                </div>
                             </Reveal>
                         </div>
                     </div>
                 </GridGlowBackground>
-            </section>
+            </Section>
 
-            {/* methodology - System Focus */}
-            <section className="py-24 border-t border-slate-800/50">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <Reveal>
-                                <span className="text-sm text-emerald-400 uppercase tracking-widest mb-4 block">
-                                    The Philosophy
-                                </span>
-                            </Reveal>
-                            <ClipReveal delay={100}>
-                                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                                    Objectivity Over Opinion
-                                </h2>
-                            </ClipReveal>
-                            <Reveal delay={200}>
-                                <p className="text-slate-300 mb-4">
-                                    Traditional editing is often subjective—a single reader's reaction to your work.
-                                    We reject that approach. We believe story structure is engineering, not magic.
-                                </p>
-                            </Reveal>
-                            <Reveal delay={300}>
-                                <p className="text-slate-400 mb-6">
-                                    The Narrative Integrity Engine™ provides a standardized, rigorous framework
-                                    for evaluating manuscript health. We don't just tell you something "feels off."
-                                    We point to the specific structural load-bearing wall that is failing,
-                                    and we give you the blueprints to reinforce it.
-                                </p>
-                            </Reveal>
-                        </div>
-
-                        <div>
-                            <Reveal delay={200}>
-                                <BeamCard glowColor="emerald">
-                                    <div className="p-8 bg-slate-800/30 rounded-md text-left">
-                                        <h3 className="text-xl font-semibold text-white mb-4">The Standard</h3>
-                                        <ul className="space-y-4 text-slate-400 text-sm">
-                                            <li className="flex items-start gap-3">
-                                                <Award className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                                                <span><strong>Replicable Results:</strong> We use the same 7-point diagnostic for every manuscript.</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <Award className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                                                <span><strong>Genre-Specific:</strong> Built strictly for modern speculative fiction markets.</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <Award className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-                                                <span><strong>Action Oriented:</strong> No vague feedback. Every point includes a "fix" directive.</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </BeamCard>
-                            </Reveal>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Credentials & Background */}
-            <section className="py-24 border-t border-slate-800/50">
+            {/* 4 Pillars Section */}
+            <Section>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
                         <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                Background & Credentials
-                            </h2>
-                        </ClipReveal>
-                        <Reveal delay={100}>
-                            <p className="text-slate-400 max-w-xl mx-auto">
-                                The expertise behind our methodology.
-                            </p>
-                        </Reveal>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {[
-                            {
-                                icon: GraduationCap,
-                                title: '20+ Years',
-                                desc: 'Studying narrative structure and what makes speculative fiction work'
-                            },
-                            {
-                                icon: BookOpen,
-                                title: '200+ Novels',
-                                desc: 'Analyzed to build our diagnostic framework'
-                            },
-                            {
-                                icon: Award,
-                                title: '110K Words',
-                                desc: 'Our flagship project: living proof of the methodology'
-                            }
-                        ].map((item, i) => (
-                            <Reveal key={i} delay={i * 100}>
-                                <TiltCard className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full">
-                                    <item.icon className="w-10 h-10 text-emerald-400 mb-4" />
-                                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                                    <p className="text-sm text-slate-400">{item.desc}</p>
-                                </TiltCard>
-                            </Reveal>
-                        ))}
-                    </div>
-
-                    <Reveal delay={400}>
-                        <div className="mt-12 text-center">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-slate-800/50 border border-slate-700/50">
-                                <Building className="w-4 h-4 text-slate-400" />
-                                <span className="text-sm text-slate-400">
-                                    Registered as <strong className="text-white">{COMPANY.legalName}</strong>
-                                    {' '}(UK Company No: {COMPANY.companyNumber})
-                                </span>
-                            </div>
-                        </div>
-                    </Reveal>
-                </div>
-            </section>
-
-            {/* Flagship Project - Children of Aiyé */}
-            <section className="py-24 border-t border-slate-800/50">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
-                        <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                Children of Aiyé — Our Proof of Concept
-                            </h2>
+                            <Heading variant="section" className="mb-4">
+                                The 4 Core Pillars
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={100}>
                             <p className="text-slate-400 max-w-2xl mx-auto">
-                                We don&apos;t just preach methodology. We use it. Every technique we recommend,
-                                EVERY structural principle we teach—we&apos;ve applied it to our own work first.
+                                The structural load-bearing walls of any speculative novel.
                             </p>
                         </Reveal>
                     </div>
 
-                    <Reveal delay={200}>
-                        <BeamCard glowColor="purple">
-                            <div className="p-8 bg-slate-800/30 rounded-md">
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                    <div>
-                                        <span className="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-medium mb-4">
-                                            Flagship Project
-                                        </span>
-                                        <h3 className="text-2xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                            Children of Aiyé
-                                        </h3>
-                                        <p className="text-slate-400 mb-4">
-                                            A 110,000-word Afro-mythpunk saga spanning the collision of old gods
-                                            and modern Nigeria. This project is our living laboratory—where we
-                                            test every editorial technique before recommending it to clients.
-                                        </p>
-                                        <ul className="space-y-2 text-sm text-slate-400">
-                                            <li className="flex items-center gap-2">
-                                                <Calendar className="w-4 h-4 text-purple-400" />
-                                                Multi-year development
-                                            </li>
-                                            <li className="flex items-center gap-2">
-                                                <BookOpen className="w-4 h-4 text-purple-400" />
-                                                110,000+ words
-                                            </li>
-                                            <li className="flex items-center gap-2">
-                                                <Feather className="w-4 h-4 text-purple-400" />
-                                                Afro-mythpunk / Secondary World Fantasy
-                                            </li>
-                                        </ul>
-                                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                        {PILLARS.map((pillar, i) => {
+                            const Icon = pillar.icon;
+                            return (
+                                <Reveal key={pillar.id} delay={i * 100}>
+                                    <TiltCard className="p-8 bg-slate-800/30 rounded-md border border-slate-700/50 h-full">
+                                        <div className="flex items-start gap-4">
+                                            <div className="p-3 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                                                <Icon className="w-6 h-6 text-emerald-400" />
+                                            </div>
+                                            <div>
+                                                <Heading as="h3" variant="card" className="mb-2 text-white">{pillar.name}</Heading>
+                                                <p className="text-sm text-slate-400 leading-relaxed">{pillar.short}</p>
+                                            </div>
+                                        </div>
+                                    </TiltCard>
+                                </Reveal>
+                            );
+                        })}
+                    </div>
+                </div>
+            </Section>
 
-                                    <div className="space-y-4">
-                                        <div className="p-4 bg-slate-900/50 rounded-md border-l-2 border-red-500/50">
-                                            <span className="text-xs text-red-400 uppercase tracking-wider">Before</span>
-                                            <p className="text-slate-400 text-sm mt-2 italic">
-                                                &quot;Kọlá felt the weight of centuries as she walked. The shrine had always
-                                                been sacred, though few remembered why.&quot;
-                                            </p>
-                                        </div>
-                                        <div className="p-4 bg-slate-900/50 rounded-md border-l-2 border-emerald-500/50">
-                                            <span className="text-xs text-emerald-400 uppercase tracking-wider">After</span>
-                                            <p className="text-slate-300 text-sm mt-2 italic">
-                                                &quot;Blood on the shrine meant someone would die within a fortnight. Kọlá
-                                                pressed her thumb against the iron blade until crimson beaded at the tip.&quot;
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </BeamCard>
+            {/* Editorial Standards */}
+            <Section background="subtle">
+                <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+                    <ClipReveal>
+                        <Heading variant="section" className="mb-6">
+                            Editorial Standards
+                        </Heading>
+                    </ClipReveal>
+                    <Reveal delay={100}>
+                        <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-8 md:p-12 mb-12">
+                            <p className="text-lg text-slate-300 mb-6 leading-relaxed">
+                                Editorial work is carried out by Prose Refinery&apos;s lead structural editor and, where appropriate, supporting reviewers operating under the same diagnostic framework.
+                            </p>
+                            <p className="text-lg text-slate-300 leading-relaxed">
+                                All reports follow standardised formats and quality controls to ensure consistency regardless of reviewer.
+                            </p>
+                        </div>
+                    </Reveal>
+
+                    <Reveal delay={200}>
+                        <p className="text-sm text-slate-500 italic max-w-xl mx-auto">
+                            Prose Refinery is led by a senior structural editor with a background in speculative narrative systems.
+                        </p>
                     </Reveal>
                 </div>
-            </section>
+            </Section>
 
             {/* CTA */}
-            <section className="py-24 border-t border-slate-800/50">
+            <Section>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                     <ClipReveal>
-                        <h2 className="text-3xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                            Let&apos;s Transform Your Manuscript
-                        </h2>
+                        <Heading variant="section" className="mb-6">
+                            Construct Your Narrative Architecture
+                        </Heading>
                     </ClipReveal>
                     <Reveal delay={100}>
                         <p className="text-lg text-slate-400 mb-8 max-w-xl mx-auto">
@@ -258,19 +127,15 @@ export default function AboutPage() {
                         </p>
                     </Reveal>
                     <Reveal delay={200}>
-                        <div className="flex flex-wrap justify-center gap-4">
+                        <div className="flex justify-center">
                             <MagneticButton href="/diagnostic" variant="primary">
                                 Start Your Diagnostic
                                 <ArrowRight size={18} />
                             </MagneticButton>
-                            <MagneticButton href="/consultation" variant="secondary">
-                                <Calendar size={18} />
-                                Book Free Consultation
-                            </MagneticButton>
                         </div>
                     </Reveal>
                 </div>
-            </section>
+            </Section>
         </>
     );
 }
