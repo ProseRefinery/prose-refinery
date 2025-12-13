@@ -1,8 +1,7 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
 
 interface ClipRevealProps {
     children: ReactNode;
@@ -11,24 +10,39 @@ interface ClipRevealProps {
 }
 
 /**
- * ClipReveal - Blueprint text reveal animation
- * Uses clip-path masking for the "unrolling blueprint" effect
+ * ClipReveal - Restored to match Reveal's CSS logic
+ * Uses simple CSS transitions for mask reveal
  */
 export function ClipReveal({ children, delay = 0, className = '' }: ClipRevealProps) {
+    const [visible, setVisible] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => setVisible(true), delay);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
+
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+    }, [delay]);
+
     return (
         <div className={cn('overflow-hidden', className)}>
-            <motion.div
-                initial={{ y: "100%" }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                    duration: 0.8,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                    delay: delay / 1000
-                }}
+            <div
+                ref={ref}
+                className={cn(
+                    'transition-all duration-700 ease-out',
+                    visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+                )}
             >
                 {children}
-            </motion.div>
+            </div>
         </div>
     );
 }
@@ -41,51 +55,47 @@ interface StaggerTextProps {
 }
 
 /**
- * StaggerText - Reveal animation
- * Supports 'char' (default) or 'word' splitting
+ * StaggerText - Simple CSS delay staggering
  */
 export function StaggerText({ text, delay = 0, className = '', split = 'char' }: StaggerTextProps) {
+    const [visible, setVisible] = useState(false);
+    const ref = useRef<HTMLSpanElement>(null);
     const items = split === 'char' ? text.split('') : text.split(' ');
 
-    const container = {
-        hidden: { opacity: 0 },
-        visible: (i = 1) => ({
-            opacity: 1,
-            transition: { staggerChildren: 0.03, delayChildren: delay / 1000 }
-        })
-    };
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => setVisible(true), delay);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.1 }
+        );
 
-    const child = {
-        hidden: {
-            y: "120%",
-            transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
-        },
-        visible: {
-            y: 0,
-            transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
-        }
-    };
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
+    }, [delay]);
 
     return (
-        <motion.span
+        <span
+            ref={ref}
             className={cn('inline-flex flex-wrap overflow-hidden', className)}
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
         >
             {items.map((item, index) => (
-                <span className="overflow-hidden inline-flex" key={index}>
-                    <motion.span variants={child} className="inline-block">
-                        {item}
-                    </motion.span>
-                    {/* Add space after word if splitting by word, unless it's the last word */}
+                <span
+                    key={index}
+                    className={cn(
+                        "inline-block transition-all duration-500 ease-out",
+                        visible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                    )}
+                    style={{ transitionDelay: `${index * 30}ms` }}
+                >
+                    {item}
                     {split === 'word' && index < items.length - 1 && '\u00A0'}
-                    {/* For char splitting, spaces are naturally handled by the split array provided strict whitespace isn't stripped, 
-                        but split('') preserves spaces as items. We just need to ensure they render. */}
                     {split === 'char' && item === ' ' && '\u00A0'}
                 </span>
             ))}
-        </motion.span>
+        </span>
     );
 }

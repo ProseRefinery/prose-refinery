@@ -1,9 +1,8 @@
 'use client';
 
-import { useRef, ReactNode, useState, useEffect } from 'react';
+import { useState, useRef, MouseEvent, ReactNode, useEffect } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useHaptic } from '@/hooks/useHaptic';
 
 interface MagneticButtonProps {
@@ -18,9 +17,9 @@ interface MagneticButtonProps {
 }
 
 /**
- * MagneticButton 2.0 - Physics-based interaction
- * Mobile: Instant active scale (no drag)
- * Desktop: Spring-based magnetic pull
+ * MagneticButton - Restored original CSS-based implementation
+ * Mobile: Native feel (no magnet)
+ * Desktop: Magnetic pull with CSS transition (no spring bounce)
  */
 export function MagneticButton({
     children,
@@ -32,26 +31,19 @@ export function MagneticButton({
     disabled = false,
     loading = false
 }: MagneticButtonProps) {
+    const [transform, setTransform] = useState({ x: 0, y: 0 });
     const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
     const { trigger } = useHaptic();
     const [isMobile, setIsMobile] = useState(false);
 
-    // Physics Configuration
-    const springConfig = { damping: 15, stiffness: 150, mass: 0.1 }; // Lightweight, snappy
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-    const springX = useSpring(x, springConfig);
-    const springY = useSpring(y, springConfig);
-
     useEffect(() => {
-        // Simple touch detection to disable magnetic drag on mobile
         const checkMobile = () => setIsMobile(window.matchMedia('(pointer: coarse)').matches);
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    const handleMouseMove = (e: React.MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent) => {
         if (!ref.current || disabled || loading || isMobile) return;
 
         const rect = ref.current.getBoundingClientRect();
@@ -61,27 +53,35 @@ export function MagneticButton({
         const distanceX = e.clientX - centerX;
         const distanceY = e.clientY - centerY;
 
-        x.set(distanceX * 0.35); // Magnetic pull strength
-        y.set(distanceY * 0.35);
+        // Original magnetic strength was strict
+        setTransform({ x: distanceX * 0.2, y: distanceY * 0.2 });
     };
 
     const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
+        setTransform({ x: 0, y: 0 });
     };
 
     const handlePress = () => {
         trigger();
+        if (onClick) onClick();
+    };
+
+    const style = {
+        transform: `translate(${transform.x}px, ${transform.y}px)`,
     };
 
     const baseStyles = cn(
         'relative inline-flex items-center justify-center gap-2',
         'px-5 py-2.5 rounded-md font-medium text-xs tracking-widest uppercase',
-        'transition-colors duration-200',
+        'transition-all duration-200 ease-out', // The original "feel"
         'disabled:opacity-50 disabled:cursor-not-allowed',
+        'active:scale-[0.98]', // Tactile feedback
         {
+            // Primary - emerald gradient with glow
             'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:from-emerald-500 hover:to-emerald-400': variant === 'primary',
+            // Secondary - ghost with border
             'border border-slate-700/50 bg-transparent text-slate-400 hover:border-emerald-500/50 hover:text-emerald-400 hover:bg-emerald-500/5': variant === 'secondary',
+            // Ghost - minimal
             'text-slate-500 hover:text-emerald-400 hover:bg-slate-800/30': variant === 'ghost'
         },
         className
@@ -98,40 +98,34 @@ export function MagneticButton({
         children
     );
 
-    // Animation props for Framer Motion
-    const motionProps = {
-        className: baseStyles,
-        onMouseMove: handleMouseMove,
-        onMouseLeave: handleMouseLeave,
-        onTapStart: handlePress, // Instant tap detection
-        whileTap: { scale: 0.95 },
-        style: { x: springX, y: springY },
-        transition: { type: 'spring', stiffness: 400, damping: 10 } as const // Fix TS inference
-    };
-
     if (href && !disabled && !loading) {
         return (
-            <Link href={href} legacyBehavior passHref>
-                <motion.a
-                    ref={ref as any}
-                    {...motionProps as any}
-                    onClick={onClick}
-                >
-                    {content}
-                </motion.a>
+            <Link
+                href={href}
+                ref={ref as any}
+                className={baseStyles}
+                style={style}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                onClick={handlePress} // Use handlePress to trigger haptic + navigation
+            >
+                {content}
             </Link>
         );
     }
 
     return (
-        <motion.button
+        <button
             ref={ref as any}
             type={type}
+            onClick={handlePress}
             disabled={disabled || loading}
-            onClick={onClick}
-            {...motionProps}
+            className={baseStyles}
+            style={style}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
         >
             {content}
-        </motion.button>
+        </button>
     );
 }

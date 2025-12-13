@@ -37,7 +37,7 @@ export function HeroBadge({ children, icon = 'sparkles' }: HeroBadgeProps) {
 
     return (
         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md bg-emerald-950/50 border border-emerald-500/30 text-emerald-400 text-xs font-medium tracking-widest uppercase backdrop-blur-md mb-4 shadow-[0_0_20px_rgba(16,185,129,0.1),inset_0_1px_0_rgba(16,185,129,0.1)]">
-            <Icon size={12} className="animate-pulse" />
+            <Icon size={12} />
             {children}
         </span>
     );
