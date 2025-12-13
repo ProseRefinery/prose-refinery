@@ -90,7 +90,7 @@ export default function ApplyPage() {
 
     return (
         <section className="min-h-screen pt-24 pb-24 relative">
-            <div className="absolute inset-0 bg-slate-950 -z-50" />
+
 
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">

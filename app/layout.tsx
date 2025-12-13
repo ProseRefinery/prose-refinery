@@ -120,7 +120,7 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased bg-[#05080f] text-slate-200`}
+        className={`${inter.variable} ${playfair.variable} antialiased bg-slate-950 text-slate-200`}
       >
         <AuroraBackground>
           <ParallaxRunes />

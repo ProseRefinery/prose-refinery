@@ -63,20 +63,20 @@ export default function HomePage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
             <div className="max-w-3xl mx-auto">
               <Reveal>
-                <HeroBadge icon="award">Prose Refinery | Structural Editing for Speculative Fiction</HeroBadge>
+                <HeroBadge icon="award">Prose Refinery | Precision Editorial for Speculative Fiction</HeroBadge>
               </Reveal>
 
               <ClipReveal delay={100}>
                 <Heading as="h1" variant="hero" className="mb-6">
-                  Get Your Fantasy Novel{' '}
-                  <span className="animated-gradient-text">Agent-Ready</span>
+                  Structural Diagnosis & Editorial Standards for{' '}
+                  <span className="animated-gradient-text">Speculative Fiction</span>
                 </Heading>
               </ClipReveal>
 
               <ClipReveal delay={200}>
                 <h2 className="text-xl sm:text-2xl md:text-3xl text-slate-300 mb-8 font-[family-name:var(--font-playfair)]">
-                  We find the structural cracks that make agents pass.
-                  <span className="block text-slate-400 mt-2">Then we show you exactly how to fix them.</span>
+                  We find the structural cracks that weaken your story.
+                  <span className="block text-slate-400 mt-2">Then we provide the architectural blueprint to fix them.</span>
                 </h2>
               </ClipReveal>
 
@@ -91,7 +91,7 @@ export default function HomePage() {
                     href="/about"
                     className="mt-6 text-sm text-slate-400 hover:text-white transition-colors duration-300 border-b border-transparent hover:border-emerald-400/50 pb-0.5"
                   >
-                    See How It Works
+                    Explore The Standards
                   </a>
                 </div>
               </Reveal>
@@ -286,13 +286,13 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <ClipReveal>
               <Heading variant="section" className="mb-4">
-                See The Method In Action
+                Architecture vs. Texture
               </Heading>
             </ClipReveal>
             <Reveal delay={100}>
               <p className="text-slate-400 max-w-2xl mx-auto">
-                We don&apos;t just talk about structural editing. Here&apos;s a real transformation
-                from our flagship project, <em>Children of Aiyé</em>.
+                We don&apos;t just talk about structural editing. Here&apos;s a transformation
+                from our Tier 4 partnership flagship, <em>Children of Aiyé</em>.
               </p>
             </Reveal>
           </div>
@@ -407,17 +407,17 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <ClipReveal>
             <Heading variant="section" className="mb-6">
-              Stop Getting Form Rejections
+              Stop Guessing. Start Engineering.
             </Heading>
           </ClipReveal>
           <Reveal delay={100}>
             <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
-              Take our 2-minute diagnostic to discover which editorial tier
-              will transform your manuscript from &quot;maybe&quot; to &quot;yes.&quot;
+              Take our 2-minute diagnostic to discover exactly which structural load-bearing wall
+              needs attention first.
             </p>
           </Reveal>
           <Reveal delay={200}>
-            <div className="flex justify-center">
+            <div className="flex flex-col md:flex-row justify-center gap-4">
               <MagneticButton href="/diagnostic" variant="primary">
                 Start Your Diagnostic
                 <ArrowRight size={18} />

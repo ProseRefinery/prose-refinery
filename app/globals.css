@@ -294,7 +294,7 @@
    CSS VARIABLES
    ============================================================================ */
 :root {
-  --background: #05080f;
+  --background: #020617;
   --foreground: #e2e8f0;
   --emerald-500: #10b981;
   --emerald-600: #0d9668;
@@ -329,7 +329,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0f18;
+  background: #020617;
 }
 
 ::-webkit-scrollbar-thumb {
