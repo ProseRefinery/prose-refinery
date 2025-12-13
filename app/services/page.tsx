@@ -187,7 +187,8 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Mobile: Horizontal Scroll Snap, Desktop: Grid */}
-                    <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
+                    {/* Mobile: Horizontal Scroll Snap, Desktop: Grid */}
+                    <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:pb-0 md:mx-0 md:px-0 md:overflow-visible scrollbar-hide">
                         {/* Option 1: Hook */}
                         <Reveal delay={0} className="min-w-[85vw] md:min-w-0 snap-center">
                             <Card variant="tilt" className="h-full">
@@ -204,7 +205,7 @@ export default function ServicesPage() {
                         </Reveal>
 
                         {/* Option 2: Voice */}
-                        <Reveal delay={100} className="min-w-[85vw] md:min-w-0 snap-center">
+                        <Reveal delay={100} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
                             <Card variant="tilt" className="h-full">
                                 <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
                                     Voice & Tone
@@ -219,7 +220,7 @@ export default function ServicesPage() {
                         </Reveal>
 
                         {/* Option 3: Pacing */}
-                        <Reveal delay={200} className="min-w-[85vw] md:min-w-0 snap-center">
+                        <Reveal delay={200} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
                             <Card variant="tilt" className="h-full">
                                 <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
                                     Pacing Snapshot
@@ -234,7 +235,7 @@ export default function ServicesPage() {
                         </Reveal>
 
                         {/* Option 4: Bundle */}
-                        <Reveal delay={300} className="min-w-[85vw] md:min-w-0 snap-center">
+                        <Reveal delay={300} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
                             <Card variant="beam" glowColor="emerald" className="h-full" contentClassName="border border-emerald-500/30">
                                 <div className="mb-4">
                                     <Badge variant="emerald">Best Value</Badge>
@@ -313,7 +314,7 @@ export default function ServicesPage() {
                         </ClipReveal>
                     </div>
 
-                    <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 md:gap-8 max-w-5xl mx-auto md:pb-0 md:px-0 scrollbar-hide">
+                    <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 md:gap-8 max-w-5xl mx-auto md:pb-0 md:px-0 md:overflow-visible scrollbar-hide">
                         {/* Option 1: Taster */}
                         <Reveal delay={0} className="min-w-[85vw] md:min-w-0 snap-center">
                             <Card variant="tilt" className="h-full" contentClassName="p-8">
