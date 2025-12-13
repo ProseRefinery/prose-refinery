@@ -37,7 +37,7 @@ export const STRIPE_PRICES = {
 export const TIERS: Tier[] = [
     {
         id: 1,
-        name: 'Entry Diagnostics',
+        name: 'Story Integrity Diagnostic™',
         price: '£95 – £175',
         turnaround: '48 hours',
         description: "Pinpoint what's not working",
@@ -45,7 +45,7 @@ export const TIERS: Tier[] = [
     },
     {
         id: 2,
-        name: 'Focused Audits',
+        name: 'Single-Pillar Structural Audit',
         price: '£350',
         turnaround: '7 days',
         description: 'Repair what you already see',
@@ -55,11 +55,11 @@ export const TIERS: Tier[] = [
     },
     {
         id: 3,
-        name: 'Full Manuscript Refinement',
+        name: 'Full Structural Edit',
         price: '£1,500 – £4,500+',
         turnaround: '3–4 weeks',
         description: 'Reconstruct the full manuscript',
-        includes: ['Complete 7-Pillar Assessment', 'Iterative Revision Cycles', 'Strategy Consultations', 'Line-Level Annotation'],
+        includes: ['Complete 4-Pillar Assessment', 'Iterative Revision Cycles', 'Strategy Consultations', 'Line-Level Annotation'],
         pricingContext: 'Structured Tiers: Core (£1.5k), Standard (£2.8k), Premium (£4.5k+)'
     },
     {
@@ -74,13 +74,10 @@ export const TIERS: Tier[] = [
 ];
 
 export const PILLARS: Pillar[] = [
-    { id: 1, name: 'World & Tone Integrity', icon: Layers, short: 'Does the world feel real?' },
-    { id: 2, name: 'Character Continuity', icon: Users, short: 'Do characters behave consistently?' },
-    { id: 3, name: 'Lore Consistency', icon: BookOpen, short: 'Does the mythology hold?' },
-    { id: 4, name: 'System Cohesion', icon: Zap, short: 'Do magic systems follow rules?' },
-    { id: 5, name: 'Plot Logic', icon: Target, short: 'Does cause follow effect?' },
-    { id: 6, name: 'Emotional Resonance', icon: Heart, short: 'Do emotional beats land?' },
-    { id: 7, name: 'Market Alignment', icon: BarChart3, short: 'Is it positioned correctly?' }
+    { id: 1, name: 'Plot Architecture', icon: Layers, short: 'Does the structure hold weight?' },
+    { id: 2, name: 'Character Integrity', icon: Users, short: 'Do internal arcs drive external action?' },
+    { id: 3, name: 'World-System Logic', icon: BookOpen, short: 'Is the setting consistent and consequential?' },
+    { id: 4, name: 'Pacing & Pressure', icon: Zap, short: 'Does tension escalate effectively?' }
 ];
 
 export const QUESTIONS: Question[] = [
@@ -96,7 +93,6 @@ export const QUESTIONS: Question[] = [
 
 export const NAV_ITEMS: NavItem[] = [
     { id: 'home', label: 'Home', href: '/' },
-    { id: 'method', label: 'Method', href: '/method' },
     { id: 'services', label: 'Services', href: '/services' },
     { id: 'resources', label: 'Resources', href: '/resources' },
     { id: 'about', label: 'About', href: '/about' },

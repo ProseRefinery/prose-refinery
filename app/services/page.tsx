@@ -36,9 +36,9 @@ function MobileComparison() {
                     ))}
                 </div>
                 <div className="text-center mt-3 text-xs text-emerald-400 font-medium uppercase tracking-wide">
-                    {activeTier === 1 && "Entry Diagnostics"}
-                    {activeTier === 2 && "Focused Audits"}
-                    {activeTier === 3 && "Full Manuscript"}
+                    {activeTier === 1 && "Story Integrity Diagnostic™"}
+                    {activeTier === 2 && "Single-Pillar Structural Audit"}
+                    {activeTier === 3 && "Full Structural Edit"}
                     {activeTier === 4 && "Editorial Partnership"}
                 </div>
             </div>
@@ -171,7 +171,7 @@ export default function ServicesPage() {
                     <div className="text-center mb-12">
                         <ClipReveal>
                             <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                Tier 1: Entry Diagnostics
+                                Tier 1: Story Integrity Diagnostic™
                             </h2>
                         </ClipReveal>
                         <Reveal delay={100}>
@@ -264,7 +264,7 @@ export default function ServicesPage() {
                 <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
                     <ClipReveal>
                         <h2 className="text-3xl font-bold text-white mb-8 font-[family-name:var(--font-playfair)]">
-                            Tier 2: Focused Work
+                            Tier 2: Single-Pillar Structural Audit
                         </h2>
                     </ClipReveal>
                     <Reveal>
@@ -307,7 +307,7 @@ export default function ServicesPage() {
                     <div className="text-center mb-12">
                         <ClipReveal>
                             <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                Tier 3: Full Manuscript Refinement
+                                Tier 3: Full Structural Edit
                             </h2>
                         </ClipReveal>
                     </div>

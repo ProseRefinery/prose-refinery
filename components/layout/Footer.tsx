@@ -105,7 +105,7 @@ export function Footer() {
                         <ul className="space-y-3">
                             <li><FooterLink href="/services#diagnostics">Diagnostics</FooterLink></li>
                             <li><FooterLink href="/services#audits">Developmental Audits</FooterLink></li>
-                            <li><FooterLink href="/services#mentorship">Mentorship</FooterLink></li>
+
                             <li><FooterLink href="/resources">Craft Resources</FooterLink></li>
                         </ul>
                     </div>

@@ -86,10 +86,10 @@ export default function HomePage() {
                   </MagneticButton>
 
                   <a
-                    href="/method"
+                    href="/about"
                     className="mt-6 text-sm text-slate-400 hover:text-white transition-colors duration-300 border-b border-transparent hover:border-emerald-400/50 pb-0.5"
                   >
-                    Read about our methodology
+                    See How It Works
                   </a>
                 </div>
               </Reveal>
@@ -190,10 +190,11 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <Reveal delay={0}>
                 <div className="relative text-center bg-slate-950 md:bg-transparent p-6 rounded-lg md:p-0 z-10">
-                  <div className="w-24 h-24 mx-auto bg-slate-900 rounded-full border border-emerald-500/30 flex items-center justify-center mb-6 shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)]">
-                    <Search className="w-10 h-10 text-emerald-400" />
+                  <div className="w-24 h-24 mx-auto bg-slate-900 rounded-full border border-emerald-500/30 flex items-center justify-center mb-6 shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] relative group">
+                    <div className="absolute -top-4 -right-4 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-slate-900 font-bold text-lg shadow-lg z-20">01</div>
+                    <Search className="w-10 h-10 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">1. Diagnose</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">Diagnose</h3>
                   <p className="text-slate-400 text-sm px-4">
                     We use our 7-point framework to identify exactly where your structure is failing.
                   </p>
@@ -202,10 +203,11 @@ export default function HomePage() {
 
               <Reveal delay={200}>
                 <div className="relative text-center bg-slate-950 md:bg-transparent p-6 rounded-lg md:p-0 z-10">
-                  <div className="w-24 h-24 mx-auto bg-slate-900 rounded-full border border-emerald-500/30 flex items-center justify-center mb-6 shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)]">
-                    <PenTool className="w-10 h-10 text-emerald-400" />
+                  <div className="w-24 h-24 mx-auto bg-slate-900 rounded-full border border-emerald-500/30 flex items-center justify-center mb-6 shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] relative group">
+                    <div className="absolute -top-4 -right-4 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-slate-900 font-bold text-lg shadow-lg z-20">02</div>
+                    <PenTool className="w-10 h-10 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">2. Reconstruct</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">Reconstruct</h3>
                   <p className="text-slate-400 text-sm px-4">
                     We provide a specific architectural blueprint to fix the load-bearing walls of your story.
                   </p>
@@ -214,10 +216,11 @@ export default function HomePage() {
 
               <Reveal delay={400}>
                 <div className="relative text-center bg-slate-950 md:bg-transparent p-6 rounded-lg md:p-0 z-10">
-                  <div className="w-24 h-24 mx-auto bg-slate-900 rounded-full border border-emerald-500/30 flex items-center justify-center mb-6 shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)]">
-                    <Feather className="w-10 h-10 text-emerald-400" />
+                  <div className="w-24 h-24 mx-auto bg-slate-900 rounded-full border border-emerald-500/30 flex items-center justify-center mb-6 shadow-[0_0_30px_-10px_rgba(16,185,129,0.3)] relative group">
+                    <div className="absolute -top-4 -right-4 w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-slate-900 font-bold text-lg shadow-lg z-20">03</div>
+                    <Feather className="w-10 h-10 text-emerald-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-2">3. Refine</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">Refine</h3>
                   <p className="text-slate-400 text-sm px-4">
                     Only then do we polish the prose. Clarity follows structure, not the other way around.
                   </p>
@@ -228,77 +231,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Methodology Proof Section */}
-      <section className="py-24 border-t border-slate-800/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ClipReveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                Why Trust Our Process?
-              </h2>
-            </ClipReveal>
-            <Reveal delay={100}>
-              <p className="text-slate-400 max-w-2xl mx-auto">
-                We don&apos;t just talk about methodology. We built it, tested it, and proved it works.
-              </p>
-            </Reveal>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {TRUST_CARDS.map((card, i) => {
-              const Icon = card.icon;
-              return (
-                <Reveal key={i} delay={i * 100}>
-                  <TiltCard className="h-full">
-                    <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full">
-                      <Icon className="w-10 h-10 text-emerald-400 mb-4" />
-                      <h3 className="text-lg font-semibold text-white mb-2">{card.title}</h3>
-                      <p className="text-sm text-slate-400">{card.text}</p>
-                    </div>
-                  </TiltCard>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
-      {/* Stats Section - With Better Context */}
-      <section className="py-24 border-t border-slate-800/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <ClipReveal>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                Built on Deep Study
-              </h2>
-            </ClipReveal>
-            <Reveal delay={100}>
-              <p className="text-slate-400 max-w-2xl mx-auto">
-                Our framework comes from years of analyzing what makes speculative fiction work.
-              </p>
-            </Reveal>
-          </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { value: '7', label: 'Pillars', sublabel: 'Systematic framework for structural analysis' },
-              { value: '20+', label: 'Years', sublabel: 'Studying what makes readers keep turning pages' },
-              { value: '110K', label: 'Words', sublabel: 'Our flagship project—proof of concept' },
-              { value: '200+', label: 'Novels', sublabel: 'Analyzed to build our methodology' }
-            ].map((stat, i) => (
-              <Reveal key={i} delay={i * 100}>
-                <TiltCard className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 text-center">
-                  <div className="text-3xl md:text-4xl font-bold text-emerald-400 mb-2">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-white font-medium mb-1">{stat.label}</div>
-                  <div className="text-xs text-slate-500">{stat.sublabel}</div>
-                </TiltCard>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Pillars Preview */}
       <section className="py-24 border-t border-slate-800/50">
@@ -306,7 +241,7 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <ClipReveal>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                The 7 Pillars of Narrative Integrity
+                The 4 Core Pillars of Narrative Integrity
               </h2>
             </ClipReveal>
             <Reveal delay={100}>
@@ -318,7 +253,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PILLARS.slice(0, 4).map((pillar, i) => {
+            {PILLARS.map((pillar, i) => {
               const Icon = pillar.icon;
               return (
                 <Reveal key={pillar.id} delay={i * 100}>
@@ -476,19 +411,14 @@ export default function HomePage() {
             </p>
           </Reveal>
           <Reveal delay={200}>
-            <div className="flex flex-wrap justify-center gap-4">
-              <MagneticButton href="/diagnostic" variant="primary">
-                Start Your Diagnostic
-                <ArrowRight size={18} />
-              </MagneticButton>
-              <MagneticButton href="/consultation" variant="secondary">
-                <Calendar size={18} />
-                Book Free Consultation
-              </MagneticButton>
-            </div>
-          </Reveal>
+            <MagneticButton href="/diagnostic" variant="primary">
+              Start Your Diagnostic
+              <ArrowRight size={18} />
+            </MagneticButton>
         </div>
-      </section>
+      </Reveal>
+    </div >
+      </section >
     </>
   );
 }
