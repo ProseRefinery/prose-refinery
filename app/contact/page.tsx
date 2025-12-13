@@ -151,7 +151,10 @@ export default function ContactPage() {
                                 name="tier"
                                 label="Interested In"
                                 value={formData.tier}
-                                onChange={handleChange}
+                                onChange={(name, value) => {
+                                    setFormData(prev => ({ ...prev, [name]: value }));
+                                    if (errors[name]) setErrors(prev => ({ ...prev, [name]: false }));
+                                }}
                                 options={tierOptions}
                                 error={errors.tier}
                                 required
