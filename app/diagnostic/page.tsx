@@ -139,7 +139,7 @@ export default function DiagnosticPage() {
     // Intro State
     if (state === 'intro') {
         return (
-            <div className="min-h-screen bg-[#05080f]">
+            <div className="min-h-screen bg-slate-950">
                 {/* 1. Hero Block */}
                 <Section className="relative pt-32 pb-20" noBorder>
                     <GridGlowBackground>
@@ -435,7 +435,7 @@ export default function DiagnosticPage() {
         const tierDetails = TIERS.find(t => t.id === result.tier);
 
         return (
-            <div className="min-h-screen bg-[#05080f] pt-32 pb-20 px-4">
+            <div className="min-h-screen bg-slate-950 pt-32 pb-20 px-4">
                 <div className="mx-auto max-w-3xl">
                     <ClipReveal>
                         <h1 className="text-3xl md:text-4xl font-bold text-white text-center mb-2 font-[family-name:var(--font-playfair)]">
