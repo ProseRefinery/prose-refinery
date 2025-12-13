@@ -342,7 +342,7 @@ export default function ServicesPage() {
                                         Sample edit of your first 50 pages to see if we're a good fit. The cost is credited toward the full service.
                                     </p>
                                     <div className="text-2xl font-bold text-white mb-6">£195</div>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier3_taster} variant="secondary" className="w-full">
+                                    <CheckoutButton priceId={STRIPE_PRICES.tier3_preview} variant="secondary" className="w-full">
                                         Buy Sample Edit
                                     </CheckoutButton>
                                 </div>
