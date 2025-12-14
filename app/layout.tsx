@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "Prose Refinery | Precision Editorial for Speculative Fiction",
     description: "Expert developmental editing for fantasy & sci-fi. We fix the structural cracks that make agents pass.",
     images: [{
-      url: '/og-image-v14.png',
+      url: '/og-image-v16.png',
       width: 1200,
       height: 630,
       alt: 'Prose Refinery Editorial'
