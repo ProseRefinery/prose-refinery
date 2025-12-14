@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=630, initial-scale=1.0">
+    <title>OG Image Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1200px;
+            height: 630px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-top: -20px;
+        }
+
+        /* Icon Wrapper - using simple image source */
+        .icon-wrapper {
+            height: 320px;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-wrapper img {
+            height: 100%;
+            width: auto;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 88px;
+            font-weight: 700;
+            color: #007F57;
+            margin: 0;
+            line-height: 1.0;
+            letter-spacing: -0.02em;
+            /* Restored negative spacing to enable ligatures */
+            word-spacing: 0.2em;
+            font-variant-ligatures: common-ligatures;
+            /* Force ligatures for 'fi' merge */
+        }
+
+        .tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            /* Reduced to half (was 32px) */
+            font-weight: 500;
+            color: #292929;
+            /* Dark Grey */
+            margin-top: 8px;
+            letter-spacing: 0.05em;
+            opacity: 0.95;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="icon-wrapper">
+            <img src="favicon.svg" alt="Prose Refinery Icon">
+        </div>
+        <h1 class="title">Prose Refinery</h1>
+        <p class="tagline">Precision Editorial for Speculative Fiction</p>
+    </div>
+</body>
+
+</html>
