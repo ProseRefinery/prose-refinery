@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS, COMPANY } from '@/lib/constants';
+import { useHaptic } from '@/hooks/useHaptic'; // Import hook
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { cn } from '@/lib/utils';
 
@@ -26,27 +27,12 @@ function StatusIndicator() {
 
 // Urgency/Availability badge
 // Urgency/Availability badge
+// Urgency/Availability badge
 function AvailabilityBadge() {
-    const [dateStr, setDateStr] = useState<string>('');
-
-    useEffect(() => {
-        const now = new Date();
-        setDateStr(now.toLocaleDateString('en-US', { month: 'short', year: 'numeric' }));
-    }, []);
-
-    // Prevent hydration mismatch by not rendering date on server
-    if (!dateStr) return (
-        <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/30">
-            <span className="text-[10px] uppercase tracking-widest text-emerald-400">
-                Now Booking
-            </span>
-        </div>
-    );
-
     return (
         <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 animate-in fade-in duration-500">
-            <span className="text-[10px] uppercase tracking-widest text-emerald-400">
-                Now Booking: {dateStr}
+            <span className="text-[10px] uppercase tracking-widest text-emerald-400" suppressHydrationWarning>
+                Limited Availability
             </span>
         </div>
     );
@@ -60,6 +46,7 @@ function Divider() {
 export function Nav() {
     const pathname = usePathname();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { trigger } = useHaptic(); // Initialize hook
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50">
@@ -90,6 +77,7 @@ export function Nav() {
                                 <Link
                                     key={item.id}
                                     href={item.href}
+                                    onClick={() => trigger('light')} // Add light haptic
                                     className={cn(
                                         'relative px-4 py-2 text-[11px] font-medium tracking-widest uppercase transition-colors',
                                         isActive
@@ -135,7 +123,7 @@ export function Nav() {
 
                 {/* Mobile Menu */}
                 {mobileMenuOpen && (
-                    <div className="md:hidden mt-2 py-4 px-4 bg-slate-900/95 backdrop-blur-md border border-slate-800/50 rounded-md">
+                    <div className="md:hidden mt-2 py-4 px-4 bg-slate-900/95 backdrop-blur-md border border-slate-800/50 rounded-md max-h-[80vh] overflow-y-auto scrollbar-hide">
                         <div className="flex flex-col gap-1">
                             {NAV_ITEMS.map((item) => {
                                 const isActive = pathname === item.href;
@@ -143,7 +131,10 @@ export function Nav() {
                                     <Link
                                         key={item.id}
                                         href={item.href}
-                                        onClick={() => setMobileMenuOpen(false)}
+                                        onClick={() => {
+                                            trigger('light');
+                                            setMobileMenuOpen(false);
+                                        }}
                                         className={cn(
                                             'px-4 py-3 text-[11px] font-medium tracking-widest uppercase rounded-md transition-colors',
                                             isActive

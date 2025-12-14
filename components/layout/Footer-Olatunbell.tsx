@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Mail, ArrowRight, CheckCircle2, Instagram, Twitter } from 'lucide-react';
-import { COMPANY, NAV_ITEMS } from '@/lib/constants';
+import { COMPANY } from '@/lib/constants';
 import { useState, FormEvent } from 'react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { MagneticButton } from '@/components/ui/MagneticButton';
+import { Card } from '@/components/ui/Card'; // Added import
 
 const FooterLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => (
     <div className="relative">
@@ -76,8 +77,7 @@ export function Footer() {
                         </Link>
 
                         <p className="text-slate-400 leading-relaxed text-sm max-w-sm font-light">
-                            Constructing the architecture of the next generation of fantasy bestsellers.
-                            We don't just edit smooth sentences; we build unbreakable stories.
+                            Structural editorial practice for speculative fiction.
                         </p>
 
                         <div className="flex items-center gap-3 pt-2">
@@ -104,8 +104,8 @@ export function Footer() {
                         <h4 className="text-white text-lg font-bold mb-6 font-[family-name:var(--font-playfair)]">Expertise</h4>
                         <ul className="space-y-3">
                             <li><FooterLink href="/services#diagnostics">Diagnostics</FooterLink></li>
-                            <li><FooterLink href="/services#audits">Developmental Audits</FooterLink></li>
-                            <li><FooterLink href="/services#mentorship">Mentorship</FooterLink></li>
+                            <li><FooterLink href="/services#audits">Structural Audits</FooterLink></li>
+
                             <li><FooterLink href="/resources">Craft Resources</FooterLink></li>
                         </ul>
                     </div>
@@ -114,27 +114,14 @@ export function Footer() {
                     <div className="lg:col-span-2">
                         <h4 className="text-white text-lg font-bold mb-6 font-[family-name:var(--font-playfair)]">Company</h4>
                         <ul className="space-y-3">
-                            <li><FooterLink href="/method">The Method</FooterLink></li>
-                            <li><FooterLink href="/about">About Us</FooterLink></li>
+                            <li><FooterLink href="/about">How It Works</FooterLink></li>
                             <li><FooterLink href="/contact">Contact</FooterLink></li>
-                            <li className="pt-3 mt-3 border-t border-slate-800/50">
-                                <Link
-                                    href="/login"
-                                    className="text-slate-500 hover:text-white transition-colors text-xs uppercase tracking-wider flex items-center gap-2 group"
-                                >
-                                    Client Portal
-                                    <ArrowRight size={10} className="group-hover:translate-x-1 transition-transform" />
-                                </Link>
-                            </li>
                         </ul>
                     </div>
 
                     {/* Newsletter - 4 Cols */}
                     <div className="col-span-2 lg:col-span-4">
-                        <div className="relative p-6 rounded-2xl bg-slate-900/40 border border-slate-800 backdrop-blur-sm overflow-hidden group hover:border-emerald-500/30 transition-colors duration-500">
-                            {/* Beam Effect */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
+                        <Card variant="tilt" maxTilt={1} className="h-full" contentClassName="p-8">
                             <h4 className="relative text-white text-lg font-bold mb-2 font-[family-name:var(--font-playfair)]">
                                 Refine Your Inbox
                             </h4>
@@ -145,7 +132,7 @@ export function Footer() {
                             {status === 'success' ? (
                                 <div className="relative flex items-center gap-3 text-emerald-400 bg-emerald-950/30 p-4 rounded-xl border border-emerald-500/20 animate-in fade-in zoom-in duration-300">
                                     <CheckCircle2 size={20} />
-                                    <span className="font-medium text-sm">You're on the list.</span>
+                                    <span className="font-medium text-sm">You&apos;re on the list.</span>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="relative flex gap-2">
@@ -157,7 +144,7 @@ export function Footer() {
                                             placeholder="author@example.com"
                                             required
                                             disabled={status === 'loading'}
-                                            className="peer w-full h-12 bg-slate-950/80 border border-slate-700 rounded-lg px-4 text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-[family-name:var(--font-inter)] text-sm"
+                                            className="peer w-full h-12 bg-slate-950/80 border border-slate-700/50 rounded-lg px-4 text-white placeholder-slate-600 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-[family-name:var(--font-inter)] text-sm"
                                             id="footer-email"
                                         />
                                     </div>
@@ -171,18 +158,19 @@ export function Footer() {
                                     </MagneticButton>
                                 </form>
                             )}
-                        </div>
+                        </Card>
                     </div>
                 </div>
 
                 <div className="mt-12 pt-8 border-t border-slate-800/50 flex flex-col md:flex-row justify-between items-center gap-4">
                     <div className="text-slate-600 text-xs font-light">
                         © {new Date().getFullYear()} {COMPANY.legalName}. All rights reserved.
+                        <span className="block mt-1 text-slate-700">All manuscripts treated as confidential. Never shared or reused.</span>
                     </div>
                     <div className="flex gap-6 text-xs text-slate-600 font-light">
                         <Link href="/privacy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
                         <Link href="/terms" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>
-                        <Link href="/sitemap" className="hover:text-emerald-400 transition-colors">Sitemap</Link>
+                        <Link href="/sitemap.xml" className="hover:text-emerald-400 transition-colors">Sitemap</Link>
                     </div>
                 </div>
             </div>
