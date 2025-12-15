@@ -40,11 +40,19 @@ export const metadata: Metadata = {
     title: "Prose Refinery | Precision Editorial for Speculative Fiction",
     description: "Expert developmental editing for fantasy & sci-fi. We fix the structural cracks that make agents pass.",
     images: [{
-      url: '/og-image.jpg', // We will need to create this later or use a generic one
+      url: '/og-image-v26.png',
       width: 1200,
       height: 630,
       alt: 'Prose Refinery Editorial'
     }]
+  },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.png', type: 'image/png' }
+    ],
+    shortcut: '/favicon.png',
+    apple: '/favicon.png', // Ideally should be apple-touch-icon.png but this works for now
   },
   twitter: {
     card: 'summary_large_image',
