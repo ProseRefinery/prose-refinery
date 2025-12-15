@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    // Next.js automatically handles icon.png and apple-icon.png
+    // Next.js automatically handles icon.tsx and apple-icon.tsx
   },
 };
 
