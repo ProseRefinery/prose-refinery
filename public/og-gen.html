@@ -8,17 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Playfair+Display:wght@700&display=swap"
         rel="stylesheet">
     <style>
+        html,
         body {
             margin: 0;
             padding: 0;
-            width: 1200px;
-            height: 630px;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #ffffff;
+            background-color: #ffffff !important;
             font-family: 'Inter', sans-serif;
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+            user-select: none;
+            -webkit-user-select: none;
         }
 
         .container {
@@ -51,11 +58,9 @@
             color: #007F57;
             margin: 0;
             line-height: 1.0;
-            letter-spacing: -0.02em;
-            /* Restored negative spacing to enable ligatures */
+            letter-spacing: normal;
+            /* V16: Default spacing matches homepage code */
             word-spacing: 0.2em;
-            font-variant-ligatures: common-ligatures;
-            /* Force ligatures for 'fi' merge */
         }
 
         .tagline {
@@ -73,6 +78,9 @@
 </head>
 
 <body>
+    <div
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; box-shadow: inset 0 0 0 40px #ffffff; z-index: 9999; pointer-events: none;">
+    </div>
     <div class="container">
         <div class="icon-wrapper">
             <img src="favicon.svg" alt="Prose Refinery Icon">

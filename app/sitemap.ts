@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://prose-refinery.com'; // We will assume this is the target domain
+    const baseUrl = 'https://proserefinery.com'; // We will assume this is the target domain
 
     return [
         {

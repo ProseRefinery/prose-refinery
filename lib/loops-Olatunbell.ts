@@ -1,0 +1,143 @@
+const LOOPS_API_URL = 'https://app.loops.so/api/v1';
+
+// Helper to get key at runtime
+const getLoopsKey = () => {
+    const key = process.env.LOOPS_API_KEY || process.env.NEXT_PUBLIC_LOOPS_API_KEY;
+    if (!key) console.warn('Missing LOOPS_API_KEY environment variable');
+    return key;
+};
+
+interface ContactData {
+    email: string;
+    firstName?: string;
+    source?: string;
+    recommendedTier?: string;
+    manuscriptTitle?: string;
+    genre?: string;
+    quizCompleted?: boolean;
+    [key: string]: unknown;
+}
+
+interface TransactionalData {
+    transactionalId: string;
+    email: string;
+    dataVariables?: Record<string, unknown>;
+}
+
+// Add or update a contact
+export async function upsertContact(data: ContactData) {
+    const apiKey = getLoopsKey();
+    if (!apiKey) return { error: 'Missing API Key' };
+
+    try {
+        const response = await fetch(`${LOOPS_API_URL}/contacts/create`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: data.email,
+                firstName: data.firstName || '',
+                source: data.source || 'website',
+                recommendedTier: data.recommendedTier || '',
+                manuscriptTitle: data.manuscriptTitle || '',
+                genre: data.genre || '',
+                quizCompleted: data.quizCompleted || false,
+                // Spread only properties that aren't already matched above
+                ...Object.fromEntries(
+                    Object.entries(data).filter(([key]) =>
+                        !['email', 'firstName', 'source', 'recommendedTier', 'manuscriptTitle', 'genre', 'quizCompleted'].includes(key)
+                    )
+                )
+            }),
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            console.error('Loops contact error:', error);
+            // Don't throw, just log, to prevent blocking the flow if Loops is down
+            return { error: error.message };
+        }
+
+        return await response.json();
+    } catch (e) {
+        console.error('Loops connection error:', e);
+        return { error: 'Connection failed' };
+    }
+}
+
+// Send transactional email
+export async function sendTransactional(data: TransactionalData) {
+    const apiKey = getLoopsKey();
+    if (!apiKey) return { error: 'Missing API Key' };
+
+    try {
+        const response = await fetch(`${LOOPS_API_URL}/transactional`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                transactionalId: data.transactionalId,
+                email: data.email,
+                dataVariables: data.dataVariables || {},
+            }),
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            console.error('Loops email error:', error);
+            return { error: error.message };
+        }
+
+        return await response.json();
+    } catch (e) {
+        console.error('Loops connection error:', e);
+        return { error: 'Connection failed' };
+    }
+}
+
+// Trigger an event (for automations)
+export async function triggerEvent(
+    email: string,
+    eventName: string,
+    properties?: Record<string, unknown>,
+    idempotencyKey?: string
+) {
+    const apiKey = getLoopsKey();
+    if (!apiKey) return { error: 'Missing API Key' };
+
+    const headers: Record<string, string> = {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+    };
+
+    if (idempotencyKey) {
+        headers['Idempotency-Key'] = idempotencyKey;
+    }
+
+    try {
+        const response = await fetch(`${LOOPS_API_URL}/events/send`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+                email,
+                eventName,
+                eventProperties: properties || {},
+            }),
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            console.error('Loops event error:', error);
+            return { error: error.message };
+        }
+
+        return await response.json();
+    } catch (e) {
+        console.error('Loops connection error:', e);
+        return { error: 'Connection failed' };
+    }
+}

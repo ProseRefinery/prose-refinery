@@ -37,7 +37,7 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     name: 'Prose Refinery',
-    url: 'https://prose-refinery.com',
+    url: 'https://proserefinery.com',
     description: 'Expert developmental editing for fantasy and sci-fi novels.',
     priceRange: '£95-£5000',
     address: {

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="2066" viewBox="300 0 1100 2066">
+  <defs>
+    <clipPath id="cut-text">
+        <!-- Keep x=300 to x=1800 (Width 1500) -->
+        <!-- Actually viewBox handles the "window", clipPath handles the "cut".
+             Let's just clip 0 to 1500 in the logo's coordinate space.
+        -->
+        <rect x="0" y="0" width="1500" height="2066" />
+    </clipPath>
+  </defs>
+  <!-- Apply clipPath to the logo -->
+  <image href="logo.svg" x="0" y="0" width="4626.46" height="2066.39" clip-path="url(#cut-text)" />
+</svg>
