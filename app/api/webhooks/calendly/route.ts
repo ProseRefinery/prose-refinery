@@ -91,8 +91,7 @@ export async function POST(req: NextRequest) {
                     calendly_invitee_uri: inviteeUri,
                     booking_time: payload.created_at,
                     scheduled_start_time: payload.scheduled_event?.start_time
-                },
-                inviteeUri // Idempotency Key
+                }
             );
 
             if (eventResult.error) {
