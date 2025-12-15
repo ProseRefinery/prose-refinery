@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=630, initial-scale=1.0">
+    <title>OG V26 (Oversized Capture)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff !important;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        /* The Target Content Area (1200x630) */
+        .content-frame {
+            width: 1200px;
+            height: 630px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            /* Debug helper: outline to ensure we capture right area, but removed for final */
+            /* outline: 1px solid red; */
+        }
+
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-top: -20px;
+        }
+
+        .icon-wrapper {
+            height: 320px;
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-wrapper img {
+            height: 100%;
+            width: auto;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 88px;
+            font-weight: 700;
+            color: #007F57;
+            margin: 0;
+            line-height: 1.0;
+            letter-spacing: normal;
+            /* V16 State: Natural Ligatures */
+            word-spacing: 0.2em;
+        }
+
+        .tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: #292929;
+            margin-top: 8px;
+            letter-spacing: 0.05em;
+            opacity: 0.95;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-frame">
+        <div class="container">
+            <div class="icon-wrapper">
+                <img src="favicon.svg" alt="Prose Refinery Icon">
+            </div>
+            <h1 class="title">Prose Refinery</h1>
+            <p class="tagline">Precision Editorial for Speculative Fiction</p>
+        </div>
+    </div>
+</body>
+
+</html>
