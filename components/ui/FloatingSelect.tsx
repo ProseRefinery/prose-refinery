@@ -9,7 +9,7 @@ interface FloatingSelectProps {
     name: string;
     label: string;
     value: string;
-    onChange: (name: string, value: string) => void;
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     options: { value: string; label: string }[];
     error?: boolean;
     required?: boolean;
@@ -42,7 +42,15 @@ export function FloatingSelect({
     const selectedLabel = options.find(opt => opt.value === value)?.label;
 
     const handleSelect = (newValue: string) => {
-        onChange(name, newValue);
+        // Create a synthetic event to match standard ChangeEvent
+        const syntheticEvent = {
+            target: {
+                name,
+                value: newValue
+            }
+        } as React.ChangeEvent<HTMLSelectElement>;
+
+        onChange(syntheticEvent);
         setIsOpen(false);
     };
 
