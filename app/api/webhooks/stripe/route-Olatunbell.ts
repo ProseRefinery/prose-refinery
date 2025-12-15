@@ -96,8 +96,7 @@ export async function POST(req: NextRequest) {
                 {
                     product: productKey,
                     value: session.amount_total ? session.amount_total / 100 : 0
-                },
-                idempotencyKey // Prevents duplicate events if Stripe retries
+                }
             );
 
             if (eventResult.error) {
