@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 interface BeamCardProps {
     children: ReactNode;
     className?: string;
-    glowColor?: 'emerald' | 'purple' | 'blue' | 'amber' | 'red';
+    glowColor?: 'emerald' | 'purple' | 'blue' | 'amber' | 'red' | 'rose';
 }
 
 export function BeamCard({ children, className = '', glowColor = 'emerald' }: BeamCardProps) {
@@ -34,6 +34,11 @@ export function BeamCard({ children, className = '', glowColor = 'emerald' }: Be
             primary: 'rgb(239 68 68)',
             secondary: 'rgb(248 113 113)',
             glow: 'rgba(239, 68, 68, 0.3)'
+        },
+        rose: {
+            primary: 'rgb(244 63 94)',
+            secondary: 'rgb(251 113 133)',
+            glow: 'rgba(244, 63, 94, 0.3)'
         }
     };
 
