@@ -58,9 +58,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/favicon.ico', // Technically should be png, but browsers handle it
-    shortcut: '/favicon.ico',
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg', // SVG usually works on modern iOS, or Next.js generates fallback
   },
 };
 
