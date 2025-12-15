@@ -58,9 +58,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/icon.svg', // SVG usually works on modern iOS, or Next.js generates fallback
+    // Next.js automatically handles icon.tsx and apple-icon.tsx
   },
 };
 
