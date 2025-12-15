@@ -102,7 +102,7 @@ export async function sendTransactional(data: TransactionalData) {
 }
 
 // Trigger an event (for automations)
-export async function triggerEvent(email: string, eventName: string) {
+export async function triggerEvent(email: string, eventName: string, eventProperties?: Record<string, any>) {
     const apiKey = getLoopsKey();
     if (!apiKey) return { error: 'Missing API Key' };
 
@@ -116,6 +116,7 @@ export async function triggerEvent(email: string, eventName: string) {
             body: JSON.stringify({
                 email,
                 eventName,
+                eventProperties
             }),
         });
 
