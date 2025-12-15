@@ -22,6 +22,7 @@ export default function Icon() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    borderRadius: '20%', // Added rounding to satisfy user aesthetic preference
                 }}
             >
                 <svg
