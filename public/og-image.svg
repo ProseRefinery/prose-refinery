@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" style="background-color: white;">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Inter:wght@500&amp;display=swap');
+      .title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 88px; fill: #007F57; letter-spacing: -0.02em; word-spacing: 0.2em; }
+      .tagline { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 32px; fill: #292929; letter-spacing: 0em; opacity: 0.95; }
+    </style>
+  </defs>
+
+  <!-- Container Group for centering -->
+  <g transform="translate(600, 320)"> <!-- Center point -->
+    
+    <!-- Logo Image Reference 
+         Height 300px. 
+         Adjusting X to visually center.
+         Previous: -160. 
+         Assumption: Icon content is off-center to the right in the source viewBox.
+         Action: Shift image LEFT (more negative X) to compensate.
+    -->
+    <image href="icon_masked.svg" x="-130" y="-240" height="320" width="320" />
+
+    <text x="0" y="160" text-anchor="middle" class="title">Prose Refinery</text>
+    <text x="0" y="210" text-anchor="middle" class="tagline">Precision Editorial for Speculative Fiction</text>
+  </g>
+</svg>

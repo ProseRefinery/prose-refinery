@@ -1,0 +1,259 @@
+'use client';
+
+import { useState } from 'react';
+// import { Metadata } from 'next';
+import { ArrowRight, Send, Mail } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/BrandIcons';
+import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
+import { ClipReveal } from '@/components/effects/ClipReveal';
+import { Reveal } from '@/components/effects/Reveal';
+import { Card } from '@/components/ui/Card';
+import { BeamCard } from '@/components/effects/BeamCard';
+import { SuccessConfetti } from '@/components/effects/SuccessConfetti';
+import { FloatingInput } from '@/components/ui/FloatingInput';
+import { FloatingTextarea } from '@/components/ui/FloatingTextarea';
+import { FloatingSelect } from '@/components/ui/FloatingSelect';
+import { MagneticButton } from '@/components/ui/MagneticButton';
+import { HeroBadge } from '@/components/ui/HeroBadge';
+import { Heading } from '@/components/ui/Heading';
+import { Section } from '@/components/ui/Section';
+import { TIERS, COMPANY } from '@/lib/constants';
+
+const tierOptions = TIERS.map(t => ({ value: t.id.toString(), label: `${t.name} (${t.price})` }));
+
+export default function ContactPage() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        tier: '',
+        title: '',
+        genre: '',
+        wordcount: '',
+        pitch: '',
+        concern: ''
+    });
+    const [loading, setLoading] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [errors, setErrors] = useState<Record<string, boolean>>({});
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+        if (errors[name]) {
+            setErrors(prev => ({ ...prev, [name]: false }));
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        // Validate
+        const newErrors: Record<string, boolean> = {};
+        if (!formData.name) newErrors.name = true;
+        if (!formData.email) newErrors.email = true;
+        if (!formData.tier) newErrors.tier = true;
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        setLoading(true);
+
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        setLoading(false);
+        setSubmitted(true);
+    };
+
+    if (submitted) {
+        return (
+            <>
+                <SuccessConfetti trigger={true} />
+                <SuccessConfetti trigger={true} />
+                <Section className="min-h-[80vh] flex items-center justify-center">
+                    <div className="mx-auto max-w-xl px-4 text-center">
+                        <Reveal>
+                            <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <Send className="w-8 h-8 text-emerald-400" />
+                            </div>
+                        </Reveal>
+                        <ClipReveal delay={100}>
+                            <Heading as="h1" variant="hero" className="text-3xl mb-4">
+                                Message Sent!
+                            </Heading>
+                        </ClipReveal>
+                        <Reveal delay={200}>
+                            <p className="text-slate-400 mb-8">
+                                Thank you for reaching out. We&apos;ll review your inquiry and get back to you within 48 hours.
+                            </p>
+                        </Reveal>
+                        <Reveal delay={300}>
+                            <MagneticButton href="/" variant="primary">
+                                Back to Home
+                            </MagneticButton>
+                        </Reveal>
+                    </div>
+                </Section>
+            </>
+        );
+    }
+
+    return (
+        <>
+            {/* Hero */}
+            <Section className="relative flex justify-center pt-20 pb-24" noBorder>
+                <GridGlowBackground>
+                    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+                        <Reveal>
+                            <HeroBadge>Get In Touch</HeroBadge>
+                        </Reveal>
+                        <ClipReveal delay={100}>
+                            <Heading as="h1" variant="hero" className="mb-6">
+                                Let&apos;s Discuss Your Manuscript
+                            </Heading>
+                        </ClipReveal>
+                        <Reveal delay={200}>
+                            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+                                Tell us about your project and we&apos;ll recommend the best path forward.
+                            </p>
+                        </Reveal>
+                    </div>
+                </GridGlowBackground>
+            </Section>
+
+            {/* Form */}
+            <Section>
+                <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Basic Info */}
+                        <Reveal>
+                            <Card variant="tilt" contentClassName="space-y-6" maxTilt={1}>
+                                <Heading as="h3" variant="card" className="mb-4">Basic Information</Heading>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <FloatingInput
+                                        name="name"
+                                        label="Your Name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        error={errors.name}
+                                        required
+                                    />
+                                    <FloatingInput
+                                        name="email"
+                                        label="Email Address"
+                                        type="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        error={errors.email}
+                                        required
+                                    />
+                                </div>
+                            </Card>
+                        </Reveal>
+
+                        <Reveal delay={100} className="relative z-20">
+                            <Card variant="tilt" maxTilt={1}>
+                                <FloatingSelect
+                                    name="tier"
+                                    label="Interested In"
+                                    value={formData.tier}
+                                    onChange={(name, value) => {
+                                        setFormData(prev => ({ ...prev, [name]: value }));
+                                        if (errors[name]) setErrors(prev => ({ ...prev, [name]: false }));
+                                    }}
+                                    options={tierOptions}
+                                    error={errors.tier}
+                                    required
+                                />
+                            </Card>
+                        </Reveal>
+
+                        {/* Manuscript Details */}
+                        <Reveal delay={200}>
+                            <Card variant="tilt" contentClassName="space-y-6" maxTilt={1}>
+                                <Heading as="h3" variant="card">Manuscript Details</Heading>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <FloatingInput
+                                        name="title"
+                                        label="Working Title"
+                                        value={formData.title}
+                                        onChange={handleChange}
+                                    />
+                                    <FloatingInput
+                                        name="genre"
+                                        label="Genre/Subgenre"
+                                        value={formData.genre}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+
+                                <FloatingInput
+                                    name="wordcount"
+                                    label="Approximate Word Count"
+                                    value={formData.wordcount}
+                                    onChange={handleChange}
+                                />
+
+                                <FloatingInput
+                                    name="pitch"
+                                    label="One-Line Pitch"
+                                    value={formData.pitch}
+                                    onChange={handleChange}
+                                />
+
+                                <FloatingTextarea
+                                    name="concern"
+                                    label="Primary Concerns or Goals"
+                                    value={formData.concern}
+                                    onChange={handleChange}
+                                    rows={4}
+                                />
+                            </Card>
+                        </Reveal>
+
+                        <Reveal delay={300}>
+                            <MagneticButton
+                                type="submit"
+                                loading={loading}
+                                variant="primary"
+                                className="w-full"
+                            >
+                                Send Message
+                                <ArrowRight size={14} />
+                            </MagneticButton>
+                            <p className="text-xs text-slate-500 text-center mt-4">
+                                We reply within 2 business days. We will not request your manuscript file until we confirm fit.
+                            </p>
+                        </Reveal>
+                    </form>
+
+                    {/* Contact Info */}
+                    <Reveal delay={400}>
+                        <div className="mt-12 pt-12 border-t border-slate-800/50 text-center">
+                            <p className="text-slate-400 mb-4">Or reach out directly:</p>
+                            <div className="flex justify-center gap-6">
+                                <a
+                                    href={`mailto:${COMPANY.email}`}
+                                    className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors"
+                                >
+                                    <Mail size={18} />
+                                    {COMPANY.email}
+                                </a>
+                                <a
+                                    href={`https://wa.me/${COMPANY.whatsapp?.replace('+', '')}`}
+                                    className="flex items-center gap-2 text-slate-300 hover:text-emerald-400 transition-colors"
+                                >
+                                    <WhatsAppIcon size={18} />
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+            </Section >
+        </>
+    );
+}
