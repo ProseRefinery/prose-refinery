@@ -21,19 +21,18 @@ export default function Icon() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    // Transparent container
+                    background: 'transparent', // EXPLICITLY force transparency to avoid default black background
                 }}
             >
                 <div
                     style={{
                         background: 'white',
-                        width: '480px', // 93% scale (Safe Zone)
+                        width: '480px',
                         height: '480px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        borderRadius: '100px', // ~20% rounding on 480px
-                        boxShadow: '0 0 0 1px rgba(0,0,0,0.02)', // Subtle inner stroke to define edge on white tabs
+                        borderRadius: '80px', // ~16% of 480px
                     }}
                 >
                     <svg
