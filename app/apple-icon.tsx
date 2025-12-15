@@ -5,8 +5,8 @@ export const runtime = 'edge';
 
 // Image metadata
 export const size = {
-    width: 180,
-    height: 180,
+    width: 512,
+    height: 512,
 };
 export const contentType = 'image/png';
 
@@ -22,11 +22,12 @@ export default function Icon() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
+                    // No border radius for Apple Icon - iOS applies its own mask
                 }}
             >
                 <svg
-                    width="120"
-                    height="120"
+                    width="320"
+                    height="320"
                     viewBox="0 0 481.41 666.57"
                     xmlns="http://www.w3.org/2000/svg"
                 >

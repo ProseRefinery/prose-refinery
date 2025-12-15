@@ -5,8 +5,8 @@ export const runtime = 'edge';
 
 // Image metadata
 export const size = {
-    width: 32,
-    height: 32,
+    width: 512,
+    height: 512,
 };
 export const contentType = 'image/png';
 
@@ -22,12 +22,12 @@ export default function Icon() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: '20%', // Added rounding to satisfy user aesthetic preference
+                    borderRadius: '16%', // Standard app icon curvature (squircle-ish)
                 }}
             >
                 <svg
-                    width="24"
-                    height="24"
+                    width="320"
+                    height="320"
                     viewBox="0 0 481.41 666.57"
                     xmlns="http://www.w3.org/2000/svg"
                 >
