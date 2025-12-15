@@ -5,12 +5,16 @@ import { Check, ArrowRight, Shield, ChevronDown, ChevronUp, Calendar, CreditCard
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
-import { TiltCard } from '@/components/effects/TiltCard';
-import { BeamCard } from '@/components/effects/BeamCard';
+
+import { Card } from '@/components/ui/Card';
+
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { CheckoutButton } from '@/components/ui/checkout-button';
 import { HeroBadge } from '@/components/ui/HeroBadge';
-import { TIERS, STRIPE_PRICES } from '@/lib/constants';
+import { Badge } from '@/components/ui/Badge';
+import { Heading } from '@/components/ui/Heading';
+import { Section } from '@/components/ui/Section';
+import { STRIPE_PRICES } from '@/lib/constants';
 import { COMPARISON_DATA } from '@/lib/comparison-data';
 
 // Mobile Comparison Component
@@ -25,7 +29,7 @@ function MobileComparison() {
                     {[1, 2, 3, 4].map((tierId) => (
                         <button
                             key={tierId}
-                            onClick={() => setActiveTier(tierId as any)}
+                            onClick={() => setActiveTier(tierId as 1 | 2 | 3 | 4)}
                             className={`flex-1 py-3 text-sm font-medium rounded-md transition-all ${activeTier === tierId
                                 ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-500/20'
                                 : 'text-slate-400 hover:text-white bg-slate-800/50'
@@ -36,9 +40,9 @@ function MobileComparison() {
                     ))}
                 </div>
                 <div className="text-center mt-3 text-xs text-emerald-400 font-medium uppercase tracking-wide">
-                    {activeTier === 1 && "Entry Diagnostics"}
-                    {activeTier === 2 && "Focused Audits"}
-                    {activeTier === 3 && "Full Manuscript"}
+                    {activeTier === 1 && "Story Integrity Diagnostic™"}
+                    {activeTier === 2 && "Single-Pillar Structural Audit"}
+                    {activeTier === 3 && "Full Structural Edit"}
                     {activeTier === 4 && "Editorial Partnership"}
                 </div>
             </div>
@@ -69,11 +73,11 @@ const FAQ_ITEMS = [
     },
     {
         question: "How long does each service take?",
-        answer: "Tier 1 (Snapshots): 48 hours. Tier 2 (Focused Audits): 5-7 business days. Tier 3 (Full Manuscript): 3-4 weeks. Tier 4 (Partnership): 8-12 weeks with ongoing communication. We confirm exact timelines before starting."
+        answer: "Tier 1 (Snapshots): 48 hours. Tier 2 (Single-Pillar Audits): 5-7 business days. Tier 3 (Full Manuscript): 3-4 weeks. Tier 4 (Partnership): 8-12 weeks with ongoing communication. We confirm exact timelines before starting."
     },
     {
         question: "Do you work with debut authors?",
-        answer: "Absolutely. Most of our clients are debut authors preparing their first submission. We also work with published authors between contracts and indie authors leveling up their craft. What matters isn't your publishing history—it's your commitment to getting the structure right."
+        answer: "Absolutely. Most of our clients are debut authors preparing their first submission. We also work with published authors between contracts and indie authors leveling up their craft. What matters isn't your publishing history; it's your commitment to getting the structure right."
     },
     {
         question: "What makes you different from editors on Reedsy or Fiverr?",
@@ -81,11 +85,11 @@ const FAQ_ITEMS = [
     },
     {
         question: "What genres do you specialize in?",
-        answer: "Speculative fiction: fantasy (epic, urban, dark, cozy), science fiction, and genre-blending work. We don't edit literary fiction, memoir, romance (unless romantasy), or non-fiction. This focus means we understand genre conventions deeply—what readers expect and how to subvert those expectations effectively."
+        answer: "Speculative fiction: fantasy (epic, urban, dark, cozy), science fiction, and genre-blending work. We don't edit literary fiction, memoir, romance (unless romantasy), or non-fiction. This focus means we understand genre conventions deeply: what readers expect and how to subvert those expectations effectively."
     },
     {
         question: "Can I see a sample edit before committing?",
-        answer: "Yes. Our Tier 1 services (£95-£175) function as a sample—you'll see exactly how we work on a portion of your manuscript. Many clients start with Tier 1, then upgrade to a full manuscript review. There's no pressure to continue if it's not the right fit."
+        answer: "Yes. Our Tier 1 services (£95-£175) function as a sample: you'll see exactly how we work on a portion of your manuscript. Many clients start with Tier 1, then upgrade to a full manuscript review. There's no pressure to continue if it's not the right fit."
     },
     {
         question: "Do you offer payment plans?",
@@ -96,10 +100,10 @@ const FAQ_ITEMS = [
 // FAQ Accordion Component
 function FAQItem({ item, isOpen, onClick }: { item: typeof FAQ_ITEMS[0], isOpen: boolean, onClick: () => void }) {
     return (
-        <TiltCard className="mb-4">
+        <Card variant="tilt" className="mb-4" contentClassName="p-0">
             <button
                 onClick={onClick}
-                className="w-full p-6 bg-slate-800/30 border border-slate-700/50 rounded-md text-left hover:border-emerald-500/30 transition-colors"
+                className="w-full p-6 text-left h-full"
             >
                 <div className="flex items-center justify-between gap-4">
                     <h3 className="text-lg font-semibold text-white pr-4">{item.question}</h3>
@@ -115,7 +119,7 @@ function FAQItem({ item, isOpen, onClick }: { item: typeof FAQ_ITEMS[0], isOpen:
                     </p>
                 )}
             </button>
-        </TiltCard>
+        </Card>
     );
 }
 
@@ -123,34 +127,21 @@ export default function ServicesPage() {
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
     // Get tier-specific CTA
-    const getTierCTA = (tier: typeof TIERS[0]) => {
-        switch (tier.id) {
-            case 1:
-                return { text: 'Buy Now', href: '/services#tier-1-options', variant: 'secondary' as const };
-            case 2:
-                return { text: 'Book Consultation', href: '/consultation', variant: 'primary' as const };
-            case 3:
-                return { text: 'Book Consultation', href: '/consultation', variant: 'primary' as const };
-            case 4:
-                return { text: 'Apply', href: '/apply', variant: 'primary' as const };
-            default:
-                return { text: 'Get Started', href: '/contact', variant: 'secondary' as const };
-        }
-    };
+    // Unused helper removed
 
     return (
         <>
             {/* Hero */}
-            <section className="relative flex justify-center pt-20 pb-24">
+            <Section className="relative flex justify-center pt-20 pb-24" noBorder>
                 <GridGlowBackground>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                         <Reveal>
                             <HeroBadge icon="layers">Services & Pricing</HeroBadge>
                         </Reveal>
                         <ClipReveal delay={100}>
-                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+                            <Heading as="h1" variant="hero" className="mb-6">
                                 Choose Your Path to Publication
-                            </h1>
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={200}>
                             <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
@@ -176,16 +167,16 @@ export default function ServicesPage() {
                         </Reveal>
                     </div>
                 </GridGlowBackground>
-            </section>
+            </Section>
 
             {/* Tier 1: Entry Diagnostics */}
-            <section id="tier-1-options" className="py-24 border-t border-slate-800/50">
+            <Section id="tier-1-options">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                Tier 1: Entry Diagnostics
-                            </h2>
+                            <Heading variant="section" className="mb-4">
+                                Tier 1: Story Integrity Diagnostic™
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={100}>
                             <p className="text-slate-400 max-w-2xl mx-auto">
@@ -195,368 +186,221 @@ export default function ServicesPage() {
                         </Reveal>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {/* Mobile Scroll Hint */}
+                    <div className="md:hidden flex items-center justify-end gap-2 mb-4 text-xs font-medium text-emerald-500/80 animate-pulse px-4">
+                        <span>Swipe to explore options</span>
+                        <ArrowRight size={14} />
+                    </div>
+
+                    {/* Mobile: Horizontal Scroll Snap, Desktop: Grid */}
+                    {/* Mobile: Horizontal Scroll Snap, Desktop: Grid */}
+                    <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8 md:pb-0 md:mx-0 md:px-0 md:overflow-visible scrollbar-hide">
                         {/* Option 1: Hook */}
-                        <Reveal delay={0}>
-                            <TiltCard className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Opening Hook
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        Does your first chapter compel the reader to turn the page? We analyze your inciting incident and narrative traction.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier1_hook} variant="secondary" className="w-full">
-                                        Buy Now (£95)
-                                    </CheckoutButton>
-                                </div>
-                            </TiltCard>
+                        <Reveal delay={0} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
+                            <Card variant="tilt" className="h-full">
+                                <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                    Opening Hook
+                                </h3>
+                                <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                    Does your first chapter compel the reader to turn the page? We analyze your inciting incident and narrative traction.
+                                </p>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier1_hook} variant="secondary" className="w-full">
+                                    Buy Now (£95)
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
 
                         {/* Option 2: Voice */}
-                        <Reveal delay={100}>
-                            <TiltCard className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Voice & Tone
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        Is your narrative voice consistent and engaging? We check for tonal shifts and stylistic strength.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier1_voice} variant="secondary" className="w-full">
-                                        Buy Now (£95)
-                                    </CheckoutButton>
-                                </div>
-                            </TiltCard>
+                        <Reveal delay={100} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
+                            <Card variant="tilt" className="h-full">
+                                <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                    Voice & Tone
+                                </h3>
+                                <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                    Is your narrative voice consistent and engaging? We check for tonal shifts and stylistic strength.
+                                </p>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier1_voice} variant="secondary" className="w-full">
+                                    Buy Now (£95)
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
 
                         {/* Option 3: Pacing */}
-                        <Reveal delay={200}>
-                            <TiltCard className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Pacing Snapshot
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        Are you starting too slow or moving too fast? We map the beats of your opening to ensure structural rhythm.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier1_pacing} variant="secondary" className="w-full">
-                                        Buy Now (£95)
-                                    </CheckoutButton>
-                                </div>
-                            </TiltCard>
+                        <Reveal delay={200} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
+                            <Card variant="tilt" className="h-full">
+                                <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
+                                    Pacing Snapshot
+                                </h3>
+                                <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                    Are you starting too slow or moving too fast? We map the beats of your opening to ensure structural rhythm.
+                                </p>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier1_pacing} variant="secondary" className="w-full">
+                                    Buy Now (£95)
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
 
                         {/* Option 4: Bundle */}
-                        <Reveal delay={300}>
-                            <BeamCard glowColor="emerald" className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-emerald-500/30 h-full flex flex-col">
-                                    <div className="mb-4">
-                                        <span className="inline-block px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">
-                                            Best Value
-                                        </span>
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Complete Bundle
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        All three assessments in one report: Hook, Voice & Tone, and Pacing. Save £110.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier1_bundle} variant="primary" className="w-full">
-                                        Buy Now (£175)
-                                    </CheckoutButton>
+                        <Reveal delay={300} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
+                            <Card variant="tilt" glowColor="emerald" className="h-full" contentClassName="border border-emerald-500/30">
+                                <div className="mb-4">
+                                    <Badge variant="emerald">Best Value</Badge>
                                 </div>
-                            </BeamCard>
+                                <Heading as="h3" variant="subsection" className="mb-2">
+                                    Complete Bundle
+                                </Heading>
+                                <p className="text-slate-400 text-sm mb-6 flex-grow">
+                                    All three assessments in one report: Hook, Voice & Tone, and Pacing. Save £110.
+                                </p>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier1_bundle} variant="primary" className="w-full">
+                                    Buy Now (£175)
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
                     </div>
                 </div>
-            </section>
+            </Section>
 
             {/* Tier 2: Focused Work */}
-            <section className="py-24 border-t border-slate-800/50 bg-slate-900/20">
+            <Section background="subtle">
                 <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
                     <ClipReveal>
-                        <h2 className="text-3xl font-bold text-white mb-8 font-[family-name:var(--font-playfair)]">
-                            Tier 2: Focused Work
-                        </h2>
+                        <Heading variant="section" className="mb-8">
+                            Tier 2: Single-Pillar Structural Audit
+                        </Heading>
                     </ClipReveal>
                     <Reveal>
-                        <BeamCard glowColor="emerald" className="max-w-2xl mx-auto">
-                            <div className="p-8 bg-slate-800/30 rounded-md border border-emerald-500/30 text-left">
-                                <h3 className="text-2xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                    Single-Pillar Audit
-                                </h3>
-                                <p className="text-slate-400 mb-6">
-                                    A deep dive into one specific aspect of your story. Choose any of the 7 Pillars (e.g., Plot Logic, Character Continuity).
-                                </p>
-                                <ul className="space-y-3 mb-8">
-                                    <li className="flex items-start gap-3">
-                                        <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                                        <span className="text-slate-300 text-sm">Up to 30,000 words analyzed</span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                                        <span className="text-slate-300 text-sm">Actionable report delivered in 7 days</span>
-                                    </li>
-                                </ul>
-                                <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mt-8 pt-6 border-t border-slate-700/50">
-                                    <div className="text-3xl font-bold text-emerald-400">£350</div>
-                                    <CheckoutButton priceId={STRIPE_PRICES.single_pillar_audit} variant="primary" className="w-full sm:w-auto">
-                                        Buy Now
-                                    </CheckoutButton>
-                                </div>
+                        <Card variant="tilt" glowColor="emerald" className="max-w-2xl mx-auto" contentClassName="p-8 border border-emerald-500/30 text-left">
+                            <Heading as="h3" variant="card" className="mb-2">
+                                Single-Pillar Audit
+                            </Heading>
+                            <p className="text-slate-400 mb-6">
+                                A deep dive into one specific aspect of your story. Choose any of the 4 Pillars (e.g., Plot Architecture, Pacing & Pressure).
+                            </p>
+                            <ul className="space-y-3 mb-8">
+                                <li className="flex items-start gap-3">
+                                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-slate-300 text-sm">Up to 30,000 words: <strong>£250</strong></span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-slate-300 text-sm">30k–60k words: <strong>£350</strong></span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-slate-300 text-sm">60k–100k words: <strong>£450</strong></span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <Check size={18} className="text-emerald-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-slate-300 text-sm">Actionable report in 7-10 business days</span>
+                                </li>
+                            </ul>
+                            <div className="flex flex-col sm:flex-row gap-4 items-center justify-between mt-8 pt-6 border-t border-slate-700/50">
+                                <div className="text-3xl font-bold text-emerald-400">£250 – £450</div>
+                                <CheckoutButton priceId={STRIPE_PRICES.single_pillar_audit} variant="primary" className="w-full sm:w-auto">
+                                    Select Pillar
+                                </CheckoutButton>
                             </div>
-                        </BeamCard>
+                        </Card>
                         <div className="mt-6 text-slate-400 text-sm">
                             Need a multi-pillar analysis? <a href="/consultation" className="text-emerald-400 hover:text-emerald-300 underline underline-offset-4">Book a consultation</a> for a custom quote.
                         </div>
                     </Reveal>
                 </div>
-            </section>
+            </Section>
 
             {/* Tier 3: Full Manuscript */}
-            <section className="py-24 border-t border-slate-800/50">
+            <Section>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                Tier 3: Full Manuscript Refinement
-                            </h2>
+                            <Heading variant="section" className="mb-4">
+                                Tier 3: Full Structural Edit
+                            </Heading>
                         </ClipReveal>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    {/* Mobile Scroll Hint */}
+                    <div className="md:hidden flex items-center justify-end gap-2 mb-4 text-xs font-medium text-emerald-500/80 animate-pulse px-4">
+                        <span>Swipe to compare</span>
+                        <ArrowRight size={14} />
+                    </div>
+
+                    <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 gap-4 -mx-4 px-4 md:grid md:grid-cols-2 md:gap-8 max-w-5xl mx-auto md:pb-0 md:px-0 md:overflow-visible scrollbar-hide">
                         {/* Option 1: Taster */}
-                        <Reveal delay={0}>
-                            <TiltCard className="h-full">
-                                <div className="p-8 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <div className="mb-4">
-                                        <span className="inline-block px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 text-xs font-medium">
-                                            Try Before You Commit
-                                        </span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Tier 3 Taster
-                                    </h3>
-                                    <p className="text-slate-400 mb-6 flex-grow">
-                                        Sample edit of your first 50 pages to see if we're a good fit. The cost is credited toward the full service.
-                                    </p>
-                                    <div className="text-2xl font-bold text-white mb-6">£195</div>
-                                    <CheckoutButton priceId={STRIPE_PRICES.tier3_preview} variant="secondary" className="w-full">
-                                        Buy Sample Edit
-                                    </CheckoutButton>
+                        <Reveal delay={0} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
+                            <Card variant="tilt" className="h-full" contentClassName="p-8">
+                                <div className="mb-4">
+                                    <Badge variant="blue">Try Before You Commit</Badge>
                                 </div>
-                            </TiltCard>
+                                <Heading as="h3" variant="card" className="mb-2">
+                                    Tier 3 Taster
+                                </Heading>
+                                <p className="text-slate-400 mb-6 flex-grow">
+                                    Sample edit of your first 50 pages to see if we&apos;re a good fit. The cost is credited toward the full service.
+                                </p>
+                                <div className="text-2xl font-bold text-white mb-6">£195</div>
+                                <CheckoutButton priceId={STRIPE_PRICES.tier3_preview} variant="secondary" className="w-full">
+                                    Buy Sample Edit
+                                </CheckoutButton>
+                            </Card>
                         </Reveal>
 
                         {/* Option 2: Full Service */}
-                        <Reveal delay={100}>
-                            <TiltCard className="h-full">
-                                <div className="p-8 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-emerald-500/30 transition-colors">
-                                    <div className="mb-4">
-                                        <span className="inline-block px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">
-                                            Comprehensive
-                                        </span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Full Manuscript Assessment
-                                    </h3>
-                                    <p className="text-slate-400 mb-6 flex-grow">
-                                        Complete 7-Pillar analysis, chapter-by-chapter notes, and a comprehensive editorial letter.
-                                    </p>
-                                    <div className="text-2xl font-bold text-white mb-6">£1,500 – £4,500</div>
-                                    <MagneticButton href="/consultation" variant="primary" className="w-full">
-                                        Book Consultation
-                                        <ArrowRight size={16} />
-                                    </MagneticButton>
+                        <Reveal delay={100} className="min-w-[85vw] md:min-w-0 md:w-auto snap-center">
+                            <Card variant="tilt" className="h-full" contentClassName="p-8">
+                                <div className="mb-4">
+                                    <Badge variant="emerald">Comprehensive</Badge>
                                 </div>
-                            </TiltCard>
-                        </Reveal>
-                    </div>
-                </div>
-            </section>
-
-            {/* Launch Arsenal */}
-            <section className="py-24 border-t border-slate-800/50 bg-purple-900/5">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-                    <Reveal>
-                        <HeroBadge icon="layers">Flagship Service</HeroBadge>
-                    </Reveal>
-                    <ClipReveal delay={100}>
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 font-[family-name:var(--font-playfair)]">
-                            The Fantasy Author&apos;s Launch Arsenal
-                        </h2>
-                    </ClipReveal>
-
-                    <Reveal delay={200}>
-                        <BeamCard glowColor="purple" className="max-w-4xl mx-auto text-left">
-                            <div className="p-8 md:p-12 bg-slate-900/50 rounded-md border border-purple-500/30">
-                                <div className="flex flex-col md:flex-row gap-8 items-center">
-                                    <div className="flex-1">
-                                        <h3 className="text-2xl font-bold text-white mb-4">
-                                            The Complete Package
-                                        </h3>
-                                        <p className="text-slate-300 mb-6 leading-relaxed">
-                                            The only editorial service that gives you marketing assets to build your platform while we perfect your manuscript.
-                                        </p>
-                                        <ul className="space-y-4 mb-8">
-                                            <li className="flex items-start gap-3">
-                                                <Check className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
-                                                <span className="text-slate-300"><strong>Complete 7-Pillar Manuscript Assessment</strong> (Tier 3 equiv.)</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <Sparkles className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
-                                                <span className="text-slate-300"><strong>Custom AI-Generated Soundtrack</strong> (3-5 original tracks)</span>
-                                            </li>
-                                            <li className="flex items-start gap-3">
-                                                <Sparkles className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
-                                                <span className="text-slate-300"><strong>Cinematic Book Trailer</strong> (60-90 seconds) to launch your social media</span>
-                                            </li>
-                                        </ul>
-                                        <CheckoutButton priceId={STRIPE_PRICES.launch_arsenal} variant="primary" className="w-full md:w-auto bg-purple-600 hover:bg-purple-700 border-none">
-                                            Get The Arsenal — £1,500
-                                        </CheckoutButton>
-                                    </div>
-                                    <div className="w-full md:w-1/3 aspect-square bg-purple-900/10 rounded-lg flex items-center justify-center border border-purple-500/20">
-                                        <div className="text-center">
-                                            <Sparkles className="w-16 h-16 text-purple-500 mx-auto mb-4" />
-                                            <p className="text-purple-300 font-medium">Limited Availability</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </BeamCard>
-                    </Reveal>
-                </div>
-            </section>
-
-            {/* Marketing Assets */}
-            <section className="py-24 border-t border-slate-800/50">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12">
-                        <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                Marketing Assets
-                            </h2>
-                        </ClipReveal>
-                        <Reveal delay={100}>
-                            <p className="text-slate-400 max-w-2xl mx-auto">
-                                Already have your manuscript ready? Build your author platform with these standalone assets.
-                            </p>
-                        </Reveal>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {/* Asset 1: Teaser Soundtrack */}
-                        <Reveal delay={0}>
-                            <TiltCard className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-purple-500/30 transition-colors">
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Teaser Soundtrack
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        One custom track to set the mood for your book's teaser campaign.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.teaser_soundtrack} variant="secondary" className="w-full">
-                                        Buy Now (£200)
-                                    </CheckoutButton>
-                                </div>
-                            </TiltCard>
-                        </Reveal>
-
-                        {/* Asset 2: Full Soundtrack */}
-                        <Reveal delay={100}>
-                            <TiltCard className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-purple-500/30 transition-colors">
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Full Soundtrack
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        3-5 original tracks (Main Theme, Character Themes, Battle Theme).
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.full_soundtrack} variant="secondary" className="w-full">
-                                        Buy Now (£600)
-                                    </CheckoutButton>
-                                </div>
-                            </TiltCard>
-                        </Reveal>
-
-                        {/* Asset 3: Book Trailer */}
-                        <Reveal delay={200}>
-                            <TiltCard className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-slate-700/50 h-full flex flex-col hover:border-purple-500/30 transition-colors">
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Book Trailer
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        60-90 second cinematic trailer using stock footage and your custom soundtrack.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.book_trailer} variant="secondary" className="w-full">
-                                        Buy Now (£600)
-                                    </CheckoutButton>
-                                </div>
-                            </TiltCard>
-                        </Reveal>
-
-                        {/* Asset 4: Power Pack */}
-                        <Reveal delay={300}>
-                            <BeamCard glowColor="purple" className="h-full">
-                                <div className="p-6 bg-slate-800/30 rounded-md border border-purple-500/30 h-full flex flex-col">
-                                    <div className="mb-4">
-                                        <span className="inline-block px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-400 text-xs font-medium">
-                                            Save £205
-                                        </span>
-                                    </div>
-                                    <h3 className="text-xl font-bold text-white mb-2 font-[family-name:var(--font-playfair)]">
-                                        Marketing Power Pack
-                                    </h3>
-                                    <p className="text-slate-400 text-sm mb-6 flex-grow">
-                                        Get the Full Soundtrack AND Book Trailer. Everything you need to launch.
-                                    </p>
-                                    <CheckoutButton priceId={STRIPE_PRICES.marketing_power_pack} variant="primary" className="w-full">
-                                        Buy Now (£995)
-                                    </CheckoutButton>
-                                </div>
-                            </BeamCard>
-                        </Reveal>
-                    </div>
-                </div>
-            </section>
-
-            {/* Tier 4: Partnership */}
-            <section className="py-24 border-t border-slate-800/50">
-                <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-                    <ClipReveal>
-                        <h2 className="text-3xl font-bold text-white mb-8 font-[family-name:var(--font-playfair)]">
-                            Tier 4: Editorial Partnership
-                        </h2>
-                    </ClipReveal>
-                    <Reveal>
-                        <BeamCard glowColor="purple">
-                            <div className="p-10 bg-slate-800/30 rounded-md border border-purple-500/30">
-                                <p className="text-xl text-slate-300 mb-6 max-w-2xl mx-auto">
-                                    A 3-6 month partnership guiding you through multiple drafts. Includes everything in Tier 3, plus ongoing consultation and direct access.
+                                <Heading as="h3" variant="card" className="mb-2">
+                                    Full Manuscript Assessment
+                                </Heading>
+                                <p className="text-slate-400 mb-6 flex-grow">
+                                    Complete 4-Pillar analysis, chapter-by-chapter notes, and a comprehensive editorial letter.
                                 </p>
-                                <div className="text-3xl font-bold text-purple-400 mb-8">£5,000 – £12,000</div>
-                                <MagneticButton href="/apply" variant="primary">
-                                    Apply for Partnership
+                                <div className="text-2xl font-bold text-white mb-6">£1,500 – £4,500</div>
+                                <MagneticButton href="/consultation" variant="primary" className="w-full">
+                                    Book Consultation
                                     <ArrowRight size={16} />
                                 </MagneticButton>
-                                <p className="text-xs text-purple-400/60 mt-4">Limited to 3 clients per quarter</p>
-                            </div>
-                        </BeamCard>
+                            </Card>
+                        </Reveal>
+                    </div>
+                </div>
+            </Section>
+
+            {/* Tier 4: Partnership */}
+            <Section>
+                <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+                    <ClipReveal>
+                        <Heading variant="section" className="mb-8">
+                            Tier 4: Editorial Partnership
+                        </Heading>
+                    </ClipReveal>
+                    <Reveal>
+                        <Card variant="tilt" glowColor="purple" contentClassName="p-10 border border-purple-500/30">
+                            <p className="text-xl text-slate-300 mb-6 max-w-2xl mx-auto">
+                                A 3-6 month partnership guiding you through multiple drafts. Includes everything in Tier 3, plus ongoing consultation and direct access.
+                            </p>
+                            <div className="text-3xl font-bold text-purple-400 mb-8">£5,000 – £12,000</div>
+                            <MagneticButton href="/apply" variant="primary">
+                                Apply for Partnership
+                                <ArrowRight size={16} />
+                            </MagneticButton>
+                            <p className="text-xs text-purple-400/60 mt-4">Limited to 3 authors per quarter</p>
+                        </Card>
                     </Reveal>
                 </div>
-            </section>
+            </Section>
 
             {/* Comparison Table */}
-            <section className="py-24 border-t border-slate-800/50">
+            <Section>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                            <Heading variant="section" className="mb-4">
                                 Compare Editorial Tiers
-                            </h2>
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={100}>
                             <p className="text-slate-400">
@@ -576,11 +420,11 @@ export default function ServicesPage() {
                                     <tr>
                                         <th className="text-left p-4 text-slate-400 font-normal text-sm border-b border-slate-700/50">Feature</th>
                                         <th className="text-center p-4 text-white font-semibold border-b border-slate-700/50">
-                                            Tier 1<br /><span className="text-emerald-400 text-sm font-normal">Entry Diagnostics</span>
+                                            Tier 1<br /><span className="text-emerald-400 text-sm font-normal">Story Integrity</span>
                                         </th>
                                         <th className="text-center p-4 text-white font-semibold border-b border-slate-700/50 bg-emerald-500/5">
                                             <span className="text-emerald-400 text-xs block mb-1">★ MOST POPULAR</span>
-                                            Tier 2<br /><span className="text-emerald-400 text-sm font-normal">Focused Audits</span>
+                                            Tier 2<br /><span className="text-emerald-400 text-sm font-normal">Single-Pillar Audit</span>
                                         </th>
                                         <th className="text-center p-4 text-white font-semibold border-b border-slate-700/50">
                                             Tier 3<br /><span className="text-emerald-400 text-sm font-normal">Full Manuscript</span>
@@ -614,39 +458,37 @@ export default function ServicesPage() {
                         </div>
                     </Reveal>
                 </div>
-            </section>
+            </Section>
 
             {/* Guarantee Section */}
-            < section className="py-24 border-t border-slate-800/50" >
+            <Section>
                 <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                     <Reveal>
-                        <BeamCard glowColor="emerald">
-                            <div className="p-8 bg-slate-800/30 rounded-md text-center">
-                                <Shield className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
-                                <h2 className="text-2xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
-                                    Our Promise
-                                </h2>
-                                <p className="text-slate-400 leading-relaxed max-w-xl mx-auto">
-                                    If our feedback doesn't give you clear, actionable next steps for your manuscript,
-                                    we'll refund your fee. No questions.
-                                </p>
-                                <p className="text-slate-500 text-sm mt-4">
-                                    We'd rather lose money than leave you confused.
-                                </p>
-                            </div>
-                        </BeamCard>
+                        <Card variant="tilt" glowColor="emerald" contentClassName="p-8 text-center">
+                            <Shield className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
+                            <Heading as="h2" variant="card" className="mb-4">
+                                Our Promise
+                            </Heading>
+                            <p className="text-slate-400 leading-relaxed max-w-xl mx-auto">
+                                All diagnostic and editorial reports are reviewed against internal clarity and actionability standards.
+                            </p>
+                            <p className="text-slate-400 leading-relaxed max-w-xl mx-auto mt-4">
+                                If your report does not clearly identify actionable next steps, request clarification within 7 days. We will revise the report at no charge.
+                                If the revised report still does not meet this standard, you will receive a full refund.
+                            </p>
+                        </Card>
                     </Reveal>
                 </div>
-            </section >
+            </Section>
 
             {/* FAQ Section */}
-            < section className="py-24 border-t border-slate-800/50" >
+            <Section>
                 <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <ClipReveal>
-                            <h2 className="text-3xl font-bold text-white mb-4 font-[family-name:var(--font-playfair)]">
+                            <Heading variant="section" className="mb-4">
                                 Frequently Asked Questions
-                            </h2>
+                            </Heading>
                         </ClipReveal>
                         <Reveal delay={100}>
                             <p className="text-slate-400">
@@ -667,26 +509,26 @@ export default function ServicesPage() {
                         ))}
                     </div>
                 </div>
-            </section >
+            </Section>
 
             {/* CTA */}
-            < section className="py-24 border-t border-slate-800/50" >
+            <Section>
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                     <ClipReveal>
-                        <h2 className="text-3xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
+                        <Heading variant="section" className="mb-6">
                             Not Sure Which Tier Is Right?
-                        </h2>
+                        </Heading>
                     </ClipReveal>
                     <Reveal delay={100}>
                         <p className="text-lg text-slate-400 mb-8 max-w-xl mx-auto">
                             Take our quick diagnostic quiz to get a personalized recommendation
-                            based on your manuscript's needs.
+                            based on your manuscript&apos;s needs.
                         </p>
                     </Reveal>
                     <Reveal delay={200}>
                         <div className="flex flex-wrap justify-center gap-4">
                             <MagneticButton href="/diagnostic" variant="primary">
-                                Start Free Diagnostic
+                                Start Free Diagnostic Quiz
                                 <ArrowRight size={18} />
                             </MagneticButton>
                             <MagneticButton href="/consultation" variant="secondary">
@@ -696,7 +538,7 @@ export default function ServicesPage() {
                         </div>
                     </Reveal>
                 </div>
-            </section >
+            </Section>
         </>
     );
 }

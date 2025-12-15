@@ -9,19 +9,40 @@ export default function ExitIntentPopup() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        // Check if already shown this session
-        if (typeof window !== 'undefined' && sessionStorage.getItem('exitPopupShown')) return;
+        // Check if already shown (Persistent across sessions)
+        const isBlocked = typeof window !== 'undefined' && localStorage.getItem('exitPopupShown');
 
+        // Debug log for user verification
+        if (isBlocked) {
+            console.log('Exit Intent: Blocked by localStorage (exitPopupShown=true). Clear storage to test again.');
+        }
+
+        // Desktop: Mouse Leave (Exit Intent)
         const handleMouseLeave = (e: MouseEvent) => {
-            // Trigger when mouse leaves the top of the viewport
-            if (e.clientY <= 0) {
+            // Trigger when mouse leaves top of viewport
+            if (e.clientY <= 0 && !localStorage.getItem('exitPopupShown')) {
+                console.log('Exit Intent: Triggered (Desktop)');
                 setShow(true);
-                sessionStorage.setItem('exitPopupShown', 'true');
+                localStorage.setItem('exitPopupShown', 'true');
             }
         };
 
+        // Mobile fallback... (Keep existing)
+
+        // Mobile: Timer Fallback (since no mouse) - 30 seconds
+        const timer = setTimeout(() => {
+            if (!localStorage.getItem('exitPopupShown')) {
+                setShow(true);
+                localStorage.setItem('exitPopupShown', 'true');
+            }
+        }, 30000); // 30 seconds
+
         document.addEventListener('mouseleave', handleMouseLeave);
-        return () => document.removeEventListener('mouseleave', handleMouseLeave);
+
+        return () => {
+            document.removeEventListener('mouseleave', handleMouseLeave);
+            clearTimeout(timer);
+        };
     }, []);
 
     const handleSubmit = async () => {
@@ -64,7 +85,7 @@ export default function ExitIntentPopup() {
                         </div>
                         <h3 className="text-xl font-bold text-white mb-2 font-serif">Check Your Inbox!</h3>
                         <p className="text-slate-400">
-                            Your guide <strong>"7 Structural Mistakes That Kill Fantasy Manuscripts"</strong> is on its way.
+                            Your guide <strong>&quot;7 Structural Mistakes That Kill Fantasy Manuscripts&quot;</strong> is on its way.
                         </p>
                         <button
                             onClick={() => setShow(false)}
@@ -77,7 +98,7 @@ export default function ExitIntentPopup() {
                     <>
                         <div className="mb-6">
                             <span className="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
-                                Wait — Don't Leave Empty-Handed
+                                Wait — Don&apos;t Leave Empty-Handed
                             </span>
                             <h3 className="text-2xl font-bold text-white mb-3 font-serif">
                                 Is Your Manuscript Making These 7 Fatal Mistakes?

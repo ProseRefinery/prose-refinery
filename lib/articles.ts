@@ -1,4 +1,4 @@
-import { Layers, Zap, Target, BookOpen } from 'lucide-react';
+// Icons removed (unused)
 
 export interface Article {
   slug: string;
@@ -15,7 +15,7 @@ export const ARTICLES: Article[] = [
   {
     slug: 'why-agents-reject-fantasy',
     title: 'The 3 Structural Reasons Agents Reject Fantasy Novels',
-    excerpt: 'It’s rarely the prose. It’s usually the foundation. Here is what 200+ query rejections taught us about narrative integrity.',
+    excerpt: 'It\'s rarely the prose. It\'s usually the foundation. Here is what full-manuscript rejections consistently reveal about structure.',
     category: 'Industry Insights',
     readTime: '5 min read',
     publishDate: 'Dec 05, 2024',

@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { upsertContact, sendTransactional, triggerEvent } from '@/lib/loops';
 
+// Zone-specific implications for personalized email copy
+const ZONE_IMPLICATIONS: Record<string, string> = {
+    'Plot Architecture': 'Consequences are not carrying forward, so scenes feel disconnected and momentum drops.',
+    'Character Integrity': 'Pressure does not escalate, so stakes feel theoretical rather than lived.',
+    'World-System Logic': 'Rules are not constraining choices, so conflict does not bite.',
+    'Pacing & Pressure': 'Scenes are not turning, so tension resets instead of building.',
+};
+
 export async function POST(req: NextRequest) {
     try {
         const { email, result, answers, newsletter } = await req.json();
@@ -10,6 +18,9 @@ export async function POST(req: NextRequest) {
         // result structure: { startTier, needTier, budgetTier, isConstrained, needScore }
         const tierNumber = result?.startTier || 2;
         const tierName = `Tier ${tierNumber}`;
+        const zone = result?.zone || 'Plot Architecture';
+        const riskLevel = result?.risk || 'Moderate';
+        const zoneImplication = ZONE_IMPLICATIONS[zone] || ZONE_IMPLICATIONS['Plot Architecture'];
 
         // 2. Add contact to Loops with Enhanced Segmentation
         // Storing both Strings (Display/Compat) and Numbers (Filtering)
@@ -29,7 +40,11 @@ export async function POST(req: NextRequest) {
             diagnostic_budget_tier: `Tier ${result?.budgetTier || 2}`,
 
             diagnostic_is_constrained: result?.isConstrained ? 'true' : 'false',
-            diagnostic_need_score: result?.needScore || '0.00'
+            diagnostic_need_score: result?.needScore || '0.00',
+
+            // New: failure zone for segmentation
+            diagnostic_failure_zone: zone,
+            diagnostic_risk_level: riskLevel,
         });
 
         // 3. Determine CTA
@@ -42,14 +57,16 @@ export async function POST(req: NextRequest) {
 
         const cta = ctaMap[tierNumber] || ctaMap[2];
 
-        // 4. Send diagnostic results email
+        // 4. Send diagnostic results email with enhanced personalization
         await sendTransactional({
             transactionalId: 'cmizisawj06lk2c0i7i6yq6pu', // diagnostic_results
             email,
             dataVariables: {
                 tierName,
-                // simplified reasoning for now, can be enhanced with dynamic copy later
-                reasoning: `Based on your manuscript profile and goals, we recommend starting with ${tierName}.`,
+                failureZone: zone,
+                zoneImplication,
+                riskLevel,
+                reasoning: `Your primary failure zone is ${zone}. ${zoneImplication} We recommend starting with ${tierName}.`,
                 ctaText: cta.text,
                 ctaUrl: cta.url,
             },

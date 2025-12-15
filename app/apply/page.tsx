@@ -73,7 +73,7 @@ export default function ApplyPage() {
                         <Reveal delay={200}>
                             <p className="text-xl text-slate-300 mb-8 leading-relaxed">
                                 Thank you for applying to the Editorial Partnership program.
-                                We review every application thoroughly to ensure we're the right fit for your work.
+                                We review every application thoroughly to ensure we&apos;re the right fit for your work.
                             </p>
                             <p className="text-slate-400">
                                 Expect to hear from us within 5 business days. In the meantime, check your email for confirmation.
@@ -90,12 +90,12 @@ export default function ApplyPage() {
 
     return (
         <section className="min-h-screen pt-24 pb-24 relative">
-            <div className="absolute inset-0 bg-slate-950 -z-50" />
+
 
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <Reveal>
-                        <HeroBadge icon="shield">Limited Availability: Q1 2025</HeroBadge>
+                        <HeroBadge icon="shield">Limited Availability</HeroBadge>
                     </Reveal>
                     <ClipReveal delay={100}>
                         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
@@ -104,7 +104,7 @@ export default function ApplyPage() {
                     </ClipReveal>
                     <Reveal delay={200}>
                         <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                            Tier 4 is our most intensive, hands-on collaboration. We only accept 2 manuscripts per quarter to ensure you get our undivided creative attention.
+                            Tier 4 is our most intensive, hands-on collaboration. We only accept 3 manuscripts per quarter to ensure you get our undivided creative attention.
                         </p>
                     </Reveal>
                 </div>
@@ -212,7 +212,7 @@ export default function ApplyPage() {
                                         {!loading && <ArrowRight className="ml-2 w-5 h-5" />}
                                     </MagneticButton>
                                     <p className="text-center text-xs text-slate-500 mt-4">
-                                        Submitting this application does not commit you to payment.
+                                        Submitting this application does not commit you to payment. We reply within 2 business days.
                                     </p>
                                 </div>
 

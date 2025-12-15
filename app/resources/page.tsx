@@ -1,12 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Clock, Calendar } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
-import { TiltCard } from '@/components/effects/TiltCard';
-import { BeamCard } from '@/components/effects/BeamCard';
+import { Card } from '@/components/ui/Card';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { ARTICLES } from '@/lib/articles';
 
@@ -18,7 +17,7 @@ export default function ResourcesPage() {
                 <GridGlowBackground>
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
                         <Reveal>
-                            <HeroBadge icon="book">The Editor's Desk</HeroBadge>
+                            <HeroBadge icon="book">The Editor&apos;s Desk</HeroBadge>
                         </Reveal>
                         <ClipReveal delay={100}>
                             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
@@ -41,8 +40,8 @@ export default function ResourcesPage() {
                         {ARTICLES.map((article, i) => (
                             <Reveal key={article.slug} delay={i * 100} className="h-full">
                                 <Link href={`/resources/${article.slug}`} className="block h-full relative hover:z-10 transition-transform">
-                                    <BeamCard className="h-full" glowColor={article.image === 'purple' ? 'purple' : 'emerald'}>
-                                        <div className="p-8 h-full flex flex-col group">
+                                    <Card variant="tilt" className="h-full" glowColor="emerald">
+                                        <div className="h-full flex flex-col group">
                                             {/* Meta */}
                                             <div className="flex items-center gap-3 text-xs text-slate-500 mb-4">
                                                 <span className="px-2 py-1 rounded-full bg-slate-700/50 text-slate-300">
@@ -67,7 +66,7 @@ export default function ResourcesPage() {
                                                 <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                                             </div>
                                         </div>
-                                    </BeamCard>
+                                    </Card>
                                 </Link>
                             </Reveal>
                         ))}

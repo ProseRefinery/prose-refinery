@@ -6,10 +6,12 @@ import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { Reveal } from '@/components/effects/Reveal';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { HeroBadge } from '@/components/ui/HeroBadge';
+import { Heading } from '@/components/ui/Heading';
+import { Section } from '@/components/ui/Section';
 
 export default function ConsultationPage() {
     return (
-        <div className="min-h-screen pt-20 pb-24">
+        <Section className="min-h-screen pt-20 pb-24" noBorder>
             <GridGlowBackground>
                 <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center mb-12">
                     <Reveal>
@@ -17,9 +19,9 @@ export default function ConsultationPage() {
                     </Reveal>
 
                     <ClipReveal delay={100}>
-                        <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-playfair)]">
-                            Let's Discuss Your Manuscript
-                        </h1>
+                        <Heading as="h1" variant="hero" className="mb-6">
+                            Let&apos;s Discuss Your Manuscript
+                        </Heading>
                     </ClipReveal>
 
                     <Reveal delay={200}>
@@ -64,11 +66,11 @@ export default function ConsultationPage() {
                 <Reveal delay={400}>
                     <div className="text-center mt-8">
                         <p className="text-slate-500 text-sm">
-                            Can't find a time? Email us directly at <a href="mailto:hello@proserefinery.com" className="text-emerald-400 hover:text-emerald-300">hello@proserefinery.com</a>
+                            Can&apos;t find a time? Email us directly at <a href="mailto:hello@proserefinery.com" className="text-emerald-400 hover:text-emerald-300">hello@proserefinery.com</a>
                         </p>
                     </div>
                 </Reveal>
             </GridGlowBackground>
-        </div>
+        </Section>
     );
 }

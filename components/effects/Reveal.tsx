@@ -9,6 +9,10 @@ interface RevealProps {
     className?: string;
 }
 
+/**
+ * Reveal - Restored original IntersectionObserver implementation
+ * Uses simple CSS transitions (no spring physics)
+ */
 export function Reveal({ children, delay = 0, className = '' }: RevealProps) {
     const [visible, setVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -32,7 +36,7 @@ export function Reveal({ children, delay = 0, className = '' }: RevealProps) {
         <div
             ref={ref}
             className={cn(
-                'transition-all duration-700 ease-out',
+                'transition-all duration-700 ease-out', // The original "editorial" ease
                 visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
                 className
             )}

@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 interface BeamCardProps {
     children: ReactNode;
     className?: string;
-    glowColor?: 'emerald' | 'purple' | 'blue' | 'amber' | 'red' | 'rose';
+    glowColor?: 'emerald' | 'purple' | 'blue' | 'rose' | 'amber' | 'red';
 }
 
 export function BeamCard({ children, className = '', glowColor = 'emerald' }: BeamCardProps) {
@@ -25,6 +25,11 @@ export function BeamCard({ children, className = '', glowColor = 'emerald' }: Be
             secondary: 'rgb(96 165 250)',
             glow: 'rgba(59, 130, 246, 0.3)'
         },
+        rose: {
+            primary: 'rgb(244 63 94)',
+            secondary: 'rgb(251 113 133)',
+            glow: 'rgba(244, 63, 94, 0.3)'
+        },
         amber: {
             primary: 'rgb(245 158 11)',
             secondary: 'rgb(251 191 36)',
@@ -34,11 +39,6 @@ export function BeamCard({ children, className = '', glowColor = 'emerald' }: Be
             primary: 'rgb(239 68 68)',
             secondary: 'rgb(248 113 113)',
             glow: 'rgba(239, 68, 68, 0.3)'
-        },
-        rose: {
-            primary: 'rgb(244 63 94)',
-            secondary: 'rgb(251 113 133)',
-            glow: 'rgba(244, 63, 94, 0.3)'
         }
     };
 
@@ -69,7 +69,7 @@ export function BeamCard({ children, className = '', glowColor = 'emerald' }: Be
                     }}
                 />
                 {/* Inner mask to create border effect */}
-                <div className="absolute inset-[1px] rounded-md bg-slate-900/98" />
+                <div className={`absolute inset-[1px] rounded-md bg-slate-950 ${className.includes('bg-') ? '' : 'bg-slate-950'}`} style={{ zIndex: 0 }} />
             </div>
 
             {/* Static border (visible when not hovered) */}

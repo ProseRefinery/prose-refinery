@@ -12,6 +12,8 @@ interface FloatingInputProps {
     error?: boolean;
     required?: boolean;
     disabled?: boolean;
+    inputMode?: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+    enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
 }
 
 export function FloatingInput({
@@ -22,7 +24,9 @@ export function FloatingInput({
     onChange,
     error,
     required,
-    disabled = false
+    disabled = false,
+    inputMode,
+    enterKeyHint
 }: FloatingInputProps) {
     return (
         <div className="floating-label-input relative">
@@ -34,6 +38,8 @@ export function FloatingInput({
                 onChange={onChange}
                 placeholder=" "
                 disabled={disabled}
+                inputMode={inputMode}
+                enterKeyHint={enterKeyHint}
                 className={cn(
                     'w-full px-4 py-3.5 pt-5',
                     'bg-slate-900/80',

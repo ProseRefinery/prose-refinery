@@ -1,4 +1,4 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 import { XCircle } from 'lucide-react';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { Reveal } from '@/components/effects/Reveal';

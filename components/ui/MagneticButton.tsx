@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useRef, ReactNode, MouseEvent } from 'react';
+import { useState, useRef, MouseEvent, ReactNode, useEffect } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { useHaptic } from '@/hooks/useHaptic';
 
 interface MagneticButtonProps {
     children: ReactNode;
@@ -12,11 +13,13 @@ interface MagneticButtonProps {
     variant?: 'primary' | 'secondary' | 'ghost';
     href?: string;
     disabled?: boolean;
+    loading?: boolean;
 }
 
 /**
- * MagneticButton - Cursor-pull effect with bounce on click
- * Uses rounded-md for sharp industrial aesthetic
+ * MagneticButton - Restored original CSS-based implementation
+ * Mobile: Native feel (no magnet)
+ * Desktop: Magnetic pull with CSS transition (no spring bounce)
  */
 export function MagneticButton({
     children,
@@ -27,31 +30,50 @@ export function MagneticButton({
     href,
     disabled = false,
     loading = false
-}: MagneticButtonProps & { loading?: boolean }) {
+}: MagneticButtonProps) {
     const [transform, setTransform] = useState({ x: 0, y: 0 });
     const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
+    const { trigger } = useHaptic();
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.matchMedia('(pointer: coarse)').matches);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const handleMouseMove = (e: MouseEvent) => {
-        if (!ref.current || disabled || loading) return;
+        if (!ref.current || disabled || loading || isMobile) return;
 
         const rect = ref.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
-        setTransform({
-            x: (e.clientX - centerX) * 0.25,
-            y: (e.clientY - centerY) * 0.25
-        });
+        const distanceX = e.clientX - centerX;
+        const distanceY = e.clientY - centerY;
+
+        // Original magnetic strength was strict
+        setTransform({ x: distanceX * 0.2, y: distanceY * 0.2 });
     };
 
     const handleMouseLeave = () => {
         setTransform({ x: 0, y: 0 });
     };
 
+    const handlePress = () => {
+        trigger(variant === 'primary' ? 'heavy' : 'medium');
+        if (onClick) onClick();
+    };
+
+    const style = {
+        transform: `translate(${transform.x}px, ${transform.y}px)`,
+    };
+
     const baseStyles = cn(
         'relative inline-flex items-center justify-center gap-2',
         'px-5 py-2.5 rounded-md font-medium text-xs tracking-widest uppercase',
-        'transition-all duration-200 ease-out',
+        'transition-all duration-200 ease-out', // The original "feel"
         'disabled:opacity-50 disabled:cursor-not-allowed',
         'active:scale-[0.98]', // Tactile feedback
         {
@@ -65,48 +87,45 @@ export function MagneticButton({
         className
     );
 
-    const style = {
-        transform: `translate(${transform.x}px, ${transform.y}px)`,
-    };
+    const content = loading ? (
+        <>
+            <span className="opacity-0 flex items-center gap-2">{children}</span>
+            <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            </div>
+        </>
+    ) : (
+        children
+    );
 
-    // If loading, disable link functionality
     if (href && !disabled && !loading) {
         return (
             <Link
                 href={href}
-                ref={ref as React.RefObject<HTMLAnchorElement>}
+                ref={ref as any}
                 className={baseStyles}
                 style={style}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                onClick={onClick}
+                onClick={handlePress} // Use handlePress to trigger haptic + navigation
             >
-                {children}
+                {content}
             </Link>
         );
     }
 
     return (
         <button
-            ref={ref as React.RefObject<HTMLButtonElement>}
+            ref={ref as any}
             type={type}
-            onClick={onClick}
+            onClick={handlePress}
             disabled={disabled || loading}
             className={baseStyles}
             style={style}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
-            {loading ? (
-                <>
-                    <span className="opacity-0 flex items-center gap-2">{children}</span>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    </div>
-                </>
-            ) : (
-                children
-            )}
+            {content}
         </button>
     );
 }

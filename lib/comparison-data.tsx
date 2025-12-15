@@ -12,7 +12,7 @@ export const COMPARISON_DATA: ComparisonRow[] = [
     {
         feature: 'Price',
         tier1: <span className="text-emerald-400">£95–£175</span>,
-        tier2: <span className="text-emerald-400">£250–£750</span>,
+        tier2: <span className="text-emerald-400">£250–£450</span>,
         tier3: <span className="text-emerald-400">£1,500–£4,500</span>,
         tier4: <span className="text-purple-400">£5,000–£12,000</span>,
     },
@@ -26,7 +26,7 @@ export const COMPARISON_DATA: ComparisonRow[] = [
     {
         feature: 'Turnaround',
         tier1: <span className="text-slate-400">48 hours</span>,
-        tier2: <span className="text-slate-400">7 days</span>,
+        tier2: <span className="text-slate-400">7–10 business days</span>,
         tier3: <span className="text-slate-400">3–4 weeks</span>,
         tier4: <span className="text-slate-400">8–12 weeks</span>,
     },

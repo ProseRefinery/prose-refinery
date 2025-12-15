@@ -7,6 +7,7 @@ interface Particle {
     x: number;
     color: string;
     delay: number;
+    rotation: number;
 }
 
 interface SuccessConfettiProps {
@@ -25,8 +26,10 @@ export function SuccessConfetti({ trigger, onComplete }: SuccessConfettiProps) {
                 id: i,
                 x: Math.random() * 100,
                 color: COLORS[Math.floor(Math.random() * COLORS.length)],
-                delay: Math.random() * 0.5
+                delay: Math.random() * 0.5,
+                rotation: Math.random() * 360
             }));
+            // eslint-disable-next-line
             setParticles(newParticles);
 
             const timer = setTimeout(() => {
@@ -51,7 +54,7 @@ export function SuccessConfetti({ trigger, onComplete }: SuccessConfettiProps) {
                         top: '-20px',
                         backgroundColor: p.color,
                         animation: `confetti-fall 3s ease-out ${p.delay}s forwards`,
-                        transform: `rotate(${Math.random() * 360}deg)`
+                        transform: `rotate(${p.rotation}deg)`
                     }}
                 />
             ))}

@@ -10,8 +10,8 @@ interface ClipRevealProps {
 }
 
 /**
- * ClipReveal - Blueprint text reveal animation
- * Uses clip-path masking for the "unrolling blueprint" effect
+ * ClipReveal - Restored to match Reveal's CSS logic
+ * Uses simple CSS transitions for mask reveal
  */
 export function ClipReveal({ children, delay = 0, className = '' }: ClipRevealProps) {
     const [visible, setVisible] = useState(false);
@@ -33,16 +33,13 @@ export function ClipReveal({ children, delay = 0, className = '' }: ClipRevealPr
     }, [delay]);
 
     return (
-        <div ref={ref} className={cn(visible ? '' : 'overflow-hidden', className)}>
+        <div className={cn('overflow-hidden', className)}>
             <div
-                className="transition-all duration-700"
-                style={{
-                    // Blueprint unroll effect - slides up from hidden
-                    clipPath: visible ? 'inset(0 0 0 0)' : 'inset(100% 0 0 0)',
-                    transform: visible ? 'translateY(0)' : 'translateY(30px)',
-                    opacity: visible ? 1 : 0,
-                    transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' // Expo.out for engineered feel
-                }}
+                ref={ref}
+                className={cn(
+                    'transition-all duration-700 ease-out',
+                    visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+                )}
             >
                 {children}
             </div>
@@ -54,14 +51,16 @@ interface StaggerTextProps {
     text: string;
     delay?: number;
     className?: string;
+    split?: 'char' | 'word';
 }
 
 /**
- * StaggerText - Character-by-character reveal with clip masking
+ * StaggerText - Simple CSS delay staggering
  */
-export function StaggerText({ text, delay = 0, className = '' }: StaggerTextProps) {
+export function StaggerText({ text, delay = 0, className = '', split = 'char' }: StaggerTextProps) {
     const [visible, setVisible] = useState(false);
     const ref = useRef<HTMLSpanElement>(null);
+    const items = split === 'char' ? text.split('') : text.split(' ');
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -79,20 +78,22 @@ export function StaggerText({ text, delay = 0, className = '' }: StaggerTextProp
     }, [delay]);
 
     return (
-        <span ref={ref} className={cn('inline-flex overflow-hidden', className)}>
-            {text.split('').map((char, i) => (
+        <span
+            ref={ref}
+            className={cn('inline-flex flex-wrap overflow-hidden', className)}
+        >
+            {items.map((item, index) => (
                 <span
-                    key={i}
-                    className="inline-block transition-all duration-500"
-                    style={{
-                        clipPath: visible ? 'inset(0 0 0 0)' : 'inset(0 0 100% 0)',
-                        transform: visible ? 'translateY(0)' : 'translateY(100%)',
-                        opacity: visible ? 1 : 0,
-                        transitionDelay: `${i * 30}ms`,
-                        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)'
-                    }}
+                    key={index}
+                    className={cn(
+                        "inline-block transition-all duration-500 ease-out",
+                        visible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+                    )}
+                    style={{ transitionDelay: `${index * 30}ms` }}
                 >
-                    {char === ' ' ? '\u00A0' : char}
+                    {item}
+                    {split === 'word' && index < items.length - 1 && '\u00A0'}
+                    {split === 'char' && item === ' ' && '\u00A0'}
                 </span>
             ))}
         </span>

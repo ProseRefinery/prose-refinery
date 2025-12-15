@@ -4,9 +4,8 @@ import { STRIPE_PRICES } from '@/lib/constants';
 
 const stripe = process.env.STRIPE_SECRET_KEY
     ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-        apiVersion: '2025-11-17.clover' as any,
     })
-    : (null as any);
+    : null;
 
 export async function POST(req: NextRequest) {
     try {
@@ -49,10 +48,11 @@ export async function POST(req: NextRequest) {
         });
 
         return NextResponse.json({ url: session.url });
-    } catch (err: any) {
+    } catch (err: unknown) {
         console.error('Stripe Checkout Error:', err);
+        const errorMessage = err instanceof Error ? err.message : 'An error occurred during checkout.';
         return NextResponse.json(
-            { error: err.message || 'An error occurred during checkout.' },
+            { error: errorMessage },
             { status: 500 }
         );
     }

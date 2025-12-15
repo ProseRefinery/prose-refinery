@@ -13,11 +13,13 @@ import ExitIntentPopup from "@/components/layout/ExitIntentPopup";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -38,7 +40,7 @@ export const metadata: Metadata = {
     title: "Prose Refinery | Precision Editorial for Speculative Fiction",
     description: "Expert developmental editing for fantasy & sci-fi. We fix the structural cracks that make agents pass.",
     images: [{
-      url: '/og-image-v26.png',
+      url: '/og-image.jpg', // We will need to create this later or use a generic one
       width: 1200,
       height: 630,
       alt: 'Prose Refinery Editorial'
@@ -49,13 +51,6 @@ export const metadata: Metadata = {
     title: "Prose Refinery | Precision Editorial for Speculative Fiction",
     description: "Expert developmental editing for fantasy & sci-fi. We fix the structural cracks that make agents pass.",
     creator: "@proserefinery",
-  },
-  icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/logo.png', type: 'image/png' },
-    ],
-    apple: '/logo.png',
   },
   robots: {
     index: true,
@@ -68,6 +63,20 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+    shortcut: '/favicon.png',
+  },
+};
+
+// Viewport configuration for Mobile Optimization
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5, // Allow zooming for accessibility
+  viewportFit: 'cover', // Enable usage of safe area (notch)
+  themeColor: '#020617', // Matches brand background (Slate-950)
 };
 
 export default function RootLayout({
@@ -96,6 +105,7 @@ export default function RootLayout({
               `}
             </Script>
             <noscript>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 height="1"
                 width="1"
@@ -126,7 +136,7 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased bg-[#05080f] text-slate-200`}
+        className={`${inter.variable} ${playfair.variable} antialiased bg-slate-950 text-slate-200`}
       >
         <AuroraBackground>
           <ParallaxRunes />

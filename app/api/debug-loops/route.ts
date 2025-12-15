@@ -55,10 +55,11 @@ export async function POST(req: NextRequest) {
             timestamp: new Date().toISOString()
         });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         return NextResponse.json({
             success: false,
-            error: error.message || 'Unknown error'
+            error: errorMessage
         }, { status: 500 });
     }
 }

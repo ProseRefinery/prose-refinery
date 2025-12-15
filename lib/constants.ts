@@ -37,7 +37,7 @@ export const STRIPE_PRICES = {
 export const TIERS: Tier[] = [
     {
         id: 1,
-        name: 'Entry Diagnostics',
+        name: 'Story Integrity Diagnostic™',
         price: '£95 – £175',
         turnaround: '48 hours',
         description: "Pinpoint what's not working",
@@ -45,8 +45,8 @@ export const TIERS: Tier[] = [
     },
     {
         id: 2,
-        name: 'Focused Audits',
-        price: '£350',
+        name: 'Single-Pillar Structural Audit',
+        price: '£250 – £450',
         turnaround: '7 days',
         description: 'Repair what you already see',
         includes: ['Single-Pillar Deep Dive', 'Act-Level Structure Audit', 'Character Arc Analysis'],
@@ -55,17 +55,17 @@ export const TIERS: Tier[] = [
     },
     {
         id: 3,
-        name: 'Full Manuscript Refinement',
-        price: '£1,500 – £4,500+',
+        name: 'Full Structural Edit',
+        price: '£750 – £1,200',
         turnaround: '3–4 weeks',
         description: 'Reconstruct the full manuscript',
-        includes: ['Complete 7-Pillar Assessment', 'Iterative Revision Cycles', 'Strategy Consultations', 'Line-Level Annotation'],
-        pricingContext: 'Structured Tiers: Core (£1.5k), Standard (£2.8k), Premium (£4.5k+)'
+        includes: ['Complete 4-Pillar Assessment', 'Iterative Revision Cycles', 'Strategy Consultations', 'Line-Level Annotation'],
+        pricingContext: 'Deep structural intervention.'
     },
     {
         id: 4,
         name: 'Editorial Partnership',
-        price: '£5,000 – £12,000',
+        price: 'By application',
         turnaround: '3–6 months',
         description: 'Partner through multiple drafts',
         includes: ['Everything in Tier 3', 'Multiple Draft Passes', 'Ongoing Consultation', 'Direct Access'],
@@ -74,13 +74,10 @@ export const TIERS: Tier[] = [
 ];
 
 export const PILLARS: Pillar[] = [
-    { id: 1, name: 'World & Tone Integrity', icon: Layers, short: 'Does the world feel real?' },
-    { id: 2, name: 'Character Continuity', icon: Users, short: 'Do characters behave consistently?' },
-    { id: 3, name: 'Lore Consistency', icon: BookOpen, short: 'Does the mythology hold?' },
-    { id: 4, name: 'System Cohesion', icon: Zap, short: 'Do magic systems follow rules?' },
-    { id: 5, name: 'Plot Logic', icon: Target, short: 'Does cause follow effect?' },
-    { id: 6, name: 'Emotional Resonance', icon: Heart, short: 'Do emotional beats land?' },
-    { id: 7, name: 'Market Alignment', icon: BarChart3, short: 'Is it positioned correctly?' }
+    { id: 1, name: 'Plot Architecture', icon: Layers, short: 'Does the structure hold weight?' },
+    { id: 2, name: 'Character Integrity', icon: Users, short: 'Do internal arcs drive external action?' },
+    { id: 3, name: 'World-System Logic', icon: BookOpen, short: 'Is the setting consistent and consequential?' },
+    { id: 4, name: 'Pacing & Pressure', icon: Zap, short: 'Does tension escalate effectively?' }
 ];
 
 export const QUESTIONS: Question[] = [
@@ -96,7 +93,6 @@ export const QUESTIONS: Question[] = [
 
 export const NAV_ITEMS: NavItem[] = [
     { id: 'home', label: 'Home', href: '/' },
-    { id: 'method', label: 'Method', href: '/method' },
     { id: 'services', label: 'Services', href: '/services' },
     { id: 'resources', label: 'Resources', href: '/resources' },
     { id: 'about', label: 'About', href: '/about' },
@@ -104,12 +100,29 @@ export const NAV_ITEMS: NavItem[] = [
     { id: 'contact', label: 'Contact', href: '/contact' }
 ];
 
-// Analytics helper - wire to Plausible/GA/Posthog later
+// Analytics helper
+type AnalyticsEvent = {
+    event: string;
+    data?: Record<string, unknown>;
+};
+
 export const track = (event: string, data?: Record<string, unknown>) => {
+    // Log in development
     if (process.env.NODE_ENV === 'development') {
         console.log('[Analytics]', event, data || '');
     }
-    // TODO: Replace with real analytics
-    // plausible(event, { props: data });
-    // gtag('event', event, data);
+
+    // Execute in production (or if snippets are active)
+    if (typeof window !== 'undefined') {
+        // Meta Pixel
+        const win = window as any;
+        if (win.fbq) {
+            win.fbq('track', event, data);
+        }
+
+        // Google Analytics 4
+        if (win.gtag) {
+            win.gtag('event', event, data);
+        }
+    }
 };
