@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef, FormEvent, KeyboardEvent } from 'react';
+import { useState, useEffect, useRef, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -15,7 +16,6 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
   const modalRef = useRef<HTMLDivElement>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const submitButtonRef = useRef<HTMLButtonElement>(null);
 
   // Focus trap and ESC key handling
   useEffect(() => {
@@ -33,16 +33,15 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
         return;
       }
 
-      // Focus trap
+      // Focus trap - cycle between email input and close button
       if (e.key === 'Tab') {
-        const focusableElements = [
-          emailInputRef.current,
-          submitButtonRef.current,
-          closeButtonRef.current,
-        ].filter(Boolean) as HTMLElement[];
+        const focusableElements = modalRef.current?.querySelectorAll(
+          'input, button, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusableElements || focusableElements.length === 0) return;
 
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
+        const firstElement = focusableElements[0] as HTMLElement;
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
 
         if (e.shiftKey && document.activeElement === firstElement) {
           e.preventDefault();
@@ -174,42 +173,15 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
                 />
               </div>
 
-              <button
-                ref={submitButtonRef}
+              <MagneticButton
                 type="submit"
+                variant="gold"
                 disabled={isSubmitting || !email.trim()}
-                className="w-full px-6 py-3 bg-[#D4AF37] text-slate-900 rounded-lg font-bold
-                  transition-all duration-300 hover:bg-[#E5C158] active:scale-95
-                  focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 focus:ring-offset-2 focus:ring-offset-slate-900
-                  disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#D4AF37] disabled:active:scale-100"
+                loading={isSubmitting}
+                className="w-full px-6 py-3 rounded-lg"
               >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg
-                      className="animate-spin w-5 h-5"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      />
-                    </svg>
-                    Sending...
-                  </span>
-                ) : (
-                  'Get Free Chapter'
-                )}
-              </button>
+                Get Free Chapter
+              </MagneticButton>
             </form>
 
             {/* Privacy Notice */}

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Lock } from 'lucide-react';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 
 export default function CheckoutPage() {
   const [email, setEmail] = useState('');
@@ -75,16 +76,13 @@ export default function CheckoutPage() {
           </div>
 
           {/* Disabled Button */}
-          <button
+          <MagneticButton
+            variant="gold"
             disabled
-            className="w-full px-6 py-4 rounded-lg text-sm font-medium tracking-widest uppercase cursor-not-allowed transition-all duration-200"
-            style={{
-              backgroundColor: '#333333',
-              color: '#666666',
-            }}
+            className="w-full px-6 py-4 rounded-lg"
           >
             Connecting Payment...
-          </button>
+          </MagneticButton>
 
           {/* Support Text */}
           <p

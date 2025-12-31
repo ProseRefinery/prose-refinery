@@ -10,7 +10,7 @@ interface MagneticButtonProps {
     onClick?: () => void;
     className?: string;
     type?: 'button' | 'submit' | 'reset';
-    variant?: 'primary' | 'secondary' | 'ghost';
+    variant?: 'primary' | 'secondary' | 'ghost' | 'gold' | 'gold-outline';
     href?: string;
     disabled?: boolean;
     loading?: boolean;
@@ -62,7 +62,7 @@ export function MagneticButton({
     };
 
     const handlePress = () => {
-        trigger(variant === 'primary' ? 'heavy' : 'medium');
+        trigger((variant === 'primary' || variant === 'gold') ? 'heavy' : 'medium');
         if (onClick) onClick();
     };
 
@@ -82,7 +82,11 @@ export function MagneticButton({
             // Secondary - ghost with border
             'border border-slate-700/50 bg-transparent text-slate-400 hover:border-emerald-500/50 hover:text-emerald-400 hover:bg-emerald-500/5': variant === 'secondary',
             // Ghost - minimal
-            'text-slate-500 hover:text-emerald-400 hover:bg-slate-800/30': variant === 'ghost'
+            'text-slate-500 hover:text-emerald-400 hover:bg-slate-800/30': variant === 'ghost',
+            // Gold - solid gold button (for Children of Aiyé)
+            'bg-[#D4AF37] text-[#0a0a0a] font-bold shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-[#E5C158] hover:shadow-[0_0_30px_rgba(212,175,55,0.5)]': variant === 'gold',
+            // Gold Outline - gold border button
+            'border-2 border-[#D4AF37] bg-transparent text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#0a0a0a]': variant === 'gold-outline'
         },
         className
     );

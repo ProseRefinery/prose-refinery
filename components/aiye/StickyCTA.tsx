@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 
 interface StickyCTAProps {
   bookTitle?: string;
@@ -57,35 +58,32 @@ export default function StickyCTA({
               {bookTitle}
             </span>
             <div className="flex items-center gap-4">
-              <button
+              <MagneticButton
+                variant="gold-outline"
                 onClick={onReadChapter}
-                className="px-6 py-2 text-[#D4AF37] border border-[#D4AF37] rounded-lg font-medium
-                  transition-all duration-300 hover:bg-[#D4AF37]/10 hover:border-[#E5C158]
-                  focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50"
+                className="px-6 py-2 rounded-lg"
               >
                 Read Chapter 1 Free
-              </button>
-              <a
+              </MagneticButton>
+              <MagneticButton
+                variant="gold"
                 href={purchaseUrl}
-                className="px-6 py-2 bg-[#D4AF37] text-slate-900 rounded-lg font-bold
-                  transition-all duration-300 hover:bg-[#E5C158] hover:scale-105
-                  focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 focus:ring-offset-2 focus:ring-offset-slate-900"
+                className="px-6 py-2 rounded-lg"
               >
-                ENTER AIYE — {price}
-              </a>
+                ENTER AIYÉ — {price}
+              </MagneticButton>
             </div>
           </div>
 
           {/* Mobile Layout */}
           <div className="md:hidden p-4">
-            <a
+            <MagneticButton
+              variant="gold"
               href={purchaseUrl}
-              className="block w-full text-center px-6 py-3 bg-[#D4AF37] text-slate-900 rounded-lg font-bold
-                transition-all duration-300 hover:bg-[#E5C158] active:scale-95
-                focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50"
+              className="w-full px-6 py-3 rounded-lg"
             >
-              ENTER AIYE — {price}
-            </a>
+              ENTER AIYÉ — {price}
+            </MagneticButton>
           </div>
         </motion.div>
       )}

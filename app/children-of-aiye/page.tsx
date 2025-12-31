@@ -8,6 +8,7 @@ import { TiltCard } from '@/components/effects/TiltCard';
 import { Reveal } from '@/components/effects/Reveal';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { BeamCard } from '@/components/effects/BeamCard';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 import LeadModal from '@/components/aiye/LeadModal';
 import { FAQ, StickyCTA, GlowTiltCard } from '@/components/aiye';
 
@@ -103,26 +104,20 @@ export default function ChildrenOfAiyePage() {
                 {/* CTAs */}
                 <Reveal delay={400}>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <button
+                    <MagneticButton
+                      variant="gold-outline"
                       onClick={handleOpenModal}
-                      className="px-6 py-3 sm:px-8 sm:py-4 bg-transparent border-2 border-[#D4AF37] text-[#D4AF37] rounded-lg
-                        font-semibold text-sm sm:text-base tracking-wide uppercase
-                        transition-all duration-300 hover:bg-[#D4AF37] hover:text-[#0a0a0a]
-                        focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 focus:ring-offset-2 focus:ring-offset-[#0a0a0a]
-                        active:scale-95"
+                      className="px-6 py-3 sm:px-8 sm:py-4 rounded-lg text-sm sm:text-base"
                     >
                       Read Chapter 1 Free
-                    </button>
-                    <Link
+                    </MagneticButton>
+                    <MagneticButton
+                      variant="gold"
                       href="/children-of-aiye/checkout"
-                      className="px-6 py-3 sm:px-8 sm:py-4 bg-[#D4AF37] text-[#0a0a0a] rounded-lg
-                        font-bold text-sm sm:text-base tracking-wide uppercase
-                        transition-all duration-300 hover:bg-[#E5C158] hover:shadow-lg hover:shadow-[#D4AF37]/30
-                        focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 focus:ring-offset-2 focus:ring-offset-[#0a0a0a]
-                        active:scale-95 text-center"
+                      className="px-6 py-3 sm:px-8 sm:py-4 rounded-lg text-sm sm:text-base"
                     >
-                      Enter Aiye — £12.99
-                    </Link>
+                      Enter Aiyé — £12.99
+                    </MagneticButton>
                   </div>
                 </Reveal>
               </div>
@@ -204,16 +199,13 @@ export default function ChildrenOfAiyePage() {
             </Reveal>
 
             <Reveal delay={400}>
-              <button
+              <MagneticButton
+                variant="gold-outline"
                 onClick={handleOpenModal}
-                className="px-6 py-3 sm:px-8 sm:py-4 bg-transparent border-2 border-[#D4AF37] text-[#D4AF37] rounded-lg
-                  font-semibold text-sm sm:text-base tracking-wide uppercase
-                  transition-all duration-300 hover:bg-[#D4AF37] hover:text-[#0a0a0a]
-                  focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 focus:ring-offset-2 focus:ring-offset-[#0a0a0a]
-                  active:scale-95"
+                className="px-6 py-3 sm:px-8 sm:py-4 rounded-lg text-sm sm:text-base"
               >
                 Keep Reading — Free
-              </button>
+              </MagneticButton>
             </Reveal>
           </div>
         </section>
@@ -824,16 +816,13 @@ export default function ChildrenOfAiyePage() {
                   <p className="text-sm text-[#a0a0a0] mb-8">
                     Launch Price &mdash; will increase when upgrades unlock
                   </p>
-                  <Link
+                  <MagneticButton
+                    variant="gold"
                     href="/children-of-aiye/checkout"
-                    className="inline-block w-full sm:w-auto px-8 sm:px-12 py-4 bg-[#D4AF37] text-[#0a0a0a] rounded-lg
-                      font-bold text-base sm:text-lg tracking-wide uppercase
-                      transition-all duration-300 hover:bg-[#E5C158] hover:shadow-lg hover:shadow-[#D4AF37]/30
-                      focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 focus:ring-offset-2 focus:ring-offset-[#111111]
-                      active:scale-95"
+                    className="w-full sm:w-auto px-8 sm:px-12 py-4 rounded-lg text-base sm:text-lg"
                   >
-                    Enter Aiy&eacute; &mdash; Instant Download
-                  </Link>
+                    Enter Aiyé — Instant Download
+                  </MagneticButton>
                   <p className="mt-6 text-xs text-[#a0a0a0] uppercase tracking-wider">
                     EPUB format &bull; Works everywhere &bull; 14-day guarantee
                   </p>

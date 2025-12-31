@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { ReaderProgress } from '@/components/aiye';
 import Link from 'next/link';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 
 export const metadata: Metadata = {
   title: 'Chapter 1: Smoke Over Ajegunle | Children of Aiye',
@@ -445,23 +446,20 @@ export default function Chapter1Page() {
             </p>
 
             <div className="flex flex-col items-center gap-4">
-              <Link
+              <MagneticButton
+                variant="gold"
                 href="/children-of-aiye/checkout"
-                className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-widest uppercase rounded-md transition-all duration-200"
-                style={{
-                  backgroundColor: '#d4af37',
-                  color: '#0a0a0a',
-                }}
+                className="px-8 py-4 rounded-lg"
               >
-                ENTER AIYE — £12.99
-              </Link>
+                ENTER AIYÉ — £12.99
+              </MagneticButton>
 
               <Link
                 href="/children-of-aiye"
-                className="text-sm transition-colors duration-200"
+                className="text-sm transition-colors duration-200 hover:text-[#D4AF37]"
                 style={{ color: '#888888' }}
               >
-                &larr; Back to book page
+                ← Back to book page
               </Link>
             </div>
           </div>
