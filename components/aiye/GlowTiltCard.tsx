@@ -40,6 +40,7 @@ export function GlowTiltCard({
   }, []);
 
   // IntersectionObserver for mobile scroll-triggered effect
+  // Uses a narrow center zone so only ~1 card glows at a time
   useEffect(() => {
     if (!isMobile || !ref.current) return;
 
@@ -49,8 +50,10 @@ export function GlowTiltCard({
       },
       {
         root: null,
-        rootMargin: '-10% 0px -10% 0px', // Trigger when 10% into viewport
-        threshold: 0.3 // 30% visible
+        // Create a narrow 20% tall "active zone" in the center of the viewport
+        // Top 40% and bottom 40% are excluded, leaving middle 20%
+        rootMargin: '-40% 0px -40% 0px',
+        threshold: 0.1 // Trigger when 10% of card enters the center zone
       }
     );
 
