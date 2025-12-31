@@ -145,7 +145,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 2: POSITIONING
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-4xl mx-auto text-center">
             <Reveal delay={0}>
               <blockquote
@@ -166,7 +173,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 3: TASTE TEST
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-3xl mx-auto text-center">
             <Reveal delay={0}>
               <p className="text-xs tracking-widest text-[#D4AF37] uppercase mb-4">
@@ -213,7 +227,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 4: THE PILLARS (THE WORLD)
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 lg:mb-16">
               <Reveal delay={0}>
@@ -304,7 +325,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 5: THE TRIO (THE DISCIPLES)
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 lg:mb-16">
               <Reveal delay={0}>
@@ -416,7 +444,9 @@ export default function ChildrenOfAiyePage() {
         <section
           className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8"
           style={{
-            background: 'linear-gradient(to bottom, #1a0505, #2a0a0a)'
+            backgroundImage: 'linear-gradient(to bottom, rgba(26, 5, 5, 0.85), rgba(42, 10, 10, 0.85)), url(/children-of-aiye/bg-threat-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
           }}
         >
           <div className="max-w-3xl mx-auto text-center">
@@ -464,7 +494,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 7: WHAT YOU GET (THE EXPERIENCE)
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 lg:mb-16">
               <Reveal delay={0}>
@@ -567,7 +604,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 8: AUTHOR BIO
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 lg:mb-16">
               <Reveal delay={0}>
@@ -638,7 +682,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 9: TARGET AUDIENCE
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12 lg:mb-16">
               <ClipReveal delay={0}>
@@ -688,7 +739,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 10: FAQ
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12 lg:mb-16">
               <Reveal delay={0}>
@@ -742,7 +800,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 11: SOCIAL PROOF (TESTIMONIALS)
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 lg:mb-16">
               <ClipReveal delay={0}>
@@ -793,7 +858,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 12: PRICING CTA
             ================================================================ */}
-        <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]">
+        <section
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-2xl mx-auto">
             <Reveal delay={0}>
               <GlowTiltCard className="w-full" maxTilt={5}>
@@ -835,7 +907,14 @@ export default function ChildrenOfAiyePage() {
         {/* ================================================================
             SECTION 13: FOOTER
             ================================================================ */}
-        <footer className="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] border-t border-[#D4AF37]/10">
+        <footer
+          className="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a] border-t border-[#D4AF37]/10"
+          style={{
+            backgroundImage: 'url(/children-of-aiye/bg-dark-pattern.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
           <div className="max-w-6xl mx-auto text-center">
             <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-6">
               <Link
