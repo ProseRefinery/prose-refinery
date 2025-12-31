@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, ReactNode, MouseEvent } from 'react';
+import { useState, useRef, useEffect, ReactNode, MouseEvent } from 'react';
 
 interface GlowTiltCardProps {
   children: ReactNode;
@@ -12,6 +12,9 @@ interface GlowTiltCardProps {
 /**
  * GlowTiltCard - Combines BeamCard's rotating glow border with TiltCard's 3D perspective
  * Specifically designed for Children of Aiyé landing page
+ *
+ * Desktop: Beam effect on hover
+ * Mobile: Beam effect on scroll into view
  */
 export function GlowTiltCard({
   children,
@@ -22,7 +25,42 @@ export function GlowTiltCard({
   const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 });
   const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(pointer: coarse)').matches);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // IntersectionObserver for mobile scroll-triggered effect
+  useEffect(() => {
+    if (!isMobile || !ref.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: '-10% 0px -10% 0px', // Trigger when 10% into viewport
+        threshold: 0.3 // 30% visible
+      }
+    );
+
+    observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, [isMobile]);
+
+  // Show effect: hover on desktop, in-view on mobile
+  const showEffect = isMobile ? isInView : isHovered;
 
   const colors = {
     gold: {
@@ -99,7 +137,7 @@ export function GlowTiltCard({
         className="absolute -inset-[1px] rounded-xl overflow-hidden pointer-events-none transition-opacity duration-500"
         style={{
           zIndex: 0,
-          opacity: isHovered ? 1 : 0
+          opacity: showEffect ? 1 : 0
         }}
       >
         {/* Rotating conic gradient - the scanning beam */}
@@ -123,32 +161,32 @@ export function GlowTiltCard({
         <div className="absolute inset-[2px] rounded-xl bg-[#0a0a0a]" />
       </div>
 
-      {/* Static border (visible when not hovered) */}
+      {/* Static border (visible when effect not showing) */}
       <div
         className="absolute inset-0 rounded-xl border border-[#D4AF37]/20 transition-colors duration-300 pointer-events-none"
         style={{
           zIndex: 1,
-          borderColor: isHovered ? 'transparent' : 'rgba(212, 175, 55, 0.2)'
+          borderColor: showEffect ? 'transparent' : 'rgba(212, 175, 55, 0.2)'
         }}
       />
 
-      {/* Hover glow effect */}
+      {/* Glow effect */}
       <div
         className="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-500"
         style={{
           zIndex: 0,
-          opacity: isHovered ? 1 : 0,
+          opacity: showEffect ? 1 : 0,
           boxShadow: `0 0 40px ${colorScheme.glow}, inset 0 0 20px ${colorScheme.glow}`
         }}
       />
 
-      {/* Cursor-following radial glow */}
+      {/* Radial glow - centered on mobile, cursor-following on desktop */}
       <div
         className="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-300"
         style={{
-          background: `radial-gradient(circle at ${glowPos.x}% ${glowPos.y}%, ${colorScheme.radial} 0%, transparent 50%)`,
+          background: `radial-gradient(circle at ${isMobile ? 50 : glowPos.x}% ${isMobile ? 50 : glowPos.y}%, ${colorScheme.radial} 0%, transparent 50%)`,
           zIndex: 0,
-          opacity: isHovered ? 1 : 0
+          opacity: showEffect ? 1 : 0
         }}
       />
 
