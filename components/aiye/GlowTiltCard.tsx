@@ -1,0 +1,161 @@
+'use client';
+
+import { useState, useRef, ReactNode, MouseEvent } from 'react';
+
+interface GlowTiltCardProps {
+  children: ReactNode;
+  className?: string;
+  maxTilt?: number;
+  glowColor?: 'gold' | 'emerald' | 'purple' | 'red';
+}
+
+/**
+ * GlowTiltCard - Combines BeamCard's rotating glow border with TiltCard's 3D perspective
+ * Specifically designed for Children of Aiyé landing page
+ */
+export function GlowTiltCard({
+  children,
+  className = '',
+  maxTilt = 8,
+  glowColor = 'gold'
+}: GlowTiltCardProps) {
+  const [transform, setTransform] = useState({ rotateX: 0, rotateY: 0 });
+  const [glowPos, setGlowPos] = useState({ x: 50, y: 50 });
+  const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const colors = {
+    gold: {
+      primary: 'rgb(212 175 55)',      // #D4AF37
+      secondary: 'rgb(229 193 88)',    // #E5C158
+      glow: 'rgba(212, 175, 55, 0.3)',
+      radial: 'rgba(212, 175, 55, 0.15)'
+    },
+    emerald: {
+      primary: 'rgb(16 185 129)',
+      secondary: 'rgb(52 211 153)',
+      glow: 'rgba(16, 185, 129, 0.3)',
+      radial: 'rgba(16, 185, 129, 0.15)'
+    },
+    purple: {
+      primary: 'rgb(168 85 247)',
+      secondary: 'rgb(192 132 252)',
+      glow: 'rgba(168, 85, 247, 0.3)',
+      radial: 'rgba(168, 85, 247, 0.15)'
+    },
+    red: {
+      primary: 'rgb(239 68 68)',
+      secondary: 'rgb(248 113 113)',
+      glow: 'rgba(239, 68, 68, 0.3)',
+      radial: 'rgba(239, 68, 68, 0.15)'
+    }
+  };
+
+  const colorScheme = colors[glowColor];
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const rotateY = ((e.clientX - centerX) / (rect.width / 2)) * maxTilt;
+    const rotateX = -((e.clientY - centerY) / (rect.height / 2)) * maxTilt;
+
+    // Track glow position
+    const glowX = ((e.clientX - rect.left) / rect.width) * 100;
+    const glowY = ((e.clientY - rect.top) / rect.height) * 100;
+
+    setTransform({ rotateX, rotateY });
+    setGlowPos({ x: glowX, y: glowY });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTransform({ rotateX: 0, rotateY: 0 });
+    setGlowPos({ x: 50, y: 50 });
+    setIsHovered(false);
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={`relative group ${className}`}
+      style={{
+        transform: `perspective(1000px) rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg)`,
+        transformStyle: 'preserve-3d',
+        transition: 'transform 200ms ease-out'
+      }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Animated scanning beam border */}
+      <div
+        className="absolute -inset-[1px] rounded-xl overflow-hidden pointer-events-none transition-opacity duration-500"
+        style={{
+          zIndex: 0,
+          opacity: isHovered ? 1 : 0
+        }}
+      >
+        {/* Rotating conic gradient - the scanning beam */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `conic-gradient(
+              from var(--beam-angle, 0deg) at 50% 50%,
+              transparent 0deg,
+              transparent 60deg,
+              ${colorScheme.primary} 80deg,
+              ${colorScheme.secondary} 90deg,
+              ${colorScheme.primary} 100deg,
+              transparent 120deg,
+              transparent 360deg
+            )`,
+            animation: 'beam-spin 3s linear infinite'
+          }}
+        />
+        {/* Inner mask to create border effect */}
+        <div className="absolute inset-[2px] rounded-xl bg-[#0a0a0a]" />
+      </div>
+
+      {/* Static border (visible when not hovered) */}
+      <div
+        className="absolute inset-0 rounded-xl border border-[#D4AF37]/20 transition-colors duration-300 pointer-events-none"
+        style={{
+          zIndex: 1,
+          borderColor: isHovered ? 'transparent' : 'rgba(212, 175, 55, 0.2)'
+        }}
+      />
+
+      {/* Hover glow effect */}
+      <div
+        className="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-500"
+        style={{
+          zIndex: 0,
+          opacity: isHovered ? 1 : 0,
+          boxShadow: `0 0 40px ${colorScheme.glow}, inset 0 0 20px ${colorScheme.glow}`
+        }}
+      />
+
+      {/* Cursor-following radial glow */}
+      <div
+        className="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(circle at ${glowPos.x}% ${glowPos.y}%, ${colorScheme.radial} 0%, transparent 50%)`,
+          zIndex: 0,
+          opacity: isHovered ? 1 : 0
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative rounded-xl h-full" style={{ zIndex: 2 }}>
+        {children}
+      </div>
+    </div>
+  );
+}

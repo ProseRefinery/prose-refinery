@@ -9,7 +9,7 @@ import { Reveal } from '@/components/effects/Reveal';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { BeamCard } from '@/components/effects/BeamCard';
 import LeadModal from '@/components/aiye/LeadModal';
-import { FAQ, StickyCTA } from '@/components/aiye';
+import { FAQ, StickyCTA, GlowTiltCard } from '@/components/aiye';
 
 // ============================================================================
 // CHILDREN OF AIYE LANDING PAGE
@@ -56,8 +56,8 @@ export default function ChildrenOfAiyePage() {
               {/* Book Cover - Mobile: First, Desktop: Second */}
               <div className="order-1 lg:order-2 w-full lg:w-1/2 flex justify-center">
                 <Reveal delay={200}>
-                  <TiltCard className="w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px]">
-                    <div className="relative aspect-[2/3] rounded-lg overflow-hidden shadow-2xl shadow-[#D4AF37]/20">
+                  <GlowTiltCard className="w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px]">
+                    <div className="relative aspect-[2/3] rounded-xl overflow-hidden shadow-2xl shadow-[#D4AF37]/20">
                       <Image
                         src="/children-of-aiye/cover.jpg"
                         alt="Children of Aiye book cover"
@@ -66,10 +66,8 @@ export default function ChildrenOfAiyePage() {
                         priority
                         sizes="(max-width: 640px) 300px, (max-width: 1024px) 350px, 400px"
                       />
-                      {/* Subtle gold border glow */}
-                      <div className="absolute inset-0 ring-1 ring-[#D4AF37]/30 rounded-lg" />
                     </div>
-                  </TiltCard>
+                  </GlowTiltCard>
                 </Reveal>
               </div>
 
@@ -191,16 +189,18 @@ export default function ChildrenOfAiyePage() {
             </ClipReveal>
 
             <Reveal delay={200}>
-              <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 lg:p-10 mb-8">
-                <p
-                  className="text-base sm:text-lg md:text-xl text-[#a0a0a0] leading-relaxed italic"
-                  style={{ fontFamily: 'Merriweather, Georgia, serif' }}
-                >
-                  &ldquo;The city breathes smoke and prayer. Lagos in 2067 is a solar-punk sprawl of floating markets,
-                  holographic billboards praising the Orishas, and streets that remember everyone who walks them.
-                  The megacity never sleeps&mdash;neither do the things hunting through it.&rdquo;
-                </p>
-              </div>
+              <GlowTiltCard className="mb-8" maxTilt={5}>
+                <div className="bg-[#111111] rounded-xl p-6 sm:p-8 lg:p-10">
+                  <p
+                    className="text-base sm:text-lg md:text-xl text-[#a0a0a0] leading-relaxed italic"
+                    style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                  >
+                    &ldquo;The city breathes smoke and prayer. Lagos in 2067 is a solar-punk sprawl of floating markets,
+                    holographic billboards praising the Orishas, and streets that remember everyone who walks them.
+                    The megacity never sleeps&mdash;neither do the things hunting through it.&rdquo;
+                  </p>
+                </div>
+              </GlowTiltCard>
             </Reveal>
 
             <Reveal delay={400}>
@@ -242,8 +242,8 @@ export default function ChildrenOfAiyePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {/* Card 1: Future Lagos */}
               <Reveal delay={200}>
-                <TiltCard className="h-full">
-                  <div className="bg-[#0a0a0a] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                <GlowTiltCard className="h-full">
+                  <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
                     <h3
                       className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
                       style={{ fontFamily: 'Cinzel, serif' }}
@@ -259,13 +259,13 @@ export default function ChildrenOfAiyePage() {
                       learned to speak through new technology.
                     </p>
                   </div>
-                </TiltCard>
+                </GlowTiltCard>
               </Reveal>
 
               {/* Card 2: African Cosmologies */}
               <Reveal delay={300}>
-                <TiltCard className="h-full">
-                  <div className="bg-[#0a0a0a] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                <GlowTiltCard className="h-full">
+                  <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
                     <h3
                       className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
                       style={{ fontFamily: 'Cinzel, serif' }}
@@ -281,13 +281,13 @@ export default function ChildrenOfAiyePage() {
                       that&rsquo;s been brewing since before colonization.
                     </p>
                   </div>
-                </TiltCard>
+                </GlowTiltCard>
               </Reveal>
 
               {/* Card 3: The Frame System */}
               <Reveal delay={400}>
-                <TiltCard className="h-full">
-                  <div className="bg-[#0a0a0a] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                <GlowTiltCard className="h-full">
+                  <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
                     <h3
                       className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
                       style={{ fontFamily: 'Cinzel, serif' }}
@@ -303,7 +303,7 @@ export default function ChildrenOfAiyePage() {
                       breaks every rule the gods ever made.
                     </p>
                   </div>
-                </TiltCard>
+                </GlowTiltCard>
               </Reveal>
             </div>
           </div>
@@ -333,8 +333,8 @@ export default function ChildrenOfAiyePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {/* Afolabi */}
               <Reveal delay={200}>
-                <TiltCard className="h-full">
-                  <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                <GlowTiltCard className="h-full">
+                  <div className="bg-[#111111] rounded-xl p-6 sm:p-8 h-full">
                     <div className="mb-4">
                       <span className="text-xs tracking-widest text-[#D4AF37] uppercase">
                         The Anomaly
@@ -356,13 +356,13 @@ export default function ChildrenOfAiyePage() {
                       stop what&rsquo;s coming. He&rsquo;s betting on the former.
                     </p>
                   </div>
-                </TiltCard>
+                </GlowTiltCard>
               </Reveal>
 
               {/* Kehinde */}
               <Reveal delay={300}>
-                <TiltCard className="h-full">
-                  <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                <GlowTiltCard className="h-full">
+                  <div className="bg-[#111111] rounded-xl p-6 sm:p-8 h-full">
                     <div className="mb-4">
                       <span className="text-xs tracking-widest text-[#D4AF37] uppercase">
                         The Anchor
@@ -384,13 +384,13 @@ export default function ChildrenOfAiyePage() {
                       can tell when the truth walks into the room.
                     </p>
                   </div>
-                </TiltCard>
+                </GlowTiltCard>
               </Reveal>
 
               {/* Taiwo */}
               <Reveal delay={400}>
-                <TiltCard className="h-full">
-                  <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                <GlowTiltCard className="h-full">
+                  <div className="bg-[#111111] rounded-xl p-6 sm:p-8 h-full">
                     <div className="mb-4">
                       <span className="text-xs tracking-widest text-[#D4AF37] uppercase">
                         The Builder
@@ -412,7 +412,7 @@ export default function ChildrenOfAiyePage() {
                       in case the gods forget which side they&rsquo;re on.
                     </p>
                   </div>
-                </TiltCard>
+                </GlowTiltCard>
               </Reveal>
             </div>
           </div>
@@ -493,8 +493,8 @@ export default function ChildrenOfAiyePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {/* Feature 1: Illustrated Edition */}
               <Reveal delay={200}>
-                <TiltCard className="h-full">
-                  <div className="bg-[#0a0a0a] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                <GlowTiltCard className="h-full">
+                  <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
                     <div className="mb-4">
                       <span className="inline-block px-3 py-1 bg-[#D4AF37]/20 text-[#D4AF37] text-xs font-semibold uppercase tracking-wider rounded-full">
                         Included
@@ -514,13 +514,13 @@ export default function ChildrenOfAiyePage() {
                       Premium illustrated EPUB that brings the world of Aiy&eacute; to life.
                     </p>
                   </div>
-                </TiltCard>
+                </GlowTiltCard>
               </Reveal>
 
               {/* Feature 2: Original Soundtrack */}
               <Reveal delay={300}>
-                <TiltCard className="h-full">
-                  <div className="bg-[#0a0a0a] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                <GlowTiltCard className="h-full">
+                  <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
                     <div className="mb-4">
                       <span className="inline-block px-3 py-1 bg-slate-800 text-[#a0a0a0] text-xs font-semibold uppercase tracking-wider rounded-full">
                         Coming Spring 2026
@@ -540,13 +540,13 @@ export default function ChildrenOfAiyePage() {
                       Free upgrade for all buyers. Timing subject to production.
                     </p>
                   </div>
-                </TiltCard>
+                </GlowTiltCard>
               </Reveal>
 
               {/* Feature 3: Typeset PDF */}
               <Reveal delay={400}>
-                <TiltCard className="h-full">
-                  <div className="bg-[#0a0a0a] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                <GlowTiltCard className="h-full">
+                  <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
                     <div className="mb-4">
                       <span className="inline-block px-3 py-1 bg-slate-800 text-[#a0a0a0] text-xs font-semibold uppercase tracking-wider rounded-full">
                         Coming 2026
@@ -566,7 +566,7 @@ export default function ChildrenOfAiyePage() {
                       Free upgrade for all buyers when available.
                     </p>
                   </div>
-                </TiltCard>
+                </GlowTiltCard>
               </Reveal>
             </div>
           </div>
@@ -779,8 +779,8 @@ export default function ChildrenOfAiyePage() {
                 },
               ].map((testimonial, index) => (
                 <Reveal key={index} delay={200 + index * 100}>
-                  <TiltCard className="h-full">
-                    <div className="bg-[#0a0a0a] border border-[#D4AF37]/20 rounded-xl p-6 sm:p-8 h-full hover:border-[#D4AF37]/40 transition-colors duration-300">
+                  <GlowTiltCard className="h-full">
+                    <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
                       <p
                         className="text-base sm:text-lg text-[#f0f0f0] leading-relaxed mb-6 italic"
                         style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
@@ -791,7 +791,7 @@ export default function ChildrenOfAiyePage() {
                         &mdash; {testimonial.attribution}
                       </p>
                     </div>
-                  </TiltCard>
+                  </GlowTiltCard>
                 </Reveal>
               ))}
             </div>
@@ -804,8 +804,8 @@ export default function ChildrenOfAiyePage() {
         <section className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]">
           <div className="max-w-2xl mx-auto">
             <Reveal delay={0}>
-              <BeamCard glowColor="amber" className="w-full">
-                <div className="bg-[#111111] rounded-lg p-8 sm:p-12 text-center">
+              <GlowTiltCard className="w-full" maxTilt={5}>
+                <div className="bg-[#111111] rounded-xl p-8 sm:p-12 text-center">
                   <p className="text-xs tracking-widest text-[#D4AF37] uppercase mb-4">
                     Early Access Edition
                   </p>
@@ -838,7 +838,7 @@ export default function ChildrenOfAiyePage() {
                     EPUB format &bull; Works everywhere &bull; 14-day guarantee
                   </p>
                 </div>
-              </BeamCard>
+              </GlowTiltCard>
             </Reveal>
           </div>
         </section>
