@@ -256,21 +256,32 @@ export default function ChildrenOfAiyePage() {
               {/* Card 1: Future Lagos */}
               <Reveal delay={200}>
                 <GlowTiltCard className="h-full">
-                  <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
-                    <h3
-                      className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
-                      style={{ fontFamily: 'Cinzel, serif' }}
-                    >
-                      Future Lagos
-                    </h3>
-                    <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
-                      style={{ fontFamily: 'Merriweather, Georgia, serif' }}
-                    >
-                      2067. Solar-punk megacity where ancestral shrines rise beside
-                      holographic skyscrapers. The old gods never left—they just
-                      learned to speak through new technology.
-                    </p>
+                  <div className="bg-[#0a0a0a] rounded-xl overflow-hidden h-full">
+                    <div className="relative aspect-[4/3]">
+                      <Image
+                        src="/children-of-aiye/future-lagos-concept.png"
+                        alt="Future Lagos - Solar-punk megacity"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    </div>
+                    <div className="p-6 sm:p-8">
+                      <h3
+                        className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
+                        style={{ fontFamily: 'Cinzel, serif' }}
+                      >
+                        Future Lagos
+                      </h3>
+                      <p
+                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                      >
+                        2067. Solar-punk megacity where ancestral shrines rise beside
+                        holographic skyscrapers. The old gods never left—they just
+                        learned to speak through new technology.
+                      </p>
+                    </div>
                   </div>
                 </GlowTiltCard>
               </Reveal>
@@ -278,21 +289,32 @@ export default function ChildrenOfAiyePage() {
               {/* Card 2: African Cosmologies */}
               <Reveal delay={300}>
                 <GlowTiltCard className="h-full">
-                  <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
-                    <h3
-                      className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
-                      style={{ fontFamily: 'Cinzel, serif' }}
-                    >
-                      African Cosmologies
-                    </h3>
-                    <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
-                      style={{ fontFamily: 'Merriweather, Georgia, serif' }}
-                    >
-                      Yoruba Orishas. Igbo Alusi. Edo spirits. The divine forces
-                      of West African tradition clash and collaborate in a war
-                      that&rsquo;s been brewing since before colonization.
-                    </p>
+                  <div className="bg-[#0a0a0a] rounded-xl overflow-hidden h-full">
+                    <div className="relative aspect-[4/3]">
+                      <Image
+                        src="/children-of-aiye/african-cosmologies-concept.png"
+                        alt="African Cosmologies - Divine forces"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    </div>
+                    <div className="p-6 sm:p-8">
+                      <h3
+                        className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
+                        style={{ fontFamily: 'Cinzel, serif' }}
+                      >
+                        African Cosmologies
+                      </h3>
+                      <p
+                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                      >
+                        Yoruba Orishas. Igbo Alusi. Edo spirits. The divine forces
+                        of West African tradition clash and collaborate in a war
+                        that&rsquo;s been brewing since before colonization.
+                      </p>
+                    </div>
                   </div>
                 </GlowTiltCard>
               </Reveal>
@@ -300,21 +322,32 @@ export default function ChildrenOfAiyePage() {
               {/* Card 3: The Frame System */}
               <Reveal delay={400}>
                 <GlowTiltCard className="h-full">
-                  <div className="bg-[#0a0a0a] rounded-xl p-6 sm:p-8 h-full">
-                    <h3
-                      className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
-                      style={{ fontFamily: 'Cinzel, serif' }}
-                    >
-                      The Frame System
-                    </h3>
-                    <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
-                      style={{ fontFamily: 'Merriweather, Georgia, serif' }}
-                    >
-                      Divine Frames channel Orisha power through human vessels.
-                      One person, one Frame. Unless you&rsquo;re the anomaly that
-                      breaks every rule the gods ever made.
-                    </p>
+                  <div className="bg-[#0a0a0a] rounded-xl overflow-hidden h-full">
+                    <div className="relative aspect-[4/3]">
+                      <Image
+                        src="/children-of-aiye/frame-system-concept.png"
+                        alt="The Frame System - Divine power channels"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    </div>
+                    <div className="p-6 sm:p-8">
+                      <h3
+                        className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
+                        style={{ fontFamily: 'Cinzel, serif' }}
+                      >
+                        The Frame System
+                      </h3>
+                      <p
+                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                      >
+                        Divine Frames channel Orisha power through human vessels.
+                        One person, one Frame. Unless you&rsquo;re the anomaly that
+                        breaks every rule the gods ever made.
+                      </p>
+                    </div>
                   </div>
                 </GlowTiltCard>
               </Reveal>
@@ -354,27 +387,38 @@ export default function ChildrenOfAiyePage() {
               {/* Afolabi */}
               <Reveal delay={200}>
                 <GlowTiltCard className="h-full">
-                  <div className="bg-[#111111] rounded-xl p-6 sm:p-8 h-full">
-                    <div className="mb-4">
-                      <span className="text-xs tracking-widest text-[#D4AF37] uppercase">
-                        The Anomaly
-                      </span>
+                  <div className="bg-[#111111] rounded-xl overflow-hidden h-full">
+                    <div className="relative aspect-[3/4]">
+                      <Image
+                        src="/children-of-aiye/afolabi-character-art.png"
+                        alt="Afolabi - The Anomaly"
+                        fill
+                        className="object-cover object-top"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
                     </div>
-                    <h3
-                      className="text-xl sm:text-2xl font-bold text-[#f0f0f0] mb-2"
-                      style={{ fontFamily: 'Cinzel, serif' }}
-                    >
-                      Afolabi
-                    </h3>
-                    <p className="text-sm text-[#a0a0a0] mb-4">Age 17</p>
-                    <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
-                      style={{ fontFamily: 'Merriweather, Georgia, serif' }}
-                    >
-                      Carries four Frames when the limit is one. Either the gods
-                      made a mistake, or he&rsquo;s exactly what they need to
-                      stop what&rsquo;s coming. He&rsquo;s betting on the former.
-                    </p>
+                    <div className="p-6 sm:p-8">
+                      <div className="mb-4">
+                        <span className="text-xs tracking-widest text-[#D4AF37] uppercase">
+                          The Anomaly
+                        </span>
+                      </div>
+                      <h3
+                        className="text-xl sm:text-2xl font-bold text-[#f0f0f0] mb-2"
+                        style={{ fontFamily: 'Cinzel, serif' }}
+                      >
+                        Afolabi
+                      </h3>
+                      <p className="text-sm text-[#a0a0a0] mb-4">Age 17</p>
+                      <p
+                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                      >
+                        Carries four Frames when the limit is one. Either the gods
+                        made a mistake, or he&rsquo;s exactly what they need to
+                        stop what&rsquo;s coming. He&rsquo;s betting on the former.
+                      </p>
+                    </div>
                   </div>
                 </GlowTiltCard>
               </Reveal>
@@ -382,27 +426,38 @@ export default function ChildrenOfAiyePage() {
               {/* Kehinde */}
               <Reveal delay={300}>
                 <GlowTiltCard className="h-full">
-                  <div className="bg-[#111111] rounded-xl p-6 sm:p-8 h-full">
-                    <div className="mb-4">
-                      <span className="text-xs tracking-widest text-[#D4AF37] uppercase">
-                        The Anchor
-                      </span>
+                  <div className="bg-[#111111] rounded-xl overflow-hidden h-full">
+                    <div className="relative aspect-[3/4]">
+                      <Image
+                        src="/children-of-aiye/kehinde-character-art.png"
+                        alt="Kehinde - The Anchor"
+                        fill
+                        className="object-cover object-top"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
                     </div>
-                    <h3
-                      className="text-xl sm:text-2xl font-bold text-[#f0f0f0] mb-2"
-                      style={{ fontFamily: 'Cinzel, serif' }}
-                    >
-                      Kehinde
-                    </h3>
-                    <p className="text-sm text-[#a0a0a0] mb-4">The Twin</p>
-                    <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
-                      style={{ fontFamily: 'Merriweather, Georgia, serif' }}
-                    >
-                      Reads emotions like others read street signs. In a world of
-                      lies and divine manipulation, she&rsquo;s the only one who
-                      can tell when the truth walks into the room.
-                    </p>
+                    <div className="p-6 sm:p-8">
+                      <div className="mb-4">
+                        <span className="text-xs tracking-widest text-[#D4AF37] uppercase">
+                          The Anchor
+                        </span>
+                      </div>
+                      <h3
+                        className="text-xl sm:text-2xl font-bold text-[#f0f0f0] mb-2"
+                        style={{ fontFamily: 'Cinzel, serif' }}
+                      >
+                        Kehinde
+                      </h3>
+                      <p className="text-sm text-[#a0a0a0] mb-4">The Twin</p>
+                      <p
+                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                      >
+                        Reads emotions like others read street signs. In a world of
+                        lies and divine manipulation, she&rsquo;s the only one who
+                        can tell when the truth walks into the room.
+                      </p>
+                    </div>
                   </div>
                 </GlowTiltCard>
               </Reveal>
@@ -410,27 +465,38 @@ export default function ChildrenOfAiyePage() {
               {/* Taiwo */}
               <Reveal delay={400}>
                 <GlowTiltCard className="h-full">
-                  <div className="bg-[#111111] rounded-xl p-6 sm:p-8 h-full">
-                    <div className="mb-4">
-                      <span className="text-xs tracking-widest text-[#D4AF37] uppercase">
-                        The Builder
-                      </span>
+                  <div className="bg-[#111111] rounded-xl overflow-hidden h-full">
+                    <div className="relative aspect-[3/4]">
+                      <Image
+                        src="/children-of-aiye/taiwo-character-art.png"
+                        alt="Taiwo - The Builder"
+                        fill
+                        className="object-cover object-top"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
                     </div>
-                    <h3
-                      className="text-xl sm:text-2xl font-bold text-[#f0f0f0] mb-2"
-                      style={{ fontFamily: 'Cinzel, serif' }}
-                    >
-                      Taiwo
-                    </h3>
-                    <p className="text-sm text-[#a0a0a0] mb-4">The Twin</p>
-                    <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
-                      style={{ fontFamily: 'Merriweather, Georgia, serif' }}
-                    >
-                      Controls metal and machines with a thought. While others
-                      pray to the Orishas, she builds weapons to kill them—just
-                      in case the gods forget which side they&rsquo;re on.
-                    </p>
+                    <div className="p-6 sm:p-8">
+                      <div className="mb-4">
+                        <span className="text-xs tracking-widest text-[#D4AF37] uppercase">
+                          The Builder
+                        </span>
+                      </div>
+                      <h3
+                        className="text-xl sm:text-2xl font-bold text-[#f0f0f0] mb-2"
+                        style={{ fontFamily: 'Cinzel, serif' }}
+                      >
+                        Taiwo
+                      </h3>
+                      <p className="text-sm text-[#a0a0a0] mb-4">The Twin</p>
+                      <p
+                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                      >
+                        Controls metal and machines with a thought. While others
+                        pray to the Orishas, she builds weapons to kill them—just
+                        in case the gods forget which side they&rsquo;re on.
+                      </p>
+                    </div>
                   </div>
                 </GlowTiltCard>
               </Reveal>
