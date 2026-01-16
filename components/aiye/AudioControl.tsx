@@ -1,0 +1,86 @@
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+interface AudioControlProps {
+    src?: string;
+}
+
+export function AudioControl({ src = '/children-of-aiye/ambient-drone.mp3' }: AudioControlProps) {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [volume, setVolume] = useState(0.5);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = volume;
+        }
+    }, [volume]);
+
+    useEffect(() => {
+        if (audioRef.current) {
+            if (isPlaying) {
+                // Handle promise to avoid "play() failed because the user didn't interact" errors
+                const playPromise = audioRef.current.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch((error) => {
+                        console.log("Audio playback failed (likely browser policy):", error);
+                        setIsPlaying(false);
+                    });
+                }
+            } else {
+                audioRef.current.pause();
+            }
+        }
+    }, [isPlaying]);
+
+    return (
+        <div className="fixed bottom-6 left-6 z-50 flex items-center gap-4">
+            <audio ref={audioRef} loop>
+                <source src={src} type="audio/mpeg" />
+            </audio>
+
+            <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsPlaying(!isPlaying)}
+                className="relative group w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-[#D4AF37]/30 flex items-center justify-center transition-colors hover:bg-black/60 hover:border-[#D4AF37]"
+                aria-label={isPlaying ? "Mute Ambient Sound" : "Play Ambient Sound"}
+            >
+                {/* Glow effect when playing */}
+                {isPlaying && (
+                    <motion.div
+                        className="absolute inset-0 rounded-full border border-[#D4AF37] opacity-0"
+                        animate={{ opacity: [0, 0.5, 0], scale: [1, 1.2, 1.4] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                    />
+                )}
+
+                {isPlaying ? (
+                    <Volume2 className="w-5 h-5 text-[#D4AF37]" />
+                ) : (
+                    <VolumeX className="w-5 h-5 text-[#a0a0a0] group-hover:text-[#D4AF37] transition-colors" />
+                )}
+            </motion.button>
+
+            <AnimatePresence>
+                {isPlaying && (
+                    <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -10 }}
+                        className="hidden sm:block"
+                    >
+                        <span className="text-[10px] tracking-widest text-[#D4AF37] uppercase">
+                            Now Playing: Lagos 2067
+                        </span>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+}

@@ -127,9 +127,10 @@ export function GlowTiltCard({
       ref={ref}
       className={`relative group ${className}`}
       style={{
-        transform: `perspective(1000px) rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg)`,
+        transform: `perspective(1000px) rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg) scale3d(${isHovered ? 1.05 : 1}, ${isHovered ? 1.05 : 1}, 1)`,
         transformStyle: 'preserve-3d',
-        transition: 'transform 200ms ease-out'
+        transition: 'all 400ms cubic-bezier(0.03, 0.98, 0.52, 0.99)',
+        filter: isHovered ? 'saturate(1.2) contrast(1.1)' : 'saturate(1) contrast(1)'
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}

@@ -100,7 +100,7 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
           onClick={handleBackdropClick}
           role="dialog"
           aria-modal="true"
@@ -108,22 +108,25 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
         >
           <motion.div
             ref={modalRef}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="relative w-full max-w-md bg-slate-900 border border-[#D4AF37]/30 rounded-2xl p-8 shadow-2xl"
+            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            className="relative w-full max-w-lg bg-[#0a0a0a] border border-[#D4AF37]/40 rounded-xl p-8 sm:p-10 shadow-[0_0_50px_rgba(212,175,55,0.1)] overflow-hidden"
           >
+            {/* Ambient Gold Glow Background */}
+            <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.05)_0%,_transparent_70%)] pointer-events-none" />
+
             {/* Close Button */}
             <button
               ref={closeButtonRef}
               onClick={onClose}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors
-                focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 rounded-lg p-1"
+              className="absolute top-4 right-4 text-[#a0a0a0] hover:text-[#D4AF37] transition-colors
+                focus:outline-none focus:ring-1 focus:ring-[#D4AF37] rounded-full p-2 z-10"
               aria-label="Close modal"
             >
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -131,27 +134,34 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
             </button>
 
             {/* Content */}
-            <div className="text-center mb-6">
+            <div className="relative z-10 text-center mb-8">
+              <p className="text-xs tracking-[0.2em] text-[#D4AF37] uppercase mb-4 font-semibold">
+                The Gateway
+              </p>
               <h2
                 id="modal-title"
-                className="text-2xl md:text-3xl font-serif text-white mb-2"
+                className="text-2xl sm:text-3xl font-bold text-[#f0f0f0] mb-3"
+                style={{ fontFamily: 'Cinzel, serif' }}
               >
-                Read Chapter 1 Free
+                Enter the World
               </h2>
-              <p className="text-slate-400">
-                Enter your email to unlock the first chapter of AIYE.
+              <p
+                className="text-[#a0a0a0] text-sm sm:text-base leading-relaxed"
+                style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+              >
+                Join the Disciples. Unlock the full first chapter of <span className="text-[#f0f0f0] italic">Children of Àiyé</span> immediately.
               </p>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
               <div>
                 <label htmlFor="email" className="sr-only">
                   Email address
@@ -163,13 +173,13 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder="Enter your email address"
                   required
                   disabled={isSubmitting}
-                  className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white
-                    placeholder-slate-500 transition-all duration-300
-                    focus:outline-none focus:border-[#D4AF37] focus:ring-2 focus:ring-[#D4AF37]/30
-                    disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-5 py-4 bg-[#111] border border-[#333] rounded-lg text-white
+                    placeholder-[#555] transition-all duration-300
+                    focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]
+                    disabled:opacity-50 disabled:cursor-not-allowed text-center sm:text-left"
                 />
               </div>
 
@@ -178,16 +188,15 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
                 variant="gold"
                 disabled={isSubmitting || !email.trim()}
                 loading={isSubmitting}
-                className="w-full px-6 py-3 rounded-lg"
+                className="w-full px-6 py-4 rounded-lg font-bold text-base tracking-wide"
               >
-                Get Free Chapter
+                UNLOCK CHAPTER 1
               </MagneticButton>
             </form>
 
             {/* Privacy Notice */}
-            <p className="mt-4 text-xs text-slate-500 text-center">
-              We respect your privacy. Your email will only be used to send you the free
-              chapter and occasional updates about AIYE. You can unsubscribe at any time.
+            <p className="relative z-10 mt-6 text-[10px] text-[#555] text-center uppercase tracking-wider">
+              No Spam. Only Myths. Unsubscribe Anytime.
             </p>
           </motion.div>
         </motion.div>
