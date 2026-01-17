@@ -184,7 +184,7 @@ export default function ChildrenOfAiyePage() {
           </div>
 
           {/* Scroll Prompt */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 animate-bounce hidden sm:flex flex-col items-center gap-2 opacity-70">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 animate-bounce hidden sm:flex flex-col items-center gap-2 opacity-70">
             <span className="text-[10px] text-[#D4AF37] uppercase tracking-widest">Scroll to Discover</span>
             <svg
               className="w-5 h-5 text-[#D4AF37]"
@@ -226,7 +226,7 @@ export default function ChildrenOfAiyePage() {
                   Every generation, gods choose disciples to defend reality.
                 </h2>
                 <div
-                  className="text-base sm:text-lg text-[#a0a0a0] leading-relaxed space-y-6"
+                  className="text-base sm:text-lg text-[#c0c0c0] leading-relaxed space-y-6"
                   style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                 >
                   <p>
@@ -279,7 +279,7 @@ export default function ChildrenOfAiyePage() {
 
             <div className="text-center max-w-2xl mx-auto mb-16">
               <p
-                className="text-base sm:text-lg text-[#a0a0a0] leading-relaxed"
+                className="text-base sm:text-lg text-[#c0c0c0] leading-relaxed"
                 style={{ fontFamily: 'Merriweather, Georgia, serif' }}
               >
                 2067. Lagos breathes neon and prayer. Solar-punk towers rise above
@@ -310,7 +310,7 @@ export default function ChildrenOfAiyePage() {
                         Future Lagos
                       </h3>
                       <p
-                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
                         2067. A gold-lit megacity where ancestral shrines rise beside
@@ -343,7 +343,7 @@ export default function ChildrenOfAiyePage() {
                         African Cosmologies
                       </h3>
                       <p
-                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
                         Yoruba Òrìṣà. Igbo Alusi. Edo spirits. The divine forces
@@ -376,7 +376,7 @@ export default function ChildrenOfAiyePage() {
                         The Frame System
                       </h3>
                       <p
-                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
                         Divine Frames channel Òrìṣà power through human vessels.
@@ -445,9 +445,9 @@ export default function ChildrenOfAiyePage() {
                       >
                         Afolabi
                       </h3>
-                      <p className="text-sm text-[#a0a0a0] mb-4">Age 17</p>
+                      <p className="text-sm text-[#c0c0c0] mb-4">Age 17</p>
                       <p
-                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
                         Carries four Frames when the limit is one. Either the gods
@@ -484,9 +484,9 @@ export default function ChildrenOfAiyePage() {
                       >
                         Kehinde
                       </h3>
-                      <p className="text-sm text-[#a0a0a0] mb-4">Age 16 &bull; Foster Sister</p>
+                      <p className="text-sm text-[#c0c0c0] mb-4">Age 16 &bull; Foster Sister</p>
                       <p
-                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
                         Reads emotions like others read street signs. In a world of
@@ -523,9 +523,9 @@ export default function ChildrenOfAiyePage() {
                       >
                         Taiwo
                       </h3>
-                      <p className="text-sm text-[#a0a0a0] mb-4">Age 16 &bull; Foster Brother</p>
+                      <p className="text-sm text-[#c0c0c0] mb-4">Age 16 &bull; Foster Brother</p>
                       <p
-                        className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                        className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
                         Distrust for his powers. Just sixteen years of building what others summon.
@@ -582,7 +582,7 @@ export default function ChildrenOfAiyePage() {
 
             <Reveal delay={200}>
               <p
-                className="text-base sm:text-lg text-[#a0a0a0] leading-relaxed mb-8"
+                className="text-base sm:text-lg text-[#c0c0c0] leading-relaxed mb-8"
                 style={{ fontFamily: 'Merriweather, Georgia, serif' }}
               >
                 They are called Àjọ̀gún (reality-devouring spirits). They do not just kill. They erase.
@@ -640,7 +640,7 @@ export default function ChildrenOfAiyePage() {
 
             <Reveal delay={200}>
               <div
-                className="text-base sm:text-lg text-[#a0a0a0] leading-relaxed space-y-6 max-w-2xl mx-auto"
+                className="text-base sm:text-lg text-[#c0c0c0] leading-relaxed space-y-6 max-w-2xl mx-auto"
                 style={{ fontFamily: 'Merriweather, Georgia, serif' }}
               >
                 <p>
@@ -704,7 +704,7 @@ export default function ChildrenOfAiyePage() {
               <GlowTiltCard className="mb-8" maxTilt={5}>
                 <div className="bg-[#111111] rounded-xl p-6 sm:p-8 lg:p-10">
                   <p
-                    className="text-base sm:text-lg md:text-xl text-[#a0a0a0] leading-relaxed italic"
+                    className="text-base sm:text-lg md:text-xl text-[#c0c0c0] leading-relaxed italic"
                     style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                   >
                     &ldquo;The city breathes smoke and prayer. Lagos in 2067 is a solar-punk sprawl of floating markets,
@@ -772,7 +772,7 @@ export default function ChildrenOfAiyePage() {
                       The Complete Volume
                     </h3>
                     <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                      className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                       style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
                     >
                       111,093 words across 20 chapters. Publication-ready prose
@@ -798,7 +798,7 @@ export default function ChildrenOfAiyePage() {
                       Illustrated Edition
                     </h3>
                     <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                      className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                       style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
                     >
                       21 commissioned artworks. Every chapter opens with original
@@ -824,7 +824,7 @@ export default function ChildrenOfAiyePage() {
                       Original Soundtrack
                     </h3>
                     <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                      className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                       style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
                     >
                       16 Afrobeats tracks created for the series. Listen while
@@ -850,7 +850,7 @@ export default function ChildrenOfAiyePage() {
                       Animated Content
                     </h3>
                     <p
-                      className="text-sm sm:text-base text-[#a0a0a0] leading-relaxed"
+                      className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                       style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
                     >
                       8 Veo AI videos visualising key moments. See the Frames
@@ -908,7 +908,7 @@ export default function ChildrenOfAiyePage() {
                     Olanrewaju Bello
                   </h3>
                   <div
-                    className="space-y-4 text-base sm:text-lg text-[#a0a0a0] leading-relaxed"
+                    className="space-y-4 text-base sm:text-lg text-[#c0c0c0] leading-relaxed"
                     style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
                   >
                     <p>
@@ -933,7 +933,7 @@ export default function ChildrenOfAiyePage() {
                   >
                     @proserefinery
                   </p>
-                  <p className="mt-4 text-sm text-[#a0a0a0]">
+                  <p className="mt-4 text-sm text-[#c0c0c0]">
                     Founder, Prose Refinery Press &bull; London
                   </p>
                 </div>
@@ -992,7 +992,7 @@ export default function ChildrenOfAiyePage() {
             </Reveal>
 
             <Reveal delay={400}>
-              <p className="mt-8 text-center text-sm text-[#a0a0a0]">
+              <p className="mt-8 text-center text-sm text-[#c0c0c0]">
                 15+. Contains battle violence and mature themes.
               </p>
             </Reveal>
@@ -1107,7 +1107,7 @@ export default function ChildrenOfAiyePage() {
                       >
                         &ldquo;{testimonial.quote}&rdquo;
                       </p>
-                      <p className="text-sm text-[#a0a0a0]">
+                      <p className="text-sm text-[#c0c0c0]">
                         &mdash; {testimonial.attribution}
                       </p>
                     </div>
@@ -1148,7 +1148,7 @@ export default function ChildrenOfAiyePage() {
                   >
                     &pound;12.99
                   </p>
-                  <p className="text-sm text-[#a0a0a0] mb-8">
+                  <p className="text-sm text-[#c0c0c0] mb-8">
                     Launch Price &mdash; will increase when upgrades unlock
                   </p>
                   <MagneticButton
@@ -1158,7 +1158,7 @@ export default function ChildrenOfAiyePage() {
                   >
                     Enter Aiyé — Instant Download
                   </MagneticButton>
-                  <p className="mt-6 text-xs text-[#a0a0a0] uppercase tracking-wider">
+                  <p className="mt-6 text-xs text-[#c0c0c0] uppercase tracking-wider">
                     EPUB format &bull; Works everywhere &bull; 14-day guarantee
                   </p>
                 </div>
