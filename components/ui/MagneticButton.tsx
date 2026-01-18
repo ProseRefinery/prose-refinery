@@ -32,6 +32,7 @@ export function MagneticButton({
     loading = false
 }: MagneticButtonProps) {
     const [transform, setTransform] = useState({ x: 0, y: 0 });
+    const [isBouncing, setIsBouncing] = useState(false);
     const ref = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
     const { trigger } = useHaptic();
     const [isMobile, setIsMobile] = useState(false);
@@ -62,20 +63,30 @@ export function MagneticButton({
     };
 
     const handlePress = () => {
+        if (disabled || loading) return;
+
         trigger((variant === 'primary' || variant === 'gold') ? 'heavy' : 'medium');
+
+        // Trigger bounce animation
+        setIsBouncing(true);
+        setTimeout(() => setIsBouncing(false), 300);
+
         if (onClick) onClick();
     };
 
+    // Bounce effect: scales down then bounces back with overshoot via cubic-bezier
     const style = {
-        transform: `translate(${transform.x}px, ${transform.y}px)`,
+        transform: `translate(${transform.x}px, ${transform.y}px) scale(${isBouncing ? 0.92 : 1})`,
+        transition: isBouncing
+            ? 'transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1)'
+            : 'transform 200ms ease-out',
     };
 
     const baseStyles = cn(
         'relative inline-flex items-center justify-center gap-2',
         'px-5 py-2.5 rounded-md font-medium text-xs tracking-widest uppercase',
-        'transition-all duration-200 ease-out', // The original "feel"
         'disabled:opacity-50 disabled:cursor-not-allowed',
-        'active:scale-[0.98]', // Tactile feedback
+        // Note: scale/bounce is handled via JS for better control
         {
             // Primary - emerald gradient with glow
             'bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] hover:from-emerald-500 hover:to-emerald-400': variant === 'primary',

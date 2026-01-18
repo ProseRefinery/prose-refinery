@@ -9,6 +9,7 @@ interface StickyCTAProps {
   onReadChapter?: () => void;
   purchaseUrl?: string;
   price?: string;
+  mobileOnly?: boolean; // Hide desktop layout, only show on mobile
 }
 
 export default function StickyCTA({
@@ -16,6 +17,7 @@ export default function StickyCTA({
   onReadChapter,
   purchaseUrl = '#',
   price = '£12.99',
+  mobileOnly = false,
 }: StickyCTAProps) {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -52,7 +54,8 @@ export default function StickyCTA({
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           className="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-t border-[#D4AF37]/30"
         >
-          {/* Desktop Layout */}
+          {/* Desktop Layout - Hidden when mobileOnly */}
+          {!mobileOnly && (
           <div className="hidden md:flex items-center justify-between max-w-6xl mx-auto px-6 py-4">
             <span className="text-white font-serif text-lg tracking-wide">
               {bookTitle}
@@ -74,6 +77,7 @@ export default function StickyCTA({
               </MagneticButton>
             </div>
           </div>
+          )}
 
           {/* Mobile Layout */}
           <div className="md:hidden p-4">

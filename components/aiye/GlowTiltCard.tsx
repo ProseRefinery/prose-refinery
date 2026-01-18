@@ -122,15 +122,18 @@ export function GlowTiltCard({
     setIsHovered(false);
   };
 
+  // Scale up when effect triggers (hover on desktop, scroll into active zone on mobile)
+  const scale = showEffect ? 1.03 : 1;
+
   return (
     <div
       ref={ref}
       className={`relative group ${className}`}
       style={{
-        transform: `perspective(1000px) rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg) scale3d(${isHovered ? 1.05 : 1}, ${isHovered ? 1.05 : 1}, 1)`,
+        transform: `perspective(1000px) rotateX(${transform.rotateX}deg) rotateY(${transform.rotateY}deg) scale(${scale})`,
         transformStyle: 'preserve-3d',
-        transition: 'all 400ms cubic-bezier(0.03, 0.98, 0.52, 0.99)',
-        filter: isHovered ? 'saturate(1.2) contrast(1.1)' : 'saturate(1) contrast(1)'
+        transition: 'all 350ms cubic-bezier(0.34, 1.56, 0.64, 1)', // Bouncy easing
+        filter: showEffect ? 'saturate(1.2) contrast(1.1)' : 'saturate(1) contrast(1)'
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}

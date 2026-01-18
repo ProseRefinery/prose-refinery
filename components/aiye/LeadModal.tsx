@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MagneticButton } from '@/components/ui/MagneticButton';
+import { GlowTiltCard } from './GlowTiltCard';
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -107,13 +108,17 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
           aria-labelledby="modal-title"
         >
           <motion.div
-            ref={modalRef}
             initial={{ scale: 0.95, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="relative w-full max-w-lg bg-[#0a0a0a] border border-[#D4AF37]/40 rounded-xl p-8 sm:p-10 shadow-[0_0_50px_rgba(212,175,55,0.1)] overflow-hidden"
+            className="w-full max-w-lg"
           >
+            <GlowTiltCard maxTilt={4}>
+              <div
+                ref={modalRef}
+                className="relative bg-[#0a0a0a] rounded-xl p-8 sm:p-10 overflow-hidden"
+              >
             {/* Ambient Gold Glow Background */}
             <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.05)_0%,_transparent_70%)] pointer-events-none" />
 
@@ -198,6 +203,8 @@ export default function LeadModal({ isOpen, onClose, onSubmit }: LeadModalProps)
             <p className="relative z-10 mt-6 text-[10px] text-[#555] text-center uppercase tracking-wider">
               No Spam. Only Myths. Unsubscribe Anytime.
             </p>
+              </div>
+            </GlowTiltCard>
           </motion.div>
         </motion.div>
       )}

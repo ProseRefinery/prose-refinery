@@ -12,7 +12,9 @@ import { MagneticButton } from '@/components/ui/MagneticButton';
 import LeadModal from '@/components/aiye/LeadModal';
 import { NoiseOverlay } from '@/components/effects/NoiseOverlay';
 import { ParticleSystem } from '@/components/effects/ParticleSystem';
-import { FAQ, StickyCTA, GlowTiltCard, AudioControl } from '@/components/aiye';
+import { FAQ, GlowTiltCard, AudioControl } from '@/components/aiye';
+import StickyCTA from '@/components/aiye/StickyCTA';
+import { Nav } from '@/components/layout/Nav';
 
 // ============================================================================
 // CHILDREN OF AIYE LANDING PAGE
@@ -35,8 +37,33 @@ export default function ChildrenOfAiyePage() {
     window.location.href = '/children-of-aiye/chapter-1';
   }, []);
 
+  // Custom nav items for Aiye page
+  const aiyeNavItems = [
+    { id: 'world', label: 'The World', href: '#the-world' },
+    { id: 'disciples', label: 'The Disciples', href: '#the-disciples' },
+    { id: 'mission', label: 'The Mission', href: '#the-mission' },
+  ];
+
   return (
     <>
+      {/* Navigation - Gold variant with custom links */}
+      <Nav
+        variant="gold"
+        navItems={aiyeNavItems}
+        ctaText="Enter Aiyé"
+        ctaHref="/children-of-aiye/checkout"
+        availabilityText="Read Chapter 1 Free"
+        showStatus={false}
+        logoHref="/children-of-aiye"
+      />
+
+      {/* Sticky CTA - Mobile only */}
+      <StickyCTA
+        onReadChapter={handleOpenModal}
+        purchaseUrl="/children-of-aiye/checkout"
+        mobileOnly={true}
+      />
+
       {/* Lead Capture Modal */}
       <LeadModal
         isOpen={isModalOpen}
@@ -253,6 +280,7 @@ export default function ChildrenOfAiyePage() {
             SECTION 3: THE PILLARS (THE WORLD)
             ================================================================ */}
         <section
+          id="the-world"
           className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]"
           style={{
             backgroundImage: 'linear-gradient(to bottom, rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)), url(/children-of-aiye/bg-charcoal-flat.png)',
@@ -395,6 +423,7 @@ export default function ChildrenOfAiyePage() {
             SECTION 4: THE TRIO (THE DISCIPLES)
             ================================================================ */}
         <section
+          id="the-disciples"
           className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
           style={{
             backgroundImage: 'url(/children-of-aiye/bg-luxury-matte.png)',
@@ -615,6 +644,7 @@ export default function ChildrenOfAiyePage() {
             SECTION 6: THE MISSION
             ================================================================ */}
         <section
+          id="the-mission"
           className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
           style={{
             backgroundImage: 'url(/children-of-aiye/bg-luxury-matte.png)',
@@ -887,14 +917,16 @@ export default function ChildrenOfAiyePage() {
               {/* Author Image Placeholder */}
               <Reveal delay={100}>
                 <div className="flex justify-center lg:justify-end">
-                  <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-[#111111] border border-[#D4AF37]/20 rounded-lg flex items-center justify-center">
-                    <span
-                      className="text-5xl sm:text-6xl lg:text-7xl text-[#D4AF37]/50 font-bold"
-                      style={{ fontFamily: 'var(--font-cinzel), Cinzel, serif' }}
-                    >
-                      OB
-                    </span>
-                  </div>
+                  <GlowTiltCard className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80">
+                    <div className="w-full h-full bg-[#111111] rounded-xl flex items-center justify-center">
+                      <span
+                        className="text-5xl sm:text-6xl lg:text-7xl text-[#D4AF37]/50 font-bold"
+                        style={{ fontFamily: 'var(--font-cinzel), Cinzel, serif' }}
+                      >
+                        OB
+                      </span>
+                    </div>
+                  </GlowTiltCard>
                 </div>
               </Reveal>
 
@@ -1167,14 +1199,6 @@ export default function ChildrenOfAiyePage() {
           </div>
         </section>
       </div>
-
-      {/* Sticky CTA Bar */}
-      <StickyCTA
-        bookTitle="CHILDREN OF AIYÉ"
-        onReadChapter={handleOpenModal}
-        purchaseUrl="/children-of-aiye/checkout"
-        price="£12.99"
-      />
     </>
   );
 }
