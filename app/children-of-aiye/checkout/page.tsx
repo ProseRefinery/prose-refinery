@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Lock, Check, ArrowRight } from 'lucide-react';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { Reveal } from '@/components/effects/Reveal';
 import { STRIPE_PRICES } from '@/lib/constants';
+import { Nav } from '@/components/layout/Nav';
 
 export default function CheckoutPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -43,10 +44,21 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16"
-      style={{ backgroundColor: '#0a0a0a' }}
-    >
+    <>
+      {/* Navigation - Gold variant */}
+      <Nav
+        variant="gold"
+        navItems={[]}
+        ctaText="Back to Book"
+        ctaHref="/children-of-aiye"
+        showStatus={false}
+        logoHref="/children-of-aiye"
+      />
+
+      <div
+        className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-16 pt-24"
+        style={{ backgroundColor: '#0a0a0a' }}
+      >
       <div className="w-full max-w-lg">
         {/* Main Card */}
         <Reveal delay={0}>
@@ -183,5 +195,6 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
