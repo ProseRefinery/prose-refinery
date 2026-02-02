@@ -27,6 +27,9 @@ export const STRIPE_PRICES = {
 
     launch_arsenal: 'price_1SbRHbBXNkcYRXZ1Jfj04GZ1',
 
+    // Digital Products
+    children_of_aiye_ebook: 'price_1SwJ8YBXNkcYRXZ1dbcSwFR7', // £12.99
+
     // Multimedia
     teaser_soundtrack: 'price_1SbRHZBXNkcYRXZ1Qi2k8OYp',
     full_soundtrack: 'price_1SbRHVBXNkcYRXZ1rL4u6ad6',
