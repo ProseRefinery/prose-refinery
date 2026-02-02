@@ -84,10 +84,16 @@ export default function ChildrenOfAiyeLayout({
 }>) {
   return (
     <SmoothScrollProvider>
+      {/* Skip to Content - Accessibility */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to main content
+      </a>
       <div
         className={`${cinzel.variable} ${inter.variable} ${merriweather.variable} min-h-screen bg-[#0a0a0a] text-[#f0f0f0]`}
       >
-        {children}
+        <main id="main-content">
+          {children}
+        </main>
         <AiyeExitIntentPopup />
       </div>
     </SmoothScrollProvider>

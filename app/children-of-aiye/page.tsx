@@ -400,8 +400,8 @@ export default function ChildrenOfAiyePage() {
                 style={{ fontFamily: 'Merriweather, Georgia, serif' }}
               >
                 2067. Lagos breathes neon and prayer. Solar-punk towers rise above
-                ancestral shrines. In the sacred groves of Ilé-Ifẹ̀, 1,400 disciples
-                from forty nations train to fight reality-consuming Àjọ̀gún.
+                ancestral shrines. In the sacred groves of <span lang="yo">Ilé-Ifẹ̀</span>, 1,400 disciples
+                from forty nations train to fight reality-consuming <span lang="yo">Àjọ̀gún</span>.
               </p>
             </div>
 
@@ -463,7 +463,7 @@ export default function ChildrenOfAiyePage() {
                         className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
-                        Yoruba Òrìṣà. Igbo Alusi. Edo spirits. They survived colonisation,
+                        Yoruba <span lang="yo">Òrìṣà</span>. Igbo <span lang="ig">Alusi</span>. Edo spirits. They survived colonisation,
                         missionaries, and textbooks that called them myths. Now they&rsquo;re
                         choosing sides.
                       </p>
@@ -644,8 +644,8 @@ export default function ChildrenOfAiyePage() {
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
                         Sixteen years of building what others summon. His Mark-III Rig
-                        channels Àṣẹ through circuits, not blood. What Taiwo builds,
-                        even Òrìṣà respect.
+                        channels <span lang="yo">Àṣẹ</span> through circuits, not blood. What Taiwo builds,
+                        even <span lang="yo">Òrìṣà</span> respect.
                       </p>
                     </div>
                   </div>
@@ -684,7 +684,7 @@ export default function ChildrenOfAiyePage() {
           <div className="relative z-20 max-w-3xl mx-auto text-center">
             <Reveal delay={0}>
               <p className="text-xs tracking-widest text-red-500 uppercase mb-4">
-                The Àjọ̀gún
+                The <span lang="yo">Àjọ̀gún</span>
               </p>
             </Reveal>
 
@@ -702,7 +702,7 @@ export default function ChildrenOfAiyePage() {
                 className="text-base sm:text-lg text-[#c0c0c0] leading-relaxed mb-8"
                 style={{ fontFamily: 'Merriweather, Georgia, serif' }}
               >
-                They don&rsquo;t kill. They erase. When Àjọ̀gún rise, cities don&rsquo;t burn—they
+                They don&rsquo;t kill. They erase. When <span lang="yo">Àjọ̀gún</span> rise, cities don&rsquo;t burn—they
                 forget what they were. Names dissolve. Histories unhappen. The Grove Trials
                 are opening early. Afolabi doesn&rsquo;t have time to master four Frames.
                 He has to survive them.
@@ -714,7 +714,7 @@ export default function ChildrenOfAiyePage() {
                 className="text-lg sm:text-xl text-red-400 italic"
                 style={{ fontFamily: 'Merriweather, Georgia, serif' }}
               >
-                The Àjọ̀gún remember. Aiyé&rsquo;s children betrayed them once. They intend to collect.
+                The <span lang="yo">Àjọ̀gún</span> remember. <span lang="yo">Aiyé</span>&rsquo;s children betrayed them once. They intend to collect.
               </p>
             </Reveal>
 
@@ -767,7 +767,7 @@ export default function ChildrenOfAiyePage() {
               >
                 <p>
                   The Greeks have their demigods. The Norse have their Avengers.
-                  The Òrìṣà have been waiting.
+                  The <span lang="yo">Òrìṣà</span> have been waiting.
                 </p>
                 <p>
                   Yoruba, Igbo, Edo traditions are not aesthetic. They are architecture.
@@ -833,7 +833,7 @@ export default function ChildrenOfAiyePage() {
                     style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                   >
                     &ldquo;The city breathes smoke and prayer. Lagos in 2067 is a solar-punk sprawl of floating markets,
-                    holographic billboards praising the Òrìṣà, and streets that remember everyone who walks them.
+                    holographic billboards praising the <span lang="yo">Òrìṣà</span>, and streets that remember everyone who walks them.
                     The megacity never sleeps&mdash;neither do the things hunting through it.&rdquo;
                   </p>
                 </div>
@@ -1017,7 +1017,7 @@ export default function ChildrenOfAiyePage() {
                   'Loved Percy Jackson. Wondered where YOUR gods were.',
                   'Done with Africa as aesthetic. Ready for Africa as source.',
                   "Want gods who don't apologise for existing.",
-                  'Believe Sango deserves what Zeus has hoarded.',
+                  'Believe Ṣàngó deserves what Zeus has hoarded.',
                   'Ready to come home.',
                 ].map((item, index) => (
                   <div

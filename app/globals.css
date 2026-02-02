@@ -799,3 +799,35 @@ select {
     @apply bg-background text-foreground;
   }
 }
+
+/* ============================================================================
+   ACCESSIBILITY - Reduced Motion Support
+   ============================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Skip to Content Link */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  z-index: 9999;
+  padding: 1rem 1.5rem;
+  background: #D4AF37;
+  color: #0a0a0a;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.skip-to-content:focus {
+  left: 0;
+  top: 0;
+}
