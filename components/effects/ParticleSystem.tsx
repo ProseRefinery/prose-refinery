@@ -8,6 +8,8 @@ interface ParticleSystemProps {
     direction?: 'up' | 'down';
     speed?: number;
     className?: string; // Tailwind opacity/z-index classes
+    glowIntensity?: 'subtle' | 'medium' | 'intense'; // NEW: glow halo intensity
+    sizeMultiplier?: number; // NEW: make particles bigger
 }
 
 export function ParticleSystem({
@@ -15,7 +17,9 @@ export function ParticleSystem({
     color = '#ea9e29', // Default Gold
     direction = 'up',
     speed = 1,
-    className = 'opacity-50'
+    className = 'opacity-50',
+    glowIntensity = 'medium',
+    sizeMultiplier = 1
 }: ParticleSystemProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -39,6 +43,14 @@ export function ParticleSystem({
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
+        // Glow settings based on intensity
+        const glowSettings = {
+            subtle: { outerMultiplier: 2, outerOpacity: 0.1, midMultiplier: 1.5, midOpacity: 0.2 },
+            medium: { outerMultiplier: 4, outerOpacity: 0.08, midMultiplier: 2, midOpacity: 0.15 },
+            intense: { outerMultiplier: 6, outerOpacity: 0.12, midMultiplier: 3, midOpacity: 0.25 }
+        };
+        const glow = glowSettings[glowIntensity];
+
         // Particle class
         class Particle {
             x: number;
@@ -48,50 +60,81 @@ export function ParticleSystem({
             speedX: number;
             opacity: number;
             fadeSpeed: number;
+            pulse: number;
+            pulseSpeed: number;
 
             constructor() {
                 this.x = Math.random() * canvas!.width;
-                // Start particles randomly throughout vertical space to prevent initial "empty" look
                 this.y = Math.random() * canvas!.height;
-                this.size = Math.random() * 2 + 0.5; // Small, dust-like particles
+                // Larger particles with size multiplier
+                this.size = (Math.random() * 3 + 1) * sizeMultiplier;
 
                 // Vertical speed based on direction
-                const baseSpeed = Math.random() * 0.5 + 0.1;
+                const baseSpeed = Math.random() * 0.5 + 0.15;
                 this.speedY = direction === 'up' ? -baseSpeed * speed : baseSpeed * speed;
 
                 // Slight horizontal drift
-                this.speedX = (Math.random() - 0.5) * 0.2;
+                this.speedX = (Math.random() - 0.5) * 0.3;
 
-                this.opacity = Math.random() * 0.5 + 0.1;
-                this.fadeSpeed = Math.random() * 0.005 + 0.002;
+                // Higher base opacity for more visibility
+                this.opacity = Math.random() * 0.6 + 0.2;
+                this.fadeSpeed = Math.random() * 0.008 + 0.003;
+
+                // Individual pulse phase for organic feel
+                this.pulse = Math.random() * Math.PI * 2;
+                this.pulseSpeed = Math.random() * 0.03 + 0.01;
             }
 
             update() {
                 this.y += this.speedY;
                 this.x += this.speedX;
 
-                // Pulse opacity
-                this.opacity -= this.fadeSpeed;
-                if (this.opacity <= 0 || this.opacity >= 0.8) {
-                    this.fadeSpeed = -this.fadeSpeed;
-                }
+                // Smooth pulsing with sine wave
+                this.pulse += this.pulseSpeed;
 
                 // Respawn logic
-                if (direction === 'up' && this.y < -10) {
-                    this.y = canvas!.height + 10;
+                if (direction === 'up' && this.y < -20) {
+                    this.y = canvas!.height + 20;
                     this.x = Math.random() * canvas!.width;
-                } else if (direction === 'down' && this.y > canvas!.height + 10) {
-                    this.y = -10;
+                    this.size = (Math.random() * 3 + 1) * sizeMultiplier;
+                } else if (direction === 'down' && this.y > canvas!.height + 20) {
+                    this.y = -20;
                     this.x = Math.random() * canvas!.width;
+                    this.size = (Math.random() * 3 + 1) * sizeMultiplier;
                 }
             }
 
             draw() {
                 if (!ctx) return;
-                ctx.fillStyle = hexToRgba(color, this.opacity);
+
+                // Calculate current opacity with pulse
+                const pulseOpacity = this.opacity * (0.6 + 0.4 * Math.sin(this.pulse));
+
+                // OUTER GLOW (largest, faintest)
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * glow.outerMultiplier, 0, Math.PI * 2);
+                ctx.fillStyle = hexToRgba(color, pulseOpacity * glow.outerOpacity);
+                ctx.fill();
+
+                // MID GLOW
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * glow.midMultiplier, 0, Math.PI * 2);
+                ctx.fillStyle = hexToRgba(color, pulseOpacity * glow.midOpacity);
+                ctx.fill();
+
+                // CORE (brightest)
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = hexToRgba(color, pulseOpacity);
                 ctx.fill();
+
+                // BRIGHT CENTER (white-ish hot core for intense glow)
+                if (glowIntensity === 'intense') {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 0.4, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${pulseOpacity * 0.3})`;
+                    ctx.fill();
+                }
             }
         }
 
@@ -104,7 +147,6 @@ export function ParticleSystem({
         }
 
         // Initialize particles
-        // Reduce count on mobile/small screens for performance
         const isMobile = window.innerWidth < 768;
         const particleCount = isMobile ? Math.floor(maxParticles / 2) : maxParticles;
 
@@ -132,12 +174,13 @@ export function ParticleSystem({
             window.removeEventListener('resize', resizeCanvas);
             cancelAnimationFrame(animationFrameId);
         };
-    }, [maxParticles, color, direction, speed]);
+    }, [maxParticles, color, direction, speed, glowIntensity, sizeMultiplier]);
 
     return (
         <canvas
             ref={canvasRef}
             className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
+            aria-hidden="true"
         />
     );
 }

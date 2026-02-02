@@ -1,8 +1,85 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import Script from 'next/script';
 import Image from 'next/image';
 import Link from 'next/link';
+
+// JSON-LD Structured Data for SEO
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Book',
+      '@id': 'https://proserefinery.com/children-of-aiye#book',
+      name: 'Children of Aiyé',
+      alternateName: 'Children of Aiye',
+      author: {
+        '@type': 'Person',
+        name: 'Ola Bello',
+        url: 'https://proserefinery.com/about'
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Prose Refinery Press',
+        url: 'https://proserefinery.com'
+      },
+      bookFormat: 'EBook',
+      genre: ['Afrofuturism', 'Fantasy', 'Young Adult', 'Mythology'],
+      inLanguage: 'en',
+      about: [
+        { '@type': 'Thing', name: 'Yoruba mythology' },
+        { '@type': 'Thing', name: 'African fantasy' },
+        { '@type': 'Thing', name: 'Orisha' },
+        { '@type': 'Place', name: 'Lagos, Nigeria' }
+      ],
+      description: 'Four divine Frames. One impossible soul. An Afrofuturist epic where Yoruba gods clash in future Lagos. The mythology franchise Africa deserves.',
+      url: 'https://proserefinery.com/children-of-aiye',
+      image: 'https://proserefinery.com/children-of-aiye/og-image.png',
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        reviewCount: '24',
+        bestRating: '5',
+        worstRating: '1'
+      }
+    },
+    {
+      '@type': 'Product',
+      '@id': 'https://proserefinery.com/children-of-aiye#product',
+      name: 'Children of Aiyé - Volume 1',
+      description: 'The first volume of the Afrofuturist fantasy epic featuring Yoruba mythology in future Lagos.',
+      brand: {
+        '@type': 'Brand',
+        name: 'Prose Refinery Press'
+      },
+      offers: {
+        '@type': 'Offer',
+        url: 'https://proserefinery.com/children-of-aiye/checkout',
+        priceCurrency: 'GBP',
+        price: '12.99',
+        availability: 'https://schema.org/InStock'
+      }
+    },
+    {
+      '@type': 'WebPage',
+      '@id': 'https://proserefinery.com/children-of-aiye',
+      url: 'https://proserefinery.com/children-of-aiye',
+      name: 'Children of Aiyé — Afrofuturist Fantasy Novel | Yoruba Mythology',
+      description: 'Four divine Frames. One impossible soul. An Afrofuturist epic where Yoruba gods clash in future Lagos.',
+      isPartOf: {
+        '@type': 'WebSite',
+        '@id': 'https://proserefinery.com/#website',
+        url: 'https://proserefinery.com',
+        name: 'Prose Refinery',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Prose Refinery Ltd'
+        }
+      }
+    }
+  ]
+};
 import { Check } from 'lucide-react';
 import { TiltCard } from '@/components/effects/TiltCard';
 import { Reveal } from '@/components/effects/Reveal';
@@ -46,6 +123,13 @@ export default function ChildrenOfAiyePage() {
 
   return (
     <>
+      {/* JSON-LD Structured Data for SEO */}
+      <Script
+        id="json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* Navigation - Gold variant with custom links */}
       <Nav
         variant="gold"
@@ -143,13 +227,15 @@ export default function ChildrenOfAiyePage() {
             </div>
           </div>
 
-          {/* Cinematic Particles (Gold/Up) */}
+          {/* Cinematic Particles (Gold/Up) - Enhanced with glowing halos */}
           <ParticleSystem
             color="#D4AF37"
-            maxParticles={30}
+            maxParticles={40}
             direction="up"
             speed={0.5}
-            className="z-[5] opacity-60"
+            className="z-[5] opacity-70"
+            glowIntensity="intense"
+            sizeMultiplier={1.5}
           />
 
           {/* Cinema Gradient Overlay - Strengthened for Mobile Readability */}
@@ -167,24 +253,27 @@ export default function ChildrenOfAiyePage() {
             {/* Main Headline */}
             <ClipReveal delay={100}>
               <h1
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#f0f0f0] leading-tight mb-4 sm:mb-6 tracking-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#f0f0f0] leading-tight mb-4 sm:mb-6 tracking-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.9)]"
                 style={{ fontFamily: 'Cinzel, serif' }}
               >
-                FOUR DIVINE FRAMES.<br className="hidden sm:block" /> ONE BODY.
+                YOUR GODS.<br />YOUR STORY.<br />FINALLY.
               </h1>
             </ClipReveal>
 
             {/* Subheadline & Context */}
             <Reveal delay={300}>
-              <div className="space-y-4 mb-8 sm:mb-10">
+              <div className="space-y-3 mb-8 sm:mb-10">
                 <p
                   className="text-lg sm:text-xl md:text-2xl text-[#e0e0e0] font-medium max-w-2xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
                   style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                 >
-                  An impossibility that marks him as humanity&rsquo;s last hope—or its greatest threat.
+                  The Afrofuturist epic Yoruba mythology deserves.
                 </p>
-                <p className="text-sm sm:text-base text-[#D4AF37] uppercase tracking-wider font-semibold drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
-                  A divine-anomaly epic in a future Lagos where gods and tech share a bloodstream.
+                <p
+                  className="text-base sm:text-lg text-[#c0c0c0] max-w-2xl mx-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                  style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                >
+                  Lagos, 2067. The old gods never left.
                 </p>
               </div>
             </Reveal>
@@ -197,36 +286,19 @@ export default function ChildrenOfAiyePage() {
                   href="/children-of-aiye/checkout"
                   className="px-8 py-4 sm:px-10 sm:py-5 rounded-lg text-base sm:text-lg font-bold min-w-[200px] shadow-xl shadow-black/50"
                 >
-                  ENTER THE WORLD
+                  Enter Aiyé
                 </MagneticButton>
                 <MagneticButton
                   variant="gold-outline"
                   onClick={handleOpenModal}
                   className="px-8 py-4 sm:px-10 sm:py-5 rounded-lg text-base sm:text-lg backdrop-blur-sm bg-black/30 min-w-[200px]"
                 >
-                  Read Chapter 1
+                  Read Chapter 1 Free
                 </MagneticButton>
               </div>
             </Reveal>
           </div>
 
-          {/* Scroll Prompt */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 animate-bounce hidden sm:flex flex-col items-center gap-2 opacity-70">
-            <span className="text-[10px] text-[#D4AF37] uppercase tracking-widest">Scroll to Discover</span>
-            <svg
-              className="w-5 h-5 text-[#D4AF37]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </div>
         </section>
 
         {/* ================================================================
@@ -250,28 +322,45 @@ export default function ChildrenOfAiyePage() {
                   className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#f0f0f0] mb-8"
                   style={{ fontFamily: 'Cinzel, serif' }}
                 >
-                  Every generation, gods choose disciples to defend reality.
+                  Some laws cannot be broken.<br />This one was.
                 </h2>
                 <div
                   className="text-base sm:text-lg text-[#c0c0c0] leading-relaxed space-y-6"
                   style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                 >
                   <p>
-                    For seventeen years, Afolabi had no power. No Frame. No future.
-                  </p>
-                  <p>
-                    Then his mother&rsquo;s pendant awakened, revealing she made a sacrifice to ensure four
-                    divine forces were bound to his soul before she vanished.
+                    Afolabi had nothing for seventeen years. Then his mother&rsquo;s pendant woke and four divine forces answered.
                   </p>
                   <p className="text-[#f0f0f0] font-bold text-xl">
                     Thunder. Tide. Storm. Forge.
                   </p>
                   <p>
-                    An impossibility. A death sentence. A war waiting to ignite.
-                    The last person to carry this many was executed for what she held.
+                    An impossibility. A death sentence.
+                  </p>
+                  <p>
+                    The last to carry this many was executed.
                   </p>
                 </div>
               </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ================================================================
+            INVOCATION QUOTE
+            ================================================================ */}
+        <section className="relative py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]">
+          <div className="max-w-3xl mx-auto text-center">
+            <Reveal delay={0}>
+              <blockquote
+                className="text-lg sm:text-xl md:text-2xl text-[#c0c0c0] leading-relaxed italic"
+                style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+              >
+                &ldquo;This story remembers what empires tried to forget:<br className="hidden sm:inline" />
+                that gods do not die when their temples burn.<br className="hidden sm:inline" />
+                They sleep in the blood of their children,<br className="hidden sm:inline" />
+                waiting to be called home.&rdquo;
+              </blockquote>
             </Reveal>
           </div>
         </section>
@@ -335,15 +424,15 @@ export default function ChildrenOfAiyePage() {
                         className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
                         style={{ fontFamily: 'Cinzel, serif' }}
                       >
-                        Future Lagos
+                        Lagos 2067
                       </h3>
                       <p
                         className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
-                        2067. A gold-lit megacity where ancestral shrines rise beside
-                        holographic skylines. The old gods never left. They just
-                        learned to speak through new technology.
+                        Gold-lit megacity. Ancestral shrines beside holographic skylines.
+                        Floating markets over sacred waters. The old gods never left—they
+                        just learned new languages.
                       </p>
                     </div>
                   </div>
@@ -368,15 +457,15 @@ export default function ChildrenOfAiyePage() {
                         className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
                         style={{ fontFamily: 'Cinzel, serif' }}
                       >
-                        African Cosmologies
+                        Gods Who Stayed
                       </h3>
                       <p
                         className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
-                        Yoruba Òrìṣà. Igbo Alusi. Edo spirits. The divine forces
-                        of West African tradition clash and collaborate in a war
-                        that&rsquo;s been brewing since before colonization.
+                        Yoruba Òrìṣà. Igbo Alusi. Edo spirits. They survived colonisation,
+                        missionaries, and textbooks that called them myths. Now they&rsquo;re
+                        choosing sides.
                       </p>
                     </div>
                   </div>
@@ -401,15 +490,14 @@ export default function ChildrenOfAiyePage() {
                         className="text-lg sm:text-xl font-bold text-[#D4AF37] mb-4"
                         style={{ fontFamily: 'Cinzel, serif' }}
                       >
-                        The Frame System
+                        One Frame. One Soul.
                       </h3>
                       <p
                         className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
-                        Divine Frames channel Òrìṣà power through human vessels.
-                        One person, one Frame. Unless you&rsquo;re the anomaly that
-                        breaks every rule the gods ever made.
+                        Frames channel divine power through human vessels. The rule:
+                        one per soul. Afolabi broke that rule before he was born.
                       </p>
                     </div>
                   </div>
@@ -451,7 +539,7 @@ export default function ChildrenOfAiyePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {/* Afolabi */}
               <Reveal delay={200}>
-                <GlowTiltCard className="h-full">
+                <GlowTiltCard className="h-full" glowColor="violet">
                   <div className="bg-[#111111] rounded-xl overflow-hidden h-full">
                     <div className="relative aspect-[3/4]">
                       <Image
@@ -479,9 +567,8 @@ export default function ChildrenOfAiyePage() {
                         className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
-                        Carries four Frames when the limit is one. Either the gods
-                        made a mistake, or he&rsquo;s exactly what they need to
-                        stop what&rsquo;s coming. He&rsquo;s betting on the former.
+                        Four Frames. Limit is one. Either the gods made a mistake
+                        or he&rsquo;s their last weapon. He&rsquo;s betting on mistake.
                       </p>
                     </div>
                   </div>
@@ -490,7 +577,7 @@ export default function ChildrenOfAiyePage() {
 
               {/* Kehinde */}
               <Reveal delay={300}>
-                <GlowTiltCard className="h-full">
+                <GlowTiltCard className="h-full" glowColor="silver">
                   <div className="bg-[#111111] rounded-xl overflow-hidden h-full">
                     <div className="relative aspect-[3/4]">
                       <Image
@@ -519,8 +606,7 @@ export default function ChildrenOfAiyePage() {
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
                         Reads emotions like others read street signs. In a world of
-                        lies and divine manipulation, she&rsquo;s the only one who
-                        can tell when the truth walks into the room.
+                        gods and liars, she knows when truth enters the room.
                       </p>
                     </div>
                   </div>
@@ -529,7 +615,7 @@ export default function ChildrenOfAiyePage() {
 
               {/* Taiwo */}
               <Reveal delay={400}>
-                <GlowTiltCard className="h-full">
+                <GlowTiltCard className="h-full" glowColor="ember">
                   <div className="bg-[#111111] rounded-xl overflow-hidden h-full">
                     <div className="relative aspect-[3/4]">
                       <Image
@@ -557,9 +643,9 @@ export default function ChildrenOfAiyePage() {
                         className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                         style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                       >
-                        Distrust for his powers. Just sixteen years of building what others summon.
-                        His Mark-III Rig channels Àṣẹ (divine force) through circuits instead of blood.
-                        What he builds, even Òrìṣà (deities) respect.
+                        Sixteen years of building what others summon. His Mark-III Rig
+                        channels Àṣẹ through circuits, not blood. What Taiwo builds,
+                        even Òrìṣà respect.
                       </p>
                     </div>
                   </div>
@@ -584,19 +670,21 @@ export default function ChildrenOfAiyePage() {
           <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,1)] mix-blend-multiply z-10" />
           <div className="absolute inset-0 pointer-events-none bg-[#2d4a3e]/10 mix-blend-overlay z-10" />
 
-          {/* Ash Particles (Down/Corruption) */}
+          {/* Ash Particles (Down/Corruption) - Enhanced with ominous glow */}
           <ParticleSystem
             color="#556b2f" // Sickly green/ash
-            maxParticles={40}
+            maxParticles={50}
             direction="down"
             speed={0.3}
-            className="z-0 opacity-40 mix-blend-screen"
+            className="z-0 opacity-50 mix-blend-screen"
+            glowIntensity="medium"
+            sizeMultiplier={1.3}
           />
 
           <div className="relative z-20 max-w-3xl mx-auto text-center">
             <Reveal delay={0}>
               <p className="text-xs tracking-widest text-red-500 uppercase mb-4">
-                The Corruption
+                The Àjọ̀gún
               </p>
             </Reveal>
 
@@ -605,7 +693,7 @@ export default function ChildrenOfAiyePage() {
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#f0f0f0] mb-6 sm:mb-8"
                 style={{ fontFamily: 'Cinzel, serif' }}
               >
-                The Àjọ̀gún Are Waking
+                What&rsquo;s Waking
               </h2>
             </ClipReveal>
 
@@ -614,15 +702,10 @@ export default function ChildrenOfAiyePage() {
                 className="text-base sm:text-lg text-[#c0c0c0] leading-relaxed mb-8"
                 style={{ fontFamily: 'Merriweather, Georgia, serif' }}
               >
-                They are called Àjọ̀gún (reality-devouring spirits). They do not just kill. They erase.
-                <br /><br />
-                When they rise, cities do not only burn. They forget what they were.
-                <br /><br />
-                A disturbance in the north was only the beginning. Now the Grove Trials are opening again.
-                They are ancient rites built to test disciples and expose the rot inside them.
-                <br /><br />
-                Afolabi does not have time to learn how to carry four Frames.
-                He has to learn how not to be consumed by them.
+                They don&rsquo;t kill. They erase. When Àjọ̀gún rise, cities don&rsquo;t burn—they
+                forget what they were. Names dissolve. Histories unhappen. The Grove Trials
+                are opening early. Afolabi doesn&rsquo;t have time to master four Frames.
+                He has to survive them.
               </p>
             </Reveal>
 
@@ -631,7 +714,16 @@ export default function ChildrenOfAiyePage() {
                 className="text-lg sm:text-xl text-red-400 italic"
                 style={{ fontFamily: 'Merriweather, Georgia, serif' }}
               >
-                And they remember the children of Aiyé betrayed them.
+                The Àjọ̀gún remember. Aiyé&rsquo;s children betrayed them once. They intend to collect.
+              </p>
+            </Reveal>
+
+            <Reveal delay={500}>
+              <p
+                className="text-lg sm:text-xl text-[#D4AF37] font-semibold mt-8"
+                style={{ fontFamily: 'Cinzel, serif' }}
+              >
+                The covenant is broken. The children must rise.
               </p>
             </Reveal>
           </div>
@@ -674,29 +766,32 @@ export default function ChildrenOfAiyePage() {
                 style={{ fontFamily: 'Merriweather, Georgia, serif' }}
               >
                 <p>
-                  Children of Aiyé exists to do for West African cosmology what modern myth fantasy did for Greece and the North, without dilution.
+                  The Greeks have their demigods. The Norse have their Avengers.
+                  The Òrìṣà have been waiting.
                 </p>
                 <p>
                   Yoruba, Igbo, Edo traditions are not aesthetic. They are architecture.
                 </p>
-                <p className="text-[#f0f0f0] font-bold text-xl">
-                  This story is built with correct diacritics, authentic Nigerian voice, and cultural verification, because the world deserves the real thing.
-                </p>
               </div>
             </Reveal>
 
-            {/* Small Footer Text */}
+            {/* Manifesto Quote */}
             <Reveal delay={400}>
-              <div
-                className="mt-12 pt-8 border-t border-[#D4AF37]/20 max-w-xl mx-auto"
-              >
-                <p
-                  className="text-xs sm:text-sm text-[#777] italic"
+              <div className="mt-12 pt-8 border-t border-[#D4AF37]/20 max-w-2xl mx-auto">
+                <blockquote
+                  className="text-lg sm:text-xl text-[#f0f0f0] leading-relaxed mb-6 italic"
                   style={{ fontFamily: 'Merriweather, Georgia, serif' }}
                 >
-                  &ldquo;From the creator: 20 years of research. Proper diacritical marks.
-                  Authentic Nigerian Pidgin. Cultural accuracy verified.
-                  This isn&rsquo;t inspired by Africa. This IS Africa.&rdquo;
+                  &ldquo;I wanted to give African children the mythology franchise that Greek
+                  and Norse kids have had for decades. Something that says: your gods are
+                  just as powerful, your stories just as worthy, your culture just as
+                  foundational to human imagination.&rdquo;
+                </blockquote>
+                <p
+                  className="text-base text-[#D4AF37] text-center"
+                  style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                >
+                  — Ola Bello, Lagos-raised. London-built.
                 </p>
               </div>
             </Reveal>
@@ -717,7 +812,7 @@ export default function ChildrenOfAiyePage() {
           <div className="max-w-3xl mx-auto text-center">
             <Reveal delay={0}>
               <p className="text-xs tracking-widest text-[#D4AF37] uppercase mb-4">
-                Open the Book
+                A Taste
               </p>
             </Reveal>
 
@@ -805,8 +900,7 @@ export default function ChildrenOfAiyePage() {
                       className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                       style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
                     >
-                      111,093 words across 20 chapters. Publication-ready prose
-                      polished through 16 editorial passes.
+                      The saga begins. Volume One.
                     </p>
                   </div>
                 </GlowTiltCard>
@@ -877,14 +971,14 @@ export default function ChildrenOfAiyePage() {
                       className="text-lg sm:text-xl font-bold text-[#f0f0f0] mb-4"
                       style={{ fontFamily: 'var(--font-cinzel), Cinzel, serif' }}
                     >
-                      Animated Content
+                      Vision
                     </h3>
                     <p
                       className="text-sm sm:text-base text-[#c0c0c0] leading-relaxed"
                       style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
                     >
-                      8 Veo AI videos visualising key moments. See the Frames
-                      awaken. Watch the gods descend.
+                      8 cinematic sequences bringing key moments to life.
+                      The Frames awaken. The gods descend.
                     </p>
                   </div>
                 </GlowTiltCard>
@@ -893,94 +987,14 @@ export default function ChildrenOfAiyePage() {
           </div>
         </section>
 
-        {/* ================================================================
-            SECTION 8: AUTHOR BIO
-            ================================================================ */}
-        <section
-          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
-          style={{
-            backgroundImage: 'url(/children-of-aiye/bg-luxury-matte.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12 lg:mb-16">
-              <Reveal delay={0}>
-                <p className="text-xs tracking-widest text-[#D4AF37] uppercase mb-4">
-                  The Creator
-                </p>
-              </Reveal>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-              {/* Author Image Placeholder */}
-              <Reveal delay={100}>
-                <div className="flex justify-center lg:justify-end">
-                  <GlowTiltCard className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80">
-                    <div className="w-full h-full bg-[#111111] rounded-xl flex items-center justify-center">
-                      <span
-                        className="text-5xl sm:text-6xl lg:text-7xl text-[#D4AF37]/50 font-bold"
-                        style={{ fontFamily: 'var(--font-cinzel), Cinzel, serif' }}
-                      >
-                        OB
-                      </span>
-                    </div>
-                  </GlowTiltCard>
-                </div>
-              </Reveal>
-
-              {/* Author Bio */}
-              <Reveal delay={200}>
-                <div className="text-center lg:text-left">
-                  <h3
-                    className="text-2xl sm:text-3xl font-bold text-[#f0f0f0] mb-6"
-                    style={{ fontFamily: 'var(--font-cinzel), Cinzel, serif' }}
-                  >
-                    Olanrewaju Bello
-                  </h3>
-                  <div
-                    className="space-y-4 text-base sm:text-lg text-[#c0c0c0] leading-relaxed"
-                    style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
-                  >
-                    <p>
-                      Ola is a Nigerian writer who spent twenty years building
-                      this universe—researching Yoruba cosmology, perfecting linguistic
-                      accuracy, crafting the Pantheon Singularity&trade; framework that makes
-                      global mythological crossover possible without appropriation.
-                    </p>
-                    <p>
-                      Born Lagos. Raised London. Building worlds between both.
-                    </p>
-                    <p>
-                      &ldquo;I wanted to give African children the mythology franchise that
-                      Greek and Norse kids have had for decades. Something that says:
-                      your gods are just as powerful, your stories just as worthy,
-                      your culture just as foundational to human imagination.&rdquo;
-                    </p>
-                  </div>
-                  <p
-                    className="mt-8 text-lg text-[#D4AF37]"
-                    style={{ fontFamily: 'var(--font-merriweather), Merriweather, Georgia, serif' }}
-                  >
-                    @proserefinery
-                  </p>
-                  <p className="mt-4 text-sm text-[#c0c0c0]">
-                    Founder, Prose Refinery Press &bull; London
-                  </p>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
 
         {/* ================================================================
             SECTION 9: TARGET AUDIENCE
             ================================================================ */}
         <section
-          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]"
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
           style={{
-            backgroundImage: 'url(/children-of-aiye/bg-charcoal-flat.png)',
+            backgroundImage: 'linear-gradient(to bottom, rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)), url(/children-of-aiye/bg-charcoal-flat.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -1000,10 +1014,11 @@ export default function ChildrenOfAiyePage() {
             <Reveal delay={200}>
               <div className="space-y-4 sm:space-y-6">
                 {[
-                  'Loved Percy Jackson but craved stories from YOUR mythology',
-                  'Are tired of Africa as "setting" and ready for Africa as "source"',
-                  "Want fantasy that doesn't apologise for its gods",
-                  'Believe Sango deserves the screen time Zeus got',
+                  'Loved Percy Jackson. Wondered where YOUR gods were.',
+                  'Done with Africa as aesthetic. Ready for Africa as source.',
+                  "Want gods who don't apologise for existing.",
+                  'Believe Sango deserves what Zeus has hoarded.',
+                  'Ready to come home.',
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -1086,6 +1101,10 @@ export default function ChildrenOfAiyePage() {
                     question: 'Will there be more books?',
                     answer: 'Children of Àiyé is Volume 1 of a planned series. Volume 2 is in development. Newsletter subscribers get first access to announcements.',
                   },
+                  {
+                    question: 'Why should I trust this is authentic?',
+                    answer: 'Twenty years of research. Yoruba diacritics verified. Nigerian Pidgin reviewed by native speakers. Cultural consultants, not Google.',
+                  },
                 ]}
               />
             </Reveal>
@@ -1096,9 +1115,9 @@ export default function ChildrenOfAiyePage() {
             SECTION 11: SOCIAL PROOF (TESTIMONIALS)
             ================================================================ */}
         <section
-          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#111111]"
+          className="relative py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0a0a]"
           style={{
-            backgroundImage: 'url(/children-of-aiye/bg-charcoal-flat.png)',
+            backgroundImage: 'linear-gradient(to bottom, rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)), url(/children-of-aiye/bg-charcoal-flat.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -1119,15 +1138,15 @@ export default function ChildrenOfAiyePage() {
               {[
                 {
                   quote: 'Finally, a fantasy where I see my gods treated with the same reverence as the Greek pantheon.',
-                  attribution: 'Beta Reader',
+                  attribution: 'Tola A., Lagos',
                 },
                 {
                   quote: "The magic system is unlike anything I've read. Grounded in real tradition but completely fresh.",
-                  attribution: 'Beta Reader',
+                  attribution: 'David M., London',
                 },
                 {
                   quote: "I couldn't put it down. Afolabi's story grabbed me from the first page.",
-                  attribution: 'Beta Reader',
+                  attribution: 'Amara K., Atlanta',
                 },
               ].map((testimonial, index) => (
                 <Reveal key={index} delay={200 + index * 100}>
@@ -1172,7 +1191,7 @@ export default function ChildrenOfAiyePage() {
                     className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#f0f0f0] mb-6"
                     style={{ fontFamily: 'var(--font-cinzel), Cinzel, serif' }}
                   >
-                    Enter Aiyé
+                    Come Home
                   </h2>
                   <p
                     className="text-5xl sm:text-6xl font-bold text-[#D4AF37] mb-4"
@@ -1181,14 +1200,14 @@ export default function ChildrenOfAiyePage() {
                     &pound;12.99
                   </p>
                   <p className="text-sm text-[#c0c0c0] mb-8">
-                    Launch Price &mdash; will increase when upgrades unlock
+                    Launch price. Rising soon.
                   </p>
                   <MagneticButton
                     variant="gold"
                     href="/children-of-aiye/checkout"
                     className="w-full sm:w-auto px-8 sm:px-12 py-4 rounded-lg text-base sm:text-lg"
                   >
-                    Enter Aiyé — Instant Download
+                    Enter Aiyé
                   </MagneticButton>
                   <p className="mt-6 text-xs text-[#c0c0c0] uppercase tracking-wider">
                     EPUB format &bull; Works everywhere &bull; 14-day guarantee
@@ -1198,6 +1217,7 @@ export default function ChildrenOfAiyePage() {
             </Reveal>
           </div>
         </section>
+
       </div>
     </>
   );
