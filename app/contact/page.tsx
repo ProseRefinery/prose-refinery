@@ -7,7 +7,7 @@ import { WhatsAppIcon } from '@/components/ui/BrandIcons';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 import { BeamCard } from '@/components/effects/BeamCard';
 import { SuccessConfetti } from '@/components/effects/SuccessConfetti';
 import { FloatingInput } from '@/components/ui/FloatingInput';

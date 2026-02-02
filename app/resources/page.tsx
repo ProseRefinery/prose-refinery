@@ -5,7 +5,7 @@ import { ArrowRight, Clock } from 'lucide-react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { ARTICLES } from '@/lib/articles';
 

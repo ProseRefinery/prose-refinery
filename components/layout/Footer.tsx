@@ -2,12 +2,15 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Mail, ArrowRight, CheckCircle2, Instagram, Twitter } from 'lucide-react';
 import { COMPANY } from '@/lib/constants';
 import { useState, FormEvent } from 'react';
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { MagneticButton } from '@/components/ui/MagneticButton';
-import { Card } from '@/components/ui/Card'; // Added import
+import { Card } from '@/components/ui/card';
+import { Reveal } from '@/components/effects/Reveal';
+import { WhatsAppIcon } from '@/components/ui/BrandIcons';
 
 const FooterLink = ({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) => (
     <div className="relative">
@@ -21,9 +24,245 @@ const FooterLink = ({ href, children, className }: { href: string; children: Rea
     </div>
 );
 
-import { WhatsAppIcon } from '@/components/ui/BrandIcons';
+// ============================================================================
+// AIYÉ FOOTER (Gold Theme - Premium)
+// ============================================================================
+function AiyeFooter() {
+    const [email, setEmail] = useState('');
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-export function Footer() {
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+
+        setStatus('loading');
+
+        try {
+            const response = await fetch('/api/newsletter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email,
+                    source: 'children_of_aiye_footer',
+                    userGroup: 'Aiyé Reader'
+                }),
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setEmail('');
+            } else {
+                setStatus('error');
+            }
+        } catch {
+            setStatus('error');
+        }
+    };
+
+    return (
+        <footer
+            className="relative w-full"
+            style={{
+                background: 'linear-gradient(to bottom, #0a0a0a, #050505)',
+            }}
+        >
+            {/* Textured overlay */}
+            <div
+                className="absolute inset-0 opacity-30"
+                style={{
+                    backgroundImage: 'url(/children-of-aiye/bg-luxury-matte.png)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            />
+
+            {/* Top decorative border */}
+            <div className="relative">
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.5)]" />
+            </div>
+
+            {/* Main Footer Content */}
+            <div className="relative z-10 w-full px-6 sm:px-12 lg:px-24 py-20 sm:py-24">
+
+                {/* Header with decorative elements */}
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center gap-4 mb-6">
+                        <div className="w-12 h-px bg-gradient-to-r from-transparent to-[#D4AF37]" />
+                        <h3
+                            className="text-xs tracking-[0.4em] text-[#D4AF37] uppercase"
+                            style={{ fontFamily: 'Cinzel, serif' }}
+                        >
+                            The Covenant
+                        </h3>
+                        <div className="w-12 h-px bg-gradient-to-l from-transparent to-[#D4AF37]" />
+                    </div>
+                    <p
+                        className="text-[#a0a0a0] text-base leading-relaxed max-w-md mx-auto"
+                        style={{ fontFamily: 'Merriweather, Georgia, serif', fontStyle: 'italic' }}
+                    >
+                        The old gods never left. Now they&apos;re calling you home.
+                    </p>
+                </div>
+
+                {/* Two column layout */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 max-w-5xl mx-auto">
+
+                    {/* Newsletter Card */}
+                    <div className="relative group">
+                        {/* Card glow effect */}
+                        <div className="absolute -inset-px rounded-xl bg-gradient-to-b from-[#D4AF37]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                        {/* Card */}
+                        <div className="relative bg-[#111111]/80 backdrop-blur-sm border border-[#D4AF37]/10 rounded-xl p-8 hover:border-[#D4AF37]/30 transition-all duration-500">
+                            {/* Corner accents */}
+                            <div className="absolute top-3 left-3 w-4 h-4 border-t border-l border-[#D4AF37]/40" />
+                            <div className="absolute top-3 right-3 w-4 h-4 border-t border-r border-[#D4AF37]/40" />
+                            <div className="absolute bottom-3 left-3 w-4 h-4 border-b border-l border-[#D4AF37]/40" />
+                            <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-[#D4AF37]/40" />
+
+                            <label
+                                htmlFor="aiye-newsletter"
+                                className="block text-[#f0f0f0] text-lg mb-2"
+                                style={{ fontFamily: 'Cinzel, serif' }}
+                            >
+                                Receive Transmissions
+                            </label>
+                            <p
+                                className="text-[#888888] text-sm mb-6"
+                                style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                            >
+                                Updates on Volume 2, exclusive content, and dispatches from Lagos 2067.
+                            </p>
+
+                            {status === 'success' ? (
+                                <div className="flex items-center gap-3 text-[#D4AF37] bg-[#D4AF37]/10 p-4 rounded-lg border border-[#D4AF37]/30">
+                                    <CheckCircle2 size={20} />
+                                    <span
+                                        className="text-sm"
+                                        style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                                    >
+                                        The gods have heard you.
+                                    </span>
+                                </div>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="space-y-4">
+                                    <input
+                                        id="aiye-newsletter"
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="your@email.com"
+                                        required
+                                        disabled={status === 'loading'}
+                                        className="w-full h-12 bg-[#0a0a0a] border border-[#333333] rounded-lg px-4 text-[#f0f0f0] placeholder-[#555555] focus:outline-none focus:border-[#D4AF37] focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all text-sm"
+                                        style={{ fontFamily: 'Inter, sans-serif' }}
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={status === 'loading'}
+                                        className="w-full h-12 bg-gradient-to-r from-[#D4AF37] to-[#B8962E] hover:from-[#E5C158] hover:to-[#D4AF37] text-[#0a0a0a] font-bold rounded-lg transition-all duration-300 disabled:opacity-50 shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
+                                        style={{ fontFamily: 'Cinzel, serif', letterSpacing: '0.1em' }}
+                                    >
+                                        {status === 'loading' ? '...' : 'JOIN THE COVENANT'}
+                                    </button>
+                                </form>
+                            )}
+
+                            {status === 'error' && (
+                                <p className="text-red-400 text-sm mt-4" style={{ fontFamily: 'Merriweather, Georgia, serif' }}>
+                                    Something went wrong. Please try again.
+                                </p>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Social & Connect Card */}
+                    <div className="relative group">
+                        {/* Card glow effect */}
+                        <div className="absolute -inset-px rounded-xl bg-gradient-to-b from-[#D4AF37]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                        {/* Card */}
+                        <div className="relative bg-[#111111]/80 backdrop-blur-sm border border-[#D4AF37]/10 rounded-xl p-8 hover:border-[#D4AF37]/30 transition-all duration-500 h-full">
+                            {/* Corner accents */}
+                            <div className="absolute top-3 left-3 w-4 h-4 border-t border-l border-[#D4AF37]/40" />
+                            <div className="absolute top-3 right-3 w-4 h-4 border-t border-r border-[#D4AF37]/40" />
+                            <div className="absolute bottom-3 left-3 w-4 h-4 border-b border-l border-[#D4AF37]/40" />
+                            <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-[#D4AF37]/40" />
+
+                            <h4
+                                className="text-[#f0f0f0] text-lg mb-2"
+                                style={{ fontFamily: 'Cinzel, serif' }}
+                            >
+                                Follow the Journey
+                            </h4>
+                            <p
+                                className="text-[#888888] text-sm mb-8"
+                                style={{ fontFamily: 'Merriweather, Georgia, serif' }}
+                            >
+                                Behind-the-scenes art, character reveals, and community discussions.
+                            </p>
+
+                            <a
+                                href="https://www.instagram.com/childrenofaiye/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-4 group/link p-4 -m-4 rounded-lg hover:bg-[#D4AF37]/5 transition-all duration-300"
+                            >
+                                <span className="relative w-14 h-14 rounded-full border-2 border-[#333333] bg-[#0a0a0a] flex items-center justify-center text-[#c0c0c0] group-hover/link:text-[#D4AF37] group-hover/link:border-[#D4AF37]/50 transition-all duration-300 overflow-hidden">
+                                    {/* Glow ring on hover */}
+                                    <span className="absolute inset-0 rounded-full opacity-0 group-hover/link:opacity-100 transition-opacity duration-300 bg-gradient-to-tr from-[#D4AF37]/20 to-transparent" />
+                                    <Instagram size={24} className="relative z-10" />
+                                </span>
+                                <div>
+                                    <span
+                                        className="block text-[#f0f0f0] group-hover/link:text-[#D4AF37] transition-colors font-medium"
+                                        style={{ fontFamily: 'Inter, sans-serif' }}
+                                    >
+                                        @childrenofaiye
+                                    </span>
+                                    <span className="text-xs text-[#666666]">Instagram</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Legal Footer */}
+            <div className="relative z-10 w-full border-t border-[#1a1a1a]">
+                <div className="px-6 sm:px-12 lg:px-24 py-8">
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <span className="text-xs text-[#555555]" style={{ fontFamily: 'Inter, sans-serif' }}>
+                            © 2026 Prose Refinery Press
+                        </span>
+                        <div className="flex items-center gap-8 text-xs text-[#555555]">
+                            <Link
+                                href="/privacy"
+                                className="hover:text-[#D4AF37] transition-colors duration-300"
+                                style={{ fontFamily: 'Inter, sans-serif' }}
+                            >
+                                Privacy
+                            </Link>
+                            <Link
+                                href="/terms"
+                                className="hover:text-[#D4AF37] transition-colors duration-300"
+                                style={{ fontFamily: 'Inter, sans-serif' }}
+                            >
+                                Terms
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+}
+
+// ============================================================================
+// DEFAULT FOOTER (Emerald Theme)
+// ============================================================================
+function DefaultFooter() {
     const [email, setEmail] = useState('');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
 
@@ -45,7 +284,7 @@ export function Footer() {
                 setEmail('');
             } else {
                 console.error('Newsletter signup failed');
-                setStatus('idle'); // Allow retry
+                setStatus('idle');
             }
         } catch (error) {
             console.error('Newsletter signup error', error);
@@ -176,4 +415,19 @@ export function Footer() {
             </div>
         </footer>
     );
+}
+
+// ============================================================================
+// MAIN FOOTER COMPONENT (Route-based switching)
+// ============================================================================
+export function Footer() {
+    const pathname = usePathname();
+
+    // Render Aiyé footer on Children of Aiyé pages
+    if (pathname?.startsWith('/children-of-aiye')) {
+        return <AiyeFooter />;
+    }
+
+    // Default Prose Refinery footer
+    return <DefaultFooter />;
 }

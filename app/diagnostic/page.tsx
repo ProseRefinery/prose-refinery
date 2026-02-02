@@ -6,7 +6,7 @@ import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
 import { TiltCard } from '@/components/effects/TiltCard';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 import { BeamCard } from '@/components/effects/BeamCard';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { Skeleton } from '@/components/ui/Skeleton';

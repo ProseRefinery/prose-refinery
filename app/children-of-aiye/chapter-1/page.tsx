@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 
 export const metadata: Metadata = {
-  title: 'Chapter 1: Smoke Over Ajegunle | Children of Aiye',
-  description: 'Read Chapter 1 of Children of Aiye - When the gods return, Lagos becomes the battlefield.',
+  title: 'Chapter 1: Smoke Over Ajegunle | Children of Aiyé',
+  description: 'Read Chapter 1 of Children of Aiyé - When the gods return, Lagos becomes the battlefield.',
 };
 
 export default function Chapter1Page() {

@@ -15,7 +15,7 @@ interface ClipRevealProps {
  */
 export function ClipReveal({ children, delay = 0, className = '' }: ClipRevealProps) {
     const [visible, setVisible] = useState(false);
-    const ref = useRef<HTMLDivElement>(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -28,14 +28,13 @@ export function ClipReveal({ children, delay = 0, className = '' }: ClipRevealPr
             { threshold: 0.1 }
         );
 
-        if (ref.current) observer.observe(ref.current);
+        if (wrapperRef.current) observer.observe(wrapperRef.current);
         return () => observer.disconnect();
     }, [delay]);
 
     return (
-        <div className={cn('overflow-hidden', className)}>
+        <div ref={wrapperRef} className={cn('overflow-hidden', className)}>
             <div
-                ref={ref}
                 className={cn(
                     'transition-all duration-700 ease-out',
                     visible ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'

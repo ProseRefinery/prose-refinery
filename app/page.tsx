@@ -2,7 +2,7 @@ import { ArrowRight, Feather, Layers, BookOpen, Shield, Search, Calendar, AlertT
 import { GridGlowBackground } from '@/components/effects/GridGlowBackground';
 import { ClipReveal } from '@/components/effects/ClipReveal';
 import { Reveal } from '@/components/effects/Reveal';
-import { Card } from '@/components/ui/Card';
+import { Card } from '@/components/ui/card';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { HeroBadge } from '@/components/ui/HeroBadge';
 import { Heading } from '@/components/ui/Heading';

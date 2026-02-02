@@ -1,71 +1,166 @@
-'use client';
+"use client"
 
-import { ReactNode } from 'react';
-import { cn } from '@/lib/utils';
-import { TiltCard } from '@/components/effects/TiltCard';
-import { BeamCard } from '@/components/effects/BeamCard';
+import * as React from "react"
+import { cn } from "@/lib/utils"
+import { TiltCard } from "@/components/effects/TiltCard"
+import { BeamCard } from "@/components/effects/BeamCard"
 
-interface CardProps {
-    children: ReactNode;
-    variant?: 'tilt' | 'beam' | 'static';
-    glowColor?: 'emerald' | 'purple' | 'blue' | 'rose' | 'amber';
-    className?: string; // Wrapper class
-    contentClassName?: string; // Inner content class (padding, flex, etc)
-    bgClass?: string; // Specific background override
-    maxTilt?: number; // Maximum tilt rotation in degrees
+// ====================
+// shadcn Card Components (for dashboard use)
+// ====================
+
+function BaseCard({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card"
+      className={cn(
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        className
+      )}
+      {...props}
+    />
+  )
 }
 
-export function Card({
-    children,
-    variant = 'tilt',
-    glowColor = 'emerald',
-    className,
-    contentClassName,
+function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-header"
+      className={cn(
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-title"
+      className={cn("leading-none font-semibold", className)}
+      {...props}
+    />
+  )
+}
+
+function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-description"
+      className={cn("text-muted-foreground text-sm", className)}
+      {...props}
+    />
+  )
+}
+
+function CardAction({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-action"
+      className={cn(
+        "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function CardContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-content"
+      className={cn("px-6", className)}
+      {...props}
+    />
+  )
+}
+
+function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-footer"
+      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      {...props}
+    />
+  )
+}
+
+// ====================
+// Marketing Card Component (with TiltCard/BeamCard variants)
+// ====================
+
+interface MarketingCardProps {
+  children: React.ReactNode
+  className?: string
+  variant?: "default" | "tilt" | "beam"
+  bgClass?: string
+  contentClassName?: string
+  glowColor?: "emerald" | "purple" | "blue" | "rose" | "amber" | "red"
+  maxTilt?: number
+}
+
+/**
+ * Marketing Card - Polymorphic card component for marketing pages
+ * - variant="default": Static card with border
+ * - variant="tilt": 3D tilt effect on hover (TiltCard)
+ * - variant="beam": Scanning light border effect (BeamCard)
+ */
+function Card({
+  children,
+  className,
+  variant = "default",
+  bgClass = "bg-slate-900/50",
+  contentClassName,
+  glowColor = "emerald",
+  maxTilt = 8,
+}: MarketingCardProps) {
+  const baseClasses = cn(
+    "rounded-md border border-slate-700/50 p-6",
     bgClass,
-    maxTilt
-}: CardProps) {
-    // Standard base styles for the visual "Card" surface
-    // TiltCard needs these on the child. BeamCard needs these handled carefully to not block the beam.
+    contentClassName,
+    className
+  )
 
-    const baseContentStyles = cn(
-        "relative rounded-md p-6 h-full flex flex-col", // Structural
-        bgClass || "bg-slate-800/30", // Default visual background (semi-transparent)
-        contentClassName
-    );
-
-    const borderStyles = "border border-slate-700/50 hover:border-emerald-500/30 transition-colors duration-300";
-
-    if (variant === 'beam') {
-        // BeamCard has its own border mechanism. 
-        // We pass the bgClass to BeamCard logic if we modify it, but BeamCard usually expects an opaque mask.
-        // If we use semi-transparent bg here, the beam might look weird underneath if we don't mask it.
-        // Current BeamCard implementation has a hardcoded inner mask.
-        // We'll wrap the content and strict borders are handled by BeamCard.
-        return (
-            <BeamCard glowColor={glowColor} className={className}>
-                <div className={cn("p-6 h-full flex flex-col", contentClassName)}>
-                    {children}
-                </div>
-            </BeamCard>
-        );
-    }
-
-    if (variant === 'tilt') {
-        return (
-            <TiltCard className={className} maxTilt={maxTilt}>
-                <BeamCard glowColor={glowColor} className="h-full">
-                    <div className={cn("p-6 h-full flex flex-col", contentClassName)}>
-                        {children}
-                    </div>
-                </BeamCard>
-            </TiltCard>
-        );
-    }
-
-    // Static
+  if (variant === "tilt") {
     return (
-        <div className={cn("relative rounded-md p-6 h-full flex flex-col", bgClass || "bg-slate-800/30", "border border-slate-700/50", className, contentClassName)}>
-            {children}
+      <TiltCard className={className} maxTilt={maxTilt}>
+        <div className={cn("rounded-md border border-slate-700/50 p-6 h-full", bgClass, contentClassName)}>
+          {children}
         </div>
-    );
+      </TiltCard>
+    )
+  }
+
+  if (variant === "beam") {
+    return (
+      <BeamCard className={className} glowColor={glowColor}>
+        <div className={cn("rounded-md p-6 h-full", bgClass, contentClassName)}>
+          {children}
+        </div>
+      </BeamCard>
+    )
+  }
+
+  // Default static card
+  return (
+    <div className={baseClasses}>
+      {children}
+    </div>
+  )
+}
+
+export {
+  // Marketing Card (default export for pages)
+  Card,
+  // shadcn Card Components (for dashboard)
+  BaseCard,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
 }

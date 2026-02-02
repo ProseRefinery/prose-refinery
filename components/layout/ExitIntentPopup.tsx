@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { X } from 'lucide-react';
 
 export default function ExitIntentPopup() {
@@ -7,8 +8,14 @@ export default function ExitIntentPopup() {
     const [email, setEmail] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
+        // Don't show on Children of Aiye pages (has its own popup)
+        if (pathname?.startsWith('/children-of-aiye')) {
+            return;
+        }
+
         // Check if already shown (Persistent across sessions)
         const isBlocked = typeof window !== 'undefined' && localStorage.getItem('exitPopupShown');
 

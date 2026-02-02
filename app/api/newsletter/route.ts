@@ -3,7 +3,7 @@ import { upsertContact } from '@/lib/loops';
 
 export async function POST(req: NextRequest) {
     try {
-        const { email } = await req.json();
+        const { email, source, userGroup } = await req.json();
 
         if (!email) {
             return NextResponse.json({ error: 'Email is required' }, { status: 400 });
@@ -11,9 +11,9 @@ export async function POST(req: NextRequest) {
 
         const result = await upsertContact({
             email,
-            source: 'newsletter_footer',
+            source: source || 'newsletter_footer',
             newsletter: true,
-            userGroup: 'Newsletter Subscriber' // Explicit segment
+            userGroup: userGroup || 'Newsletter Subscriber'
         });
 
         if (result.error) {

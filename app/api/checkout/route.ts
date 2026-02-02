@@ -29,6 +29,15 @@ export async function POST(req: NextRequest) {
             (key) => STRIPE_PRICES[key as keyof typeof STRIPE_PRICES] === priceId
         );
 
+        // Determine success/cancel URLs based on product
+        const isEbook = productKey === 'children_of_aiye_ebook';
+        const successUrl = isEbook
+            ? `${req.nextUrl.origin}/children-of-aiye/success?session_id={CHECKOUT_SESSION_ID}`
+            : `${req.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}`;
+        const cancelUrl = isEbook
+            ? `${req.nextUrl.origin}/children-of-aiye/checkout`
+            : `${req.nextUrl.origin}/services`;
+
         const session = await stripe.checkout.sessions.create({
             mode: 'payment',
             payment_method_types: ['card'],
@@ -38,13 +47,15 @@ export async function POST(req: NextRequest) {
                     quantity: 1,
                 },
             ],
+            // Collect email for digital delivery
+            ...(isEbook && { customer_email: undefined }), // Let Stripe collect email
             metadata: {
                 product_key: productKey || 'unknown',
-                // Add explicit logic for Tier 3 Preview identification
+                is_ebook: isEbook ? 'true' : 'false',
                 is_preview: productKey === 'tier3_preview' ? 'true' : 'false'
             },
-            success_url: `${req.nextUrl.origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-            cancel_url: `${req.nextUrl.origin}/services`,
+            success_url: successUrl,
+            cancel_url: cancelUrl,
         });
 
         return NextResponse.json({ url: session.url });

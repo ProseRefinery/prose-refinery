@@ -6,7 +6,7 @@ interface GlowTiltCardProps {
   children: ReactNode;
   className?: string;
   maxTilt?: number;
-  glowColor?: 'gold' | 'emerald' | 'purple' | 'red';
+  glowColor?: 'gold' | 'emerald' | 'purple' | 'red' | 'violet' | 'silver' | 'ember';
 }
 
 /**
@@ -89,6 +89,25 @@ export function GlowTiltCard({
       secondary: 'rgb(248 113 113)',
       glow: 'rgba(239, 68, 68, 0.3)',
       radial: 'rgba(239, 68, 68, 0.15)'
+    },
+    // Frame colors for character cards
+    violet: {
+      primary: 'rgb(123 45 142)',       // #7B2D8E - Afolabi's Frame
+      secondary: 'rgb(156 81 171)',     // lighter violet
+      glow: 'rgba(123, 45, 142, 0.35)',
+      radial: 'rgba(123, 45, 142, 0.18)'
+    },
+    silver: {
+      primary: 'rgb(168 196 217)',      // #A8C4D9 - Kehinde's Frame
+      secondary: 'rgb(200 218 232)',    // lighter silver-blue
+      glow: 'rgba(168, 196, 217, 0.35)',
+      radial: 'rgba(168, 196, 217, 0.18)'
+    },
+    ember: {
+      primary: 'rgb(255 107 53)',       // #FF6B35 - Taiwo's Frame
+      secondary: 'rgb(255 140 94)',     // lighter ember
+      glow: 'rgba(255, 107, 53, 0.35)',
+      radial: 'rgba(255, 107, 53, 0.18)'
     }
   };
 

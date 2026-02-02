@@ -10,8 +10,21 @@ interface AudioControlProps {
 
 export function AudioControl({ src = '/children-of-aiye/ambient-drone.mp3' }: AudioControlProps) {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
     const [volume, setVolume] = useState(0.5);
     const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    // Lazy load: Only create audio element on first play
+    const initAudio = () => {
+        if (!audioRef.current) {
+            const audio = new Audio(src);
+            audio.loop = true;
+            audio.volume = volume;
+            audioRef.current = audio;
+            setIsLoaded(true);
+        }
+        return audioRef.current;
+    };
 
     useEffect(() => {
         if (audioRef.current) {
@@ -19,35 +32,43 @@ export function AudioControl({ src = '/children-of-aiye/ambient-drone.mp3' }: Au
         }
     }, [volume]);
 
-    useEffect(() => {
-        if (audioRef.current) {
-            if (isPlaying) {
-                // Handle promise to avoid "play() failed because the user didn't interact" errors
-                const playPromise = audioRef.current.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch((error) => {
-                        console.log("Audio playback failed (likely browser policy):", error);
-                        setIsPlaying(false);
+    const handleToggle = () => {
+        const audio = initAudio();
+        if (!isPlaying) {
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => setIsPlaying(true))
+                    .catch((error) => {
+                        console.log("Audio playback failed:", error);
                     });
-                }
-            } else {
-                audioRef.current.pause();
             }
+        } else {
+            audio.pause();
+            setIsPlaying(false);
         }
-    }, [isPlaying]);
+    };
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current = null;
+            }
+        };
+    }, []);
 
     return (
         <div className="fixed bottom-6 left-6 z-50 flex items-center gap-4">
-            <audio ref={audioRef} loop>
-                <source src={src} type="audio/mpeg" />
-            </audio>
+            {/* No <audio> tag - loaded lazily via JavaScript */}
 
             <motion.button
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setIsPlaying(!isPlaying)}
+                onClick={handleToggle}
                 className="relative group w-12 h-12 rounded-full bg-black/40 backdrop-blur-md border border-[#D4AF37]/30 flex items-center justify-center transition-colors hover:bg-black/60 hover:border-[#D4AF37]"
                 aria-label={isPlaying ? "Mute Ambient Sound" : "Play Ambient Sound"}
             >
@@ -76,7 +97,7 @@ export function AudioControl({ src = '/children-of-aiye/ambient-drone.mp3' }: Au
                         className="hidden sm:block"
                     >
                         <span className="text-[10px] tracking-widest text-[#D4AF37] uppercase">
-                            Now Playing: Lagos 2067
+                            Now Playing: Aiyé Eternal
                         </span>
                     </motion.div>
                 )}
